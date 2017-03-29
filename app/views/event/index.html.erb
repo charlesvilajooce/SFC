@@ -1,0 +1,12 @@
+<h1>Welcome#index</h1>
+<p>Find me in app/views/welcome/index.html.erb</p>
+<%=
+  if user_signed_in?
+    current_user.email
+
+    temp = User.find(current_user.id)
+    temp.email
+
+    temp.roles_mask
+  end
+%>
