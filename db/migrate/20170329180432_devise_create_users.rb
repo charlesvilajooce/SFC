@@ -32,11 +32,33 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
 
 
       t.timestamps null: false
+
+      t.integer :level
+      t.string :surname
+      t.string :name
+      t.date :birthday
+      t.text :parents
+      t.string :photo_url
+      t.boolean :injured
+      t.text :injury_archive
+      t.boolean :suspended
+      t.text :cards_archive
+      t.integer :role
+      t.string :school
+      t.text :school_archive
+      t.text :physic_char
+      t.integer :playtime
+      t.date :arriving_date
+      t.date :endcontrat_date
+      t.text :sportactivity_archive
+
     end
 
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
+
+
   end
 end

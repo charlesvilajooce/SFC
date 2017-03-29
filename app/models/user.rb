@@ -4,6 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  mount_uploader :avatar, AvatarUploader
+
+  validates_processing_of :avatar
+  validate :avatar_size_validation
+
+  # private
+  def avatar_size_validation
+    errors[:avatar] << "should be less than 500KB" if avatar.size > 0.5.megabytes
+  end
 
   ROLES = %i[admin normal]
 
@@ -21,6 +30,5 @@ class User < ApplicationRecord
   def has_role?(role)
     roles.include?(role)
   end
-
 
 end

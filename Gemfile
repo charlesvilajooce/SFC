@@ -55,3 +55,21 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'cancancan'
+
+gem 'bootstrap'
+
+gem 'tether-rails'
+gem 'rails-assets-tether', '>= 1.1.0'
+
+# Generate seed file from existing data in the database
+gem 'seed_dump'
+
+# File upload
+gem 'carrierwave'
+gem 'mini_magick'
+
+# Table ordering and filter
+gem 'jquery-datatables-rails'
+
+#font-awesome
+gem "font-awesome-rails"
