@@ -24,6 +24,7 @@ class Ability
       # can :index, Event
     else
       # can :read ,:event
+      can :manage, :all
     end
 
     # Define abilities for the passed in user here. For example:
