@@ -1,28 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Devisetest2</title>
+  <title>SFCadmin</title>
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
 </head>
 
 <body>
 
-<ul class="nav">
-  <li class="active"><a href="/ideas">Ideas</a></li>
-</ul>
-<p class="navbar-text pull-right">
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#"><%= image_tag("logo.png", size: "30") %></a>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+
+
+      <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-link' %>
+          </li>
+          <li class="nav-item">
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-link'  %>
+          </li>
+      <% else %>
+          <li class="nav-item">
+          <%= link_to "Sign up", new_user_registration_path, :class => 'nav-link'  %>
+          </li>
+          <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, :class => 'nav-link'  %>
+          </li>
+      <% end %>
+
+
+      <% if session[:user_id] %>
+          <li class="nav-item">
+            <%= link_to 'Home', users_path, :class => "nav-link" %>
+          </li>
+          <li class="nav-item">
+          <li><%= link_to 'Admin', admin_path, :class => "nav-link" %></li>
+          </li>
+      <% end %>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">People</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <%= link_to 'Tous', users_path, :class => "dropdown-item" %>
+          <a class="dropdown-item" href="#">Première</a>
+          <a class="dropdown-item" href="#">Academie</a>
+          <a class="dropdown-item" href="#">Staff</a>
+        </div>
+      </li>
+    </ul>
+
+    <ul class="form-inline my-2 my-md-0">
+      <% if session[:user_id] %>
+          <li class="nav-item">
+            <%= button_to 'Logout', logout_path, method: :delete, :class => "btn-outline btn", :style =>"padding-top:10px; margin-left:50px;"  %>
+          </li>
+          <span class="nav-link" style="color: white;">(<%= @surname = User.find(session[:user_id]).surname%> <%= @name = User.find(session[:user_id]).name %>)</span>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+
   <% if user_signed_in? %>
       Logged in as <strong><%= current_user.email %></strong>.
-      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-  <% else %>
-      <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-      <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
   <% end %>
-
 
 
   <% if notice %>
@@ -34,5 +85,8 @@
 
 
   <%= yield %>
-  </body>
+
+</div><!-- /.container -->
+
+</body>
 </html>

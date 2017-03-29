@@ -1,0 +1,96 @@
+p, ol, ul, td {
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+//Grenat
+.form-control:focus {
+  border-color: #85142b !important;
+}
+
+.btn-primary {
+  background-color: #85142b !important;
+  border-color: #85142b !important;
+}
+
+a {
+  color: white !important;
+  text-decoration: none;
+}
+
+.dropdown-item{
+  color: black !important;
+}
+
+a:focus, a:hover {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  color: grey !important;
+  text-decoration: none;
+  background-color: #f7f7f9;
+}
+
+//Sign in page
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[name="name"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[name="surname"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin input[name="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+//
+// Thumbnails
+// --------------------------------------------------
+
+.thumbnail {
+  display: block;
+  padding: 10px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: border .2s ease-in-out;
+  -o-transition: border .2s ease-in-out;
+  transition: border .2s ease-in-out;
+}

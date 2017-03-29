@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   get 'event/index'
   root to: "event#index"
 
+  resources :users
 
 end
