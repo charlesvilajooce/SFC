@@ -1,0 +1,46 @@
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
+<h1>Users#index</h1>
+<p>Find me in app/views/users/index.html.erb</p>
+
+<table id="userindex" class="table table-striped	">
+  <thead>
+    <tr>
+      <th>Surname</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Birthday</th>
+      <th>Injured</th>
+      <th>Suspended</th>
+      <th>Role</th>
+      <th>Playtime</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr class='clickable-row' data-href="<%=user_path(user)%>">
+        <td style="overflow: hidden; white-space: nowrap;"><%= user.surname %></td>
+        <td style="overflow: hidden; white-space: nowrap;"><%= user.name %></td>
+        <td style="overflow: hidden; white-space: nowrap;"><%= user.email %></td>
+        <td style="overflow: hidden; white-space: nowrap;"><%= user.birthday %></td>
+        <td><%= user.injured %></td>
+        <td><%= user.suspended %></td>
+        <td><%= user.role %></td>
+        <td><%= user.playtime %></td>
+        <td style="overflow: hidden; white-space: nowrap;">
+          <%= link_to '<i class="fa fa-search" aria-hidden="true"></i>'.html_safe, user , class: 'btn btn-success btn-user'%>
+          <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_user_path(user), class: 'btn btn-warning btn-user' %>
+          <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path, class: 'btn btn-primary' %>

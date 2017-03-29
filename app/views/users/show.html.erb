@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+
+<div class="row">
+
+  <div class="col-4">
+    <div class="col-12">
+      <div class="thumbnail">
+        <% if @user.avatar.thumb.url!=nil %>
+            <%= image_tag @user.avatar.url %>
+        <% end %>
+        <div class="caption">
+          <h3><%= @user.surname %> <%= @user.name %> <small>(<%= @user.level %>)</small></h3>
+          <p><strong>Role:</strong><%= @user.role %></p>
+          <p>
+            <strong>Email:</strong>
+            <%= @user.email %>
+          </p>
+          <p>
+            <strong>Birthday:</strong>
+            <%= @user.birthday %>
+          </p>
+          <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary' %> |
+          <%= link_to 'Back', users_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <ul class="list-group">
+        <li class="list-group-item">Playtime: <%= @user.playtime %>'</li>
+        <li class="list-group-item">Injured: <%= @user.injured %></li>
+        <li class="list-group-item">Suspended: <%= @user.suspended %></li>
+        <li class="list-group-item">Arriving date: <%= @user.arriving_date %></li>
+        <li class="list-group-item">Endcontrat date: <%= @user.endcontrat_date %></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-8 thumbnail">
+    <p>
+      <strong>Physic char:</strong>
+      <%= @user.physic_char %>
+    </p>
+
+    <p>
+      <strong>Sportactivity archive:</strong>
+      <%= @user.sportactivity_archive %>
+    </p>
+
+    <p>
+      <strong>Injury archive:</strong>
+      <%= @user.injury_archive %>
+    </p>
+
+    <p>
+      <strong>Cards archive:</strong>
+      <%= @user.cards_archive %>
+    </p>
+
+    <p>
+      <strong>Parents:</strong>
+      <%= @user.parents %>
+    </p>
+
+    <p>
+      <strong>School:</strong>
+      <%= @user.school %>
+    </p>
+
+    <p>
+      <strong>School archive:</strong>
+      <%= @user.school_archive %>
+    </p>
+  </div>
+
+
+
+</div> <!-- /.row -->
