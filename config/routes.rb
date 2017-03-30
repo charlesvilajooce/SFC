@@ -7,8 +7,10 @@ Rails.application.routes.draw do
 
   get 'event/index'
   root to: "event#index"
+  # devise_for :users
 
-
-  resources :users
-
+  # resources :users, only: [:index, :show]
+  get 'users/index', to: 'users#index', as: 'users'
+  get 'users/:id/edit', to: 'users#edit', as: 'users_edit'
+  resources :users, only: [:show, :update, :destroy]
 end

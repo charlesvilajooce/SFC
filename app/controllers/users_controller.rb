@@ -44,10 +44,12 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    print('Hello')
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User #{@user.surname} #{@user.name} was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
+        format.html { redirect_to users_path, notice: "User #{@user.surname} #{@user.name} was successfully updated." }
+        format.json { render :show, status: :ok, location: user_path(@user) }
+        print('Hello2')
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -78,6 +80,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:level, :surname, :name, :email, :password, :password_confirmation, :birthday, :parents, :photo_url, :avatar, :remove_avatar, :injured, :injury_archive, :suspended, :cards_archive, :role, :school, :school_archive, :physic_char, :playtime, :arriving_date, :endcontrat_date, :sportactivity_archive)
+      params.require(:user).permit(:level, :surname, :name, :email, :birthday, :parents, :photo_url, :avatar, :remove_avatar, :injured, :injury_archive, :suspended, :cards_archive, :role, :school, :school_archive, :physic_char, :playtime, :arriving_date, :endcontrat_date, :sportactivity_archive)
     end
 end
