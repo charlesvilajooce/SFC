@@ -22,7 +22,7 @@
 
   <tbody>
     <% @users.each do |user| %>
-      <tr class='clickable-row' data-href="<%=user_registration_path(user)%>">
+      <tr class='clickable-row' data-href="<%=user_path(user)%>">
         <td style="overflow: hidden; white-space: nowrap;"><%= user.surname %></td>
         <td style="overflow: hidden; white-space: nowrap;"><%= user.name %></td>
         <td style="overflow: hidden; white-space: nowrap;"><%= user.email %></td>
@@ -32,9 +32,8 @@
         <td><%= user.role %></td>
         <td><%= user.playtime %></td>
         <td style="overflow: hidden; white-space: nowrap;">
-          <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, users_edit_path(user), class: 'btn btn-warning btn-user' %>
-
           <%= link_to '<i class="fa fa-search" aria-hidden="true"></i>'.html_safe, user_path(user), class: 'btn btn-success btn-user'%>
+          <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, users_edit_path(user), class: 'btn btn-warning btn-user' %>
           <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %>
 
 
