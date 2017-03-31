@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params_create)
 
     respond_to do |format|
       if @user.save
@@ -82,4 +82,8 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:level, :surname, :name, :email, :birthday, :parents, :photo_url, :avatar, :remove_avatar, :injured, :injury_archive, :suspended, :cards_archive, :role, :school, :school_archive, :physic_char, :playtime, :arriving_date, :endcontrat_date, :sportactivity_archive)
     end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params_create
+    params.require(:user).permit(:password, :password_confirmation, :level, :surname, :name, :email, :birthday, :parents, :photo_url, :avatar, :remove_avatar, :injured, :injury_archive, :suspended, :cards_archive, :role, :school, :school_archive, :physic_char, :playtime, :arriving_date, :endcontrat_date, :sportactivity_archive)
+  end
 end

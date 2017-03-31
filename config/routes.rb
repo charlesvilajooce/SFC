@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   # resources :users, only: [:index, :show]
   get 'users/index', to: 'users#index', as: 'users'
   get 'users/:id/edit', to: 'users#edit', as: 'users_edit'
-  resources :users, only: [:show, :update, :destroy]
+  match 'users/index', to: 'users#create', as: 'createuser', via: [:post]
+  resources :users, only: [:show, :update, :destroy, :new]
 end
