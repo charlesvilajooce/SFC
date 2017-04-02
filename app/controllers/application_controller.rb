@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   # load_and_authorize_resource
   check_authorization :unless => :devise_controller?
-  # skip_authorization_check :only => [:new, :login]
+  skip_authorization_check :only => [:new, :login]
   # before_action :configure_permitted_parameters, if: :devise_controller?
 
 
