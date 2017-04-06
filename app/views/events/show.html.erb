@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Begin:</strong>
+  <%= @event.getnicedate(@event.begin) %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @event.getnicedate(@event.end) %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>Descirption:</strong>
+  <%= @event.description %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @event.eventtype %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

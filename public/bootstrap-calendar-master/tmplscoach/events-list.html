@@ -1,0 +1,34 @@
+<span id="cal-slide-tick" style="display: none"></span>
+<div id="cal-slide-content" class="cal-event-list">
+	<ul class="unstyled list-unstyled">
+		<% _.each(events, function(event) { %>
+			<li>
+				<span class="pull-left event <%= event['class'] %>"></span>&nbsp;
+				
+				
+				<% if(event.type == 0) {%>
+				<!-- c'est un cours classique -->
+				<a href="/index.php?r=calendar/coursev&id=<%= event.id %>" target="_blank" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
+							class="event-item"><%= event.begin %> <%= event.title %></a>
+							 
+				<% } %>
+				
+				<% if(event.type == 1) {%>
+				<!-- c'est une recurrence -->
+				<a href="/index.php?r=calendar/coursev&id=<%= event.extra %>&rec=1" target="_blank" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
+							class="event-item"><%= event.begin %> <%= event.title %></a>
+							 
+				<% } %>
+				
+				
+				<% if(event.type == 2) {%>
+				<!-- c'est une recurrence -->
+				<a href="<%= event.url %>" target="_blank" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
+							class="event-item"><%= event.begin %> <%= event.title %></a>
+							 
+				<% } %>
+					
+			</li>
+		<% }) %>
+	</ul>
+</div>

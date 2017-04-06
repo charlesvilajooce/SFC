@@ -1,0 +1,23 @@
+<table class="cal-week-box" border="1px">
+<thead>
+<tr>
+<% _.each(days_name, function(name) { %>
+<td class="<%= cal._getDayClass('week', start) %>" ><%= name %>
+<small>
+
+
+
+<%= start.getDate() %> <%= cal.locale['ms' + start.getMonth()] %>
+
+</small>
+</td>
+<% start.setDate(start.getDate() + 1); %>
+<% }) %>
+</tr>
+</thead>
+<tbody>
+<tr>
+<%= cal._week() %>
+</tr>
+</tbody>
+</table>

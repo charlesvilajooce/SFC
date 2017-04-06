@@ -1,0 +1,24 @@
+<span id="cal-slide-tick" style="display: none"></span>
+<div id="cal-slide-content" class="cal-event-list">
+	<ul class="unstyled list-unstyled">
+		<% _.each(events, function(event) { %>
+		<% if(event.class != "course") {%>
+			<li>
+				<span class="pull-left event <%= event['class'] %>"></span>&nbsp;
+				
+				
+				
+				<a href="/index.php?r=calendar/subscribe&id=<%= event.id %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
+							class="event-item"><%= event.begin %> <%= event.title %>
+							
+							
+														
+							</a>
+							 
+		
+					
+			</li>
+				<% } %>
+		<% }) %>
+	</ul>
+</div>

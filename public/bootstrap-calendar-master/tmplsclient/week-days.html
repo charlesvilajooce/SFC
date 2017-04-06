@@ -1,0 +1,92 @@
+<% for(var i=0; i<7; i++) { %>
+<td>	
+<table class="table">
+<% _.each(events, function(event){ %>
+<% if(event.start_day == i) { %>
+<tr>
+
+			
+			<% if(event.type == 0) { %>
+				<!-- ALORS C'EST UN COURS -->
+			
+					<% if(event.class == "course") { %>
+						<!-- ALORS C'EST UN COURS AUXQUELS IL N'EST PAS INSCRIT -->
+						
+							<td class=" cal-offset<%= event.start_day %> day-highlight <%= event['class'] %>week" data-event-class="<%= event['class'] %>" style="background-color: <%= event.color %>;"><a href="/index.php?r=calendar/subscribe&id=<%= event.id %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
+										class="event-item">
+							<strong><%= event.title %></strong>
+							<br>
+							<%= event.begin %>
+							<br>
+							<em><%= event.lieu %></em>
+							<br>
+							Inscrits: <%= event.participants %>
+							/ 
+							<%= event.capacity %>		
+												
+							</a>
+							<a href="/index.php?r=calendar/subscribe&id=<%= event.id %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>" class="pull-left event <%= event['class'] %>" data-toggle="tooltip" title="" data-original-title="Il reste de la place!"></a>
+					<% } %>
+					
+					<% if(event.class == "subscribed") { %>
+						<!-- ALORS C'EST UN COURS AUXQUELS IL EST INSCRIT - DU COUP ICI CA SERAIT PAS MAL D'AFFICHER UNE PASTILLE EN PLUS DE L'INFO CLASSIQUE - ENCORE MIEUX SERAIT QUE SUR LA PASTILLE IL Y A AIT UN TOOLTIP INDIQUANT VOUS ETES INSCRIT A CE COURS OU DANS LA QUEUE ETC... -->
+						
+							<td class=" cal-offset<%= event.start_day %> day-highlight <%= event['class'] %>week" data-event-class="<%= event['class'] %>" style="background-color: <%= event.color %>;"><a href="/index.php?r=calendar/subscribe&id=<%= event.id %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
+										class="event-item">
+							<strong><%= event.title %></strong>
+							<br>
+							<%= event.begin %>
+							<br>
+							<em><%= event.lieu %></em>
+							<br>
+							Inscrits: <%= event.participants %>
+							/ 
+							<%= event.capacity %>
+					
+							</a>
+							<a href="/index.php?r=calendar/subscribe&id=<%= event.id %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>" class="pull-left event <%= event['class'] %>" data-toggle="tooltip" title="" data-original-title="Tu es inscrit!"></a>
+					<% } %>
+					
+					
+					<% if(event.class == "queue") { %>
+						<!-- ALORS C'EST UN COURS AUXQUELS IL DANS LA QUEUE - DU COUP ICI CA SERAIT PAS MAL D'AFFICHER UNE PASTILLE EN PLUS DE L'INFO CLASSIQUE - ENCORE MIEUX SERAIT QUE SUR LA PASTILLE IL Y A AIT UN TOOLTIP INDIQUANT VOUS ETES INSCRIT A CE COURS OU DANS LA QUEUE ETC... -->
+							<td class=" cal-offset<%= event.start_day %> day-highlight <%= event['class'] %>" data-event-class="<%= event['class'] %>" style="background-color: <%= event.color %>;"><a href="/index.php?r=calendar/subscribe&id=<%= event.id %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
+										class="event-item">
+							<strong><%= event.title %></strong>
+							<br>
+							<%= event.begin %>
+							<br>
+							<em><%= event.lieu %></em>
+							<br>
+							Inscrits: <%= event.participants %>
+							/ 
+							<%= event.capacity %>
+
+							</a>
+							<a href="/index.php?r=calendar/subscribe&id=<%= event.id %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>" class="pull-left event <%= event['class'] %>" data-toggle="tooltip" title="" data-original-title="Tu es dans la file d'attente!"></a>
+					<% } %>
+					
+			
+			<% } %>
+			
+			<% if(event.type == 1) { %>
+				<!-- ALORS C'EST UN COURS PRIVE -->
+			<td class=" cal-offset<%= event.start_day %> day-highlight <%= event['class'] %>" data-event-class="<%= event['class'] %>" style="background-color: <%= event.color %>;"><a href="/index.php?r=calendar/subscribe&id=<%= event.id %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
+													class="event-item">
+										<strong><%= event.title %></strong>
+										<br>
+										<%= event.begin %>
+										<br>
+													
+										</a>
+										<a href="/index.php?r=calendar/pma&id=<%= event.capacity %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>" class="pull-left event <%= event['class'] %>" data-toggle="tooltip" title="" data-original-title="<%= event.title %>"></a>
+				<% } %>
+
+
+</td>
+</tr>
+<% } %>	
+<% }); %>
+</table>
+</td>
+<% } %>

@@ -1,0 +1,17 @@
+<% for(var i=0; i<7; i++) { %>
+<td>	
+<table class="table">
+<% _.each(events, function(event){ %>
+<% if(event.start_day == i) { %>
+<tr>
+<td class=" cal-offset<%= event.start_day %> day-highlight <%= event['class'] %>" data-event-class="<%= event['class'] %>"><a href="http://localhost:3000/event/click" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
+			class="event-item"><%= event.title %></a>
+
+
+</td>
+</tr>
+<% } %>	
+<% }); %>
+</table>
+</td>
+<% } %>

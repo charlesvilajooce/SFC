@@ -1,0 +1,97 @@
+<% for(var i=0; i<7; i++) { %>
+<td>	
+<table class="table">
+<% _.each(events, function(event){ %>
+<% if(event.start_day == i) { %>
+<tr>
+
+
+<% if(event.type == 0) {%>
+<!-- c'est un cours classique -->
+				
+	
+<td class=" cal-offset<%= event.start_day %> day-highlight <%= event['class'] %>week" data-event-class="<%= event['class'] %>" style="background-color: <%= event.color %>;"><a href="/index.php?r=calendar/coursev&id=<%= event.id %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
+			class="event-item">
+			<strong><%= event.title %></strong>
+			<br>
+			<%= event.begin %>
+			<br>
+			<em><%= event.lieu %></em>
+			<br>
+			Inscrits: <%= event.participants %>
+			/ 
+			<%= event.capacity %>
+			
+			</a>
+			 
+<% } %>
+
+<% if(event.type == 1) {%>
+<!-- c'est une recurrence -->
+	
+<td class=" cal-offset<%= event.start_day %> day-highlight <%= event['class'] %>week" data-event-class="<%= event['class'] %>" style="background-color: <%= event.color %>;"><a href="/index.php?r=calendar/coursev&id=<%= event.id %>&rec=1" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
+			class="event-item">
+			<strong><%= event.title %></strong>
+			<br>
+			<%= event.begin %>
+			<br>
+			<em><%= event.lieu %></em>
+			<br>
+			Inscrits: 0
+			/ 
+			<%= event.capacity %>
+			
+			</a>	
+	
+			 
+<% } %>
+
+
+<% if(event.type == 2) {%>
+<!-- c'est une scéance privée -->			
+	
+	
+<td class=" cal-offset<%= event.start_day %> day-highlight <%= event['class'] %>week" data-event-class="<%= event['class'] %>" style="background-color: <%= event.color %>;"><a href="<%= event.url %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
+			class="event-item">
+			<strong><%= event.title %></strong>
+			<br>
+			<%= event.begin %>
+			<br>
+			Client: <%= event.extra %>
+			
+			
+			</a>
+						
+			 
+<% } %>
+
+
+<% if(event.type == 3) {%>
+<!-- c'est une scéance privée donnée par un autre coach -->			
+	
+	
+<td class=" cal-offset<%= event.start_day %> day-highlight <%= event['class'] %>week" data-event-class="<%= event['class'] %>" style="background-color: <%= event.color %>;"><a href="<%= event.url %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
+			class="event-item">
+			<strong><%= event.title %></strong>
+			<br>
+			<%= event.begin %>
+			<br>
+			Client: <%= event.extra %>
+			<br>
+			Coach: <%= event.capacity %>
+			
+			
+			</a>
+						
+			 
+<% } %>
+
+
+
+</td>
+</tr>
+<% } %>	
+<% }); %>
+</table>
+</td>
+<% } %>
