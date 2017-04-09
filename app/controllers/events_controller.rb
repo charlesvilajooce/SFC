@@ -29,8 +29,20 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  # GET /events/new
+  def newpartial
+    @event = Event.new
+    render :partial => "events/new.html"
+  end
+
   # GET /events/1/edit
   def edit
+  end
+
+  # GET /events/1/edit
+  def editpartial
+    @event = Event.find(params[:id])
+    render :partial => "events/edit.html"
   end
 
   # POST /events

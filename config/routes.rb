@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get 'events/eventsource'
   get 'events/click'
+  get 'events/newpartial', to: 'events#newpartial', as: 'new_events_partial'
+  get '/events/:id/editpartial', to: 'events#editpartial', as: 'edit_event_partial'
   resources :events
   get 'calendar/index'
 

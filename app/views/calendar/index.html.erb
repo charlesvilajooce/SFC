@@ -42,30 +42,51 @@
   </div>
   <h3></h3>
 </div>
-<span style="display: inline-block; vertical-align: middle;" class="event subscribed"></span> Inscrit
-<span style="display: inline-block; vertical-align: middle; margin-left: 10px;" class="event queue"></span> En attente
-<span style="display: inline-block; vertical-align: middle; margin-left: 10px;" class="event course"></span> Libre
-<span style="display: inline-block; vertical-align: middle; margin-left: 10px;" class="event pm_toconfirm"></span> Cours privé demandé
-<span style="display: inline-block; vertical-align: middle; margin-left: 10px;" class="event pm"></span> Cours privé confirmé
+<a type="button" class="btn btn-info btn-lg" href="<%= new_events_partial_path %>" data-toggle="modal" data-target="#theModal">Ajouter un évennement</a>
+
+<!--<span style="display: inline-block; vertical-align: middle;" class="event subscribed"></span> Inscrit-->
+<!--<span style="display: inline-block; vertical-align: middle; margin-left: 10px;" class="event queue"></span> En attente-->
+<!--<span style="display: inline-block; vertical-align: middle; margin-left: 10px;" class="event course"></span> Libre-->
+<!--<span style="display: inline-block; vertical-align: middle; margin-left: 10px;" class="event pm_toconfirm"></span> Cours privé demandé-->
+<!--<span style="display: inline-block; vertical-align: middle; margin-left: 10px;" class="event pm"></span> Cours privé confirmé-->
 <div class="row" style="margin-top: 25px;">
-  <div class="span9">
+  <div class="" style="width:100%;">
     <div id="calendar"></div>
   </div>
 </div>
 
+<div id="theModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Evènement</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 
 
-<div class="modal hide fade" style="max-height: 520px;" id="events-modal">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3><img src="images/logo.png" style="width: 80px;" alt=""></h3>
-  </div>
-  <div class="modal-body" style="max-height: 400px;min-height: 200px;">
-  </div>
-  <div class="modal-footer">
-    <a href="#" data-dismiss="modal" class="btn">Fermer</a>
-  </div>
-</div>
+
+<!--<div class="modal hide fade" style="max-height: 520px;" id="events-modal">-->
+  <!--<div class="modal-header">-->
+    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+    <!--<h3><img src="images/logo.png" style="width: 80px;" alt=""></h3>-->
+  <!--</div>-->
+  <!--<div class="modal-body" style="max-height: 400px;min-height: 200px;">-->
+  <!--</div>-->
+  <!--<div class="modal-footer">-->
+    <!--<a href="#" data-dismiss="modal" class="btn">Fermer</a>-->
+  <!--</div>-->
+<!--</div>-->
 
 <script type="text/javascript" src="bootstrap-calendar-master/components/underscore/underscore-min.js"></script>
 <script type="text/javascript" src="bootstrap-calendar-master/components/jstimezonedetect/jstz.min.js"></script>

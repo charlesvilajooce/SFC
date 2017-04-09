@@ -7,6 +7,16 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+  <script>
+//  $('body').on('click', '[data-toggle="modal"]', function(){
+//  $($(this).data("target")+' .modal-body').load($(this).attr('href'));
+//  });
+
+$(document).on('show.bs.modal','#theModal', function (e) {
+//    alert(e.relatedTarget.href);
+    $(this).find('.modal-body').load(e.relatedTarget.href);
+})
+  </script>
 </head>
 
 <body>

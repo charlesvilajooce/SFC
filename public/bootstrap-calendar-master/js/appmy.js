@@ -14,7 +14,7 @@
 		time_split: '60',
 		
 		// ID of the element of modal window. If set, events URLs will be opened in modal windows.
-		modal: '#events-modal',
+		modal: '#evednts-modal',
 		//	modal handling setting, one of "iframe", "ajax" or "template"
 		modal_type: "ajax",
 		onAfterEventsLoad: function(events) {

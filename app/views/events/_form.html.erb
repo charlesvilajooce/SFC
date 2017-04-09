@@ -47,8 +47,13 @@
 
   <div class="field">
     <%= f.label :eventtype %>
-    <%= f.text_field :eventtype %>
+    <%=
+      # f.text_field :eventtype
+    %>
+    <%= f.select :eventtype, options_for_select([["Match", "1"], ["Entrainement", "2"]], event.eventtype) %>
   </div>
+
+
 
   <div class="actions">
     <%= f.submit %>
