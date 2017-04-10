@@ -1,12 +1,19 @@
 (function($) {
 	"use strict";
-
+//for getting current view
+    var sessionstart = "";
+    sessionstart = $.ajax({url: "/users/getcalendardate", async: false,success: function(result){return result;}}).responseText;
+//end for getting current view
+//for getting current viewtype
+    var sessiontype = "";
+    sessiontype = $.ajax({url: "/users/getcalendartype", async: false,success: function(result){return result;}}).responseText;
+//end for getting current viewtype
 	var options = {
 		events_source: 'http://localhost:3000/events/eventsource',
-		view: 'week',
+		view: sessiontype,
 		tmpl_path: '/bootstrap-calendar-master/tmplsmy/',
 		tmpl_cache: false,
-		day: 'now',
+		day: sessionstart,
 		first_day: 1,
 		language: 'fr-FR',
 		time_start: '08:00',

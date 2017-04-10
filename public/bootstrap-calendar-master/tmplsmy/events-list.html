@@ -5,7 +5,7 @@
 			<li>
 				<span class="pull-left event <%= event['class'] %>"></span>&nbsp;
 				
-				<a href="/index.php?r=calendar/treatmy&id=<%= event.id %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
+				<a href="<%= event.link %>"  data-toggle="modal" data-target="#theModal"  data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
 							class="event-item"><%= event.title %></a>
 							 
 				<!--<a href="/index.php?r=calendar/coursee&id=<%= event.id %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"

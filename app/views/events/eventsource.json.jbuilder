@@ -2,7 +2,13 @@
 json.success 1
 temparray = []
 @events.each do |event|
-  temparray.push({'id'=>event.id,'title'=>event.name,'description'=>event.description,'url'=>'','class'=>'cal_'+event.getcolor(),'start'=>event.begin*1000,'end'=>event.end*1000,'textstart'=>event.textstart(),'link'=>edit_event_partial_path(event)})
+  if(current_user.canrole == 'admin')
+    temppath = edit_event_partial_path(event)
+  elsif(current_user.canrole == 'premiere')
+    temppath = event_partial_path(event)
+  end
+
+  temparray.push({'id'=>event.id,'title'=>event.name,'description'=>event.description,'url'=>'','class'=>'cal_'+event.getcolor(),'start'=>event.begin*1000,'end'=>event.end*1000,'textstart'=>event.textstart(),'link'=>temppath})
 end
 json.result temparray
 json.result

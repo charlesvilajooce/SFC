@@ -50,9 +50,9 @@ if(!String.prototype.formatNum) {
 }
 
 (function($) {
-// var sessionstart= $.ajax({url: "http://keepup.ch/index.php?r=calendar/getview", success: function(result){
-//             sessionstart = result;
-//         }});
+var sessionstart= $.ajax({url: "/users/getcalendardate", success: function(result){
+            sessionstart = result;
+        }});
 	var defaults = {
 		// Width of the calendar
 		width: '100%',
@@ -756,7 +756,7 @@ if(!String.prototype.formatNum) {
 				return;
 			}
 			this.options.view = view;
-			// $.ajax({url: "http://keepup.ch/index.php?r=calendar/setviewtype&t="+view});
+			$.ajax({url: "/users/setcalendartype?t="+view});
 		}
 
 		this._init_position();
@@ -775,12 +775,12 @@ if(!String.prototype.formatNum) {
 					break;
 				case 'month':
 					to.start.setMonth(this.options.position.start.getMonth() + 1);
- 					// $.ajax({url: "http://keepup.ch/index.php?r=calendar/setview&m="+to.start.getMonth()+"&d="+to.start.getDate()});
+ 					$.ajax({url: "/users/setcalendardate?m="+to.start.getMonth()+"&d="+to.start.getDate()});
 					break;
 				case 'week':
 				
 					to.start.setDate(this.options.position.start.getDate() + 7);
-					// $.ajax({url: "http://keepup.ch/index.php?r=calendar/setview&m="+to.start.getMonth()+"&d="+to.start.getDate()});
+					$.ajax({url: "/users/setcalendardate?m="+to.start.getMonth()+"&d="+to.start.getDate()});
 					//window.location = 'ted'+to.start.getMonth()+'day'+to.start.getDate();
 					break;
 				case 'day':
@@ -794,11 +794,11 @@ if(!String.prototype.formatNum) {
 					break;
 				case 'month':
 					to.start.setMonth(this.options.position.start.getMonth() - 1);
-					// $.ajax({url: "http://keepup.ch/index.php?r=calendar/setview&m="+to.start.getMonth()+"&d="+to.start.getDate()});
+					$.ajax({url: "/users/setcalendardate?m="+to.start.getMonth()+"&d="+to.start.getDate()});
 					break;
 				case 'week':
 					to.start.setDate(this.options.position.start.getDate() - 7);
-					// $.ajax({url: "http://keepup.ch/index.php?r=calendar/setview&m="+to.start.getMonth()+"&d="+to.start.getDate()});
+					$.ajax({url: "/users/setcalendardate?m="+to.start.getMonth()+"&d="+to.start.getDate()});
 					break;
 				case 'day':
 					to.start.setDate(this.options.position.start.getDate() - 1);
@@ -806,7 +806,7 @@ if(!String.prototype.formatNum) {
 			}
 		} else if(where == 'today') {
 			to.start.setTime(new Date().getTime());
-			// $.ajax({url: "http://keepup.ch/index.php?r=calendar/setview&m="+to.start.getMonth()+"&d="+to.start.getDate()});
+			$.ajax({url: "/users/setcalendardate?m="+to.start.getMonth()+"&d="+to.start.getDate()});
 		}
 		else {
 			$.error(this.locale.error_where.format(where))

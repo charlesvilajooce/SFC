@@ -520,6 +520,7 @@ a.cal-event-week {
 .cal-week-box {
 position: relative;
 width: 100%;
+  min-height: 200px;
 }
 .cal-week-box [data-event-class] {
 white-space: normal;

@@ -1,14 +1,19 @@
 
 
 <%=
-  if user_signed_in?
-    current_user.email
-
-    temp = User.find(current_user.id)
-    temp.email
-
-    temp.roles_mask
-  end
+  # if user_signed_in?
+  #   # current_user.email
+  #
+  #     temp = User.find(current_user.id)
+  #   temp.canrole = "admin"
+  #   temp.save
+  #   # temp.update(canrole: 'premiere')
+  #   # current_user.canrole
+  #   # temp.email
+  #   #
+  #   # temp.roles_mask
+  #   # temp.has_role? :admin
+  # end
 %>
 
 
@@ -42,8 +47,9 @@
   </div>
   <h3></h3>
 </div>
+<% if(current_user.canrole == 'admin')  %>
 <a type="button" class="btn btn-info btn-lg" href="<%= new_events_partial_path %>" data-toggle="modal" data-target="#theModal">Ajouter un évennement</a>
-
+<% end %>
 <!--<span style="display: inline-block; vertical-align: middle;" class="event subscribed"></span> Inscrit-->
 <!--<span style="display: inline-block; vertical-align: middle; margin-left: 10px;" class="event queue"></span> En attente-->
 <!--<span style="display: inline-block; vertical-align: middle; margin-left: 10px;" class="event course"></span> Libre-->

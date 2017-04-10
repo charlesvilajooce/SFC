@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405143259) do
+ActiveRecord::Schema.define(version: 20170410120821) do
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -55,6 +55,9 @@ ActiveRecord::Schema.define(version: 20170405143259) do
     t.text     "sportactivity_archive",  limit: 65535
     t.integer  "roles_mask"
     t.string   "avatar"
+    t.string   "canrole"
+    t.string   "calendardate"
+    t.string   "calendartype"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

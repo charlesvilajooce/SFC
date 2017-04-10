@@ -1,9 +1,21 @@
 class Event < ApplicationRecord
 
+  validates :begin, presence: true
+  validates :end, presence: true
+
 
   def getdate(value)
     if(value != nil)
       tmp = Time.at(value).strftime '%Y-%m-%dT%H:%M:%S'
+      return tmp
+    else
+      return nil
+    end
+  end
+
+  def gettime(value)
+    if(value != nil)
+      tmp = Time.at(value).strftime '%H:%M'
       return tmp
     else
       return nil

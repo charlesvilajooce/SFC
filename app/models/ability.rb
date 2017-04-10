@@ -7,11 +7,11 @@ class Ability
 
     # can :sign_in, User
     user ||= User.new
-    if user.has_role? :admin
+    if user.canrole == 'admin'
       can :manage, :all
       can :index, :all
 
-    elsif user.has_role? :normal
+    elsif user.canrole == 'admin'
       # can :read, :all
       can :manage, :all
       can :new , Event
@@ -22,9 +22,19 @@ class Ability
         true
       end
       # can :index, Event
-    else
+    elsif user.canrole == 'premiere'
+      can :show , User do |u|
+          u.id == user.id
+      end
+      can :manage , User do |u|
+        u.id == user.id
+      end
+      can :index , Event
+      can :show , Event
+      can :showpartial , Event
+      can :eventsource , Event
       # can :index , Event
-      can :manage, :all
+      # can :manage, :all
     end
 
 

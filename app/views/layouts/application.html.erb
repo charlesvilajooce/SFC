@@ -25,7 +25,7 @@ $(document).on('show.bs.modal','#theModal', function (e) {
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#"><%= image_tag("logo.png", size: "30") %></a>
+  <a class="navbar-brand" href="<%= root_path %>"><%= image_tag("logo.png", size: "30") %></a>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
@@ -57,9 +57,18 @@ $(document).on('show.bs.modal','#theModal', function (e) {
           <li class="nav-item">
             <%= link_to 'Events', events_path, :class => 'nav-link' %>
           </li>
-          <li class="nav-item">
-            <%= link_to 'Edit account', edit_user_registration_path, :class => 'nav-link' %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="<%= edit_user_registration_path %>" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit account</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="<%= edit_user_registration_path %>">Mot de passe</a>
+              <a class="dropdown-item" href="<%= user_path(current_user.id) %>">Profil</a>
+            </div>
           </li>
+          <!--<li class="nav-item">-->
+            <%=
+              # link_to 'Edit account', edit_user_registration_path, :class => 'nav-link'
+            %>
+          <!--</li>-->
           <li class="nav-item">
             <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-link'  %>
           </li>
@@ -71,9 +80,13 @@ $(document).on('show.bs.modal','#theModal', function (e) {
 </nav>
 
 <div class="container">
-  <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-  <% end %>
+  <%
+    # if notice
+  %>
+      <!--<p class="alert alert-success"><%= notice %></p>-->
+  <%
+    # end
+  %>
   <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
   <% end %>

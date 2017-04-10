@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   authorize_resource
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+
   def eventsource
     @events = Event.all
   end
@@ -22,6 +23,13 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+  end
+
+  def showpartial
+    print(params)
+    @event = Event.find(params['id'])
+    # renderx :partial => "events/show.json"
+    render :partial => "events/show.html"
   end
 
   # GET /events/new
@@ -49,12 +57,19 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     require 'time'
-    print(params[:event][:begin])
-    str = params[:event][:begin]
-    params[:event][:begin] = Time.parse(str).to_i
+    str1 = params[:event][:begin]
+    params[:event][:begin] = Time.parse(str1).to_i
     str = params[:event][:end]
-    params[:event][:end] = Time.parse(str).to_i
-    print(params[:event][:begin])
+    if(str == '')
+      params[:event][:end] = params[:event][:begin]+3600
+    else
+      beginday = Time.at(Time.parse(str1).to_i).strftime '%Y-%m-%d'
+      params[:event][:end] =  Time.parse(beginday).to_i + Time.parse(str).to_i-Time.parse('00:00').to_i
+    end
+    if(params[:event][:end] < params[:event][:begin])
+      params[:event][:end] = params[:event][:begin]+3600
+    end
+
     @event = Event.new(event_params)
 
     respond_to do |format|
@@ -72,10 +87,18 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     require 'time'
-    str = params[:event][:begin]
-    params[:event][:begin] = Time.parse(str).to_i
+    str1 = params[:event][:begin]
+    params[:event][:begin] = Time.parse(str1).to_i
     str = params[:event][:end]
-    params[:event][:end] = Time.parse(str).to_i
+    if(str == '')
+    params[:event][:end] = params[:event][:begin]+3600
+    else
+      beginday = Time.at(Time.parse(str1).to_i).strftime '%Y-%m-%d'
+      params[:event][:end] =  Time.parse(beginday).to_i + Time.parse(str).to_i-Time.parse('00:00').to_i
+    end
+    if(params[:event][:end] < params[:event][:begin])
+      params[:event][:end] = params[:event][:begin]+3600
+    end
 
     # @event.begin = '1010-10-10T10:01'
     respond_to do |format|
@@ -90,7 +113,7 @@ class EventsController < ApplicationController
         # str = params[:event][:end]
         # params[:event][:end] = Time.parse(str).to_i
 
-        @event.begin = '1010-10-10T10:01'
+        # @event.begin = '1010-10-10T10:01'
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
