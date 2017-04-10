@@ -151,6 +151,7 @@ GEM
     seed_dump (3.2.4)
       activerecord (>= 4)
       activesupport (>= 4)
+    selectize-rails (0.12.4)
     spring (2.0.1)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -208,6 +209,7 @@ DEPENDENCIES
   rails-assets-tether (>= 1.1.0)
   sass-rails (~> 5.0)
   seed_dump
+  selectize-rails
   spring
   spring-watcher-listen (~> 2.0.0)
   tether-rails

@@ -16,4 +16,5 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap.js
 //= require bootstrap
+//= require selectize
 //= require_tree .

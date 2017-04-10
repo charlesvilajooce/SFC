@@ -1,3 +1,24 @@
+<input id="input-tags" type="text">
+<script>
+$('#input-tags').selectize({
+plugins: ['remove_button'],
+delimiter: ',',
+    valueField: 'email',
+    labelField: 'name',
+    searchField: ['name'],
+persist: false,
+    options: [
+        {email: 'brian@thirdroute.com', name: 'Brian Reavis'},
+        {email: 'nikola@tesla.com', name: 'Nikola Tesla'},
+        {email: 'someone@gmail.com'}
+    ],
+create: function(input) {
+return {
+value: input,
+text: input
+}
+}
+});</script>
 
 
 <%= form_for(event) do |f| %>

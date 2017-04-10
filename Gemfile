@@ -73,3 +73,5 @@ gem 'jquery-datatables-rails'
 
 #font-awesome
 gem "font-awesome-rails"
+
+gem "selectize-rails"
