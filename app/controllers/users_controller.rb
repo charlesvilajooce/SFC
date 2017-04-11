@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def getcalendartype
-    # print('hea726471263781263712638791263871263871263871263871263871236182736812llo')
     if current_user.calendartype != nil
       theoutput = current_user.calendartype
     else
@@ -23,7 +22,6 @@ class UsersController < ApplicationController
     else
       theoutput = 'now'
     end
-    # theoutput = 'now'
 
     respond_to do |format|
       format.html { render :text => theoutput }
@@ -32,27 +30,17 @@ class UsersController < ApplicationController
 
   def setcalendartype
     current_user.update(calendartype:params[:t])
-    # print(current_user.update(name:'week'))
-    # print('a')
-    # print(current_user.calendartype)
+
     render :nothing => true
   end
 
   def setcalendardate
-    # current_user.update(calendartype:params[:t])
-    # print(current_user.update(name:'week'))
-    # print('a')
-    # print(current_user.calendartype)
+
     d = params[:d].to_i+1
     m = params[:m].to_i+1
     adapter = Time.parse('2017-'+m.to_s+'-'+d.to_s).to_i
     adapter = Time.at(adapter).strftime '%Y-%m-%d'
     current_user.update(calendardate: adapter)
-
-
-    # print((params[:m]).to_i+1)
-    # thestr = '2017-'+(params[:m].to_i+1).to_s+'-'+(params[:d].to_i+1).to_s
-    # current_user.update(calendardate: thestr)
 
     render :nothing => true
   end
@@ -61,14 +49,15 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    #@users = User.all
     @users = User.order(:name)
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+
   end
+
 
   # GET /users/new
   def new

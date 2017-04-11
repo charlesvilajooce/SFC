@@ -14,7 +14,7 @@
     <div class="form-group">
       <%= f.label :canrole %>
         <br>
-      <%= f.select :canrole, options_for_select([["Admin", "admin"], ["Première", "premiere"], ["Académie", "academy"],["Staff","staff"]], user.canrole) %>
+      <%= f.select :canrole, options_for_select([["Admin", "admin"], ["Première", "premiere"], ["Académie", "academy"],["Staff","staff"],["Non défini","undefined"]], user.canrole) %>
     </div>
 <% end %>
   <div class="form-group">

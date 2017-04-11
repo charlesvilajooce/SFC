@@ -12,3 +12,29 @@
 .cal_gray{
   background-color: gray;
 }
+
+.monthday{
+
+  border-radius: 10px;
+  border: solid  !important;
+  border-color: #3a3a3a;
+  border-width: 2px;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.monthdaytop{
+  background: white;
+  display: block;
+  padding:5px;
+  color: black !important;
+}
+.monthdaybottom{
+  display: block;
+  padding:10px;
+}
+
+.blacklink{
+
+  color: black !important;
+}

@@ -86,6 +86,23 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    # puts params.inspect
+    # print('asdasdasdasdasdas')
+    # print(params[:others].delete(' ').split(/,/))
+
+    subs = @event.subscriptions
+    subs.each do |sub|
+      sub.destroy
+    end
+    temp3 = params[:others].delete(' ').split(/,/)
+    temp3.each do |numb|
+      sub = Subscription.new
+      sub.user_id = numb.to_i
+      sub.event_id = params[:id].to_i
+      sub.save
+      # print(numb.to_i)
+    end
+
     require 'time'
     str1 = params[:event][:begin]
     params[:event][:begin] = Time.parse(str1).to_i

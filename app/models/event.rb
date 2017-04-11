@@ -3,6 +3,8 @@ class Event < ApplicationRecord
   validates :begin, presence: true
   validates :end, presence: true
 
+  has_many :subscriptions
+  has_many :users, through: :subscriptions
 
   def getdate(value)
     if(value != nil)
@@ -50,6 +52,19 @@ class Event < ApplicationRecord
         color = 'blue'
       when 2
         color = 'red'
+      else
+        color = 'gray'
+    end
+    return color
+  end
+
+  def geteventtype()
+    color = ''
+    case self.eventtype
+      when 1
+        color = 'Match'
+      when 2
+        color = 'Entrainement'
       else
         color = 'gray'
     end

@@ -402,9 +402,9 @@ var sessionstart= $.ajax({url: "/users/getcalendardate", success: function(resul
 		if('language' in object) {
 			this.setLanguage(object.language);
 		}
-		if('modal' in object) {
-			this._update_modal();
-		}
+		// if('modal' in object) {
+		// 	this._update_modal();
+		// }
 	}
 
 	Calendar.prototype.setLanguage = function(lang) {
@@ -756,7 +756,15 @@ var sessionstart= $.ajax({url: "/users/getcalendardate", success: function(resul
 				return;
 			}
 			this.options.view = view;
+			// myfunction();
+			// alert('s');
+            // $('span[rel="modal"]').on('click', function(e){
+   			// 	alert('e');
+            //     $("#theModal").modal('toggle', $(this).attr('href'));
+            // });
+
 			$.ajax({url: "/users/setcalendartype?t="+view});
+
 		}
 
 		this._init_position();
@@ -1020,7 +1028,7 @@ var sessionstart= $.ajax({url: "/users/getcalendardate", success: function(resul
 	Calendar.prototype._update_modal = function() {
 		var self = this;
 
-		$('a[data-event-id]', this.context).unbind('click');
+		// $('a[data-event-id]', this.context).unbind('click');
 
 		if(!self.options.modal) {
 			return;
@@ -1182,7 +1190,7 @@ var sessionstart= $.ajax({url: "/users/getcalendardate", success: function(resul
 
 		var slider = $(document.createElement('div')).attr('id', 'cal-slide-box');
 		slider.hide().click(function(event) {
-			event.stopPropagation();
+			// event.stopPropagation();
 		});
 
 		this._loadTemplate('events-list');
@@ -1208,7 +1216,7 @@ var sessionstart= $.ajax({url: "/users/getcalendardate", success: function(resul
 
 	function showEventsList(event, that, slider, self) {
 
-		event.stopPropagation();
+		// event.stopPropagation();
 
 		var that = $(that);
 		var cell = that.closest('.cal-cell');
@@ -1242,7 +1250,7 @@ var sessionstart= $.ajax({url: "/users/getcalendardate", success: function(resul
 			$('a.event-item').mouseleave(function() {
 				$('div.cal-cell1').removeClass('day-highlight dh-' + $(this).data('event-class'));
 			});
-			self._update_modal();
+			// self._update_modal();
 		}, 400);
 	}
 

@@ -9,6 +9,13 @@ class User < ApplicationRecord
   validates_processing_of :avatar
   validate :avatar_size_validation
 
+  has_many :subscriptions
+  has_many :events, through: :subscriptions
+
+  def getname()
+    return self.surname+' '+self.name
+  end
+
   # private
   def avatar_size_validation
     errors[:avatar] << "should be less than 500KB" if avatar.size > 0.5.megabytes

@@ -1,29 +1,38 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Begin:</strong>
+  <strong>Début:</strong>
   <%= @event.getnicedate(@event.begin) %>
 </p>
 
 <p>
-  <strong>End:</strong>
+  <strong>Fin:</strong>
   <%= @event.getnicedate(@event.end) %>
 </p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Titre:</strong>
   <%= @event.name %>
 </p>
 
 <p>
-  <strong>Descirption:</strong>
+  <strong>Description:</strong>
   <%= @event.description %>
 </p>
 
 <p>
-  <strong>Type:</strong>
-  <%= @event.eventtype %>
+  <strong>Type d'évènement:</strong>
+  <span style="color: <%= @event.getcolor() %>;"><%= @event.geteventtype() %></span>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<p>
+  <strong>Membres:</strong>
+  <%
+  @event.subscriptions.each do |sub|
+  %>
+      <%= link_to ('<u>'+sub.user.getname()+'</u>').html_safe, user_path(sub.user.id), class: 'blacklink' %>
+  <%
+    end
+  %>
+</p>
+

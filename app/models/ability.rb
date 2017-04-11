@@ -9,18 +9,7 @@ class Ability
     user ||= User.new
     if user.canrole == 'admin'
       can :manage, :all
-      can :index, :all
-
-    elsif user.canrole == 'admin'
-      # can :read, :all
-      can :manage, :all
-      can :new , Event
-      can :create , Event
-      can :index , Event
-      can :show , Event do |event|
-        # event.id == 1
-        true
-      end
+      # can :index, :all
       # can :index, Event
     elsif user.canrole == 'premiere'
       can :show , User do |u|
@@ -35,7 +24,15 @@ class Ability
       can :eventsource , Event
       # can :index , Event
       # can :manage, :all
+    elsif user.canrole == 'undefined'
+      can :manage , User do |u|
+        u.id == user.id
+      end
+    else
+
+      # can :manage, :all
     end
+
 
 
     # Define abilities for the passed in user here. For example:

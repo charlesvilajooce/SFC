@@ -4,9 +4,9 @@
 		<% _.each(events, function(event) { %>
 			<li>
 				<span class="pull-left event <%= event['class'] %>"></span>&nbsp;
-				
-				<a href="<%= event.link %>"  data-toggle="modal" data-target="#theModal"  data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
-							class="event-item"><%= event.title %></a>
+
+				<span href="<%= event.link %>"   data-toggle="modal" data-target="#theModal" data-event-class="<%= event['class'] %>"
+							class="event-item"><%= event.title %></span>
 							 
 				<!--<a href="/index.php?r=calendar/coursee&id=<%= event.id %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>"
 						class="event-item">Edit</a>-->

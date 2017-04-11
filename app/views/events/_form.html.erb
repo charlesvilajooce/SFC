@@ -1,16 +1,21 @@
-<input id="input-tags" type="text">
 <script>
-$('#input-tags').selectize({
+var $select = $('#input-tags').selectize({
 plugins: ['remove_button'],
 delimiter: ',',
-    valueField: 'email',
+    valueField: 'id',
+
     labelField: 'name',
-    searchField: ['name'],
+    searchField: ['id'],
 persist: false,
     options: [
-        {email: 'brian@thirdroute.com', name: 'Brian Reavis'},
-        {email: 'nikola@tesla.com', name: 'Nikola Tesla'},
-        {email: 'someone@gmail.com'}
+        <%
+          players = User.where(canrole: 'premiere')
+          players.each do |player|
+        %>
+        {id: ' <%= player.id %>', name: '<%= player.getname() %>'},
+        <% end %>
+
+
     ],
 create: function(input) {
 return {
@@ -18,7 +23,31 @@ value: input,
 text: input
 }
 }
-});</script>
+});
+
+
+var selectize = $select[0].selectize;
+//selectize.setValue(selectize.search("4").items[0].id);
+//alert(selectize.search("5").items[0].id)
+var selected_items = [];
+<%
+
+@event.subscriptions.each do |sub|
+  print('selected_items.push(selectize.search("'+sub.user.id.to_s+'").items[0].id);')
+  %>
+<%= raw 'selected_items.push(selectize.search("'+sub.user.id.to_s+'").items[0].id);' %>
+
+<%
+ end
+
+%>
+//selected_items.push(selectize.search("5").items[0].id);
+//selected_items.push(selectize.search("4").items[0].id);
+
+selectize.setValue(selected_items);
+
+</script>
+
 
 
 <%= form_for(event) do |f| %>
@@ -40,8 +69,12 @@ text: input
     </div>
   <% end %>
 
+
+
+
+
   <div class="field">
-    <%= f.label :begin %>
+    <%= f.label :begin , 'Début' %>
     <%=
       str = event.getdate(event.begin)
       f.datetime_local_field :begin, value: str
@@ -49,7 +82,7 @@ text: input
   </div>
 
   <div class="field">
-    <%= f.label :end %>
+    <%= f.label :end , 'Fin' %>
     <%=
       str = event.gettime(event.end)
     f.time_field :end, value: str
@@ -57,28 +90,31 @@ text: input
   </div>
 
   <div class="field">
-    <%= f.label :name %>
+    <%= f.label :name , 'Titre' %>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :description %>
+    <%= f.label :description , 'Description' %>
     <%= f.text_field :description %>
   </div>
 
 
 
   <div class="field">
-    <%= f.label :eventtype %>
+    <%= f.label :eventtype, "Type d'évènement" %>
     <%=
       # f.text_field :eventtype
     %>
     <%= f.select :eventtype, options_for_select([["Match", "1"], ["Entrainement", "2"]], event.eventtype) %>
   </div>
 
-
+    <div class="field">
+    <label for="event_others">Membres</label>
+    <input id="input-tags" name="others" type="text" >
+    </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Mettre à jour'%>
   </div>
 <% end %>

@@ -1,23 +1,4 @@
-
-
-<%=
-  # if user_signed_in?
-  #   # current_user.email
-  #
-  #     temp = User.find(current_user.id)
-  #   temp.canrole = "admin"
-  #   temp.save
-  #   # temp.update(canrole: 'premiere')
-  #   # current_user.canrole
-  #   # temp.email
-  #   #
-  #   # temp.roles_mask
-  #   # temp.has_role? :admin
-  # end
-%>
-
-
-<link rel="stylesheet" href="bootstrap-calendar-master/css/calendar.css">
+<link rel="stylesheet" href="/bootstrap-calendar-master/css/calendar.css">
 
 
 <style type="text/css">
@@ -50,11 +31,13 @@
 <% if(current_user.canrole == 'admin')  %>
 <a type="button" class="btn btn-info btn-lg" href="<%= new_events_partial_path %>" data-toggle="modal" data-target="#theModal">Ajouter un évennement</a>
 <% end %>
-<!--<span style="display: inline-block; vertical-align: middle;" class="event subscribed"></span> Inscrit-->
-<!--<span style="display: inline-block; vertical-align: middle; margin-left: 10px;" class="event queue"></span> En attente-->
-<!--<span style="display: inline-block; vertical-align: middle; margin-left: 10px;" class="event course"></span> Libre-->
-<!--<span style="display: inline-block; vertical-align: middle; margin-left: 10px;" class="event pm_toconfirm"></span> Cours privé demandé-->
-<!--<span style="display: inline-block; vertical-align: middle; margin-left: 10px;" class="event pm"></span> Cours privé confirmé-->
+
+<div style="clear: both;">
+  <span style="-webkit-print-color-adjust: exact;display: inline-block; vertical-align: middle; background-color:red;" class="event delivery"></span> Entrainement
+  <span style="-webkit-print-color-adjust: exact;display: inline-block; vertical-align: middle; background-color:blue;" class="event delivery"></span> Match
+
+</div>
+
 <div class="row" style="margin-top: 25px;">
   <div class="" style="width:100%;">
     <div id="calendar"></div>
@@ -71,7 +54,7 @@
         <h4 class="modal-title">Evènement</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -94,30 +77,31 @@
   <!--</div>-->
 <!--</div>-->
 
-<script type="text/javascript" src="bootstrap-calendar-master/components/underscore/underscore-min.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/components/jstimezonedetect/jstz.min.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/bg-BG.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/nl-NL.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/fr-FR.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/de-DE.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/el-GR.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/it-IT.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/hu-HU.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/pl-PL.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/pt-BR.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/ro-RO.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/es-CO.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/es-MX.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/es-ES.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/ru-RU.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/sk-SR.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/sv-SE.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/zh-CN.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/cs-CZ.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/ko-KR.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/zh-TW.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/id-ID.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/language/th-TH.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/calendar.js"></script>
-<script type="text/javascript" src="bootstrap-calendar-master/js/appmy.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/components/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/components/jstimezonedetect/jstz.min.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/bg-BG.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/nl-NL.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/fr-FR.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/de-DE.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/el-GR.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/it-IT.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/hu-HU.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/pl-PL.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/pt-BR.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/ro-RO.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/es-CO.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/es-MX.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/es-ES.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/ru-RU.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/sk-SR.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/sv-SE.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/zh-CN.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/cs-CZ.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/ko-KR.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/zh-TW.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/id-ID.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/language/th-TH.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/calendar.js"></script>
+<script type="text/javascript" src="/bootstrap-calendar-master/js/appmy.js"></script>
 
+</div>

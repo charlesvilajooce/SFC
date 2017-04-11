@@ -16,7 +16,9 @@
       <th>Suspended</th>
       <th>Role</th>
       <th>Playtime</th>
+      <% if current_user.canrole == 'admin' %>
       <th></th>
+          <% end %>
     </tr>
   </thead>
 
@@ -32,9 +34,11 @@
         <td><%= user.role %></td>
         <td><%= user.playtime %></td>
         <td style="overflow: hidden; white-space: nowrap;">
+          <% if current_user.canrole == 'admin' %>
           <%= link_to '<i class="fa fa-search" aria-hidden="true"></i>'.html_safe, user_path(user), class: 'btn btn-success btn-user'%>
           <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, users_edit_path(user), class: 'btn btn-warning btn-user' %>
           <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %>
+              <% end %>
 
 
         </td>

@@ -4,11 +4,12 @@
 <% _.each(events, function(event){ %>
 <% if(event.start_day == i) { %>
 <tr>
-<td class=" cal-offset<%= event.start_day %>   <%= event['class'] %>" data-event-class="<%= event['class'] %>">
+<td class="monthday cal-offset<%= event.start_day %>   <%= event['class'] %>" data-event-class="<%= event['class'] %>">
+	<a href="<%= event['link'] %>" data-toggle="modal" data-target="#theModal"><span class="monthdaytop"><%= event.title %></span>
+	<span class="monthdaybottom"><%= event.description %><br><%= event.textstart %>
+		</span>
 
-	<a href="<%= event['link'] %>" data-toggle="modal" data-target="#theModal"><%= event.title %><br><%= event.textstart %></a>
-
-
+	</a>
 </td>
 </tr>
 <% } %>	
