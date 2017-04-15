@@ -1,36 +1,49 @@
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
 
+<h1>Events#index</h1>
+<p>Find me in app/views/events/index.html.erb</p>
 
-
-<p id="notice"><%= notice %></p>
-
-<h1>Events</h1>
-
-<table>
+<table id="eventsindex" class="table table-striped	">
   <thead>
     <tr>
       <th>Begin</th>
       <th>End</th>
       <th>Name</th>
-      <th>Descirption</th>
-      <th>Eventtype</th>
+      <th>Description</th>
+      <th>Type</th>
       <% if current_user.canrole == 'admin' %>
-      <th colspan="3"></th>
+      <th></th>
       <% end %>
     </tr>
   </thead>
 
   <tbody>
     <% @events.each do |event| %>
-      <tr>
+      <tr class='clickable-row' data-href="<%=event_path(event)%>">
         <td><%= event.getnicedate(event.begin) %></td>
         <td><%= event.getnicedate(event.end) %></td>
         <td><%= event.name %></td>
         <td><%= event.description %></td>
-        <td><%= event.eventtype %></td>
+        <td>
+          <% if event.eventtype ==1%>
+              <span style="display: none;">1</span>
+              Match
+          <% end %>
+          <% if event.eventtype == 2%>
+              <span style="display: none;">2</span>
+              Entrainement
+          <% end %>
+        </td>
         <% if current_user.canrole == 'admin' %>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td style="overflow: hidden; white-space: nowrap;">
+              <% if current_user.canrole == 'admin' %>
+                  <%= link_to '<i class="fa fa-search" aria-hidden="true"></i>'.html_safe, event, class: 'btn btn-success btn-user'%>
+                  <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_event_path(event), class: 'btn btn-warning btn-user' %>
+                  <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %>
+              <% end %>
+            </td>
         <% end %>
       </tr>
     <% end %>
@@ -39,4 +52,4 @@
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
+<%= link_to 'New Event', new_event_path, class: 'btn btn-primary' %>

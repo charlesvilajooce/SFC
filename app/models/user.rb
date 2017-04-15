@@ -38,4 +38,14 @@ class User < ApplicationRecord
     roles.include?(role)
   end
 
+  def getnicedate(value)
+    if(value != nil)
+      tmp = value.to_time.to_i
+      tmp2 = Time.at(tmp).strftime '%d.%m.%Y'
+      return tmp2
+    else
+      return nil
+    end
+  end
+
 end

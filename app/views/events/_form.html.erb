@@ -73,45 +73,45 @@ selectize.setValue(selected_items);
 
 
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :begin , 'Début' %>
     <%=
       str = event.getdate(event.begin)
-      f.datetime_local_field :begin, value: str
+      f.datetime_local_field :begin, value: str, class:'form-control'
     %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :end , 'Fin' %>
     <%=
       str = event.gettime(event.end)
-    f.time_field :end, value: str
+    f.time_field :end, value: str, class:'form-control'
     %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name , 'Titre' %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class:'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :description , 'Description' %>
-    <%= f.text_field :description %>
+    <%= f.text_field :description, class:'form-control' %>
   </div>
 
 
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :eventtype, "Type d'évènement" %>
     <%=
       # f.text_field :eventtype
     %>
-    <%= f.select :eventtype, options_for_select([["Match", "1"], ["Entrainement", "2"]], event.eventtype) %>
+    <%= f.select :eventtype, options_for_select([["Match", "1"], ["Entrainement", "2"]], event.eventtype), class:'form-control' %>
   </div>
 
-    <div class="field">
+    <div class="form-group">
     <label for="event_others">Membres</label>
-    <input id="input-tags" name="others" type="text" >
+    <input class="form-control" id="input-tags" name="others" type="text" >
     </div>
 
   <div class="actions">

@@ -35,6 +35,17 @@ class Event < ApplicationRecord
 
   end
 
+  def textend()
+    value = self.end
+    if(value != nil)
+      tmp = Time.at(value).strftime '%H:%M'
+      return tmp
+    else
+      return nil
+    end
+
+  end
+
   def getnicedate(value)
     if(value != nil)
       tmp = Time.at(value).strftime '%d/%m/%Y à %H:%M'
@@ -49,9 +60,9 @@ class Event < ApplicationRecord
     color = ''
     case self.eventtype
       when 1
-        color = 'blue'
-      when 2
         color = 'red'
+      when 2
+        color = 'grenat'
       else
         color = 'gray'
     end

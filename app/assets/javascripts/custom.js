@@ -7,3 +7,7 @@ jQuery(document).ready(function($){
 jQuery(document).ready(function() {
     jQuery('#userindex').DataTable();
 } );
+
+jQuery(document).ready(function() {
+    jQuery('#eventsindex').DataTable();
+} );

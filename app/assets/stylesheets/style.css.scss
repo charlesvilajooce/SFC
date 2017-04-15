@@ -38,6 +38,15 @@ a:focus, a:hover {
   background-color: #f7f7f9;
 }
 
+.cal-day-today {
+  background-color: #7b303e !important;
+}
+
+.btn:focus, .btn.focus {
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(123, 48, 62, 0.25) !important;
+}
+
 //Sign in page
 .form-signin {
   max-width: 330px;
@@ -97,4 +106,8 @@ a:focus, a:hover {
   -webkit-transition: border .2s ease-in-out;
   -o-transition: border .2s ease-in-out;
   transition: border .2s ease-in-out;
+}
+
+.alert > p {
+  margin-bottom: 0rem;
 }

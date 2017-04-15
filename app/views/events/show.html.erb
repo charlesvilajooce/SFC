@@ -1,29 +1,43 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+    <div class="alert alert-success" role="alert">
+      <p id="notice"><%= notice %></p>
+    </div>
+<% end %>
 
-<p>
-  <strong>Begin:</strong>
-  <%= @event.getnicedate(@event.begin) %>
-</p>
+<div class="row">
 
-<p>
-  <strong>End:</strong>
-  <%= @event.getnicedate(@event.end) %>
-</p>
+  <div class="col-5">
+    <div class="col-12">
+      <div class="thumbnail">
+        <div class="caption">
+          <h3><%= @event.name %></h3>
+          <ul class="list-group">
+            <li class="list-group-item" style="font-weight: bold">
+              <% if @event.eventtype ==1%>
+                  Match
+              <% end %>
+              <% if @event.eventtype == 2%>
+                  Entrainement
+              <% end %>
+            </li>
+            <li class="list-group-item"><%= @event.getnicedate(@event.begin) %></li>
+            <li class="list-group-item"><%= @event.getnicedate(@event.end) %></li>
+          </ul>
+          <br>
+          <%= link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary' %> |
+          <%= link_to 'Back', events_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
+  <div class="col-7 thumbnail">
+    <p>
+      <strong>Description:</strong>
+      <%= @event.description %>
 
-<p>
-  <strong>Descirption:</strong>
-  <%= @event.description %>
-</p>
+    </p>
 
-<p>
-  <strong>Type:</strong>
-  <%= @event.eventtype %>
-</p>
+  </div>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+</div> <!-- /.row -->

@@ -8,7 +8,7 @@ temparray = []
     temppath = event_partial_path(event)
   end
 
-  temparray.push({'id'=>event.id,'title'=>event.name,'description'=>event.description,'url'=>'','class'=>'cal_'+event.getcolor(),'start'=>event.begin*1000,'end'=>event.end*1000,'textstart'=>event.textstart(),'link'=>temppath})
+  temparray.push({'id'=>event.id,'title'=>event.name,'description'=>event.description,'url'=>'','class'=>'cal_'+event.getcolor(),'start'=>event.begin*1000,'end'=>event.end*1000,'textstart'=>event.textstart(),'textend'=>event.textend(),'link'=>temppath})
 end
 json.result temparray
 json.result

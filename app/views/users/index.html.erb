@@ -10,15 +10,15 @@
     <tr>
       <th>Surname</th>
       <th>Name</th>
-      <th>Email</th>
+      <th>#</th>
+      <th>Nationality</th>
       <th>Birthday</th>
-      <th>Injured</th>
-      <th>Suspended</th>
+      <th>Disponibility</th>
       <th>Role</th>
       <th>Playtime</th>
       <% if current_user.canrole == 'admin' %>
       <th></th>
-          <% end %>
+      <% end %>
     </tr>
   </thead>
 
@@ -27,20 +27,46 @@
       <tr class='clickable-row' data-href="<%=user_path(user)%>">
         <td style="overflow: hidden; white-space: nowrap;"><%= user.surname %></td>
         <td style="overflow: hidden; white-space: nowrap;"><%= user.name %></td>
-        <td style="overflow: hidden; white-space: nowrap;"><%= user.email %></td>
+        <td style="overflow: hidden; white-space: nowrap;"><%= user.level %></td>
+        <td style="overflow: hidden; white-space: nowrap;"><%= user.nationality %></td>
         <td style="overflow: hidden; white-space: nowrap;"><%= user.birthday %></td>
-        <td><%= user.injured %></td>
-        <td><%= user.suspended %></td>
-        <td><%= user.role %></td>
+        <td>
+          <% if user.injured==true %>
+              <i class="fa fa-user" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true" style="color: red;"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true"></i>
+              <span style="display: none;">2</span>
+          <% elsif user.suspended==true %>
+              <i class="fa fa-user" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+              <span style="display: none;">3</span>
+          <% else %>
+              <i class="fa fa-user" aria-hidden="true" style="color: green;"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true"></i>
+              <span style="display: none;">1</span>
+          <% end %>
+        </td>
+        <td>
+          <% if user.role==1%>
+              <span style="display: none;">1</span>
+              Gardien
+          <% end %>
+          <% if user.role == 2%>
+              <span style="display: none;">2</span>
+              Défenseur
+          <% end %>
+          <% if user.role == 3%>
+              <span style="display: none;">3</span>
+              Milieu
+          <% end %>
+          <% if user.role == 4%>
+              <span style="display: none;">4</span>
+              Attaquant
+          <% end %>
+        </td>
         <td><%= user.playtime %></td>
         <td style="overflow: hidden; white-space: nowrap;">
           <% if current_user.canrole == 'admin' %>
           <%= link_to '<i class="fa fa-search" aria-hidden="true"></i>'.html_safe, user_path(user), class: 'btn btn-success btn-user'%>
           <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, users_edit_path(user), class: 'btn btn-warning btn-user' %>
           <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %>
-              <% end %>
-
-
+          <% end %>
         </td>
       </tr>
     <% end %>
