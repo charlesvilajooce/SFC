@@ -13,7 +13,7 @@
             <%= image_tag @user.avatar.url, class: 'img-fluid rounded mx-auto d-block img-thumbnail' %>
         <% end %>
         <div class="caption">
-          <h3><%= @user.surname %> <%= @user.name %> <small>(<%= @user.level %>)</small></h3>
+          <center><h3><%= @user.surname %> <%= @user.name %> <small>(<%= @user.level %>)</small></h3></center>
           <ul class="list-group">
             <li class="list-group-item" style="font-weight: bold">
               <% if @user.role==1%>
