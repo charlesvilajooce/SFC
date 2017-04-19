@@ -10,10 +10,45 @@ class User < ApplicationRecord
   validate :avatar_size_validation
 
   has_many :subscriptions
+  has_many :documents
   has_many :events, through: :subscriptions
 
   def getname()
     return self.surname+' '+self.name
+  end
+
+  def isplayer(id)
+    if(id == 0)
+      if(self.canrole == 'premiere' || self.canrole == 'academy')
+        return true
+      else
+        return false
+      end
+    else
+      user = User.find(id)
+      if(user.canrole == 'premiere' || user.canrole == 'academy')
+        return true
+      else
+        return false
+      end
+    end
+
+  end
+
+  def isadmin()
+  if(self.canrole == 'admin' || self.canrole == 'staff' )
+    return true
+  else
+    return false
+  end
+  end
+
+  def canviewplayer(playertobeviewedid)
+    if(  ( (self.canrole == 'admin' || self.canrole == 'staff') && isplayer(playertobeviewedid) )  || (self.isplayer(0) && playertobeviewedid == self.id) )
+      return true
+    else
+      return false
+    end
   end
 
   # private

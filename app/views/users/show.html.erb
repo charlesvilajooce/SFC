@@ -58,7 +58,9 @@
   </div>
 
   <div class="col-7 thumbnail">
-    <p>
+    <% if( current_user.canviewplayer(@user.id)) %>
+
+  <p>
       <strong>Physic char:</strong>
       <%= @user.physic_char %>
     </p>
@@ -92,6 +94,7 @@
       <strong>School archive:</strong>
       <%= @user.school_archive %>
     </p>
+    <% end %>
   </div>
 
 

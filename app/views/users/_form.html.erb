@@ -17,10 +17,16 @@
       <%= f.select :canrole, options_for_select([["Admin", "admin"], ["Première", "premiere"], ["Académie", "academy"],["Staff","staff"],["Non défini","undefined"]], user.canrole) %>
     </div>
 <% end %>
+
+    <% if( current_user.canviewplayer(user.id)) %>
+
+
   <div class="form-group">
     <%= f.label :level %>
     <%= f.number_field :level, class:'form-control'  %>
   </div>
+
+    <% end %>
 
   <div class="form-group">
     <%= f.label :surname %>
@@ -42,7 +48,26 @@
     <%= f.text_field :email, class:'form-control'  %>
   </div>
 
-
+    <div class="form-group">
+      <%= f.label :tel %>
+      <%= f.text_field :tel, class:'form-control'  %>
+    </div>
+    <div class="form-group">
+      <%= f.label :address1 %>
+      <%= f.text_field :address1, class:'form-control'  %>
+    </div>
+    <div class="form-group">
+      <%= f.label :address2 %>
+      <%= f.text_field :addres2, class:'form-control'  %>
+    </div>
+    <div class="form-group">
+      <%= f.label :zip %>
+      <%= f.text_field :zip, class:'form-control'  %>
+    </div>
+    <div class="form-group">
+      <%= f.label :city %>
+      <%= f.text_field :city, class:'form-control'  %>
+    </div>
 
   <div class="form-group">
     <%= f.label :birthday %>
