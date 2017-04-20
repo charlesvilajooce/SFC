@@ -14,19 +14,10 @@
     <div class="form-group">
       <%= f.label :canrole %>
         <br>
-      <%= f.select :canrole, options_for_select([["Admin", "admin"], ["Première", "premiere"], ["Académie", "academy"],["Staff","staff"],["Non défini","undefined"]], user.canrole) %>
+      <%= f.select :canrole, options_for_select([["Admin", "admin"], ["Première", "premiere"], ["Académie", "academy"], ["M21", "m21"], ["M20", "m20"], ["M18", "m18"], ["M16", "m16"], ["M14", "m14"],["Staff","staff"],["Non défini","undefined"]], user.canrole) %>
     </div>
 <% end %>
 
-    <% if( current_user.canviewplayer(user.id)) %>
-
-
-  <div class="form-group">
-    <%= f.label :level %>
-    <%= f.number_field :level, class:'form-control'  %>
-  </div>
-
-    <% end %>
 
   <div class="form-group">
     <%= f.label :surname %>
@@ -58,7 +49,7 @@
     </div>
     <div class="form-group">
       <%= f.label :address2 %>
-      <%= f.text_field :addres2, class:'form-control'  %>
+      <%= f.text_field :address2, class:'form-control'  %>
     </div>
     <div class="form-group">
       <%= f.label :zip %>
@@ -89,7 +80,17 @@
     <% end %>
   </div>
 
-  <div class="form-group">
+    <% if( current_user.canviewplayer(user.id) && current_user.id != user.id)  %>
+
+
+        <div class="form-group">
+          <%= f.label :level %>
+          <%= f.number_field :level, class:'form-control'  %>
+        </div>
+
+
+
+    <div class="form-group">
     <%= f.label :injured %>
     <%= f.check_box :injured, class:'form-control'  %>
   </div>
@@ -148,7 +149,7 @@
     <%= f.label :sportactivity_archive %>
     <%= f.text_area :sportactivity_archive, class:'form-control'  %>
   </div>
-
+    <% end %>
   <div class="actions">
     <%= f.submit 'Enregistrer', class:'btn' %>
   </div>

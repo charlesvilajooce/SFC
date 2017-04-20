@@ -5,7 +5,7 @@ delimiter: ',',
     valueField: 'id',
 
     labelField: 'name',
-    searchField: ['id'],
+    searchField: 'name',
 persist: false,
     options: [
         <%
@@ -33,9 +33,9 @@ var selected_items = [];
 <%
 
 @event.subscriptions.each do |sub|
-  print('selected_items.push(selectize.search("'+sub.user.id.to_s+'").items[0].id);')
+  print('selected_items.push(selectize.search("'+sub.user.getname().to_s+'").items[0].id);')
   %>
-<%= raw 'selected_items.push(selectize.search("'+sub.user.id.to_s+'").items[0].id);' %>
+<%= raw 'selected_items.push(selectize.search("'+sub.user.getname().to_s+'").items[0].id);' %>
 
 <%
  end
@@ -106,7 +106,7 @@ selectize.setValue(selected_items);
     <%=
       # f.text_field :eventtype
     %>
-    <%= f.select :eventtype, options_for_select([["Match", "1"], ["Entrainement", "2"]], event.eventtype), class:'form-control' %>
+    <%= f.select :eventtype, options_for_select([["Match", "1"], ["Entrainement", "2"], ["Extra-Sportif", "3"]], event.eventtype), class:'form-control' %>
   </div>
 
     <div class="form-group">

@@ -76,6 +76,8 @@ class Event < ApplicationRecord
         color = 'Match'
       when 2
         color = 'Entrainement'
+      when 3
+        color = 'Extrasportif'
       else
         color = 'gray'
     end

@@ -7,21 +7,24 @@ class Ability
 
     # can :sign_in, User
     user ||= User.new
-    if user.canrole == 'admin'
+    if user.canrole == 'admin' || user.canrole == 'staff'
       can :manage, :all
       # can :index, :all
       # can :index, Event
-    elsif user.canrole == 'premiere'
+    elsif user.canrole == 'premiere' || user.canrole == 'm21' || user.canrole == 'm20' || user.canrole == 'm18' || user.canrole == 'm16' || user.canrole == 'm14'
       can :show , User do |u|
           u.id == user.id
       end
       can :manage , User do |u|
         u.id == user.id
       end
-      can :index , Event
-      can :show , Event
-      can :showpartial , Event
-      can :eventsource , Event
+      if user.canrole == 'premiere' || user.isadmin()
+        can :index , Event
+        can :show , Event
+        can :showpartial , Event
+        can :eventsource , Event
+        can :manage , Calendar
+      end
       # can :index , Event
       # can :manage, :all
     elsif user.canrole == 'undefined'

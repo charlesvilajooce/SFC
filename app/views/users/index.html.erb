@@ -16,7 +16,7 @@
       <th>Disponibility</th>
       <th>Role</th>
       <th>Playtime</th>
-      <% if current_user.canrole == 'admin' %>
+      <% if current_user.isadmin() %>
       <th></th>
       <% end %>
     </tr>
@@ -24,7 +24,9 @@
 
   <tbody>
     <% @users.each do |user| %>
-      <tr class='clickable-row' data-href="<%=user_path(user)%>">
+      <tr class='<%= if current_user.isadmin()
+                       'clickable-row'
+      end %>' data-href="<%=user_path(user)%>">
         <td style="overflow: hidden; white-space: nowrap;"><%= user.surname %></td>
         <td style="overflow: hidden; white-space: nowrap;"><%= user.name %></td>
         <td style="overflow: hidden; white-space: nowrap;"><%= user.level %></td>
@@ -62,7 +64,7 @@
         </td>
         <td><%= user.playtime %></td>
         <td style="overflow: hidden; white-space: nowrap;">
-          <% if current_user.canrole == 'admin' %>
+          <% if current_user.isadmin() %>
           <%= link_to '<i class="fa fa-search" aria-hidden="true"></i>'.html_safe, user_path(user), class: 'btn btn-success btn-user'%>
           <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, users_edit_path(user), class: 'btn btn-warning btn-user' %>
           <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %>
@@ -74,5 +76,6 @@
 </table>
 
 <br>
-
+<% if current_user.isadmin() %>
 <%= link_to 'New User', new_user_path, class: 'btn btn-primary' %>
+<% end %>

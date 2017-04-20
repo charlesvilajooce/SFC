@@ -19,14 +19,14 @@ class User < ApplicationRecord
 
   def isplayer(id)
     if(id == 0)
-      if(self.canrole == 'premiere' || self.canrole == 'academy')
+      if(self.canrole == 'premiere' || self.canrole == 'academy' || self.canrole == 'm21' || self.canrole == 'm20' || self.canrole == 'm18' || self.canrole == 'm16' || self.canrole == 'm14')
         return true
       else
         return false
       end
     else
       user = User.find(id)
-      if(user.canrole == 'premiere' || user.canrole == 'academy')
+      if(user.canrole == 'premiere' || user.canrole == 'academy' || user.canrole == 'm21' || user.canrole == 'm20' || user.canrole == 'm18' || user.canrole == 'm16' || user.canrole == 'm14')
         return true
       else
         return false
@@ -36,11 +36,38 @@ class User < ApplicationRecord
   end
 
   def isadmin()
-  if(self.canrole == 'admin' || self.canrole == 'staff' )
+  if(self.canrole == 'admin' || self.canrole == 'staff' || self.canrole == 'medical')
     return true
   else
     return false
   end
+  end
+
+  def canviewmedical(playertobeviewedid)
+
+    if( playertobeviewedid == self.id || self.canrole == 'medical' || self.canrole == 'admin' )
+      return true
+    else
+      return false
+    end
+
+  end
+
+  def getaddress()
+    string = "";
+    if(self.address1 != nil)
+      string = string + self.address1
+    end
+    if(self.address2 != nil)
+      string = string + " " +self.address2
+    end
+    if(self.zip != nil)
+      string = string + '<br>' +self.zip
+    end
+    if(self.city != nil)
+      string = string + ' ' + self.city
+    end
+    return string
   end
 
   def canviewplayer(playertobeviewedid)
