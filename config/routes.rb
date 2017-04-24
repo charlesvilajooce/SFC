@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :documents
   get 'users/getcalendardate'
   get 'users/setcalendardate'
   get 'users/getcalendartype'
@@ -50,4 +51,8 @@ Rails.application.routes.draw do
   get 'users/:id/edit', to: 'users#edit', as: 'users_edit'
   match 'users/index', to: 'users#create', as: 'createuser', via: [:post]
   resources :users, only: [:show, :update, :destroy, :new]
+
+  get 'documents/new/:id/:doctype', to: 'documents#new', as: 'new_document_params'
+
+
 end

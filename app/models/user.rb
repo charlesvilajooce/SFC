@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validates_processing_of :avatar
   validate :avatar_size_validation
 
+
+
   has_many :subscriptions
   has_many :documents
   has_many :events, through: :subscriptions

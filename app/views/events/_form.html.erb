@@ -113,6 +113,17 @@ selectize.setValue(selected_items);
     <label for="event_others">Membres</label>
     <input class="form-control" id="input-tags" name="others" type="text" >
     </div>
+    <%
+      stringofmails = '';
+      @event.subscriptions.each do |sub|
+        stringofmails = stringofmails+sub.user.email+';'
+      end
+    %>
+    <%=
+      raw '<a class="btn btn-primary" href="mailto:'+stringofmails+'?subject=Evènement: '+@event.name+'&body=Voici un email">Envoyer un email</a>'
+
+    %>
+<br><br>
 
   <div class="actions">
     <%= f.submit 'Enregistrer', class:'btn' %>

@@ -95,12 +95,29 @@
     <%= f.check_box :injured, class:'form-control'  %>
   </div>
 
+        <% if( current_user.canviewmedical(@user.id)) %>
   <div class="form-group">
     <%= f.label :injury_archive %>
     <%= f.text_area :injury_archive, class:'form-control'  %>
   </div>
 
-  <div class="form-group">
+        <%
+
+          @docs = user.documents
+          @docs = @docs.select{ |u| u.documenttype == 1 }
+          @docs.each do |doc|
+            string = ((doc.url.to_s).rpartition('/').last)
+        %>
+            <a style="color:black !important;" href="<%= doc.url%>" target="_blank"><%= string %></a> <%= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+
+        <%end  %>
+
+        <!-- Trigger the modal with a button -->
+        <a  class="btn btn-info btn-lg" data-toggle="modal" data-target="#theModal" href="<%= new_document_params_path(user.id,'1') %>">Ajouter un document médical</a>
+<br>
+            <% end %>
+
+        <div class="form-group">
     <%= f.label :suspended %>
     <%= f.check_box :suspended, class:'form-control'  %>
   </div>
@@ -120,10 +137,23 @@
     <%= f.text_field :school, class:'form-control'  %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :school_archive %>
-    <%= f.text_area :school_archive, class:'form-control'  %>
-  </div>
+
+
+
+        <%
+
+          @docs = user.documents
+          @docs = @docs.select{ |u| u.documenttype == 2 }
+          @docs.each do |doc|
+            string = ((doc.url.to_s).rpartition('/').last)
+        %>
+            <a style="color:black !important;" href="<%= doc.url%>" target="_blank"><%= string %></a> <%= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+
+        <% end  %>
+
+        <!-- Trigger the modal with a button -->
+        <a  class="btn btn-info btn-lg" data-toggle="modal" data-target="#theModal" href="<%= new_document_params_path(user.id,'2') %>">Ajouter un document scolaire</a>
+        <br>
 
   <div class="form-group">
     <%= f.label :physic_char %>
@@ -154,3 +184,25 @@
     <%= f.submit 'Enregistrer', class:'btn' %>
   </div>
 <% end %>
+
+
+<!-- Modal -->
+<div id="theModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Medical Records</h4>
+      </div>
+      <div class="modal-body" style="height: 280px">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

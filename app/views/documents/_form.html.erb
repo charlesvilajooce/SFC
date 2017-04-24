@@ -1,0 +1,38 @@
+
+<% document = @document %>
+<%=
+
+
+  form_for(document) do |f| %>
+  <% if document.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
+
+      <ul>
+      <% document.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class:'form-control'  %>
+    </div>
+    <div class="form-group">
+      <%= f.label :url %><br>
+      <%= f.file_field :url, class:'form-control' %>
+      <% if f.object.url? %>
+          <%= (document.url.to_s).rpartition('/').last %>
+          <%= f.label :remove_url, ' - Supprimer le fichier' %>
+          <%= f.check_box :remove_url %>
+      <% end %>
+    </div>
+    <%= f.hidden_field :user_id, :value => document.user_id   %>
+    <%=
+      f.hidden_field :documenttype, :value => document.documenttype
+    %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

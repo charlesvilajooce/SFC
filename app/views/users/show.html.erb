@@ -81,8 +81,25 @@
     <p>
       <strong>Injury archive:</strong>
       <%= @user.injury_archive %>
+
     </p>
-    <% end %>
+        <p> <strong>Medical Records list:</strong>
+      <%
+
+        @docs = @user.documents
+        @docs = @docs.select{ |u| u.documenttype == 1 }
+        @docs.each do |doc|
+          string = ((doc.url.to_s).rpartition('/').last)
+      %>
+          <a href="<%= doc.url%>" target="_blank"><%= string %></a><br>
+
+      <%end  %>
+        </p>
+
+
+
+
+  <% end %>
 
     <p>
       <strong>Cards archive:</strong>
@@ -99,9 +116,18 @@
       <%= @user.school %>
     </p>
 
-    <p>
-      <strong>School archive:</strong>
-      <%= @user.school_archive %>
+
+    <p> <strong>School Records list:</strong>
+      <%
+
+        @docs = @user.documents
+        @docs = @docs.select{ |u| u.documenttype == 2 }
+        @docs.each do |doc|
+          string = ((doc.url.to_s).rpartition('/').last)
+      %>
+          <a href="<%= doc.url%>" target="_blank"><%= string %></a><br>
+
+      <%end  %>
     </p>
 
   </div>

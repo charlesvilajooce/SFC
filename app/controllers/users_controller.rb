@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
   #skip_authorization_check
   load_and_authorize_resource
 
@@ -53,6 +52,23 @@ class UsersController < ApplicationController
     if( !current_user.isadmin() )
     @users = @users.select { |u| u.isplayer(u.id) == true }
     end
+    print('heloo')
+    case params[:format]
+      when 'staff'
+        @users = @users.select { |u| u.canrole == 'staff' }
+      when 'premiere'
+        @users = @users.select { |u| u.canrole == 'premiere' }
+      when 'm21'
+        @users = @users.select { |u| u.canrole == 'm21' }
+      when 'm20'
+        @users = @users.select { |u| u.canrole == 'm20' }
+      when 'm18'
+        @users = @users.select { |u| u.canrole == 'm18' }
+      when 'm16'
+        @users = @users.select { |u| u.canrole == 'm16' }
+      when 'm14'
+        @users = @users.select { |u| u.canrole == 'm21' }
+    end
   end
 
   # GET /users/1
@@ -70,6 +86,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
+
 
   # POST /users
   # POST /users.json
