@@ -10,6 +10,11 @@
       </ul>
     </div>
   <% end %>
+
+    <div class="actions">
+      <%= f.submit 'Enregistrer', class:'btn' %>
+    </div>
+
     <% if(current_user.canrole == 'admin') %>
     <div class="form-group">
       <%= f.label :canrole %>
@@ -18,88 +23,155 @@
     </div>
 <% end %>
 
+    <div class="row">
 
-  <div class="form-group">
-    <%= f.label :surname %>
+      <div class="col-3">
+    <div class="form-group">
+      <%= f.label :injured %>
+      <%= f.check_box :injured, class:'form-control'  %>
+    </div>
+      </div>
+
+      <div class="col-3">
+    <div class="form-group">
+      <%= f.label :suspended %>
+      <%= f.check_box :suspended, class:'form-control'  %>
+    </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :avatar, "Photo de profil"  %><br>
+      <%= f.file_field :avatar, class:'form-control' %>
+      <% if f.object.avatar? %>
+          <%= image_tag f.object.avatar.thumb.url %>
+          <%= f.label :remove_avatar %>
+          <%= f.check_box :remove_avatar %>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+
+    <div class="form-group">
+    <%= f.label :surname, "Prénom"  %>
     <%= f.text_field :surname, class:'form-control'  %>
   </div>
 
   <div class="form-group">
-    <%= f.label :name %>
+    <%= f.label :name, "Nom"  %>
     <%= f.text_field :name, class:'form-control'  %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :nationality %>
-    <%= f.text_field :nationality, class:'form-control'  %>
-  </div>
+        <div class="form-group">
+          <%= f.label :birthday, "Date de naissance"  %><br>
+          <%= f.date_select :birthday, :start_year=>1970, class:'form-control'  %>
+        </div>
+        <div class="form-group">
+          <%= f.label :nationality, "Nationalité"  %>
+          <%= f.text_field :nationality, class:'form-control'  %>
+        </div>
+
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <%= f.label :level, "#" %>
+          <%= f.number_field :level, class:'form-control'  %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :role, "Poste" %><br>
+          <%= f.select(:role, [['Gardien', '1'],['Défenseur','2'],['Milieu','3'],['Attaquant','4'] ], { include_blank: true }) %>
+        </div>
+
 
   <div class="form-group">
-    <%= f.label :email %>
+    <%= f.label :email, "Adresse e-mail"  %>
     <%= f.text_field :email, class:'form-control'  %>
   </div>
 
     <div class="form-group">
-      <%= f.label :tel %>
+      <%= f.label :tel, "Numéro de téléphone"  %>
       <%= f.text_field :tel, class:'form-control'  %>
     </div>
+      </div>
+      <div class="col-6">
     <div class="form-group">
-      <%= f.label :address1 %>
+      <%= f.label :address1, "Adresse"  %>
       <%= f.text_field :address1, class:'form-control'  %>
-    </div>
-    <div class="form-group">
-      <%= f.label :address2 %>
       <%= f.text_field :address2, class:'form-control'  %>
     </div>
     <div class="form-group">
-      <%= f.label :zip %>
+      <%= f.label :zip, "Code postal"  %>
       <%= f.text_field :zip, class:'form-control'  %>
     </div>
     <div class="form-group">
-      <%= f.label :city %>
+      <%= f.label :city, "Ville"  %>
       <%= f.text_field :city, class:'form-control'  %>
     </div>
 
-  <div class="form-group">
-    <%= f.label :birthday %>
-    <%= f.date_select :birthday, :start_year=>1970, class:'form-control'  %>
-  </div>
 
+      </div>
+    </div>
+    <hr>
+
+    <div class="row">
+      <div class="col-3">
   <div class="form-group">
-    <%= f.label :parents %>
+    <%= f.label :parents, "Contact parents" %>
     <%= f.text_area :parents, class:'form-control'  %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :avatar %><br>
-    <%= f.file_field :avatar, class:'form-control' %>
-    <% if f.object.avatar? %>
-        <%= image_tag f.object.avatar.thumb.url %>
-        <%= f.label :remove_avatar %>
-        <%= f.check_box :remove_avatar %>
-    <% end %>
-  </div>
+    <div class="form-group">
+      <%= f.label :arriving_date, "Date d'arrivée" %><br>
+      <%= f.date_select :arriving_date, :start_year=>1970, class:'form-control'  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :endcontrat_date, "Date de fin de contrat" %><br>
+      <%= f.date_select :endcontrat_date, :end_year=>2030, class:'form-control'  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :sportactivity_archive, "Anciens clubs" %>
+      <%= f.text_area :sportactivity_archive, class:'form-control'  %>
+    </div>
+      </div>
+      <div class="col-3">
+    <div class="form-group">
+      <%= f.label :playtime, "Temps de jeu" %>
+      <%= f.number_field :playtime, class:'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :cards_archive, "Archive des cartons" %>
+      <%= f.text_area :cards_archive, class:'form-control'  %>
+    </div>
+
+      </div></div>
 
     <% if( current_user.canviewplayer(user.id) && current_user.id != user.id)  %>
 
 
-        <div class="form-group">
-          <%= f.label :level %>
-          <%= f.number_field :level, class:'form-control'  %>
+        <div class="actions">
+          <%= f.submit 'Enregistrer', class:'btn' %>
         </div>
 
-
-
-    <div class="form-group">
-    <%= f.label :injured %>
-    <%= f.check_box :injured, class:'form-control'  %>
-  </div>
+        <hr>
 
         <% if( current_user.canviewmedical(@user.id)) %>
-  <div class="form-group">
-    <%= f.label :injury_archive %>
-    <%= f.text_area :injury_archive, class:'form-control'  %>
-  </div>
+            <div class="row" style="margin-bottom: 25px">
+              <div class="col-6">
+
+            <div class="form-group">
+              <%= f.label :physic_char, "Mensurations" %>
+              <%= f.text_area :physic_char, class:'form-control'  %>
+            </div>
+
+                <div class="form-group">
+                  <%= f.label :injury_archive, "Dossier médical" %>
+                  <%= f.text_area :injury_archive, class:'form-control'  %>
+                </div>
 
         <%
 
@@ -110,35 +182,20 @@
         %>
             <a style="color:black !important;" href="<%= doc.url%>" target="_blank"><%= string %></a> <%= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' } %><br>
 
+
         <%end  %>
 
         <!-- Trigger the modal with a button -->
-        <a  class="btn btn-info btn-lg" data-toggle="modal" data-target="#theModal" href="<%= new_document_params_path(user.id,'1') %>">Ajouter un document médical</a>
-<br>
-            <% end %>
+        <a  class="btn btn-primary" data-toggle="modal" data-target="#theModal" href="<%= new_document_params_path(user.id,'1') %>">Ajouter un document médical</a>
+        <% end %>
 
-        <div class="form-group">
-    <%= f.label :suspended %>
-    <%= f.check_box :suspended, class:'form-control'  %>
-  </div>
+        </div>
+        <div class="col-6">
 
   <div class="form-group">
-    <%= f.label :cards_archive %>
-    <%= f.text_area :cards_archive, class:'form-control'  %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :role %>
-    <%= f.select(:role, [['Gardien', '1'],['Défenseur','2'],['Milieu','3'],['Attaquant','4'] ], { include_blank: true }) %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :school %>
+    <%= f.label :school, "Dossier Scolaire" %>
     <%= f.text_field :school, class:'form-control'  %>
   </div>
-
-
-
 
         <%
 
@@ -152,34 +209,12 @@
         <% end  %>
 
         <!-- Trigger the modal with a button -->
-        <a  class="btn btn-info btn-lg" data-toggle="modal" data-target="#theModal" href="<%= new_document_params_path(user.id,'2') %>">Ajouter un document scolaire</a>
+        <a  class="btn btn-primary" data-toggle="modal" data-target="#theModal" href="<%= new_document_params_path(user.id,'2') %>">Ajouter un document scolaire</a>
         <br>
 
-  <div class="form-group">
-    <%= f.label :physic_char %>
-    <%= f.text_area :physic_char, class:'form-control'  %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :playtime %>
-    <%= f.number_field :playtime, class:'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :arriving_date %>
-    <%= f.date_select :arriving_date, :start_year=>1970, class:'form-control'  %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :endcontrat_date %>
-    <%= f.date_select :endcontrat_date, :end_year=>2030, class:'form-control'  %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sportactivity_archive %>
-    <%= f.text_area :sportactivity_archive, class:'form-control'  %>
-  </div>
+        </div></div>
     <% end %>
+
   <div class="actions">
     <%= f.submit 'Enregistrer', class:'btn' %>
   </div>
@@ -200,7 +235,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
     </div>
 

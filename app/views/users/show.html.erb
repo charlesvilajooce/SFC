@@ -14,6 +14,20 @@
         <% end %>
         <div class="caption">
           <center><h3><%= @user.surname %> <%= @user.name %> <small>(<%= @user.level %>)</small></h3></center>
+          <center><p><em>
+            <% if @user.role==1%>
+                Gardien
+            <% end %>
+            <% if @user.role == 2%>
+                Défenseur
+            <% end %>
+            <% if @user.role == 3%>
+                Milieu
+            <% end %>
+            <% if @user.role == 4%>
+                Attaquant
+            <% end %>
+          </p></em></center>
           <ul class="list-group">
 
             <li class="list-group-item"><%= @user.nationality %></li>
@@ -37,87 +51,39 @@
         </div>
       </div>
     </div>
-    <% if( current_user.canviewplayer(@user.id)) %>
-    <div class="col-12">
-      <ul class="list-group">
-        <li class="list-group-item">Playtime: <%= @user.playtime %>'</li>
-        <li class="list-group-item">Arriving date: <%= @user.getnicedate(@user.arriving_date) %></li>
-        <li class="list-group-item">Endcontrat date: <%= @user.getnicedate(@user.endcontrat_date) %></li>
-      </ul>
-    </div>
-        <% end %>
   </div>
   <% if( current_user.canviewplayer(@user.id)) %>
 
   <div class="col-7 thumbnail">
 
-    <p>
-      <strong>Role:</strong>
-      <% if @user.role==1%>
-          Gardien
-      <% end %>
-      <% if @user.role == 2%>
-          Défenseur
-      <% end %>
-      <% if @user.role == 3%>
-          Milieu
-      <% end %>
-      <% if @user.role == 4%>
-          Attaquant
-      <% end %>
-    </p>
-  <p>
-      <strong>Physic char:</strong>
-      <%= @user.physic_char %>
-    </p>
+    <div class="col-12">
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Temps de jeu: </strong> <%= @user.playtime %>'</li>
+        <li class="list-group-item"><strong>Date d'arrivée: </strong> <%= @user.getnicedate(@user.arriving_date) %></li>
+        <li class="list-group-item"><strong>Date de fin de contrat: </strong> <%= @user.getnicedate(@user.endcontrat_date) %></li>
+      </ul>
+    </div>
+    <br><br>
 
+    <div class="col-12 thumbnail">
     <p>
-      <strong>Sportactivity archive:</strong>
+      <strong>Anciens clubs:</strong>
       <%= @user.sportactivity_archive %>
     </p>
+    </div>
 
-
-    <% if( current_user.canviewmedical(@user.id)) %>
+    <div class="col-12 thumbnail">
     <p>
-      <strong>Injury archive:</strong>
-      <%= @user.injury_archive %>
-
-    </p>
-        <p> <strong>Medical Records list:</strong>
-      <%
-
-        @docs = @user.documents
-        @docs = @docs.select{ |u| u.documenttype == 1 }
-        @docs.each do |doc|
-          string = ((doc.url.to_s).rpartition('/').last)
-      %>
-          <a href="<%= doc.url%>" target="_blank"><%= string %></a><br>
-
-      <%end  %>
-        </p>
-
-
-
-
-  <% end %>
-
-    <p>
-      <strong>Cards archive:</strong>
-      <%= @user.cards_archive %>
-    </p>
-
-    <p>
-      <strong>Parents:</strong>
+      <strong>Contact parents:</strong>
       <%= @user.parents %>
     </p>
 
     <p>
-      <strong>School:</strong>
+      <strong>Dossier scolaire:</strong>
       <%= @user.school %>
     </p>
 
-
-    <p> <strong>School Records list:</strong>
+    <p> <strong>Archives scolaires:</strong>
       <%
 
         @docs = @user.documents
@@ -129,6 +95,37 @@
 
       <%end  %>
     </p>
+    </div>
+
+      <% if( current_user.canviewmedical(@user.id)) %>
+        <div class="col-12 thumbnail">
+          <p>
+            <strong>Mensurations:</strong>
+            <%= @user.physic_char %>
+          </p>
+        <p>
+          <strong>Dossier médical:</strong>
+          <%= @user.injury_archive %>
+
+        </p>
+        <p> <strong>Archives medicales:</strong>
+          <%
+
+            @docs = @user.documents
+            @docs = @docs.select{ |u| u.documenttype == 1 }
+            @docs.each do |doc|
+              string = ((doc.url.to_s).rpartition('/').last)
+          %>
+              <a href="<%= doc.url%>" target="_blank"><%= string %></a><br>
+
+          <%end  %>
+        </p>
+        </div>
+
+
+
+
+    <% end %>
 
   </div>
 
