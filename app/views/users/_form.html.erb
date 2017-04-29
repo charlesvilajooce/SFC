@@ -180,7 +180,7 @@
           @docs.each do |doc|
             string = ((doc.url.to_s).rpartition('/').last)
         %>
-            <a style="color:black !important;" href="<%= doc.url%>" target="_blank"><%= string %></a> <%= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+            <a style="color:black !important;" href="<%= doc.url%>" target="_blank"><%= string %></a> <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, doc, method: :delete, data: { confirm: 'Are you sure?' }, style:'color: red !important;' %><br>
 
 
         <%end  %>
@@ -204,7 +204,7 @@
           @docs.each do |doc|
             string = ((doc.url.to_s).rpartition('/').last)
         %>
-            <a style="color:black !important;" href="<%= doc.url%>" target="_blank"><%= string %></a> <%= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+            <a style="color:black !important;" href="<%= doc.url%>" target="_blank"><%= string %></a> <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, doc, method: :delete, data: { confirm: 'Are you sure?' }, style:'color: red !important;' %><br>
 
         <% end  %>
 

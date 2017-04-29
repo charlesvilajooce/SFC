@@ -116,7 +116,7 @@
             @docs.each do |doc|
               string = ((doc.url.to_s).rpartition('/').last)
           %>
-              <a href="<%= doc.url%>" target="_blank"><%= string %></a><br>
+              <a href="<%= doc.url%>" target="_blank" style="color: black !important;"><%= string %></a><br>
 
           <%end  %>
         </p>
