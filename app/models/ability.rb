@@ -11,7 +11,7 @@ class Ability
       can :manage, :all
       # can :index, :all
       # can :index, Event
-    elsif user.canrole == 'premiere' || user.canrole == 'm21' || user.canrole == 'm20' || user.canrole == 'm18' || user.canrole == 'm16' || user.canrole == 'm14'
+    elsif user.canrole == 'premiere' || user.canrole == 'm21' || user.canrole == 'm18' || user.canrole == 'm16' || user.canrole == 'm15'|| user.canrole == 'fe14' || user.canrole == 'fe13' || user.canrole == 'fe12' || user.canrole == 'fe11' || user.canrole == 'fc10' || user.canrole == 'fc9' || user.canrole == 'fc8' || user.canrole == 'fc7'
       can :show , User do |u|
           u.id == user.id
       end

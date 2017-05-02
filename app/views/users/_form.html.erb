@@ -19,7 +19,7 @@
     <div class="form-group">
       <%= f.label :canrole %>
         <br>
-      <%= f.select :canrole, options_for_select([["Admin", "admin"], ["Première", "premiere"], ["Académie", "academy"], ["M21", "m21"], ["M20", "m20"], ["M18", "m18"], ["M16", "m16"], ["M14", "m14"],["Staff","staff"],["Non défini","undefined"]], user.canrole) %>
+      <%= f.select :canrole, options_for_select([["Admin", "admin"],["Staff","staff"], ["Première", "premiere"], ["Académie", "academy"], ["M21", "m21"], ["M18", "m18"], ["M16", "m16"], ["M15", "m15"], ["FE14", "fe14"], ["FE13", "fe13"], ["FE12", "fe12"], ["FE11", "fe11"], ["FC10", "fc10"], ["FC9", "fc9"], ["FC8", "fc8"], ["FC7", "fc7"],["Non défini","undefined"]], user.canrole) %>
     </div>
 <% end %>
 
@@ -117,6 +117,7 @@
 
     <div class="row">
       <div class="col-3">
+
   <div class="form-group">
     <%= f.label :parents, "Contact parents" %>
     <%= f.text_area :parents, class:'form-control'  %>

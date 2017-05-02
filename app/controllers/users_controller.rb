@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     if( !current_user.isadmin() )
     @users = @users.select { |u| u.isplayer(u.id) == true }
     end
-    print('heloo')
+    # print('heloo')
     case params[:format]
       when 'staff'
         @users = @users.select { |u| u.canrole == 'staff' }
@@ -60,14 +60,28 @@ class UsersController < ApplicationController
         @users = @users.select { |u| u.canrole == 'premiere' }
       when 'm21'
         @users = @users.select { |u| u.canrole == 'm21' }
-      when 'm20'
-        @users = @users.select { |u| u.canrole == 'm20' }
       when 'm18'
         @users = @users.select { |u| u.canrole == 'm18' }
       when 'm16'
         @users = @users.select { |u| u.canrole == 'm16' }
-      when 'm14'
-        @users = @users.select { |u| u.canrole == 'm21' }
+      when 'm15'
+        @users = @users.select { |u| u.canrole == 'm15' }
+      when 'fe14'
+        @users = @users.select { |u| u.canrole == 'fe14' }
+      when 'fe13'
+        @users = @users.select { |u| u.canrole == 'fe13' }
+      when 'fe12'
+        @users = @users.select { |u| u.canrole == 'fe12' }
+      when 'fe11'
+        @users = @users.select { |u| u.canrole == 'fe11' }
+      when 'fc10'
+        @users = @users.select { |u| u.canrole == 'fc10' }
+      when 'fc9'
+        @users = @users.select { |u| u.canrole == 'fc9' }
+      when 'fc8'
+        @users = @users.select { |u| u.canrole == 'fc8' }
+      when 'fc7'
+        @users = @users.select { |u| u.canrole == 'fc7' }
     end
   end
 

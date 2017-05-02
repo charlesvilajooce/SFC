@@ -52,10 +52,17 @@ $( document ).ready(function() {
               <div class="dropdown-divider"></div>
               <h6 class="dropdown-header">Académie</h6>
               <a class="dropdown-item" href="<%= users_path('m21') %>">M21</a>
-              <a class="dropdown-item" href="<%= users_path('m20') %>">M20</a>
               <a class="dropdown-item" href="<%= users_path('m18') %>">M18</a>
               <a class="dropdown-item" href="<%= users_path('m16') %>">M16</a>
-              <a class="dropdown-item" href="<%= users_path('m14') %>">M14</a>
+              <a class="dropdown-item" href="<%= users_path('m15') %>">M15</a>
+              <a class="dropdown-item" href="<%= users_path('fe14') %>">FE14</a>
+              <a class="dropdown-item" href="<%= users_path('fe13') %>">FE13</a>
+              <a class="dropdown-item" href="<%= users_path('fe12') %>">FE12</a>
+              <a class="dropdown-item" href="<%= users_path('fe11') %>">FE11</a>
+              <a class="dropdown-item" href="<%= users_path('fc10') %>">FC10</a>
+              <a class="dropdown-item" href="<%= users_path('fc9') %>">FC9</a>
+              <a class="dropdown-item" href="<%= users_path('fc8') %>">FC8</a>
+              <a class="dropdown-item" href="<%= users_path('fc7') %>">FC7</a>
             </div>
           </li>
           <% if current_user.canrole == 'premiere' || current_user.isadmin() %>

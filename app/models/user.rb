@@ -19,6 +19,10 @@ class User < ApplicationRecord
     return self.surname+' '+self.name
   end
 
+  def getbrs(string)
+    return string.gsub(/\n/, '<br>')
+  end
+
   def isplayer(id)
     if(id == 0)
       if(self.canrole == 'premiere' || self.canrole == 'academy' || self.canrole == 'm21' || self.canrole == 'm20' || self.canrole == 'm18' || self.canrole == 'm16' || self.canrole == 'm14')

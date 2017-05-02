@@ -68,19 +68,19 @@
     <div class="col-12 thumbnail">
     <p>
       <strong>Anciens clubs:</strong>
-      <%= @user.sportactivity_archive %>
+      <%= raw @user.getbrs(@user.sportactivity_archive) %>
     </p>
     </div>
 
     <div class="col-12 thumbnail">
     <p>
       <strong>Contact parents:</strong>
-      <%= @user.parents %>
+      <%= raw @user.getbrs(@user.parents) %>
     </p>
 
     <p>
       <strong>Dossier scolaire:</strong>
-      <%= @user.school %>
+      <%= raw @user.getbrs(@user.school) %>
     </p>
 
     <p> <strong>Archives scolaires:</strong>
@@ -101,11 +101,11 @@
         <div class="col-12 thumbnail">
           <p>
             <strong>Mensurations:</strong>
-            <%= @user.physic_char %>
+            <%= raw @user.getbrs(@user.physic_char) %>
           </p>
         <p>
           <strong>Dossier médical:</strong>
-          <%= @user.injury_archive %>
+          <%= raw @user.getbrs(@user.injury_archive) %>
 
         </p>
         <p> <strong>Archives medicales:</strong>
