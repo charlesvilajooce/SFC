@@ -4,10 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # mount_uploader :avatar, AvatarUploader
-  #
-  # validates_processing_of :avatar
-  # validate :avatar_size_validation
+  mount_uploader :avatar, AvatarUploader
+
+  validates_processing_of :avatar
+  validate :avatar_size_validation
 
 
 
