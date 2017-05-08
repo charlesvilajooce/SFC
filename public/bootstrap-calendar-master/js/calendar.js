@@ -72,7 +72,7 @@ var sessionstart= $.ajax({url: "/users/getcalendardate", success: function(resul
 		// - A function that received the start and end date, and that
 		//   returns an array of events (as described in events property description)
 		// - An array containing the events
-		events_source: 'http://localhost:3000/event/eventsource',
+		events_source: '/event/eventsource',
 		// Static cache of events. If set to true, events will only be loaded once.
 		// Useful if response is not constrained by date.
 		events_cache: false,

@@ -9,7 +9,7 @@
     sessiontype = $.ajax({url: "/users/getcalendartype", async: false,success: function(result){return result;}}).responseText;
 //end for getting current viewtype
 	var options = {
-		events_source: 'http://localhost:3000/events/eventsource',
+		events_source: '/events/eventsource',
 		view: sessiontype,
 		tmpl_path: '/bootstrap-calendar-master/tmplsmy/',
 		tmpl_cache: false,
