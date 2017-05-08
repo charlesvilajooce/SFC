@@ -18,7 +18,7 @@ default: &default
 #  socket: /tmp/mysql.sock
 development:
   <<: *default
-  database: heroku_cf796940d8453de
+  database: mysql://b32dc36ef8e5f9:e4b592f7@eu-cdbr-west-01.cleardb.com/heroku_cf796940d8453de?reconnect=true
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -48,6 +48,8 @@ test:
 #
 production:
   <<: *default
+  adapter: mysql2
   database: heroku_cf796940d8453de
   username: b32dc36ef8e5f9
   password: e4b592f7
+  host: eu-cdbr-west-01.cleardb.com
