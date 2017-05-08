@@ -13,12 +13,15 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: b32dc36ef8e5f9
-  password: e4b592f7
-#  socket: /tmp/mysql.sock
+
+
+
 development:
   <<: *default
-  database: mysql://b32dc36ef8e5f9:e4b592f7@eu-cdbr-west-01.cleardb.com/heroku_cf796940d8453de?reconnect=true
+  database: SFCadmin_development
+  socket: /tmp/mysql.sock
+  username: rails
+  password: rails
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
