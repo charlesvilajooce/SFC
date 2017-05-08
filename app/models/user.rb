@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   validates_processing_of :avatar
   validate :avatar_size_validation
-
+#ts
 
 
   has_many :subscriptions
