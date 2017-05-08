@@ -7,7 +7,7 @@ end
 
 ruby '2.3.3'
 
-gem listen
+gem 'listen'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
