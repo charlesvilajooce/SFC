@@ -1,6 +1,6 @@
 class Document < ApplicationRecord
 
-  # mount_uploader :url, MedicalrecordsUploader
+  mount_uploader :url, MedicalrecordsUploader
 
 
 end
