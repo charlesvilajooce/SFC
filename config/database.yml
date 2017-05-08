@@ -15,7 +15,7 @@ default: &default
   pool: 5
   username: b32dc36ef8e5f9
   password: e4b592f7
-  socket: /tmp/mysql.sock
+#  socket: /tmp/mysql.sock
 development:
   <<: *default
   database: heroku_cf796940d8453de
