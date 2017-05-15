@@ -121,6 +121,24 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+
+    rel1 = @user.relationship1
+    rel1.each do |rel|
+      rel.destroy
+    end
+    rel2 = @user.relationship2
+    rel2.each do |rel|
+      rel.destroy
+    end
+    temp3 = params[:others].delete(' ').split(/,/)
+    temp3.each do |numb|
+      rel = Relationship.new
+      rel.user_one_id = params[:id].to_i
+      rel.user_two_id = numb.to_i
+      rel.save
+      # print(numb.to_i)
+    end
+
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to user_path(@user), notice: "User #{@user.surname} #{@user.name} was successfully updated." }

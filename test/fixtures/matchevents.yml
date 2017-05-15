@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  match: 1
+  temps: 1
+  type: 
+  commentaire: MyString
+
+two:
+  match: 1
+  temps: 1
+  type: 
+  commentaire: MyString

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420103905) do
+ActiveRecord::Schema.define(version: 20170511145301) do
+
+  create_table "avatars", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.string   "url"
+    t.boolean  "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_avatars_on_user_id", using: :btree
+  end
 
   create_table "calendars", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "devise"
@@ -36,6 +45,97 @@ ActiveRecord::Schema.define(version: 20170420103905) do
     t.datetime "updated_at",  null: false
     t.bigint   "begin"
     t.bigint   "end"
+  end
+
+  create_table "injuries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.string   "location"
+    t.string   "structure"
+    t.string   "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint   "when"
+    t.bigint   "datetrain"
+    t.bigint   "datematch"
+    t.bigint   "dateperf"
+    t.index ["user_id"], name: "index_injuries_on_user_id", using: :btree
+  end
+
+  create_table "matches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "équipe"
+    t.string   "adversaire"
+    t.string   "saison"
+    t.integer  "scoreSfc"
+    t.integer  "scoreAdv"
+    t.string   "spectateurs"
+    t.string   "competition"
+    t.string   "terrain"
+    t.string   "hometitulaires"
+    t.string   "homeremplacants"
+    t.string   "homeentrainer"
+    t.string   "homeabsents"
+    t.string   "awaytitulaires"
+    t.string   "awayremplacants"
+    t.string   "awayentrainer"
+    t.string   "awayabsents"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.bigint   "when"
+  end
+
+  create_table "matchevent1users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "match_id"
+    t.integer  "user_id"
+    t.integer  "temps"
+    t.string   "type"
+    t.string   "commentaire"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["match_id"], name: "index_matchevent1users_on_match_id", using: :btree
+    t.index ["user_id"], name: "index_matchevent1users_on_user_id", using: :btree
+  end
+
+  create_table "matchevent2users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "match_id"
+    t.integer  "user_one_id"
+    t.integer  "user_two_id"
+    t.integer  "temps"
+    t.string   "type"
+    t.string   "commentaire"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["match_id"], name: "index_matchevent2users_on_match_id", using: :btree
+    t.index ["user_one_id"], name: "index_matchevent2users_on_user_one_id", using: :btree
+    t.index ["user_two_id"], name: "index_matchevent2users_on_user_two_id", using: :btree
+  end
+
+  create_table "matchevents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "match_id"
+    t.integer  "temps"
+    t.string   "type"
+    t.string   "commentaire"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["match_id"], name: "index_matchevents_on_match_id", using: :btree
+  end
+
+  create_table "matchlinks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "match_id"
+    t.integer  "user_id"
+    t.string   "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_matchlinks_on_match_id", using: :btree
+    t.index ["user_id"], name: "index_matchlinks_on_user_id", using: :btree
+  end
+
+  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_one_id"
+    t.integer  "user_two_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["user_one_id"], name: "index_relationships_on_user_one_id", using: :btree
+    t.index ["user_two_id"], name: "index_relationships_on_user_two_id", using: :btree
   end
 
   create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -91,6 +191,11 @@ ActiveRecord::Schema.define(version: 20170420103905) do
     t.string   "zip"
     t.string   "city"
     t.string   "country"
+    t.integer  "status"
+    t.string   "status2"
+    t.string   "allergies"
+    t.string   "medication"
+    t.string   "statictrouble"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

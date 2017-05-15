@@ -1,4 +1,4 @@
-<script>
+<script type="text/javascript">
 var $select = $('#input-tags').selectize({
 plugins: ['remove_button'],
 delimiter: ',',
@@ -26,6 +26,7 @@ text: input
 });
 
 
+
 var selectize = $select[0].selectize;
 //selectize.setValue(selectize.search("4").items[0].id);
 //alert(selectize.search("5").items[0].id)
@@ -46,9 +47,8 @@ var selected_items = [];
 
 selectize.setValue(selected_items);
 
+
 </script>
-
-
 
 <%= form_for(event) do |f| %>
   <%

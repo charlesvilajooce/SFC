@@ -12,6 +12,16 @@ class User < ApplicationRecord
 
 
   has_many :subscriptions
+  has_many :injuries
+  has_many :avatars
+  has_many :relationship1, :class_name => 'Relationship', :foreign_key => 'user_one_id'
+  has_many :relationship2, :class_name => 'Relationship', :foreign_key => 'user_two_id'
+
+  has_many :matchevent1users
+  has_many :matchevent2users1, :class_name => 'Matchevent2user', :foreign_key => 'user_one_id'
+  has_many :matchevent2users2, :class_name => 'Matchevent2user', :foreign_key => 'user_two_id'
+  has_many :matchlinks
+
   has_many :documents
   has_many :events, through: :subscriptions
 
@@ -23,16 +33,28 @@ class User < ApplicationRecord
     return string.gsub(/\n/, '<br>')
   end
 
+  def getplayers()
+    players = []
+    users = User.all
+    users.each do |user|
+      if(user.isplayer(0))
+        players.push(user)
+      end
+    end
+    return players
+  end
+
   def isplayer(id)
     if(id == 0)
-      if(self.canrole == 'premiere' || self.canrole == 'academy' || self.canrole == 'm21' || self.canrole == 'm20' || self.canrole == 'm18' || self.canrole == 'm16' || self.canrole == 'm14')
+      if(self.canrole == 'premiere' || self.canrole == 'academy' || self.canrole == 'm21' || self.canrole == 'm18' || self.canrole == 'm16' || self.canrole == 'm15' || self.canrole == 'fe14' || self.canrole == 'fe13'  || self.canrole == 'fe12'  || self.canrole == 'fe11'  || self.canrole == 'fc10' || self.canrole == 'fc9' || self.canrole == 'fc8'  || self.canrole == 'fc7')
         return true
       else
         return false
       end
     else
       user = User.find(id)
-      if(user.canrole == 'premiere' || user.canrole == 'academy' || user.canrole == 'm21' || user.canrole == 'm20' || user.canrole == 'm18' || user.canrole == 'm16' || user.canrole == 'm14')
+      if(user.canrole == 'premiere' || user.canrole == 'academy' || user.canrole == 'm21' || user.canrole == 'm18' || user.canrole == 'm16' || user.canrole == 'm15' || user.canrole == 'fe14' || user.canrole == 'fe13'  || user.canrole == 'fe12'  || user.canrole == 'fe11'  || user.canrole == 'fc10' || user.canrole == 'fc9' || user.canrole == 'fc8'  || user.canrole == 'fc7')
+
         return true
       else
         return false
@@ -86,7 +108,7 @@ class User < ApplicationRecord
 
   # private
   def avatar_size_validation
-    errors[:avatar] << "should be less than 500KB" if avatar.size > 0.5.megabytes
+    errors[:avatar] << "should be less than 5000KB" if avatar.size > 5.megabytes
   end
 
   ROLES = %i[admin premiere academy staff]

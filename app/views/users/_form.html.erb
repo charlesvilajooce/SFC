@@ -1,3 +1,7 @@
+
+
+
+
 <%= form_for(user) do |f| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
@@ -19,7 +23,7 @@
     <div class="form-group">
       <%= f.label :canrole %>
         <br>
-      <%= f.select :canrole, options_for_select([["Admin", "admin"],["Staff","staff"], ["Première", "premiere"], ["Académie", "academy"], ["M21", "m21"], ["M18", "m18"], ["M16", "m16"], ["M15", "m15"], ["FE14", "fe14"], ["FE13", "fe13"], ["FE12", "fe12"], ["FE11", "fe11"], ["FC10", "fc10"], ["FC9", "fc9"], ["FC8", "fc8"], ["FC7", "fc7"],["Non défini","undefined"]], user.canrole) %>
+      <%= f.select :canrole, options_for_select([["Admin", "admin"],["Staff","staff"],["Medical","medical"], ["Première", "premiere"], ["M21", "m21"], ["M18", "m18"], ["M16", "m16"], ["M15", "m15"], ["FE14", "fe14"], ["FE13", "fe13"], ["FE12", "fe12"], ["FE11", "fe11"], ["FC10", "fc10"], ["FC9", "fc9"], ["FC8", "fc8"], ["FC7", "fc7"],["Non défini","undefined"]], user.canrole) %>
     </div>
 <% end %>
 
@@ -216,6 +220,12 @@
         </div></div>
     <% end %>
 
+    <div class="form-group">
+      <label for="user_others">Soeur ou frères au SFC</label>
+      <input class="form-control" id="input-tags" name="others" type="text" >
+    </div>
+
+
   <div class="actions">
     <%= f.submit 'Enregistrer', class:'btn' %>
   </div>
@@ -242,3 +252,45 @@
 
   </div>
 </div>
+
+<script type="application/javascript">
+    $( document ).ready(function() {
+    var $select = $('#input-tags').selectize({
+        plugins: ['remove_button'],
+        delimiter: ',',
+        valueField: 'id',
+        labelField: 'name',
+        searchField: 'name',
+        persist: false,
+        options: [
+            <%
+              players = user.getplayers()
+              players.each do |player|
+            %>
+            {id: ' <%= player.id %>', name: '<%= player.getname() %>'},
+            <% end %>
+
+
+        ],
+        create: function(input) {
+            return {
+                value: input,
+                text: input
+            }
+        }
+    });
+
+
+
+
+    var selectize = $select[0].selectize;
+    var selected_items = [];
+    <% user.relationship1.each do |rel| %>
+    <%= raw 'selected_items.push(selectize.search("'+rel.user_two.getname().to_s+'").items[0].id);' %>
+    <% end %>
+    <% user.relationship2.each do |rel| %>
+    <%= raw 'selected_items.push(selectize.search("'+rel.user_one.getname().to_s+'").items[0].id);' %>
+    <% end %>
+    selectize.setValue(selected_items);
+    });
+</script>
