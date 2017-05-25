@@ -173,10 +173,10 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:level, :surname, :name, :email, :birthday, :parents, :photo_url, :avatar, :remove_avatar, :injured, :injury_archive, :suspended, :cards_archive, :role, :school, :school_archive, :physic_char, :playtime, :arriving_date, :endcontrat_date, :sportactivity_archive, :roles_mask, :canrole, :calendardate, :calendartype, :nationality, :tel, :address1, :address2, :zip, :city)
+      params.require(:user).permit(:level, :surname, :name, :email, :birthday, :parents, :photo_url, :avatar, :remove_avatar, :injured, :injury_archive, :suspended, :cards_archive, :role, :school, :school_archive, :physic_char, :playtime, :arriving_date, :endcontrat_date, :sportactivity_archive, :roles_mask, :canrole, :calendardate, :calendartype, :nationality, :tel, :address1, :address2, :zip, :city, :height, :weight, :nationalityfrom, :nationality2, :nationality2from, :nationality3, :nationality3from, :naturalisationinprocess, :nationalisationinprocessfrom, :insurance, :mothercontact, :fathercontact, :numberofsiblings)
     end
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params_create
-    params.require(:user).permit(:password, :password_confirmation, :level, :surname, :name, :email, :birthday, :parents, :photo_url, :avatar, :remove_avatar, :injured, :injury_archive, :suspended, :cards_archive, :role, :school, :school_archive, :physic_char, :playtime, :arriving_date, :endcontrat_date, :sportactivity_archive, :canrole, :calendardate, :calendartype, :nationality, :tel, :address1, :address2, :zip, :city)
+    params.require(:user).permit(:password, :password_confirmation, :level, :surname, :name, :email, :birthday, :parents, :photo_url, :avatar, :remove_avatar, :injured, :injury_archive, :suspended, :cards_archive, :role, :school, :school_archive, :physic_char, :playtime, :arriving_date, :endcontrat_date, :sportactivity_archive, :canrole, :calendardate, :calendartype, :nationality, :tel, :address1, :address2, :zip, :city, :height, :weight, :nationalityfrom, :nationality2, :nationality2from, :nationality3, :nationality3from, :naturalisationinprocess, :nationalisationinprocessfrom, :insurance, :mothercontact, :fathercontact, :numberofsiblings)
   end
 end

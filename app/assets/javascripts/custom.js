@@ -11,3 +11,7 @@ jQuery(document).ready(function() {
 jQuery(document).ready(function() {
     jQuery('#eventsindex').DataTable();
 } );
+
+jQuery(document).on( 'change keyup keydown paste cut click', 'textarea', function (){
+    $(this).height(0).height(this.scrollHeight);
+}).find( 'textarea' ).change();

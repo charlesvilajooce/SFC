@@ -1,234 +1,332 @@
-
-
-
-
 <%= form_for(user) do |f| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <% if user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
     <div class="actions">
-      <%= f.submit 'Enregistrer', class:'btn' %>
-    </div>
-
-    <% if(current_user.canrole == 'admin') %>
-    <div class="form-group">
-      <%= f.label :canrole %>
-        <br>
-      <%= f.select :canrole, options_for_select([["Admin", "admin"],["Staff","staff"],["Medical","medical"], ["Première", "premiere"], ["M21", "m21"], ["M18", "m18"], ["M16", "m16"], ["M15", "m15"], ["FE14", "fe14"], ["FE13", "fe13"], ["FE12", "fe12"], ["FE11", "fe11"], ["FC10", "fc10"], ["FC9", "fc9"], ["FC8", "fc8"], ["FC7", "fc7"],["Non défini","undefined"]], user.canrole) %>
-    </div>
-<% end %>
-
-    <div class="row">
-
-      <div class="col-3">
-    <div class="form-group">
-      <%= f.label :injured %>
-      <%= f.check_box :injured, class:'form-control'  %>
-    </div>
-      </div>
-
-      <div class="col-3">
-    <div class="form-group">
-      <%= f.label :suspended %>
-      <%= f.check_box :suspended, class:'form-control'  %>
-    </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :avatar, "Photo de profil"  %><br>
-      <%= f.file_field :avatar, class:'form-control' %>
-      <% if f.object.avatar? %>
-          <%= image_tag f.object.avatar.thumb.url %>
-          <%= f.label :remove_avatar %>
-          <%= f.check_box :remove_avatar %>
-      <% end %>
+      <%= f.submit 'Enregistrer', class: 'btn' %>
     </div>
 
     <div class="row">
       <div class="col-3">
-
-    <div class="form-group">
-    <%= f.label :surname, "Prénom"  %>
-    <%= f.text_field :surname, class:'form-control'  %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :name, "Nom"  %>
-    <%= f.text_field :name, class:'form-control'  %>
-  </div>
-
         <div class="form-group">
-          <%= f.label :birthday, "Date de naissance"  %><br>
-          <%= f.date_select :birthday, :start_year=>1970, class:'form-control'  %>
-        </div>
-        <div class="form-group">
-          <%= f.label :nationality, "Nationalité"  %>
-          <%= f.text_field :nationality, class:'form-control'  %>
+          <%= f.label :injured, "Blessé" %>
+          <%= f.check_box :injured, class: 'form-control' %>
         </div>
 
+        <div class="form-group">
+          <%= f.label :suspended, "Suspendu" %>
+          <%= f.check_box :suspended, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <%= f.label :avatar, "Photo de profil" %><br>
+          <%= f.file_field :avatar, class: 'form-control' %>
+          <% if f.object.avatar? %>
+              <%= image_tag f.object.avatar.thumb.url %>
+              <%= f.label :remove_avatar, "Supprimer la photo" %>
+              <%= f.check_box :remove_avatar %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-3">
+        <% if (current_user.canrole == 'admin') %>
+            <h3>Admin</h3>
+            <div class="form-group">
+              <%= f.label :canrole, "Groupe d'utilisateurs" %>
+              <br>
+              <%= f.select :canrole, options_for_select([["Admin", "admin"], ["Staff", "staff"], ["Medical", "medical"], ["Première", "premiere"], ["M21", "m21"], ["M18", "m18"], ["M16", "m16"], ["M15", "m15"], ["FE14", "fe14"], ["FE13", "fe13"], ["FE12", "fe12"], ["FE11", "fe11"], ["FC10", "fc10"], ["FC9", "fc9"], ["FC8", "fc8"], ["FC7", "fc7"], ["Non défini", "undefined"]], user.canrole) %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-3">
+
+        <div class="form-group">
+          <%= f.label :surname, "Prénom" %>
+          <%= f.text_field :surname, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :name, "Nom" %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :birthday, "Date de naissance" %><br>
+          <%= f.date_select :birthday, :start_year => 1970, class: 'form-control' %>
+        </div>
       </div>
       <div class="col-3">
         <div class="form-group">
           <%= f.label :level, "#" %>
-          <%= f.number_field :level, class:'form-control'  %>
+          <%= f.number_field :level, class: 'form-control' %>
         </div>
 
         <div class="form-group">
           <%= f.label :role, "Poste" %><br>
-          <%= f.select(:role, [['Gardien', '1'],['Défenseur','2'],['Milieu','3'],['Attaquant','4'] ], { include_blank: true }) %>
+          <%= f.select(:role, [['Gardien', '1'], ['Défenseur', '2'], ['Milieu', '3'], ['Attaquant', '4']], {include_blank: true}) %>
         </div>
 
 
-  <div class="form-group">
-    <%= f.label :email, "Adresse e-mail"  %>
-    <%= f.text_field :email, class:'form-control'  %>
-  </div>
+        <div class="form-group">
+          <%= f.label :email, "Adresse e-mail" %>
+          <%= f.text_field :email, class: 'form-control' %>
+        </div>
 
-    <div class="form-group">
-      <%= f.label :tel, "Numéro de téléphone"  %>
-      <%= f.text_field :tel, class:'form-control'  %>
-    </div>
+        <div class="form-group">
+          <%= f.label :tel, "Numéro de téléphone" %>
+          <%= f.text_field :tel, class: 'form-control' %>
+        </div>
       </div>
       <div class="col-6">
-    <div class="form-group">
-      <%= f.label :address1, "Adresse"  %>
-      <%= f.text_field :address1, class:'form-control'  %>
-      <%= f.text_field :address2, class:'form-control'  %>
-    </div>
-    <div class="form-group">
-      <%= f.label :zip, "Code postal"  %>
-      <%= f.text_field :zip, class:'form-control'  %>
-    </div>
-    <div class="form-group">
-      <%= f.label :city, "Ville"  %>
-      <%= f.text_field :city, class:'form-control'  %>
-    </div>
+        <div class="form-group">
+          <%= f.label :address1, "Adresse" %>
+          <%= f.text_field :address1, class: 'form-control' %>
+          <%= f.text_field :address2, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :zip, "Code postal" %>
+          <%= f.text_field :zip, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :city, "Ville" %>
+          <%= f.text_field :city, class: 'form-control' %>
+        </div>
 
 
       </div>
     </div>
+
     <hr>
 
     <div class="row">
       <div class="col-3">
-
-  <div class="form-group">
-    <%= f.label :parents, "Contact parents" %>
-    <%= f.text_area :parents, class:'form-control'  %>
-  </div>
-
-    <div class="form-group">
-      <%= f.label :arriving_date, "Date d'arrivée" %><br>
-      <%= f.date_select :arriving_date, :start_year=>1970, class:'form-control'  %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :endcontrat_date, "Date de fin de contrat" %><br>
-      <%= f.date_select :endcontrat_date, :end_year=>2030, class:'form-control'  %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :sportactivity_archive, "Anciens clubs" %>
-      <%= f.text_area :sportactivity_archive, class:'form-control'  %>
-    </div>
+        <div class="form-group">
+          <%= f.label :nationality, "Nationalité" %>
+          <%= f.text_field :nationality, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :nationalityfrom, "Nationalité depuis" %>
+          <%= f.date_field :nationalityfrom, class: 'form-control' %>
+        </div>
       </div>
       <div class="col-3">
-    <div class="form-group">
-      <%= f.label :playtime, "Temps de jeu" %>
-      <%= f.number_field :playtime, class:'form-control' %>
+        <div class="form-group">
+          <%= f.label :nationality2, "Nationalité 2" %>
+          <%= f.text_field :nationality2, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :nationality2from, "Nationalité 2 depuis" %>
+          <%= f.date_field :nationality2from, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <%= f.label :nationality3, "Nationalité 3" %>
+          <%= f.text_field :nationality3, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :nationality3from, "Nationalité 3 depuis" %>
+          <%= f.date_field :nationality3from, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <%= f.label :naturalisationinprocess, "Naturalisation en cours" %>
+          <%= f.check_box :naturalisationinprocess, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :nationalisationinprocessfrom, "Naturalisation en cours depuis" %>
+          <%= f.date_field :nationalisationinprocessfrom, class: 'form-control' %>
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <%= f.label :cards_archive, "Archive des cartons" %>
-      <%= f.text_area :cards_archive, class:'form-control'  %>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-3">
+        <div class="form-group">
+          <%= f.label :parents, "Remarques parents" %>
+          <%= f.text_area :parents, class: 'form-control' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit 'Enregistrer', class: 'btn' %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <%= f.label :fathercontact, "Contact père" %>
+          <%= f.text_area :fathercontact, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <%= f.label :mothercontact, "Contact mère" %>
+          <%= f.text_area :mothercontact, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <%= f.label :numberofsiblings, "Nombre de frères et soeurs" %>
+          <%= f.text_area :numberofsiblings, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label for="user_others">Frère ou soeur au SFC</label>
+          <input class="form-control" id="input-tags" name="others" type="text">
+        </div>
+      </div>
     </div>
 
-      </div></div>
+    <hr>
 
-    <% if( current_user.canviewplayer(user.id) && current_user.id != user.id)  %>
+    <div class="row">
+      <div class="col-3">
+        <h3>Admin-sportif</h3>
+        <div class="form-group">
+          <%= f.label :arriving_date, "Date d'arrivée" %><br>
+          <%= f.date_select :arriving_date, :start_year => 1980, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :endcontrat_date, "Date de fin de contrat" %><br>
+          <%= f.date_select :endcontrat_date, :start_year => 2015, class: 'form-control' %>
+        </div>
+          <div class="form-group">
+            <%= f.label :sportactivity_archive, "Clubs précédents" %>
+            <%= f.text_area :sportactivity_archive, class: 'form-control' %>
+          </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <%= f.label :playtime, "Temps de jeu" %>
+          <%= f.number_field :playtime, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :cards_archive, "Archive des cartons" %>
+          <%= f.text_area :cards_archive, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+
+    <% if (current_user.canviewplayer(user.id) && current_user.id != user.id) %>
 
 
         <div class="actions">
-          <%= f.submit 'Enregistrer', class:'btn' %>
+          <%= f.submit 'Enregistrer', class: 'btn' %>
         </div>
 
         <hr>
 
-        <% if( current_user.canviewmedical(@user.id)) %>
-            <div class="row" style="margin-bottom: 25px">
-              <div class="col-6">
+        <div class="row" style="margin-bottom: 25px">
+          <div class="col-3">
+            <h3>Admin-medical</h3>
+            <div class="form-group">
+              <%= f.label :weight, "Poids (kg)" %>
+              <%= f.number_field :weight, class: 'form-control' %>
+            </div>
 
             <div class="form-group">
-              <%= f.label :physic_char, "Mensurations" %>
-              <%= f.text_area :physic_char, class:'form-control'  %>
+              <%= f.label :height, "Taille (m)" %>
+              <%= f.number_field :height, class: 'form-control' %>
             </div>
+
+            <div class="actions">
+              <%= f.submit 'Enregistrer', class: 'btn' %>
+            </div>
+          </div>
+
+
+          <% if (current_user.canviewmedical(@user.id)) %>
+              <div class="col-6">
+
+
+                <div class="form-group">
+                  <%= f.label :physic_char, "Assurances" %>
+                  <%= f.text_area :physic_char, class: 'form-control' %>
+                </div>
 
                 <div class="form-group">
                   <%= f.label :injury_archive, "Dossier médical" %>
-                  <%= f.text_area :injury_archive, class:'form-control'  %>
+                  <%= f.text_area :injury_archive, class: 'form-control' %>
                 </div>
+              </div>
 
-        <%
+              <div class="col-3">
+                <%
 
-          @docs = user.documents
-          @docs = @docs.select{ |u| u.documenttype == 1 }
-          @docs.each do |doc|
-            string = ((doc.url.to_s).rpartition('/').last)
-        %>
-            <a style="color:black !important;" href="<%= doc.url%>" target="_blank"><%= string %></a> <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, doc, method: :delete, data: { confirm: 'Are you sure?' }, style:'color: red !important;' %><br>
+                  @docs = user.documents
+                  @docs = @docs.select {|u| u.documenttype == 1}
+                  @docs.each do |doc|
+                    string = ((doc.url.to_s).rpartition('/').last)
+                %>
+                    <a style="color:black !important;" href="<%= doc.url %>" target="_blank"><%= string %></a> <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, doc, method: :delete, data: {confirm: 'Are you sure?'}, style: 'color: red !important;' %>
+                    <br>
+                <% end %>
 
-
-        <%end  %>
-
-        <!-- Trigger the modal with a button -->
-        <a  class="btn btn-primary" data-toggle="modal" data-target="#theModal" href="<%= new_document_params_path(user.id,'1') %>">Ajouter un document médical</a>
-        <% end %>
+                <!-- Trigger the modal with a button -->
+                <a class="btn btn-primary" data-toggle="modal" data-target="#theModal" href="<%= new_document_params_path(user.id, '1') %>">Ajouter
+                  un document médical</a>
+              </div>
+          <% end %>
 
         </div>
-        <div class="col-6">
 
-  <div class="form-group">
-    <%= f.label :school, "Dossier Scolaire" %>
-    <%= f.text_field :school, class:'form-control'  %>
-  </div>
+        <hr>
 
-        <%
+        <div class="row">
+          <div class="col-6">
+            <h3>Admin-scolaire</h3>
 
-          @docs = user.documents
-          @docs = @docs.select{ |u| u.documenttype == 2 }
-          @docs.each do |doc|
-            string = ((doc.url.to_s).rpartition('/').last)
-        %>
-            <a style="color:black !important;" href="<%= doc.url%>" target="_blank"><%= string %></a> <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, doc, method: :delete, data: { confirm: 'Are you sure?' }, style:'color: red !important;' %><br>
+            <div class="form-group">
+              <%= f.label :school, "Dossier Scolaire" %>
+              <%= f.text_area :school, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="col-3">
 
-        <% end  %>
+            <%
 
-        <!-- Trigger the modal with a button -->
-        <a  class="btn btn-primary" data-toggle="modal" data-target="#theModal" href="<%= new_document_params_path(user.id,'2') %>">Ajouter un document scolaire</a>
-        <br>
+              @docs = user.documents
+              @docs = @docs.select {|u| u.documenttype == 2}
+              @docs.each do |doc|
+                string = ((doc.url.to_s).rpartition('/').last)
+            %>
+                <a style="color:black !important;" href="<%= doc.url %>" target="_blank"><%= string %></a> <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, doc, method: :delete, data: {confirm: 'Are you sure?'}, style: 'color: red !important;' %>
+                <br>
 
-        </div></div>
+            <% end %>
+
+            <!-- Trigger the modal with a button -->
+            <a class="btn btn-primary" data-toggle="modal" data-target="#theModal" href="<%= new_document_params_path(user.id, '2') %>">Ajouter
+              un document scolaire</a>
+            <br>
+
+          </div>
+        </div>
     <% end %>
 
-    <div class="form-group">
-      <label for="user_others">Soeur ou frères au SFC</label>
-      <input class="form-control" id="input-tags" name="others" type="text" >
+
+    <div class="actions">
+      <%= f.submit 'Enregistrer', class: 'btn' %>
     </div>
-
-
-  <div class="actions">
-    <%= f.submit 'Enregistrer', class:'btn' %>
-  </div>
 <% end %>
 
 
@@ -254,43 +352,41 @@
 </div>
 
 <script type="application/javascript">
-    $( document ).ready(function() {
-    var $select = $('#input-tags').selectize({
-        plugins: ['remove_button'],
-        delimiter: ',',
-        valueField: 'id',
-        labelField: 'name',
-        searchField: 'name',
-        persist: false,
-        options: [
-            <%
-              players = user.getplayers()
-              players.each do |player|
-            %>
-            {id: ' <%= player.id %>', name: '<%= player.getname() %>'},
-            <% end %>
+    $(document).ready(function () {
+        var $select = $('#input-tags').selectize({
+            plugins: ['remove_button'],
+            delimiter: ',',
+            valueField: 'id',
+            labelField: 'name',
+            searchField: 'name',
+            persist: false,
+            options: [
+                <%
+                  players = user.getplayers()
+                  players.each do |player|
+                %>
+                {id: ' <%= player.id %>', name: '<%= player.getname() %>'},
+                <% end %>
 
 
-        ],
-        create: function(input) {
-            return {
-                value: input,
-                text: input
+            ],
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input
+                }
             }
-        }
-    });
+        });
 
 
-
-
-    var selectize = $select[0].selectize;
-    var selected_items = [];
-    <% user.relationship1.each do |rel| %>
-    <%= raw 'selected_items.push(selectize.search("'+rel.user_two.getname().to_s+'").items[0].id);' %>
-    <% end %>
-    <% user.relationship2.each do |rel| %>
-    <%= raw 'selected_items.push(selectize.search("'+rel.user_one.getname().to_s+'").items[0].id);' %>
-    <% end %>
-    selectize.setValue(selected_items);
+        var selectize = $select[0].selectize;
+        var selected_items = [];
+        <% user.relationship1.each do |rel| %>
+        <%= raw 'selected_items.push(selectize.search("'+rel.user_two.getname().to_s+'").items[0].id);' %>
+        <% end %>
+        <% user.relationship2.each do |rel| %>
+        <%= raw 'selected_items.push(selectize.search("'+rel.user_one.getname().to_s+'").items[0].id);' %>
+        <% end %>
+        selectize.setValue(selected_items);
     });
 </script>

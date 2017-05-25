@@ -13,24 +13,39 @@
             <%= image_tag @user.avatar.url, class: 'img-fluid rounded mx-auto d-block img-thumbnail' %>
         <% end %>
         <div class="caption">
-          <center><h3><%= @user.surname %> <%= @user.name %> <small>(<%= @user.level %>)</small></h3></center>
+          <center>
+            <h3><%= @user.surname %> <%= @user.name %>
+              <small>(#<%= @user.level %>)</small>
+            </h3>
+          </center>
           <center><p><em>
-            <% if @user.role==1%>
+            <% if @user.role==1 %>
                 Gardien
             <% end %>
-            <% if @user.role == 2%>
+            <% if @user.role == 2 %>
                 Défenseur
             <% end %>
-            <% if @user.role == 3%>
+            <% if @user.role == 3 %>
                 Milieu
             <% end %>
-            <% if @user.role == 4%>
+            <% if @user.role == 4 %>
                 Attaquant
             <% end %>
           </p></em></center>
           <ul class="list-group">
 
-            <li class="list-group-item"><%= @user.nationality %></li>
+            <li class="list-group-item">
+              <p><strong><%= @user.nationality %></strong>&nbsp;depuis le <%= @user.getnicedate(@user.nationalityfrom) %></p>
+              <% if @user.nationality2!=nil %>
+                  <p><strong><%= @user.nationality2 %></strong>&nbsp;depuis le <%= @user.getnicedate(@user.nationality2from) %></p>
+              <% end %>
+              <% if @user.nationality3!=nil %>
+                  <p><strong><%= @user.nationality3 %></strong>&nbsp;depuis le <%= @user.getnicedate(@user.nationality3from) %></p>
+              <% end %>
+              <% if @user.naturalisationinprocess!=nil %>
+                  <p>En cours de naturalisation depuis le <%= @user.getnicedate(@user.nationalisationinprocessfrom) %></p>
+              <% end %>
+            </li>
             <li class="list-group-item">
               <% if @user.injured==true %>
                   <i class="fa fa-user" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true" style="color: red;"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true"></i>
@@ -52,82 +67,138 @@
       </div>
     </div>
   </div>
-  <% if( current_user.canviewplayer(@user.id)) %>
+  <% if (current_user.canviewplayer(@user.id)) %>
 
-  <div class="col-7 thumbnail">
-
-    <div class="col-12">
-      <ul class="list-group">
-        <li class="list-group-item"><strong>Temps de jeu: </strong> <%= @user.playtime %>'</li>
-        <li class="list-group-item"><strong>Date d'arrivée: </strong> <%= @user.getnicedate(@user.arriving_date) %></li>
-        <li class="list-group-item"><strong>Date de fin de contrat: </strong> <%= @user.getnicedate(@user.endcontrat_date) %></li>
-      </ul>
-    </div>
-    <br><br>
-
-    <div class="col-12 thumbnail">
-    <p>
-      <strong>Anciens clubs:</strong>
-      <%= raw @user.getbrs(@user.sportactivity_archive) %>
-    </p>
-    </div>
-
-    <div class="col-12 thumbnail">
-    <p>
-      <strong>Contact parents:</strong>
-      <%= raw @user.getbrs(@user.parents) %>
-    </p>
-
-    <p>
-      <strong>Dossier scolaire:</strong>
-      <%= raw @user.getbrs(@user.school) %>
-    </p>
-
-    <p> <strong>Archives scolaires:</strong>
-      <%
-
-        @docs = @user.documents
-        @docs = @docs.select{ |u| u.documenttype == 2 }
-        @docs.each do |doc|
-          string = ((doc.url.to_s).rpartition('/').last)
-      %>
-          <a href="<%= doc.url%>" target="_blank"><%= string %></a><br>
-
-      <%end  %>
-    </p>
-    </div>
-
-      <% if( current_user.canviewmedical(@user.id)) %>
+      <div class="col-7 thumbnail">
+        <h3>Parents</h3>
         <div class="col-12 thumbnail">
+
           <p>
-            <strong>Mensurations:</strong>
+            <strong>Remarques parents:</strong><br/>
+            <%= raw @user.getbrs(@user.parents) %>
+          </p>
+          <% if @user.fathercontact!=nil %>
+          <p>
+            <strong>Contact père:</strong><br/>
+            <%= raw @user.getbrs(@user.fathercontact) %>
+          </p>
+          <% end %>
+          <% if @user.mothercontact!=nil %>
+          <p>
+            <strong>Contact mère:</strong><br/>
+            <%= raw @user.getbrs(@user.mothercontact) %>
+          </p>
+          <% end %>
+          <% if @user.numberofsiblings!=nil %>
+          <p>
+            <strong>Nombre de frères et soeurs:</strong><br/>
+            <%=@user.numberofsiblings%>
+          </p>
+          <% end %>
+          <p>
+            <strong>Frères ou soeurs au SFC:</strong><br/>
+          </p>
+        </div>
+
+        <h3>Admin-sportif</h3>
+        <div class="col-12 thumbnail">
+
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>Date d'arrivée:&nbsp;</strong> <%= @user.getnicedate(@user.arriving_date) %>
+            </li>
+            <li class="list-group-item">
+              <% if @user.endcontrat_date < Time.current.to_date+180 %>
+                  <span style="color: red;"><strong>Date de fin de contrat:&nbsp;</strong><%= @user.getnicedate(@user.endcontrat_date) %></i></span>
+              <% else %>
+                  <strong>Date de fin de contrat:&nbsp;</strong><%= @user.getnicedate(@user.endcontrat_date) %>
+              <% end %>
+            </li>
+          </ul>
+          <br>
+            <div class="row">
+            <div class="col-6">
+            <p>
+              <strong>Clubs précédents:</strong><br/>
+              <%= raw @user.getbrs(@user.sportactivity_archive) %>
+            </p>
+            </div>
+            <div class="col-6">
+            <p><strong>Temps de jeu: &nbsp; </strong> <%= @user.playtime %>'</p>
+            <p><strong>Archive des cartons:</strong> <br> <%= raw @user.getbrs(@user.cards_archive) %></p>
+            </div>
+            </div>
+        </div>
+
+        <h3>Admin-medical</h3>
+        <div class="col-12 thumbnail">
+
+          <div class="row">
+            <div class="col-6">
+
+          <p>
+            <strong>Poids:</strong>
+            <%=@user.weight%>
+          </p>
+          <p>
+            <strong>Taille:</strong>
+            <%=@user.height%>
+          </p>
+            </div>
+            <div class="col-6">
+          <p>
+            <strong>Assurances:</strong><br/>
             <%= raw @user.getbrs(@user.physic_char) %>
           </p>
-        <p>
-          <strong>Dossier médical:</strong>
-          <%= raw @user.getbrs(@user.injury_archive) %>
+            </div>
+          </div>
 
-        </p>
-        <p> <strong>Archives medicales:</strong>
-          <%
+        <% if (current_user.canviewmedical(@user.id)) %>
 
-            @docs = @user.documents
-            @docs = @docs.select{ |u| u.documenttype == 1 }
-            @docs.each do |doc|
-              string = ((doc.url.to_s).rpartition('/').last)
-          %>
-              <a href="<%= doc.url%>" target="_blank" style="color: black !important;"><%= string %></a><br>
+              <p>
+                <strong>Dossier médical:</strong><br/>
+                <%= raw @user.getbrs(@user.injury_archive) %>
 
-          <%end  %>
-        </p>
+              </p>
+              <p><strong>Documents médicaux:</strong><br/>
+                <%
+
+                  @docs = @user.documents
+                  @docs = @docs.select {|u| u.documenttype == 1}
+                  @docs.each do |doc|
+                    string = ((doc.url.to_s).rpartition('/').last)
+                %>
+                    <a href="<%= doc.url %>" target="_blank" style="color: black !important;"><%= string %></a><br>
+
+                <% end %>
+              </p>
+            </div>
+        <% end %>
+
+          <h3>Admin-scolaire</h3>
+        <div class="col-12 thumbnail">
+          <p>
+            <strong>Dossier scolaire:</strong><br/>
+            <%= raw @user.getbrs(@user.school) %>
+          </p>
+
+          <p><strong>Documents scolaires:</strong><br/>
+            <%
+
+              @docs = @user.documents
+              @docs = @docs.select {|u| u.documenttype == 2}
+              @docs.each do |doc|
+                string = ((doc.url.to_s).rpartition('/').last)
+            %>
+                <a href="<%= doc.url %>" target="_blank"><%= string %></a><br>
+
+            <% end %>
+          </p>
         </div>
 
 
 
-
-    <% end %>
-
-  </div>
+      </div>
 
   <% end %>
 

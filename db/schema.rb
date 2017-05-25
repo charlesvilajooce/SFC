@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511145301) do
+ActiveRecord::Schema.define(version: 20170522165002) do
 
   create_table "avatars", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -149,36 +149,36 @@ ActiveRecord::Schema.define(version: 20170511145301) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email",                                default: "", null: false
-    t.string   "encrypted_password",                   default: "", null: false
+    t.string   "email",                                      default: "", null: false
+    t.string   "encrypted_password",                         default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                        default: 0,  null: false
+    t.integer  "sign_in_count",                              default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
     t.integer  "level"
     t.string   "surname"
     t.string   "name"
     t.date     "birthday"
-    t.text     "parents",                limit: 65535
+    t.text     "parents",                      limit: 65535
     t.string   "photo_url"
     t.boolean  "injured"
-    t.text     "injury_archive",         limit: 65535
+    t.text     "injury_archive",               limit: 65535
     t.boolean  "suspended"
-    t.text     "cards_archive",          limit: 65535
+    t.text     "cards_archive",                limit: 65535
     t.integer  "role"
     t.string   "school"
-    t.text     "school_archive",         limit: 65535
-    t.text     "physic_char",            limit: 65535
+    t.text     "school_archive",               limit: 65535
+    t.text     "physic_char",                  limit: 65535
     t.integer  "playtime"
     t.date     "arriving_date"
     t.date     "endcontrat_date"
-    t.text     "sportactivity_archive",  limit: 65535
+    t.text     "sportactivity_archive",        limit: 65535
     t.integer  "roles_mask"
     t.string   "avatar"
     t.string   "canrole"
@@ -196,6 +196,19 @@ ActiveRecord::Schema.define(version: 20170511145301) do
     t.string   "allergies"
     t.string   "medication"
     t.string   "statictrouble"
+    t.integer  "height"
+    t.integer  "weight"
+    t.date     "nationalityfrom"
+    t.string   "nationality2"
+    t.date     "nationality2from"
+    t.string   "nationality3"
+    t.date     "nationality3from"
+    t.boolean  "naturalisationinprocess"
+    t.date     "nationalisationinprocessfrom"
+    t.string   "insurance"
+    t.string   "mothercontact"
+    t.string   "fathercontact"
+    t.integer  "numberofsiblings"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
