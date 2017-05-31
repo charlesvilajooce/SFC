@@ -33,6 +33,10 @@ class User < ApplicationRecord
     return string.gsub(/\n/, '<br>')
   end
 
+  def getinjuries()
+    return self.injuries.order(when: :desc)
+  end
+
   def getplayers()
     players = []
     users = User.all
@@ -80,6 +84,7 @@ class User < ApplicationRecord
     end
 
   end
+
 
   def getaddress()
     string = "";

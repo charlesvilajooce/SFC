@@ -3,6 +3,28 @@ class UsersController < ApplicationController
   #skip_authorization_check
   load_and_authorize_resource
 
+  def changestatus
+    @user = User.find(params['id'])
+    @user.status = params[:status]
+    # @user.save
+    # render :partial => "users/statustool.html"
+    @user.save
+    if(params[:wheretoredirect] == 'edit')
+      redirect_to users_edit_path(@user.id)
+    else
+      redirect_to user_path(@user.id)
+      end
+  end
+
+  def addinjury
+    @user = User.find(params['id'])
+    @user.status = params[:status]
+    # @user.save
+    # render :partial => "users/statustool.html"
+    @user.save
+    redirect_to users_edit_path(@user.id)
+  end
+
   def getcalendartype
     if current_user.calendartype != nil
       theoutput = current_user.calendartype
@@ -88,7 +110,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-
+@injury = Injury.new
   end
 
 
@@ -100,6 +122,12 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
+
+  # GET /users/1/edit
+  def oldpics
+    @user = User.find(params['id'])
+  end
+
 
 
   # POST /users
@@ -173,10 +201,10 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:level, :surname, :name, :email, :birthday, :parents, :photo_url, :avatar, :remove_avatar, :injured, :injury_archive, :suspended, :cards_archive, :role, :school, :school_archive, :physic_char, :playtime, :arriving_date, :endcontrat_date, :sportactivity_archive, :roles_mask, :canrole, :calendardate, :calendartype, :nationality, :tel, :address1, :address2, :zip, :city, :height, :weight, :nationalityfrom, :nationality2, :nationality2from, :nationality3, :nationality3from, :naturalisationinprocess, :nationalisationinprocessfrom, :insurance, :mothercontact, :fathercontact, :numberofsiblings)
+      params.require(:user).permit(:level, :surname, :name, :email, :birthday, :parents, :photo_url, :avatar, :remove_avatar, :injured, :injury_archive, :suspended, :cards_archive, :role, :school, :school_archive, :physic_char, :playtime, :arriving_date, :endcontrat_date, :sportactivity_archive, :roles_mask, :canrole, :calendardate, :calendartype, :nationality, :tel, :address1, :address2, :zip, :city, :height, :weight, :nationalityfrom, :nationality2, :nationality2from, :nationality3, :nationality3from, :naturalisationinprocess, :nationalisationinprocessfrom, :insurance, :mothercontact, :fathercontact, :numberofsiblings, :medication, :allergies, :statictrouble)
     end
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params_create
-    params.require(:user).permit(:password, :password_confirmation, :level, :surname, :name, :email, :birthday, :parents, :photo_url, :avatar, :remove_avatar, :injured, :injury_archive, :suspended, :cards_archive, :role, :school, :school_archive, :physic_char, :playtime, :arriving_date, :endcontrat_date, :sportactivity_archive, :canrole, :calendardate, :calendartype, :nationality, :tel, :address1, :address2, :zip, :city, :height, :weight, :nationalityfrom, :nationality2, :nationality2from, :nationality3, :nationality3from, :naturalisationinprocess, :nationalisationinprocessfrom, :insurance, :mothercontact, :fathercontact, :numberofsiblings)
+    params.require(:user).permit(:password, :password_confirmation, :level, :surname, :name, :email, :birthday, :parents, :photo_url, :avatar, :remove_avatar, :injured, :injury_archive, :suspended, :cards_archive, :role, :school, :school_archive, :physic_char, :playtime, :arriving_date, :endcontrat_date, :sportactivity_archive, :canrole, :calendardate, :calendartype, :nationality, :tel, :address1, :address2, :zip, :city, :height, :weight, :nationalityfrom, :nationality2, :nationality2from, :nationality3, :nationality3from, :naturalisationinprocess, :nationalisationinprocessfrom, :insurance, :mothercontact, :fathercontact, :numberofsiblings, :medication, :allergies, :statictrouble)
   end
 end

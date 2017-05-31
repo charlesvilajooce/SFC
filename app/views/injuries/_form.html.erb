@@ -1,0 +1,17 @@
+<%= form_for(injury) do |f| %>
+  <% if injury.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(injury.errors.count, "error") %> prohibited this injury from being saved:</h2>
+
+      <ul>
+      <% injury.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

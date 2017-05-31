@@ -1,3 +1,5 @@
+<% @wheretoredirect = 'edit' %>
+<%= render :partial => "users/statustool.html" %>
 <%= form_for(user) do |f| %>
     <% if user.errors.any? %>
         <div id="error_explanation">
@@ -246,6 +248,18 @@
             <div class="form-group">
               <%= f.label :height, "Taille (m)" %>
               <%= f.number_field :height, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :allergies, "Allergies" %>
+              <%= f.text_area :allergies, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :medication, "Médicament" %>
+              <%= f.text_area :medication, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :statictrouble, "Problème static" %>
+              <%= f.text_area :statictrouble, class: 'form-control' %>
             </div>
 
             <div class="actions">

@@ -11,6 +11,7 @@
       <div class="thumbnail">
         <% if @user.avatar.thumb.url!=nil %>
             <%= image_tag @user.avatar.url, class: 'img-fluid rounded mx-auto d-block img-thumbnail' %>
+            <%= link_to 'All', users_oldpics_path(@user.id) , class: 'btn btn-primary' %>
         <% end %>
         <div class="caption">
           <center>
@@ -31,7 +32,10 @@
             <% if @user.role == 4 %>
                 Attaquant
             <% end %>
-          </p></em></center>
+          </p></em>
+            <% @wheretoredirect = 'show' %>
+            <%= render :partial => "users/statustool.html" %>
+          </center>
           <ul class="list-group">
 
             <li class="list-group-item">
@@ -144,12 +148,25 @@
             <strong>Taille:</strong>
             <%=@user.height%>
           </p>
+
             </div>
             <div class="col-6">
           <p>
             <strong>Assurances:</strong><br/>
             <%= raw @user.getbrs(@user.physic_char) %>
           </p>
+              <p>
+                <strong>Allergies:</strong>
+                <%=@user.allergies%>
+              </p>
+              <p>
+                <strong>Médicament:</strong>
+                <%=@user.medication%>
+              </p>
+              <p>
+                <strong>Problème static:</strong>
+                <%=@user.statictrouble%>
+              </p>
             </div>
           </div>
 
@@ -173,6 +190,87 @@
                 <% end %>
               </p>
             </div>
+              <div class="col-12 thumbnail">
+                <%= form_for(@injury) do |fi| %>
+                    <% if @injury.errors.any? %>
+                        <div id="error_explanation">
+                          <h2><%= pluralize(@injury.errors.count, "error") %> prohibited this injury from being saved:</h2>
+
+                          <ul>
+                            <% @injury.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                            <% end %>
+                          </ul>
+                        </div>
+                    <% end %>
+
+                    <div class="form-group">
+                      <%= fi.label :when, "Date" %>
+                      <%= fi.date_field :when, class: 'form-control' %>
+                    </div>
+                    <div class="form-group">
+                      <%= fi.label :location, "Zone" %>
+                      <%= fi.text_area :location, class: 'form-control' %>
+                    </div>
+                    <div class="form-group">
+                      <%= fi.label :structure, "Structure" %>
+                      <%= fi.text_area :structure, class: 'form-control' %>
+                    </div>
+                    <div class="form-group">
+                      <%= fi.label :therapeute, "Thérapeute" %>
+                      <%= fi.text_area :therapeute, class: 'form-control' %>
+                      <%= fi.hidden_field :user_id, value: @user.id ,class: 'form-control' %>
+                    </div>
+                    <div class="form-group">
+                      <%= fi.label :comment, "Description" %>
+                      <%= fi.text_area :comment, class: 'form-control' %>
+                    </div>
+                    <div class="form-group">
+                      <%= fi.label :datetrain, "Date Entrainement" %>
+                      <%= fi.date_field :datetrain, class: 'form-control' %>
+                    </div>
+                    <div class="form-group">
+                      <%= fi.label :datematch, "Date Match" %>
+                      <%= fi.date_field :datematch, class: 'form-control' %>
+                    </div>
+                    <div class="form-group">
+                      <%= fi.label :dateperf, "Date Performance" %>
+                      <%= fi.date_field :dateperf, class: 'form-control' %>
+                    </div>
+
+                    <div class="actions">
+                      <%= fi.submit %>
+                    </div>
+                <% end %>
+<table>
+  <thead>
+  <th>Date</th>
+  <th>Zone</th>
+  <th>Structure</th>
+  <th>Thérapeute</th>
+  <th>Description</th>
+  <th>Dates</th>
+  <th></th>
+  </thead>
+
+
+
+  <%  @user.getinjuries().each do |inj| %>
+      <tr>
+        <td><%= inj.nicedate(inj.when) %></td>
+        <td><%= inj.location %></td>
+        <td><%= inj.structure %></td>
+        <td><%= inj.therapeute %></td>
+        <td><%= inj.comment %></td>
+        <td>E: <%= inj.nicedate(inj.datetrain) %><br>M: <%= inj.nicedate(inj.datematch) %><br>P: <%= inj.nicedate(inj.dateperf) %></td>
+        <td>          <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, injury_path(inj), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %>
+        </td>
+      </tr>
+      <% end %>
+
+
+</table>
+              </div>
         <% end %>
 
           <h3>Admin-scolaire</h3>

@@ -1,0 +1,29 @@
+<%
+  active1 = '';
+  active2 = '';
+  active3 = '';
+  if(@user.status == 0)
+    active1 = 'status-active'
+  elsif @user.status == 1
+    active2 = 'status-active'
+  else
+    active3 = 'status-active'
+  end
+
+%>
+<%
+if (current_user.isadmin())
+
+%>
+<%= link_to '', users_change_status_path(@user.id,0,@wheretoredirect), class: 'status-btn status-red '+active1 %>
+<%= link_to '', users_change_status_path(@user.id,1,@wheretoredirect), class: 'status-btn status-yellow '+active2 %>
+<%= link_to '', users_change_status_path(@user.id,2,@wheretoredirect), class: 'status-btn status-green '+active3 %>
+
+<% else
+     %>
+
+    <span class="status-btn status-red <%= active1 %>"></span>
+    <span class="status-btn status-yellow <%= active2 %>"></span>
+    <span class="status-btn status-green <%= active3 %>"></span>
+
+<% end %>

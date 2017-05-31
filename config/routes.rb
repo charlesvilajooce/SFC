@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
 
+  resources :injuries
   resources :documents
   get 'users/getcalendardate'
   get 'users/setcalendardate'
   get 'users/getcalendartype'
   get 'users/setcalendartype'
+  get 'users/changestatus/:id/:status/:wheretoredirect', to: 'users#changestatus', as: 'users_change_status'
+  get 'users/oldpics/:id', to: 'users#oldpics', as: 'users_oldpics'
 
   get 'events/eventsource'
   get 'events/click'

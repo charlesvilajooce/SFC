@@ -1,0 +1,15 @@
+<%= @user.getname()%>
+
+<%
+
+
+  records = Dir.glob('public/uploads/user/avatar/'+@user.id.to_s+'/*')
+
+    records.each do |recs|%>
+
+    <% if (! recs.include? 'thumb') %>
+    <img src="<%= recs[6..-1] %>">
+<% end %>
+      <%end
+
+%>

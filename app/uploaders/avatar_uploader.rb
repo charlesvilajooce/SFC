@@ -4,6 +4,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
+  configure do |config|
+    config.remove_previously_stored_files_after_update = false
+  end
+
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
