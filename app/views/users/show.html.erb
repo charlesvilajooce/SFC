@@ -1,5 +1,5 @@
 <% if notice %>
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success" role="alert" style=" margin-left: 25px;">
       <p id="notice"><%= notice %></p>
     </div>
 <% end %>
@@ -11,7 +11,7 @@
       <div class="thumbnail">
         <% if @user.avatar.thumb.url!=nil %>
             <%= image_tag @user.avatar.url, class: 'img-fluid rounded mx-auto d-block img-thumbnail' %>
-            <%= link_to 'All', users_oldpics_path(@user.id) , class: 'btn btn-primary' %>
+            <%= link_to 'All', users_oldpics_path(@user.id), class: 'btn btn-primary' %>
         <% end %>
         <div class="caption">
           <center>
@@ -39,15 +39,19 @@
           <ul class="list-group">
 
             <li class="list-group-item">
-              <p><strong><%= @user.nationality %></strong>&nbsp;depuis le <%= @user.getnicedate(@user.nationalityfrom) %></p>
+              <p><strong><%= @user.nationality %></strong>&nbsp;depuis
+                le <%= @user.getnicedate(@user.nationalityfrom) %></p>
               <% if !@user.nationality2.blank? %>
-                  <p><strong><%= @user.nationality2 %></strong>&nbsp;depuis le <%= @user.getnicedate(@user.nationality2from) %></p>
+                  <p><strong><%= @user.nationality2 %></strong>&nbsp;depuis
+                    le <%= @user.getnicedate(@user.nationality2from) %></p>
               <% end %>
               <% if !@user.nationality3.blank? %>
-                  <p><strong><%= @user.nationality3 %></strong>&nbsp;depuis le <%= @user.getnicedate(@user.nationality3from) %></p>
+                  <p><strong><%= @user.nationality3 %></strong>&nbsp;depuis
+                    le <%= @user.getnicedate(@user.nationality3from) %></p>
               <% end %>
               <% if !@user.naturalisationinprocess.blank? %>
-                  <p>En cours de naturalisation depuis le <%= @user.getnicedate(@user.nationalisationinprocessfrom) %></p>
+                  <p>En cours de naturalisation depuis
+                    le <%= @user.getnicedate(@user.nationalisationinprocessfrom) %></p>
               <% end %>
             </li>
             <li class="list-group-item">
@@ -82,22 +86,22 @@
             <%= raw @user.getbrs(@user.parents) %>
           </p>
           <% if @user.fathercontact!=nil %>
-          <p>
-            <strong>Contact père:</strong><br/>
-            <%= raw @user.getbrs(@user.fathercontact) %>
-          </p>
+              <p>
+                <strong>Contact père:</strong><br/>
+                <%= raw @user.getbrs(@user.fathercontact) %>
+              </p>
           <% end %>
           <% if @user.mothercontact!=nil %>
-          <p>
-            <strong>Contact mère:</strong><br/>
-            <%= raw @user.getbrs(@user.mothercontact) %>
-          </p>
+              <p>
+                <strong>Contact mère:</strong><br/>
+                <%= raw @user.getbrs(@user.mothercontact) %>
+              </p>
           <% end %>
           <% if @user.numberofsiblings!=nil %>
-          <p>
-            <strong>Nombre de frères et soeurs:</strong><br/>
-            <%=@user.numberofsiblings%>
-          </p>
+              <p>
+                <strong>Nombre de frères et soeurs:</strong><br/>
+                <%= @user.numberofsiblings %>
+              </p>
           <% end %>
           <p>
             <strong>Frères ou soeurs au SFC:</strong><br/>
@@ -120,196 +124,202 @@
             </li>
           </ul>
           <br>
-            <div class="row">
-            <div class="col-6">
-            <p>
-              <strong>Clubs précédents:</strong><br/>
-              <%= raw @user.getbrs(@user.sportactivity_archive) %>
-            </p>
-            </div>
-            <div class="col-6">
-            <p><strong>Temps de jeu: &nbsp; </strong> <%= @user.playtime %>'</p>
-            <p><strong>Archive des cartons:</strong> <br> <%= raw @user.getbrs(@user.cards_archive) %></p>
-            </div>
-            </div>
-        </div>
-
-        <h3>Admin-medical</h3>
-        <div class="col-12 thumbnail">
-
           <div class="row">
             <div class="col-6">
-
-          <p>
-            <strong>Poids:</strong>
-            <%= @user.weight %>
-            <br>
-            <% allweights = @user.archivedweights().reverse %>
-            <% allweights.each do |w| %>
-              <%= w.content  %>  - <span style="color: grey;"><%= DateTime.parse(w.created_at.to_s).strftime('%d.%m.%Y')%></span>
-                <br>
-            <% end %>
-          </p>
-          <p>
-            <strong>Taille:</strong>
-            <%=@user.height%>
-            <br>
-            <% allheights = @user.archivedheights().reverse %>
-            <% allheights.each do |h| %>
-                <%= h.content  %>  - <span style="color: grey;"><%= DateTime.parse(h.created_at.to_s).strftime('%d.%m.%Y')%></span>
-                <br>
-            <% end %>
-          </p>
-
+              <p>
+                <strong>Clubs précédents:</strong><br/>
+                <%= raw @user.getbrs(@user.sportactivity_archive) %>
+              </p>
             </div>
             <div class="col-6">
-          <p>
-            <strong>Assurances:</strong><br/>
-            <%= raw @user.getbrs(@user.physic_char) %>
-          </p>
-              <p>
-                <strong>Allergies:</strong>
-                <%=@user.allergies%>
-              </p>
-              <p>
-                <strong>Médicament:</strong>
-                <%=@user.medication%>
-              </p>
-              <p>
-                <strong>Troubles statiques:</strong>
-                <%=@user.statictrouble%>
-              </p>
+              <p><strong>Temps de jeu: &nbsp; </strong> <%= @user.playtime %>'</p>
+              <p><strong>Archive des cartons:</strong> <br> <%= raw @user.getbrs(@user.cards_archive) %></p>
             </div>
           </div>
-
-        <% if (current_user.canviewmedical(@user.id)) %>
-
-              <p>
-                <strong>Dossier médical:</strong><br/>
-                <%= raw @user.getbrs(@user.injury_archive) %>
-
-              </p>
-              <p><strong>Documents médicaux:</strong><br/>
-                <%
-
-                  @docs = @user.documents
-                  @docs = @docs.select {|u| u.documenttype == 1}
-                  @docs.each do |doc|
-                    string = ((doc.url.to_s).rpartition('/').last)
-                %>
-                    <a href="<%= doc.url %>" target="_blank" style="color: black !important;"><%= string %></a><br>
-
-                <% end %>
-              </p>
-            </div>
-              <div class="col-12 thumbnail">
-                <%= form_for(@injury) do |fi| %>
-                    <% if @injury.errors.any? %>
-                        <div id="error_explanation">
-                          <h2><%= pluralize(@injury.errors.count, "error") %> prohibited this injury from being saved:</h2>
-
-                          <ul>
-                            <% @injury.errors.full_messages.each do |message| %>
-                                <li><%= message %></li>
-                            <% end %>
-                          </ul>
-                        </div>
-                    <% end %>
-
-                    <div class="form-group">
-                      <%= fi.label :when, "Date" %>
-                      <%= fi.date_field :when, class: 'form-control' %>
-                    </div>
-                    <div class="form-group">
-                      <%= fi.label :location, "Zone" %>
-                      <%= fi.text_area :location, class: 'form-control' %>
-                    </div>
-                    <div class="form-group">
-                      <%= fi.label :structure, "Structure" %>
-                      <%= fi.text_area :structure, class: 'form-control' %>
-                    </div>
-                    <div class="form-group">
-                      <%= fi.label :therapeute, "Thérapeute" %>
-                      <%= fi.text_area :therapeute, class: 'form-control' %>
-                      <%= fi.hidden_field :user_id, value: @user.id ,class: 'form-control' %>
-                    </div>
-                    <div class="form-group">
-                      <%= fi.label :comment, "Description" %>
-                      <%= fi.text_area :comment, class: 'form-control' %>
-                    </div>
-                    <div class="form-group">
-                      <%= fi.label :datetrain, "Date Entrainement" %>
-                      <%= fi.date_field :datetrain, class: 'form-control' %>
-                    </div>
-                    <div class="form-group">
-                      <%= fi.label :datematch, "Date Match" %>
-                      <%= fi.date_field :datematch, class: 'form-control' %>
-                    </div>
-                    <div class="form-group">
-                      <%= fi.label :dateperf, "Date Performance" %>
-                      <%= fi.date_field :dateperf, class: 'form-control' %>
-                    </div>
-
-                    <div class="actions">
-                      <%= fi.submit %>
-                    </div>
-                <% end %>
-<table>
-  <thead>
-  <th>Date</th>
-  <th>Zone</th>
-  <th>Structure</th>
-  <th>Thérapeute</th>
-  <th>Description</th>
-  <th>Dates</th>
-  <th></th>
-  </thead>
-
-
-
-  <%  @user.getinjuries().each do |inj| %>
-      <tr>
-        <td><%= inj.nicedate(inj.when) %></td>
-        <td><%= inj.location %></td>
-        <td><%= inj.structure %></td>
-        <td><%= inj.therapeute %></td>
-        <td><%= inj.comment %></td>
-        <td>E: <%= inj.nicedate(inj.datetrain) %><br>M: <%= inj.nicedate(inj.datematch) %><br>P: <%= inj.nicedate(inj.dateperf) %></td>
-        <td>          <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, injury_path(inj), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %>
-        </td>
-      </tr>
-      <% end %>
-
-
-</table>
-              </div>
-        <% end %>
-
-          <h3>Admin-scolaire</h3>
-        <div class="col-12 thumbnail">
-          <p>
-            <strong>Dossier scolaire:</strong><br/>
-            <%= raw @user.getbrs(@user.school) %>
-          </p>
-
-          <p><strong>Documents scolaires:</strong><br/>
-            <%
-
-              @docs = @user.documents
-              @docs = @docs.select {|u| u.documenttype == 2}
-              @docs.each do |doc|
-                string = ((doc.url.to_s).rpartition('/').last)
-            %>
-                <a href="<%= doc.url %>" target="_blank"><%= string %></a><br>
-
-            <% end %>
-          </p>
         </div>
 
 
 
-      </div>
+          <h3>Admin-scolaire</h3>
+          <div class="col-12 thumbnail">
+            <p>
+              <strong>Dossier scolaire:</strong><br/>
+              <%= raw @user.getbrs(@user.school) %>
+            </p>
+
+            <p><strong>Documents scolaires:</strong><br/>
+              <%
+
+                @docs = @user.documents
+                @docs = @docs.select {|u| u.documenttype == 2}
+                @docs.each do |doc|
+                  string = ((doc.url.to_s).rpartition('/').last)
+              %>
+                  <a href="<%= doc.url %>" target="_blank"><%= string %></a><br>
+
+              <% end %>
+            </p>
+          </div>
+
+
+          </div>
 
   <% end %>
 
+  <h3>Admin-medical</h3>
+  <div class="col-12 thumbnail">
+
+    <div class="row">
+      <div class="col-6">
+
+        <p>
+          <strong>Poids:</strong>
+          <%= @user.weight %>
+          <br>
+          <% allweights = @user.archivedweights().reverse %>
+          <% allweights.each do |w| %>
+              <%= w.content %>  -
+              <span style="color: grey;"><%= DateTime.parse(w.created_at.to_s).strftime('%d.%m.%Y') %></span>
+              <br>
+          <% end %>
+        </p>
+        <p>
+          <strong>Taille:</strong>
+          <%= @user.height %>
+          <br>
+          <% allheights = @user.archivedheights().reverse %>
+          <% allheights.each do |h| %>
+              <%= h.content %>  -
+              <span style="color: grey;"><%= DateTime.parse(h.created_at.to_s).strftime('%d.%m.%Y') %></span>
+              <br>
+          <% end %>
+        </p>
+
+      </div>
+      <div class="col-6">
+        <p>
+          <strong>Assurances:</strong><br/>
+          <%= raw @user.getbrs(@user.physic_char) %>
+        </p>
+        <p>
+          <strong>Allergies:</strong>
+          <%= @user.allergies %>
+        </p>
+        <p>
+          <strong>Médicament:</strong>
+          <%= @user.medication %>
+        </p>
+        <p>
+          <strong>Troubles statiques:</strong>
+          <%= @user.statictrouble %>
+        </p>
+      </div>
+    </div>
+
+    <% if (current_user.canviewmedical(@user.id)) %>
+
+        <p>
+          <strong>Dossier médical:</strong><br/>
+          <%= raw @user.getbrs(@user.injury_archive) %>
+
+        </p>
+        <p><strong>Documents médicaux:</strong><br/>
+          <%
+
+            @docs = @user.documents
+            @docs = @docs.select {|u| u.documenttype == 1}
+            @docs.each do |doc|
+              string = ((doc.url.to_s).rpartition('/').last)
+          %>
+              <a href="<%= doc.url %>" target="_blank" style="color: black !important;"><%= string %></a><br>
+
+          <% end %>
+        </p>
+        </div>
+        <div class="col-12 thumbnail">
+          <%= form_for(@injury) do |fi| %>
+              <% if @injury.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@injury.errors.count, "error") %> prohibited this injury from being
+                      saved:</h2>
+
+                    <ul>
+                      <% @injury.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+              <div class="form-group">
+                <%= fi.label :when, "Date" %>
+                <%= fi.date_field :when, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= fi.label :location, "Zone" %>
+                <%= fi.text_area :location, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= fi.label :structure, "Structure" %>
+                <%= fi.text_area :structure, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= fi.label :therapeute, "Thérapeute" %>
+                <%= fi.text_area :therapeute, class: 'form-control' %>
+                <%= fi.hidden_field :user_id, value: @user.id, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= fi.label :comment, "Description" %>
+                <%= fi.text_area :comment, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= fi.label :datetrain, "Date Entrainement" %>
+                <%= fi.date_field :datetrain, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= fi.label :datematch, "Date Match" %>
+                <%= fi.date_field :datematch, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= fi.label :dateperf, "Date Performance" %>
+                <%= fi.date_field :dateperf, class: 'form-control' %>
+              </div>
+
+              <div class="actions">
+                <%= fi.submit %>
+              </div>
+          <% end %>
+          <table>
+            <thead>
+            <th>Date</th>
+            <th>Zone</th>
+            <th>Structure</th>
+            <th>Thérapeute</th>
+            <th>Description</th>
+            <th>Dates</th>
+            <th></th>
+            </thead>
+
+
+
+            <% @user.getinjuries().each do |inj| %>
+                <tr>
+                  <td><%= inj.nicedate(inj.when) %></td>
+                  <td><%= inj.location %></td>
+                  <td><%= inj.structure %></td>
+                  <td><%= inj.therapeute %></td>
+                  <td><%= inj.comment %></td>
+                  <td>E: <%= inj.nicedate(inj.datetrain) %><br>M: <%= inj.nicedate(inj.datematch) %>
+                    <br>P: <%= inj.nicedate(inj.dateperf) %></td>
+                  <td>          <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, injury_path(inj), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger btn-user' %>
+                  </td>
+                </tr>
+            <% end %>
+
+
+          </table>
+        </div>
+    <% end %>
+
 </div> <!-- /.row -->
+

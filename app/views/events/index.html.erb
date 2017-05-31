@@ -1,16 +1,17 @@
 <% if notice %>
-    <p id="notice"><%= notice %></p>
+    <div class="alert alert-success" role="alert">
+      <p id="notice"><%= notice %></p>
+    </div>
 <% end %>
 
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<div class="container">
 
 <table id="eventsindex" class="table table-striped	">
   <thead>
     <tr>
-      <th>Begin</th>
-      <th>End</th>
-      <th>Name</th>
+      <th>Début</th>
+      <th>Fin</th>
+      <th>Titre</th>
       <th>Description</th>
       <th>Type</th>
       <% if current_user.canrole == 'admin' %>
@@ -53,3 +54,5 @@
 <br>
 
 <%= link_to 'New Event', new_event_path, class: 'btn btn-primary' %>
+
+</div>

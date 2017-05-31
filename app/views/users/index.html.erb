@@ -1,81 +1,79 @@
 <% if notice %>
-    <p id="notice"><%= notice %></p>
+    <div class="alert alert-success" role="alert">
+      <p id="notice"><%= notice %></p>
+    </div>
 <% end %>
 
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
-
-<table id="userindex" class="table table-striped	">
-  <thead>
+<div class="container">
+  <table id="userindex" data-display-length="25" class="table table-striped	">
+    <thead>
     <tr>
-      <th>Surname</th>
-      <th>Name</th>
+      <th>Prénom</th>
+      <th>Nom</th>
       <th>#</th>
-      <th>Nationality</th>
-      <th>Birthday</th>
-      <th>Disponibility</th>
-      <th>Role</th>
-      <th>Playtime</th>
+      <th>Nationalité</th>
+      <th>Naissance</th>
+      <th style="min-width: 100px;">Dispo.</th>
+      <th>Poste</th>
       <% if current_user.isadmin() %>
-      <th></th>
+          <th></th>
       <% end %>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @users.each do |user| %>
-      <tr class='<%= if current_user.isadmin()
-                       'clickable-row'
-      end %>' data-href="<%=user_path(user)%>">
-        <td style="overflow: hidden; white-space: nowrap;"><%= user.surname %></td>
-        <td style="overflow: hidden; white-space: nowrap;"><%= user.name %></td>
-        <td style="overflow: hidden; white-space: nowrap;"><%= user.level %></td>
-        <td style="overflow: hidden; white-space: nowrap;"><%= user.nationality %></td>
-        <td style="overflow: hidden; white-space: nowrap;"><%= user.birthday %></td>
-        <td>
-          <% if user.injured==true %>
-              <i class="fa fa-user" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true" style="color: red;"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true"></i>
-              <span style="display: none;">2</span>
-          <% elsif user.suspended==true %>
-              <i class="fa fa-user" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
-              <span style="display: none;">3</span>
-          <% else %>
-              <i class="fa fa-user" aria-hidden="true" style="color: green;"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true"></i>
-              <span style="display: none;">1</span>
-          <% end %>
-        </td>
-        <td>
-          <% if user.role==1%>
-              <span style="display: none;">1</span>
-              Gardien
-          <% end %>
-          <% if user.role == 2%>
-              <span style="display: none;">2</span>
-              Défenseur
-          <% end %>
-          <% if user.role == 3%>
-              <span style="display: none;">3</span>
-              Milieu
-          <% end %>
-          <% if user.role == 4%>
-              <span style="display: none;">4</span>
-              Attaquant
-          <% end %>
-        </td>
-        <td><%= user.playtime %></td>
-        <td style="overflow: hidden; white-space: nowrap;">
-          <% if current_user.isadmin() %>
-          <%= link_to '<i class="fa fa-search" aria-hidden="true"></i>'.html_safe, user_path(user), class: 'btn btn-success btn-user'%>
-          <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, users_edit_path(user), class: 'btn btn-warning btn-user' %>
-          <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %>
-          <% end %>
-        </td>
-      </tr>
+        <tr class='<%= if current_user.isadmin()
+                         'clickable-row'
+                       end %>' data-href="<%= user_path(user) %>">
+          <td style="overflow: hidden; white-space: nowrap;"><%= user.surname %></td>
+          <td style="overflow: hidden; white-space: nowrap;"><%= user.name %></td>
+          <td style="overflow: hidden; white-space: nowrap;"><%= user.level %></td>
+          <td style="overflow: hidden; white-space: nowrap;"><%= user.nationality %></td>
+          <td style="overflow: hidden; white-space: nowrap;"><%= user.birthday %></td>
+          <td>
+            <% if user.injured==true %>
+                <i class="fa fa-user" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true" style="color: red;"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true"></i>
+                <span style="display: none;">2</span>
+            <% elsif user.suspended==true %>
+                <i class="fa fa-user" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+                <span style="display: none;">3</span>
+            <% else %>
+                <i class="fa fa-user" aria-hidden="true" style="color: green;"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true"></i>
+                <span style="display: none;">1</span>
+            <% end %>
+          </td>
+          <td>
+            <% if user.role==1 %>
+                <span style="display: none;">1</span>
+                Gardien
+            <% end %>
+            <% if user.role == 2 %>
+                <span style="display: none;">2</span>
+                Défenseur
+            <% end %>
+            <% if user.role == 3 %>
+                <span style="display: none;">3</span>
+                Milieu
+            <% end %>
+            <% if user.role == 4 %>
+                <span style="display: none;">4</span>
+                Attaquant
+            <% end %>
+          </td>
+          <td style="overflow: hidden; white-space: nowrap;">
+            <% if current_user.isadmin() %>
+                <%= link_to '<i class="fa fa-search" aria-hidden="true"></i>'.html_safe, user_path(user), class: 'btn btn-success btn-user' %>
+                <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, users_edit_path(user), class: 'btn btn-warning btn-user' %>
+                <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, user_path(user), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger btn-user' %>
+            <% end %>
+          </td>
+        </tr>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if current_user.isadmin() %>
-<%= link_to 'New User', new_user_path, class: 'btn btn-primary' %>
-<% end %>
+    </tbody>
+  </table>
+  <br>
+  <% if current_user.isadmin() %>
+      <%= link_to 'New User', new_user_path, class: 'btn btn-primary' %>
+  <% end %>
+</div>
