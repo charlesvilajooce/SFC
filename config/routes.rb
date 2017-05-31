@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :archived_infos
   resources :injuries
   resources :documents
   get 'users/getcalendardate'

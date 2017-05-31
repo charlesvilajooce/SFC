@@ -40,13 +40,13 @@
 
             <li class="list-group-item">
               <p><strong><%= @user.nationality %></strong>&nbsp;depuis le <%= @user.getnicedate(@user.nationalityfrom) %></p>
-              <% if @user.nationality2!=nil %>
+              <% if !@user.nationality2.blank? %>
                   <p><strong><%= @user.nationality2 %></strong>&nbsp;depuis le <%= @user.getnicedate(@user.nationality2from) %></p>
               <% end %>
-              <% if @user.nationality3!=nil %>
+              <% if !@user.nationality3.blank? %>
                   <p><strong><%= @user.nationality3 %></strong>&nbsp;depuis le <%= @user.getnicedate(@user.nationality3from) %></p>
               <% end %>
-              <% if @user.naturalisationinprocess!=nil %>
+              <% if !@user.naturalisationinprocess.blank? %>
                   <p>En cours de naturalisation depuis le <%= @user.getnicedate(@user.nationalisationinprocessfrom) %></p>
               <% end %>
             </li>
@@ -142,11 +142,23 @@
 
           <p>
             <strong>Poids:</strong>
-            <%=@user.weight%>
+            <%= @user.weight %>
+            <br>
+            <% allweights = @user.archivedweights().reverse %>
+            <% allweights.each do |w| %>
+              <%= w.content  %>  - <span style="color: grey;"><%= DateTime.parse(w.created_at.to_s).strftime('%d.%m.%Y')%></span>
+                <br>
+            <% end %>
           </p>
           <p>
             <strong>Taille:</strong>
             <%=@user.height%>
+            <br>
+            <% allheights = @user.archivedheights().reverse %>
+            <% allheights.each do |h| %>
+                <%= h.content  %>  - <span style="color: grey;"><%= DateTime.parse(h.created_at.to_s).strftime('%d.%m.%Y')%></span>
+                <br>
+            <% end %>
           </p>
 
             </div>
@@ -164,7 +176,7 @@
                 <%=@user.medication%>
               </p>
               <p>
-                <strong>Problème static:</strong>
+                <strong>Troubles statiques:</strong>
                 <%=@user.statictrouble%>
               </p>
             </div>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Archived Infos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @archived_infos.each do |archived_info| %>
+      <tr>
+        <td><%= link_to 'Show', archived_info %></td>
+        <td><%= link_to 'Edit', edit_archived_info_path(archived_info) %></td>
+        <td><%= link_to 'Destroy', archived_info, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Archived Info', new_archived_info_path %>

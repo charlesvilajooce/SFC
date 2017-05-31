@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :subscriptions
   has_many :injuries
   has_many :avatars
+  has_many :archived_infos
   has_many :relationship1, :class_name => 'Relationship', :foreign_key => 'user_one_id'
   has_many :relationship2, :class_name => 'Relationship', :foreign_key => 'user_two_id'
 
@@ -143,4 +144,15 @@ class User < ApplicationRecord
     end
   end
 
+  def archivedweights()
+    archived_infos = self.archived_infos
+    archived_infos = archived_infos.select { |archive| archive.fieldtype == 'weight' }
+    return archived_infos
+  end
+
+  def archivedheights()
+    archived_infos = self.archived_infos
+    archived_infos = archived_infos.select { |archive| archive.fieldtype == 'height' }
+    return archived_infos
+  end
 end

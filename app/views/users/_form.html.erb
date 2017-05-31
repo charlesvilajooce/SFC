@@ -243,12 +243,25 @@
             <div class="form-group">
               <%= f.label :weight, "Poids (kg)" %>
               <%= f.number_field :weight, class: 'form-control' %>
+              <% allweights = @user.archivedweights().reverse %>
+              <% allweights.each do |w| %>
+                  <%= w.content  %>  - <span style="color: grey;"><%= DateTime.parse(w.created_at.to_s).strftime('%d.%m.%Y')%></span>
+                  <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, archived_info_path(w), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %>
+                  <br>
+              <% end %>
             </div>
 
             <div class="form-group">
               <%= f.label :height, "Taille (m)" %>
               <%= f.number_field :height, class: 'form-control' %>
+              <% allheights = @user.archivedheights().reverse %>
+              <% allheights.each do |h| %>
+                  <%= h.content  %>  - <span style="color: grey;"><%= DateTime.parse(h.created_at.to_s).strftime('%d.%m.%Y')%></span>
+                  <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, archived_info_path(h), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %>
+                  <br>
+              <% end %>
             </div>
+
             <div class="form-group">
               <%= f.label :allergies, "Allergies" %>
               <%= f.text_area :allergies, class: 'form-control' %>

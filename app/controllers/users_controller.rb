@@ -149,22 +149,42 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-
     rel1 = @user.relationship1
+
     rel1.each do |rel|
       rel.destroy
     end
+
     rel2 = @user.relationship2
+
     rel2.each do |rel|
       rel.destroy
     end
+
     temp3 = params[:others].delete(' ').split(/,/)
+
     temp3.each do |numb|
       rel = Relationship.new
       rel.user_one_id = params[:id].to_i
       rel.user_two_id = numb.to_i
       rel.save
       # print(numb.to_i)
+    end
+
+    if params[:user][:weight].to_i!=@user.weight && !@user.weight.blank?
+      weightinfo= ArchivedInfo.new
+      weightinfo.content=@user.weight
+      weightinfo.fieldtype="weight"
+      weightinfo.user_id=@user.id
+      weightinfo.save
+    end
+
+    if params[:user][:height].to_i!=@user.height && !@user.height.blank?
+      heightinfo= ArchivedInfo.new
+      heightinfo.content=@user.height
+      heightinfo.fieldtype="height"
+      heightinfo.user_id=@user.id
+      heightinfo.save
     end
 
     respond_to do |format|
@@ -176,6 +196,7 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # DELETE /users/1
