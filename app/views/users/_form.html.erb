@@ -243,23 +243,37 @@
             <div class="form-group">
               <%= f.label :weight, "Poids (kg)" %>
               <%= f.number_field :weight, class: 'form-control' %>
+              <br>
               <% allweights = @user.archivedweights().reverse %>
+              <table class="table table-striped	table-sm">
+                <tbody>
               <% allweights.each do |w| %>
-                  <%= w.content  %>  - <span style="color: grey;"><%= DateTime.parse(w.created_at.to_s).strftime('%d.%m.%Y')%></span>
-                  <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, archived_info_path(w), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %>
-                  <br>
+                <tr>
+                  <td><%= w.content  %></td>
+                  <td><span style="color: grey;"><%= DateTime.parse(w.created_at.to_s).strftime('%d.%m.%Y')%></span></td>
+                  <td><%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, archived_info_path(w), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %></td>
+                </tr>
               <% end %>
+                </tbody>
+              </table>
             </div>
 
             <div class="form-group">
               <%= f.label :height, "Taille (m)" %>
               <%= f.number_field :height, class: 'form-control' %>
+              <br>
               <% allheights = @user.archivedheights().reverse %>
+              <table class="table table-striped	table-sm">
+                <tbody>
               <% allheights.each do |h| %>
-                  <%= h.content  %>  - <span style="color: grey;"><%= DateTime.parse(h.created_at.to_s).strftime('%d.%m.%Y')%></span>
-                  <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, archived_info_path(h), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %>
-                  <br>
+                    <tr>
+                      <td><%= h.content  %></td>
+                      <td><span style="color: grey;"><%= DateTime.parse(h.created_at.to_s).strftime('%d.%m.%Y')%></span></td>
+                  <td><%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, archived_info_path(h), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %></td>
+                    </tr>
               <% end %>
+                </tbody>
+              </table>
             </div>
 
             <div class="form-group">
