@@ -15,6 +15,7 @@
       <th>Naissance</th>
       <th style="min-width: 100px;">Dispo.</th>
       <th>Poste</th>
+      <th>Statut</th>
       <% if current_user.isadmin() %>
           <th></th>
       <% end %>
@@ -60,6 +61,17 @@
                 <span style="display: none;">4</span>
                 Attaquant
             <% end %>
+          </td>
+          <td>
+
+            <%
+
+              if user.isplayer(0)
+              @wheretoredirect = 'index'
+            @user = user
+            %>
+            <%= render :partial => "users/statustool.html" %>
+                <% end %>
           </td>
           <td style="overflow: hidden; white-space: nowrap;">
             <% if current_user.isadmin() %>

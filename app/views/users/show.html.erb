@@ -269,11 +269,19 @@
               </div>
               <div class="form-group">
                 <%= fi.label :location, "Zone" %>
-                <%= fi.text_area :location, class: 'form-control' %>
+                <%=
+                  # fi.text_area :location, class: 'form-control'
+                %>
+                <%= fi.select :location, options_for_select([['',''],["Tronc", "Tronc"], ["Abdomen", "Abdomen"], ["Membre supp. G", "Membre supp. G"], ["Membre supp. D", "Membre supp. D"], ["Cou", "Cou"], ["Tête", "Tête"], ["Bassin", "Bassin"], ["Bassin", "Bassin"], ["Membre inf. G", "Membre inf. G"], ["Membre inf. D", "Membre inf. D"], ["Pied G", "Pied G"], ["Pied D", "Pied D"]]) %>
+
               </div>
               <div class="form-group">
                 <%= fi.label :structure, "Structure" %>
-                <%= fi.text_area :structure, class: 'form-control' %>
+                <%=
+                  # fi.text_area :structure, class: 'form-control'
+                %>
+                <%= fi.select :structure, options_for_select([['',''],["Os", "Os"], ["Muscle", "Muscle"], ["Nerf", "Nerf"], ["Tissus", "Tissus"], ["Tendon", "Tendon"], ["Ligament", "Ligament"], ["Cartillage", "Cartillage"]]) %>
+
               </div>
               <div class="form-group">
                 <%= fi.label :therapeute, "Thérapeute" %>

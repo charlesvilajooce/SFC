@@ -120,8 +120,9 @@ selectize.setValue(selected_items);
       end
     %>
     <%=
+      if(!@event.name.blank?)
       raw '<a class="btn btn-primary" href="mailto:'+stringofmails+'?subject=Evènement: '+@event.name+'&body=Voici un email">Envoyer un email</a>'
-
+end
     %>
 <br><br>
 
