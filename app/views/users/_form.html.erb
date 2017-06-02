@@ -74,7 +74,7 @@
 
         <div class="form-group">
           <%= f.label :birthday, "Date de naissance" %><br>
-          <%= f.date_select :birthday, :start_year => 1970, class: 'form-control' %>
+          <%= f.date_field :birthday, :start_year => 1970, class: 'form-control' %>
         </div>
       </div>
       <div class="col-3">
@@ -208,11 +208,11 @@
         <h3>Admin-sportif</h3>
         <div class="form-group">
           <%= f.label :arriving_date, "Date d'arrivée" %><br>
-          <%= f.date_select :arriving_date, :start_year => 1980, class: 'form-control' %>
+          <%= f.date_field :arriving_date, :start_year => 1980, class: 'form-control' %>
         </div>
         <div class="form-group">
           <%= f.label :endcontrat_date, "Date de fin de contrat" %><br>
-          <%= f.date_select :endcontrat_date, :start_year => 2015, class: 'form-control' %>
+          <%= f.date_field :endcontrat_date, :start_year => 2015, class: 'form-control' %>
         </div>
           <div class="form-group">
             <%= f.label :sportactivity_archive, "Clubs précédents" %>

@@ -80,7 +80,7 @@ class UsersController < ApplicationController
     # print('heloo')
     case params[:format]
       when 'staff'
-        @users = @users.select { |u| u.canrole == 'staff' }
+        @users = @users.select { |u| u.canrole == 'staff' } + @users.select { |u| u.canrole == 'medical' }
       when 'premiere'
         @users = @users.select { |u| u.canrole == 'premiere' }
       when 'm21'
