@@ -39,8 +39,10 @@
           <ul class="list-group">
 
             <li class="list-group-item">
-              <p><strong><%= @user.nationality %></strong>&nbsp;depuis
-                le <%= @user.getnicedate(@user.nationalityfrom) %></p>
+              <strong><%= @user.nationality %></strong>&nbsp;
+                <% if !@user.nationality2.blank? %>depuis
+                  le <%= @user.getnicedate(@user.nationality2) %>
+                <% end %>
               <% if !@user.nationality2.blank? %>
                   <p><strong><%= @user.nationality2 %></strong>&nbsp;depuis
                     le <%= @user.getnicedate(@user.nationality2from) %></p>
@@ -85,27 +87,27 @@
             <strong>Remarques parents:</strong><br/>
             <%= raw @user.getbrs(@user.parents) %>
           </p>
-          <% if @user.fathercontact!=nil %>
+          <% if !@user.fathercontact.blank? %>
               <p>
                 <strong>Contact père:</strong><br/>
                 <%= raw @user.getbrs(@user.fathercontact) %>
               </p>
           <% end %>
-          <% if @user.mothercontact!=nil %>
+          <% if !@user.mothercontact.blank? %>
               <p>
                 <strong>Contact mère:</strong><br/>
                 <%= raw @user.getbrs(@user.mothercontact) %>
               </p>
           <% end %>
-          <% if @user.numberofsiblings!=nil %>
+          <% if !@user.numberofsiblings.blank? %>
               <p>
                 <strong>Nombre de frères et soeurs:</strong><br/>
                 <%= @user.numberofsiblings %>
               </p>
+            <p>
+              <strong>Frères ou soeurs au SFC:</strong><br/>
+            </p>
           <% end %>
-          <p>
-            <strong>Frères ou soeurs au SFC:</strong><br/>
-          </p>
         </div>
 
         <h3>Admin-sportif</h3>
@@ -147,7 +149,6 @@
               <%= raw @user.getbrs(@user.school) %>
             </p>
 
-            <p><strong>Documents scolaires:</strong><br/>
               <%
 
                 @docs = @user.documents
@@ -158,19 +159,18 @@
                   <a href="<%= doc.url %>" target="_blank"><%= string %></a><br>
 
               <% end %>
-            </p>
           </div>
 
 
           </div>
 
-  <% end %>
+
 
   <h3>Admin-medical</h3>
   <div class="col-12 thumbnail">
 
     <div class="row">
-      <div class="col-6">
+      <div class="col-4">
 
         <p>
           <strong>Poids:</strong>
@@ -208,11 +208,14 @@
         </p>
 
       </div>
-      <div class="col-6">
+      <div class="col-4">
         <p>
           <strong>Assurances:</strong><br/>
           <%= raw @user.getbrs(@user.physic_char) %>
         </p>
+
+      </div>
+      <div class="col-4">
         <p>
           <strong>Allergies:</strong>
           <%= @user.allergies %>
@@ -228,14 +231,15 @@
       </div>
     </div>
 
+
     <% if (current_user.canviewmedical(@user.id)) %>
+        <hr>
 
         <p>
           <strong>Dossier médical:</strong><br/>
           <%= raw @user.getbrs(@user.injury_archive) %>
 
         </p>
-        <p><strong>Documents médicaux:</strong><br/>
           <%
 
             @docs = @user.documents
@@ -246,7 +250,6 @@
               <a href="<%= doc.url %>" target="_blank" style="color: black !important;"><%= string %></a><br>
 
           <% end %>
-        </p>
         </div>
 
         <h3>Blessures</h3>
@@ -335,6 +338,6 @@
           </table>
         </div>
     <% end %>
-
+  <% end %>
 </div> <!-- /.row -->
 
