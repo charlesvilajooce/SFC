@@ -13,6 +13,7 @@
   <table id="userindex" data-display-length="25" class="table table-striped	">
     <thead>
     <tr>
+      <th>Groupe</th>
       <th>Dispo.</th>
       <th>Prénom</th>
       <th>Nom</th>
@@ -29,9 +30,11 @@
 
     <tbody>
     <% @users.each do |user| %>
+
         <tr class='<%= if current_user.isadmin()
                          'clickable-row'
                        end %>' data-href="<%= user_path(user) %>">
+          <td><%= user.canrole %></td>
           <td style="overflow: hidden; white-space: nowrap;">
             <% if user.injured==true %>
                 <i class="fa fa-user" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true" style="color: red;"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true"></i>

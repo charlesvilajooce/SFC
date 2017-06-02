@@ -16,7 +16,9 @@
         <div class="caption">
           <center>
             <h3><%= @user.surname %> <%= @user.name %>
+              <% if !@user.level.blank? %>
               <small>(#<%= @user.level %>)</small>
+              <% end %>
             </h3>
           </center>
           <center><p><em>
@@ -38,10 +40,11 @@
           </center>
           <ul class="list-group">
 
+            <% if !@user.nationality.blank? %>
             <li class="list-group-item">
               <strong><%= @user.nationality %></strong>&nbsp;
-                <% if !@user.nationality2.blank? %>depuis
-                  le <%= @user.getnicedate(@user.nationality2) %>
+                <% if !@user.nationalityfrom.blank? %>depuis
+                  le <%= @user.getnicedate(@user.nationalityfrom) %>
                 <% end %>
               <% if !@user.nationality2.blank? %>
                   <p><strong><%= @user.nationality2 %></strong>&nbsp;depuis
@@ -56,6 +59,7 @@
                     le <%= @user.getnicedate(@user.nationalisationinprocessfrom) %></p>
               <% end %>
             </li>
+            <% end %>
             <li class="list-group-item">
               <% if @user.injured==true %>
                   <i class="fa fa-user" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true" style="color: red;"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true"></i>
