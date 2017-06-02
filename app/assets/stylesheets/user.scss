@@ -3,15 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .status-btn{
   display: inline-block;
-  padding: 10px;
-  //background-color: red;
-  margin: 5px;
+  font-size: 25px !important;
+  color: grey !important;
 }
-.status-red{background-color: red;}
-.status-green{background-color: green;}
-.status-yellow{background-color: yellow;}
-.status-active{
-  border: solid;
-  border-color: black;
-  border-width: 2px;
+
+.status-active .status-green{
+  color: green ;
+}
+.status-active .status-yellow{
+  color: orange ;
+}
+.status-active .status-red{
+  color: red ;
 }

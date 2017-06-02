@@ -112,3 +112,7 @@ a:focus, a:hover {
 .alert > p {
   margin-bottom: 0rem;
 }
+
+.table th, .table td {
+  vertical-align: middle !important;
+}

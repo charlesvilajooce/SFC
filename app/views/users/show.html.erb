@@ -248,6 +248,8 @@
           <% end %>
         </p>
         </div>
+
+        <h3>Blessures</h3>
         <div class="col-12 thumbnail">
           <%= form_for(@injury) do |fi| %>
               <% if @injury.errors.any? %>
@@ -264,52 +266,45 @@
               <% end %>
 
               <div class="form-group">
-                <%= fi.label :when, "Date" %>
-                <%= fi.date_field :when, class: 'form-control' %>
-              </div>
-              <div class="form-group">
-                <%= fi.label :location, "Zone" %>
-                <%=
-                  # fi.text_area :location, class: 'form-control'
-                %>
-                <%= fi.select :location, options_for_select([['',''],["Tronc", "Tronc"], ["Abdomen", "Abdomen"], ["Membre supp. G", "Membre supp. G"], ["Membre supp. D", "Membre supp. D"], ["Cou", "Cou"], ["Tête", "Tête"], ["Bassin", "Bassin"], ["Bassin", "Bassin"], ["Membre inf. G", "Membre inf. G"], ["Membre inf. D", "Membre inf. D"], ["Pied G", "Pied G"], ["Pied D", "Pied D"]]) %>
+                <table class="table table-striped	table-sm">
+                  <thead>
+                  <th><%= fi.label :when, "Date" %></th>
+                  <th><%= fi.label :location, "Zone" %></th>
+                  <th><%= fi.label :structure, "Structure" %></th>
+                  <th> <%= fi.label :datetrain, "Date Entrainement" %></th>
+                  <th><%= fi.label :datematch, "Date Match" %></th>
+                  <th><%= fi.label :dateperf, "Date Performance" %></th>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td><%= fi.date_field :when, class: 'form-control' %></td>
+                    <td><%= fi.select :location, options_for_select([['',''],["Tronc", "Tronc"], ["Abdomen", "Abdomen"], ["Membre supp. G", "Membre supp. G"], ["Membre supp. D", "Membre supp. D"], ["Cou", "Cou"], ["Tête", "Tête"], ["Bassin", "Bassin"], ["Bassin", "Bassin"], ["Membre inf. G", "Membre inf. G"], ["Membre inf. D", "Membre inf. D"], ["Pied G", "Pied G"], ["Pied D", "Pied D"]]) %></td>
+                    <td><%= fi.select :structure, options_for_select([['',''],["Os", "Os"], ["Muscle", "Muscle"], ["Nerf", "Nerf"], ["Tissus", "Tissus"], ["Tendon", "Tendon"], ["Ligament", "Ligament"], ["Cartillage", "Cartillage"]]) %></td>
+                    <td><%= fi.date_field :datetrain, class: 'form-control' %></td>
+                    <td><%= fi.date_field :datematch, class: 'form-control' %></td>
+                    <td><%= fi.date_field :dateperf, class: 'form-control' %></td>
+                    </tr>
+                  </tbody>
+                </table>
 
-              </div>
-              <div class="form-group">
-                <%= fi.label :structure, "Structure" %>
-                <%=
-                  # fi.text_area :structure, class: 'form-control'
-                %>
-                <%= fi.select :structure, options_for_select([['',''],["Os", "Os"], ["Muscle", "Muscle"], ["Nerf", "Nerf"], ["Tissus", "Tissus"], ["Tendon", "Tendon"], ["Ligament", "Ligament"], ["Cartillage", "Cartillage"]]) %>
+                <div class="row">
+                  <div class="col-6">
+                    <%= fi.label :therapeute, "Thérapeute" %>
+                    <%= fi.text_field :therapeute, class: 'form-control' %>
+                    <%= fi.hidden_field :user_id, value: @user.id, class: 'form-control' %>
+                  </div>
 
-              </div>
-              <div class="form-group">
-                <%= fi.label :therapeute, "Thérapeute" %>
-                <%= fi.text_area :therapeute, class: 'form-control' %>
-                <%= fi.hidden_field :user_id, value: @user.id, class: 'form-control' %>
-              </div>
-              <div class="form-group">
-                <%= fi.label :comment, "Description" %>
-                <%= fi.text_area :comment, class: 'form-control' %>
-              </div>
-              <div class="form-group">
-                <%= fi.label :datetrain, "Date Entrainement" %>
-                <%= fi.date_field :datetrain, class: 'form-control' %>
-              </div>
-              <div class="form-group">
-                <%= fi.label :datematch, "Date Match" %>
-                <%= fi.date_field :datematch, class: 'form-control' %>
-              </div>
-              <div class="form-group">
-                <%= fi.label :dateperf, "Date Performance" %>
-                <%= fi.date_field :dateperf, class: 'form-control' %>
-              </div>
+                  <div class="col-6">
+                    <%= fi.label :comment, "Description" %>
+                    <%= fi.text_area :comment, class: 'form-control' %>
+                  </div>
+                </div>
 
               <div class="actions">
-                <%= fi.submit %>
+                <%= fi.submit 'Ajouter une blessure', :class => 'btn btn-primary' %>
               </div>
           <% end %>
-          <table>
+          <table class="table table-striped	table-sm">
             <thead>
             <th>Date</th>
             <th>Zone</th>
@@ -331,7 +326,7 @@
                   <td><%= inj.comment %></td>
                   <td>E: <%= inj.nicedate(inj.datetrain) %><br>M: <%= inj.nicedate(inj.datematch) %>
                     <br>P: <%= inj.nicedate(inj.dateperf) %></td>
-                  <td>          <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, injury_path(inj), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger btn-user' %>
+                  <td><%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, injury_path(inj), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger btn-user' %>
                   </td>
                 </tr>
             <% end %>

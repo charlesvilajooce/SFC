@@ -5,17 +5,22 @@
 <% end %>
 
 <div class="container">
+  <% if current_user.isadmin() %>
+      <%= link_to 'New User', new_user_path, class: 'btn btn-primary' %>
+  <% end %>
+  <br><br>
+  <div class="container">
   <table id="userindex" data-display-length="25" class="table table-striped	">
     <thead>
     <tr>
+      <th>Dispo.</th>
       <th>Prénom</th>
       <th>Nom</th>
       <th>#</th>
       <th>Nationalité</th>
       <th>Naissance</th>
-      <th style="min-width: 100px;">Dispo.</th>
       <th>Poste</th>
-      <th>Statut</th>
+      <th style="display: none;">Statut</th>
       <% if current_user.isadmin() %>
           <th></th>
       <% end %>
@@ -27,12 +32,7 @@
         <tr class='<%= if current_user.isadmin()
                          'clickable-row'
                        end %>' data-href="<%= user_path(user) %>">
-          <td style="overflow: hidden; white-space: nowrap;"><%= user.surname %></td>
-          <td style="overflow: hidden; white-space: nowrap;"><%= user.name %></td>
-          <td style="overflow: hidden; white-space: nowrap;"><%= user.level %></td>
-          <td style="overflow: hidden; white-space: nowrap;"><%= user.nationality %></td>
-          <td style="overflow: hidden; white-space: nowrap;"><%= user.birthday %></td>
-          <td>
+          <td style="overflow: hidden; white-space: nowrap;">
             <% if user.injured==true %>
                 <i class="fa fa-user" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true" style="color: red;"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true"></i>
                 <span style="display: none;">2</span>
@@ -44,6 +44,12 @@
                 <span style="display: none;">1</span>
             <% end %>
           </td>
+          <td style="overflow: hidden; white-space: nowrap;"><%= user.surname %></td>
+          <td style="overflow: hidden; white-space: nowrap;"><%= user.name %></td>
+          <td style="overflow: hidden; white-space: nowrap;"><%= user.level %></td>
+          <td style="overflow: hidden; white-space: nowrap;"><%= user.nationality %></td>
+          <td style="overflow: hidden; white-space: nowrap;"><%= user.birthday %></td>
+
           <td>
             <% if user.role==1 %>
                 <span style="display: none;">1</span>
@@ -62,7 +68,8 @@
                 Attaquant
             <% end %>
           </td>
-          <td>
+
+          <td style="overflow: hidden; white-space: nowrap; display: none;">
 
             <%
 
