@@ -14,9 +14,10 @@
     <tr>
       <th>Groupe</th>
       <th>Dispo.</th>
+      <th>#</th>
       <th>Prénom</th>
       <th>Nom</th>
-      <th>#</th>
+      <th>Téléphone</th>
       <th>Nationalité</th>
       <th>Naissance</th>
       <th>Poste</th>
@@ -46,9 +47,10 @@
                 <span style="display: none;">1</span>
             <% end %>
           </td>
+          <td style="overflow: hidden; white-space: nowrap;"><%= user.level %></td>
           <td style="overflow: hidden; white-space: nowrap;"><%= user.surname %></td>
           <td style="overflow: hidden; white-space: nowrap;"><%= user.name %></td>
-          <td style="overflow: hidden; white-space: nowrap;"><%= user.level %></td>
+          <td style="overflow: hidden; white-space: nowrap;"><%= user.tel %></td>
           <td style="overflow: hidden; white-space: nowrap;"><%= user.nationality %></td>
           <td style="overflow: hidden; white-space: nowrap;"><%= user.birthday %></td>
 
