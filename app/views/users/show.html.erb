@@ -22,7 +22,7 @@
             </h3>
           </center>
           <center><p><em>
-            <% if @user.role==1 %>
+            <% if @user.role == 1 %>
                 Gardien
             <% end %>
             <% if @user.role == 2 %>
@@ -35,6 +35,31 @@
                 Attaquant
             <% end %>
           </p></em>
+            <% allroles = @user.archivedroles().reverse %>
+            <table class="table table-striped	table-sm">
+              <tbody>
+              <% allroles.each do |w| %>
+                  <tr>
+                    <td>
+                      <% if w.content.to_i == 1 %>
+                          Gardien
+                      <% end %>
+                      <% if w.content.to_i == 2 %>
+                          Défenseur
+                      <% end %>
+                      <% if w.content.to_i == 3 %>
+                          Milieu
+                      <% end %>
+                      <% if w.content.to_i == 4 %>
+                          Attaquant
+                      <% end %>
+                    </td>
+                    <td><span style="color: grey;"><%= DateTime.parse(w.created_at.to_s).strftime('%d.%m.%Y')%></span></td>
+                    <td><%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, archived_info_path(w), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
             <% @wheretoredirect = 'show' %>
             <%= render :partial => "users/statustool.html" %>
           </center>

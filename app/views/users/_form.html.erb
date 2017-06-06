@@ -52,6 +52,18 @@
               <%= f.label :canrole, "Groupe d'utilisateurs" %>
               <br>
               <%= f.select :canrole, options_for_select([["Admin", "admin"], ["Staff", "staff"], ["Medical", "medical"], ["Première", "premiere"], ["M21", "m21"], ["M18", "m18"], ["M16", "m16"], ["M15", "m15"], ["FE14", "fe14"], ["FE13", "fe13"], ["FE12", "fe12"], ["FE11", "fe11"], ["FC10", "fc10"], ["FC9", "fc9"], ["FC8", "fc8"], ["FC7", "fc7"], ["Non défini", "undefined"]], user.canrole) %>
+              <% allcanroles = @user.archivedcanroles().reverse %>
+              <table class="table table-striped	table-sm">
+                <tbody>
+                <% allcanroles.each do |w| %>
+                    <tr>
+                      <td><%= w.content  %></td>
+                      <td><span style="color: grey;"><%= DateTime.parse(w.created_at.to_s).strftime('%d.%m.%Y')%></span></td>
+                      <td><%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, archived_info_path(w), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
             </div>
         <% end %>
       </div>
@@ -81,11 +93,48 @@
         <div class="form-group">
           <%= f.label :level, "#" %>
           <%= f.number_field :level, class: 'form-control' %>
+          <% alllevels = @user.archivedlevels().reverse %>
+          <table class="table table-striped	table-sm">
+            <tbody>
+            <% alllevels.each do |w| %>
+                <tr>
+                  <td><%= w.content  %></td>
+                  <td><span style="color: grey;"><%= DateTime.parse(w.created_at.to_s).strftime('%d.%m.%Y')%></span></td>
+                  <td><%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, archived_info_path(w), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
         </div>
 
         <div class="form-group">
           <%= f.label :role, "Poste" %><br>
           <%= f.select(:role, [['Gardien', '1'], ['Défenseur', '2'], ['Milieu', '3'], ['Attaquant', '4']], {include_blank: true}) %>
+          <% allroles = @user.archivedroles().reverse %>
+          <table class="table table-striped	table-sm">
+            <tbody>
+            <% allroles.each do |w| %>
+                <tr>
+                  <td>
+                    <% if w.content.to_i == 1 %>
+                        Gardien
+                    <% end %>
+                    <% if w.content.to_i == 2 %>
+                        Défenseur
+                    <% end %>
+                    <% if w.content.to_i == 3 %>
+                        Milieu
+                    <% end %>
+                    <% if w.content.to_i == 4 %>
+                        Attaquant
+                    <% end %>
+                  </td>
+                  <td><span style="color: grey;"><%= DateTime.parse(w.created_at.to_s).strftime('%d.%m.%Y')%></span></td>
+                  <td><%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, archived_info_path(w), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
         </div>
 
 
@@ -248,7 +297,6 @@
             <div class="form-group">
               <%= f.label :weight, "Poids (kg)" %>
               <%= f.number_field :weight, class: 'form-control' %>
-              <br>
               <% allweights = @user.archivedweights().reverse %>
               <table class="table table-striped	table-sm">
                 <tbody>
@@ -266,7 +314,6 @@
             <div class="form-group">
               <%= f.label :height, "Taille (m)" %>
               <%= f.number_field :height, class: 'form-control' %>
-              <br>
               <% allheights = @user.archivedheights().reverse %>
               <table class="table table-striped	table-sm">
                 <tbody>

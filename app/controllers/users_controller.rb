@@ -80,7 +80,7 @@ class UsersController < ApplicationController
     # print('heloo')
     case params[:format]
       when 'staff'
-        @users = @users.select { |u| u.canrole == 'staff' } + @users.select { |u| u.canrole == 'medical' }
+        @users = @users.select { |u| u.canrole == 'staff' } + @users.select { |u| u.canrole == 'medical' } + @users.select { |u| u.canrole == 'admin' }
       when 'premiere'
         @users = @users.select { |u| u.canrole == 'premiere' }
       when 'm21'
@@ -188,6 +188,33 @@ class UsersController < ApplicationController
       heightinfo.fieldtype="height"
       heightinfo.user_id=@user.id
       heightinfo.save
+    end
+
+    #numero
+    if params[:user][:level].to_i!=@user.level && !@user.level.blank?
+      levelinfo= ArchivedInfo.new
+      levelinfo.content=@user.level
+      levelinfo.fieldtype="level"
+      levelinfo.user_id=@user.id
+      levelinfo.save
+    end
+
+    #poste
+    if params[:user][:role].to_i!=@user.role && !@user.role.blank?
+      levelrole= ArchivedInfo.new
+      levelrole.content=@user.role
+      levelrole.fieldtype="role"
+      levelrole.user_id=@user.id
+      levelrole.save
+    end
+
+    #canrole
+    if params[:user][:canrole]!=@user.canrole && !@user.canrole.blank?
+      levelcanrole= ArchivedInfo.new
+      levelcanrole.content=@user.canrole
+      levelcanrole.fieldtype="canrole"
+      levelcanrole.user_id=@user.id
+      levelcanrole.save
     end
 
     respond_to do |format|

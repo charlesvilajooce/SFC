@@ -155,4 +155,24 @@ class User < ApplicationRecord
     archived_infos = archived_infos.select { |archive| archive.fieldtype == 'height' }
     return archived_infos
   end
+
+  #numero
+  def archivedlevels()
+    archived_infos = self.archived_infos
+    archived_infos = archived_infos.select { |archive| archive.fieldtype == 'level' }
+    return archived_infos
+  end
+
+  #poste
+  def archivedroles()
+    archived_infos = self.archived_infos
+    archived_infos = archived_infos.select { |archive| archive.fieldtype == 'role' }
+    return archived_infos
+  end
+
+  def archivedcanroles()
+    archived_infos = self.archived_infos
+    archived_infos = archived_infos.select { |archive| archive.fieldtype == 'canrole' }
+    return archived_infos
+  end
 end
