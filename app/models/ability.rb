@@ -7,7 +7,7 @@ class Ability
 
     # can :sign_in, User
     user ||= User.new
-    if user.canrole == 'admin' || user.canrole == 'staff'  || user.canrole == 'medical'
+    if user.canrole == 'admin' || user.canrole == 'staff'  || user.canrole == 'medical' || user.canrole == 'staffpremier'
       can :manage, :all
       # can :index, :all
       # can :index, Event

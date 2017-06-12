@@ -51,14 +51,14 @@ class User < ApplicationRecord
 
   def isplayer(id)
     if(id == 0)
-      if(self.canrole == 'premiere' || self.canrole == 'academy' || self.canrole == 'm21' || self.canrole == 'm18' || self.canrole == 'm16' || self.canrole == 'm15' || self.canrole == 'fe14' || self.canrole == 'fe13'  || self.canrole == 'fe12'  || self.canrole == 'fe11'  || self.canrole == 'fc10' || self.canrole == 'fc9' || self.canrole == 'fc8'  || self.canrole == 'fc7')
+      if(self.canrole == 'archived' || self.canrole == 'premiere' || self.canrole == 'academy' || self.canrole == 'm21' || self.canrole == 'm18' || self.canrole == 'm16' || self.canrole == 'm15' || self.canrole == 'fe14' || self.canrole == 'fe13'  || self.canrole == 'fe12'  || self.canrole == 'fe11'  || self.canrole == 'fc10' || self.canrole == 'fc9' || self.canrole == 'fc8'  || self.canrole == 'fc7')
         return true
       else
         return false
       end
     else
       user = User.find(id)
-      if(user.canrole == 'premiere' || user.canrole == 'academy' || user.canrole == 'm21' || user.canrole == 'm18' || user.canrole == 'm16' || user.canrole == 'm15' || user.canrole == 'fe14' || user.canrole == 'fe13'  || user.canrole == 'fe12'  || user.canrole == 'fe11'  || user.canrole == 'fc10' || user.canrole == 'fc9' || user.canrole == 'fc8'  || user.canrole == 'fc7')
+      if(user.canrole == 'archived' ||  user.canrole == 'premiere' || user.canrole == 'academy' || user.canrole == 'm21' || user.canrole == 'm18' || user.canrole == 'm16' || user.canrole == 'm15' || user.canrole == 'fe14' || user.canrole == 'fe13'  || user.canrole == 'fe12'  || user.canrole == 'fe11'  || user.canrole == 'fc10' || user.canrole == 'fc9' || user.canrole == 'fc8'  || user.canrole == 'fc7')
 
         return true
       else
@@ -69,7 +69,7 @@ class User < ApplicationRecord
   end
 
   def isadmin()
-  if(self.canrole == 'admin' || self.canrole == 'staff' || self.canrole == 'medical')
+  if(self.canrole == 'admin' || self.canrole == 'staff' || self.canrole == 'medical' || self.canrole == 'staffpremiere')
     return true
   else
     return false
@@ -78,7 +78,7 @@ class User < ApplicationRecord
 
   def canviewmedical(playertobeviewedid)
 
-    if( playertobeviewedid == self.id || self.canrole == 'medical' || self.canrole == 'admin' )
+    if( playertobeviewedid == self.id || self.canrole == 'medical' || self.canrole == 'admin' || self.canrole == 'staffpremiere' )
       return true
     else
       return false
@@ -105,7 +105,7 @@ class User < ApplicationRecord
   end
 
   def canviewplayer(playertobeviewedid)
-    if(  ( (self.canrole == 'admin' || self.canrole == 'staff') && isplayer(playertobeviewedid) )  || (self.isplayer(0) && playertobeviewedid == self.id) )
+    if(  ( (self.canrole == 'admin' || self.canrole == 'staff' || self.canrole == 'medical' || self.canrole == 'staffpremiere') && isplayer(playertobeviewedid) )  || (self.isplayer(0) && playertobeviewedid == self.id) )
       return true
     else
       return false

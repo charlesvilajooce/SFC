@@ -80,9 +80,11 @@ class UsersController < ApplicationController
     # print('heloo')
     case params[:format]
       when 'staff'
-        @users = @users.select { |u| u.canrole == 'staff' } + @users.select { |u| u.canrole == 'medical' } + @users.select { |u| u.canrole == 'admin' }
+        @users = @users.select { |u| u.canrole == 'staff' } + @users.select { |u| u.canrole == 'medical' } + @users.select { |u| u.canrole == 'admin' } + @users.select { |u| u.canrole == 'staffpremiere' }
       when 'premiere'
         @users = @users.select { |u| u.canrole == 'premiere' }
+      when 'staffpremiere'
+        @users = @users.select { |u| u.canrole == 'satffpremiere' }
       when 'm21'
         @users = @users.select { |u| u.canrole == 'm21' }
       when 'm18'
@@ -107,6 +109,8 @@ class UsersController < ApplicationController
         @users = @users.select { |u| u.canrole == 'fc8' }
       when 'fc7'
         @users = @users.select { |u| u.canrole == 'fc7' }
+      when 'archived'
+        @users = @users.select { |u| u.canrole == 'archived' }
     end
   end
 

@@ -67,6 +67,7 @@ $( document ).ready(function() {
               <a class="dropdown-item" href="<%= users_path('fc9') %>">FC9</a>
               <a class="dropdown-item" href="<%= users_path('fc8') %>">FC8</a>
               <a class="dropdown-item" href="<%= users_path('fc7') %>">FC7</a>
+              <a class="dropdown-item" href="<%= users_path('archived') %>">Archivés</a>
             </div>
           </li>
           <% if current_user.canrole == 'premiere' || current_user.isadmin() %>
