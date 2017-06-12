@@ -11,7 +11,9 @@
       <div class="thumbnail">
         <% if @user.avatar.thumb.url!=nil %>
             <%= image_tag @user.avatar.url, class: 'img-fluid rounded mx-auto d-block img-thumbnail' %>
-            <%= link_to 'All', users_oldpics_path(@user.id), class: 'btn btn-primary' %>
+            <%=
+              # link_to 'All', users_oldpics_path(@user.id), class: 'btn btn-primary'
+            %>
         <% end %>
         <div class="caption">
           <center>
