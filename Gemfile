@@ -71,6 +71,11 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'rdoc'
 
+gem "figaro"
+
+gem "fog-aws"
+
+
 # Table ordering and filter
 gem 'jquery-datatables-rails'
 
