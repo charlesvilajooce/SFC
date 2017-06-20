@@ -270,7 +270,7 @@
             <% end %>
             <% if !@user.medication.blank? %>
                 <p>
-                  <strong>Médicament:</strong>
+                  <strong>Médication:</strong>
                   <%= @user.medication %>
                 </p>
             <% end %>
@@ -288,7 +288,7 @@
             <hr>
             <% if !@user.injury_archive.blank? %>
                 <p>
-                  <strong>Dossier médical:</strong><br/>
+                  <strong>Remarques médicales:</strong><br/>
                   <%= raw @user.getbrs(@user.injury_archive) %>
                 </p>
             <% end %>
@@ -300,6 +300,7 @@
                 string = ((doc.url.to_s).rpartition('/').last)
             %>
                 <a href="<%= doc.url %>" target="_blank" style="color: black !important;"><%= string %></a><br>
+                <a style="color:black !important;" href="<%= doc.url %>" target="_blank"><%= string %></a><br>
 
             <% end %>
             </div>

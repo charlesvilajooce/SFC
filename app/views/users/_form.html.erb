@@ -327,13 +327,19 @@
                 </tbody>
               </table>
             </div>
+            <div class="actions">
+              <%= f.submit 'Enregistrer', class: 'btn' %>
+            </div>
+          </div>
 
+          <% if (current_user.canviewmedical(@user.id)) %>
+          <div class="col-3">
             <div class="form-group">
               <%= f.label :allergies, "Allergies" %>
               <%= f.text_area :allergies, class: 'form-control' %>
             </div>
             <div class="form-group">
-              <%= f.label :medication, "Médicament" %>
+              <%= f.label :medication, "Médication" %>
               <%= f.text_area :medication, class: 'form-control' %>
             </div>
             <div class="form-group">
@@ -341,14 +347,12 @@
               <%= f.text_area :statictrouble, class: 'form-control' %>
             </div>
 
-            <div class="actions">
-              <%= f.submit 'Enregistrer', class: 'btn' %>
-            </div>
+
           </div>
 
 
-          <% if (current_user.canviewmedical(@user.id)) %>
-              <div class="col-6">
+
+              <div class="col-3">
 
 
                 <div class="form-group">
@@ -357,7 +361,7 @@
                 </div>
 
                 <div class="form-group">
-                  <%= f.label :injury_archive, "Dossier médical" %>
+                  <%= f.label :injury_archive, "Remarques médicales" %>
                   <%= f.text_area :injury_archive, class: 'form-control' %>
                 </div>
               </div>
