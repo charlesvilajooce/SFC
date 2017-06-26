@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'media/team'
+
   get 'public/team'
 
   resources :archived_infos

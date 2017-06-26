@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
 
-
+    can :public, :team
 
     # can :sign_in, User
     user ||= User.new
@@ -32,7 +32,7 @@ class Ability
         u.id == user.id
       end
     else
-
+      can :public, :team
       # can :manage, :all
     end
 
