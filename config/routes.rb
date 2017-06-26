@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'public/team'
+
   resources :archived_infos
   resources :injuries
   resources :documents
