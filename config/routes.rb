@@ -1,6 +1,21 @@
 Rails.application.routes.draw do
 
 
+  resources :terrains
+  resources :teams
+  resources :matches
+  get 'matches/live/:id', to: 'matches#live', as: 'live'
+  get 'matches/livemanager/:id', to: 'matches#livemanager', as: 'livemanager'
+  match 'matches/createevents', to: 'matches#createevents', as: 'matchevents', via: [:post]
+  get 'matches/deleteevents/:id/:matchid', to: 'matches#destroymatchevents', as: 'delete_matchevents'
+  match 'matches/createevent1users', to: 'matches#createevent1users', as: 'matchevent1users', via: [:post]
+  match 'matches/createevent2users', to: 'matches#createevent2users', as: 'matchevent2users', via: [:post]
+  get 'game_center/index'
+
+  get 'game_center/live'
+
+  get 'game_center/liveedit'
+
   get 'media/team'
 
   get 'public/team'

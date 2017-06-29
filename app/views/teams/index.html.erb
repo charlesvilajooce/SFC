@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Teams</h1>
+<%= link_to 'Retour aux matchs', matches_path , class: 'btn btn-primary'%>  <%= link_to 'New Team', new_team_path , class: 'btn btn-primary'%>
+<table class="table table-striped	">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Categorie</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><%= team.name %></td>
+        <td>
+          <% if team.category == 0 %>
+              Brack.ch
+          <% elsif %>
+              Autres
+          <% end %>
+        </td>
+        <td><%= link_to 'Editer', edit_team_path(team) , class: 'btn btn-primary'%></td>
+        <td><%= link_to 'Supprimer', team, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-primary'%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

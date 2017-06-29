@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628085930) do
+ActiveRecord::Schema.define(version: 20170626123127) do
 
   create_table "archived_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20170628085930) do
   end
 
   create_table "matches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "équipe"
+    t.integer  "équipe"
     t.string   "adversaire"
     t.string   "saison"
     t.integer  "scoreSfc"
@@ -91,14 +91,13 @@ ActiveRecord::Schema.define(version: 20170628085930) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.bigint   "when"
-    t.boolean  "live"
   end
 
   create_table "matchevent1users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "match_id"
     t.integer  "user_id"
     t.integer  "temps"
-    t.string   "thetype"
+    t.string   "type"
     t.string   "commentaire"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -111,7 +110,7 @@ ActiveRecord::Schema.define(version: 20170628085930) do
     t.integer  "user_one_id"
     t.integer  "user_two_id"
     t.integer  "temps"
-    t.string   "thetype"
+    t.string   "type"
     t.string   "commentaire"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -123,7 +122,7 @@ ActiveRecord::Schema.define(version: 20170628085930) do
   create_table "matchevents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "match_id"
     t.integer  "temps"
-    t.string   "thetype"
+    t.string   "type"
     t.string   "commentaire"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -133,7 +132,7 @@ ActiveRecord::Schema.define(version: 20170628085930) do
   create_table "matchlinks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "match_id"
     t.integer  "user_id"
-    t.string   "thetype"
+    t.string   "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["match_id"], name: "index_matchlinks_on_match_id", using: :btree
@@ -168,21 +167,6 @@ ActiveRecord::Schema.define(version: 20170628085930) do
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_subscriptions_on_event_id", using: :btree
     t.index ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
-  end
-
-  create_table "teams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.integer  "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "avatar"
-  end
-
-  create_table "terrains", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.integer  "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

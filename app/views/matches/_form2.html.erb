@@ -1,0 +1,90 @@
+<%= link_to 'Retour aux matchs', matches_path , class: 'btn btn-primary'%><br><br>
+
+<%= form_for(match) do |f| %>
+    <% if match.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+          <ul>
+            <% match.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+
+    <div class="row">
+      <div class="col-3">
+
+        <div class="form-group">
+          <%= f.label :équipe, "Equipe" %>
+          <%= f.select :équipe, options_for_select([["Première", "Première"], ["M21", "M21"], ["M18", "M18"], ["M16", "M16"], ["M15", "M15"], ["FE14", "FE14"], ["FE13", "FE13"], ["FE12", "FE12"], ["FE11", "FE11"], ["FC10", "FC10"], ["FC9", "FC9"], ["FC8", "FC8"], ["FC7", "FC7"]], match.équipe) %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :adversaire, "Adversaire" %>
+          <%
+            teams = Team.order('name').all
+            mains = []
+            teams.each do |team|
+              if (team.category == 0)
+                mains.push([team.name, team.id])
+              end
+            end
+            teams.each do |team|
+              if (team.category == 1)
+                mains.push([team.name, team.id])
+              end
+            end
+            %>
+            <%= f.select :adversaire, options_for_select(mains, match.adversaire) %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :saison, "Saison" %>
+          <%= f.select :saison, options_for_select([["2016/2017", "2016/2017"], ["2017/2018", "2017/2018"]], match.saison) %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :when, 'Date' %>
+          <%=
+            str = match.getdate(match.when)
+            f.datetime_local_field :when, value: str, class: 'form-control'
+          %>
+        </div>
+
+
+        <div class="form-group">
+          <%= f.label :competition, "Compétition" %>
+          <%= f.select :competition, options_for_select([["Brack.ch Challenge League", "Brack.ch Challenge League"]], match.competition) %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :terrain, "Terrain" %>
+          <%
+            teams = Terrain.order('name').all
+            mains = []
+            teams.each do |team|
+              if (team.category == 0)
+                mains.push([team.name, team.id])
+              end
+            end
+            teams.each do |team|
+              if (team.category == 1)
+                mains.push([team.name, team.id])
+              end
+            end
+          %>
+          <%= f.select :terrain, options_for_select(mains, match.terrain) %>
+        </div>
+
+
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      </div>
+    </div>
+<% end %>
+

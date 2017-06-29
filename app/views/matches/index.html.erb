@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Matches</h1>
+<%
+  @temps = Match.all
+  @temps.each do |m|
+    if m.live
+%>
+        <%= link_to 'GESTION DU LIVE', livemanager_path(m.id), class: 'btn btn-success' %><br><br>
+    <%
+      end
+      end
+    %>
+
+
+<%= link_to 'Nouveau Match', new_match_path, class: 'btn btn-primary' %>
+<% if (params[:format] == 'old') %>
+    <%= link_to 'Match à venir', matches_path, class: 'btn btn-primary' %>
+<% else %>
+    <%= link_to 'Anciens Match', matches_path('old'), class: 'btn btn-primary' %>
+<% end %>
+<%= link_to 'Gestion des équipes', teams_path, class: 'btn btn-primary' %>
+<%= link_to 'Gestion des terrains', terrains_path, class: 'btn btn-primary' %>
+
+<table class="table table-striped	">
+  <thead>
+  <tr>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @matches.each do |match| %>
+      <tr>
+        <td><%= Time.at(match.when).strftime '%d/%m/%Y à %H:%M' %></td>
+        <td><%= match.équipe %> vs. <%= Team.find(match.adversaire).name %></td>
+        <td><%= Terrain.find(match.terrain).name %></td>
+        <td><%= link_to 'Visualiser', match, class: 'btn btn-primary' %></td>
+        <td><%= link_to 'Editer', edit_match_path(match), class: 'btn btn-primary' %></td>
+        <td><%= link_to 'Supprimer', match, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %></td>
+        <td>
+          <% if (!match.live) %>
+              <%= link_to 'Go live', live_path(match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+          <% else %>
+              <%= link_to 'Fin du live', live_path(match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-success' %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

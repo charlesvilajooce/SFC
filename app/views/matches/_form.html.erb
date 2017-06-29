@@ -1,0 +1,276 @@
+<%= link_to 'Retour aux matchs', matches_path , class: 'btn btn-primary'%><br><br>
+<%= form_for(match) do |f| %>
+    <% if match.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+          <ul>
+            <% match.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+
+    <div class="row">
+      <div class="col-3">
+
+        <div class="form-group">
+          <%= f.label :équipe, "Equipe" %>
+          <%= f.select :équipe, options_for_select([["Première", "Première"], ["M21", "M21"], ["M18", "M18"], ["M16", "M16"], ["M15", "M15"], ["FE14", "FE14"], ["FE13", "FE13"], ["FE12", "FE12"], ["FE11", "FE11"], ["FC10", "FC10"], ["FC9", "FC9"], ["FC8", "FC8"], ["FC7", "FC7"]], match.équipe) %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :adversaire, "Adversaire" %>
+          <%
+            teams = Team.order('name').all
+            mains = []
+            teams.each do |team|
+              if (team.category == 0)
+                mains.push([team.name, team.id])
+              end
+            end
+            teams.each do |team|
+              if (team.category == 1)
+                mains.push([team.name, team.id])
+              end
+            end
+          %>
+          <%= f.select :adversaire, options_for_select(mains, match.adversaire) %>        </div>
+
+        <div class="form-group">
+          <%= f.label :saison, "Saison" %>
+          <%= f.select :saison, options_for_select([["2016/2017", "2016/2017"], ["2017/2018", "2017/2018"]], match.saison) %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :when , 'Date' %>
+          <%=
+            str = match.getdate(match.when)
+            f.datetime_local_field :when, value: str, class:'form-control'
+          %>
+        </div>
+
+
+        <!--<div class="form-group">-->
+          <!--<%= f.label :scoreSfc, "Score SFC" %>-->
+          <!--<%= f.text_field :scoreSfc, class: 'form-control' %>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+          <!--<%= f.label :scoreAdv, "Score adversaire" %>-->
+          <!--<%= f.text_field :scoreAdv, class: 'form-control' %>-->
+        <!--</div>-->
+        <div class="form-group">
+          <%= f.label :spectateurs, "Spectateur" %>
+          <%= f.text_field :spectateurs, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :competition, "Compétition" %>
+          <%= f.select :competition, options_for_select([["Brack.ch Challenge League", "Brack.ch Challenge League"]], match.competition) %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :terrain, "Terrain" %>
+          <%
+            teams = Terrain.order('name').all
+            mains = []
+            teams.each do |team|
+              if (team.category == 0)
+                mains.push([team.name, team.id])
+              end
+            end
+            teams.each do |team|
+              if (team.category == 1)
+                mains.push([team.name, team.id])
+              end
+            end
+          %>
+          <%= f.select :terrain, options_for_select(mains, match.terrain) %>        </div>
+
+        <div class="form-group">
+          <label for="match_hometitulaires">Titulaires home team</label>
+          <input class="form-control" id="input-tags" name="hometitulaires" type="text">
+        </div>
+        <div class="form-group">
+          <label for="match_homeremplacents">Remplacents home team</label>
+          <input class="form-control" id="input-tags2" name="homeremplacents" type="text">
+        </div>
+        <div class="form-group">
+          <label for="match_homeabsents">Absents home team</label>
+          <input class="form-control" id="input-tags3" name="homeabsents" type="text">
+        </div>
+
+        <div class="form-group">
+          <%= f.label :homeentrainer, "Entraineur home team" %>
+          <%= f.text_field :homeentrainer, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :awaytitulaires, "Titulaires away team" %>
+          <%= f.text_area :awaytitulaires, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :awayremplacants, "Remplacants away team" %>
+          <%= f.text_area :awayremplacants, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :awayabsents, "Remplacants away team" %>
+          <%= f.text_area :awayabsents, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :awayentrainer, "Entraineur away team" %>
+          <%= f.text_field :awayentrainer, class: 'form-control' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+    var $select = $('#input-tags').selectize({
+        plugins: ['remove_button'],
+        delimiter: ',',
+        valueField: 'id',
+
+        labelField: 'name',
+        searchField: 'name',
+        persist: false,
+        options: [
+            <%
+              players = User.where(canrole: 'premiere')
+              players.each do |player|
+            %>
+            {id: ' <%= player.id %>', name: '<%= player.getname() %>'},
+            <% end %>
+
+
+        ],
+        create: function (input) {
+            return {
+                value: input,
+                text: input
+            }
+        }
+    });
+
+
+    var selectize = $select[0].selectize;
+    var selected_items = [];
+    <%
+
+    match.matchlinks.each do |link|
+      %>
+    <% if link.thetype == 'titulaires' %>
+    <%= raw 'selected_items.push(selectize.search("'+link.user.getname().to_s+'").items[0].id);' %>
+    <% end %>
+    <%
+     end
+
+    %>
+    selectize.setValue(selected_items);
+    });
+
+</script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var $select = $('#input-tags2').selectize({
+            plugins: ['remove_button'],
+            delimiter: ',',
+            valueField: 'id',
+
+            labelField: 'name',
+            searchField: 'name',
+            persist: false,
+            options: [
+                <%
+                  players = User.where(canrole: 'premiere')
+                  players.each do |player|
+                %>
+                {id: ' <%= player.id %>', name: '<%= player.getname() %>'},
+                <% end %>
+
+
+            ],
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
+        });
+
+
+        var selectize = $select[0].selectize;
+        var selected_items = [];
+        <%
+
+        match.matchlinks.each do |link|
+          %>
+        <% if link.thetype == 'remplacents' %>
+        <%= raw 'selected_items.push(selectize.search("'+link.user.getname().to_s+'").items[0].id);' %>
+        <% end %>
+        <%
+         end
+
+        %>
+        selectize.setValue(selected_items);
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var $select = $('#input-tags3').selectize({
+            plugins: ['remove_button'],
+            delimiter: ',',
+            valueField: 'id',
+
+            labelField: 'name',
+            searchField: 'name',
+            persist: false,
+            options: [
+                <%
+                  players = User.where(canrole: 'premiere')
+                  players.each do |player|
+                %>
+                {id: ' <%= player.id %>', name: '<%= player.getname() %>'},
+                <% end %>
+
+
+            ],
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
+        });
+
+
+        var selectize = $select[0].selectize;
+        var selected_items = [];
+        <%
+
+        match.matchlinks.each do |link|
+          %>
+        <% if link.thetype == 'absents' %>
+        <%= raw 'selected_items.push(selectize.search("'+link.user.getname().to_s+'").items[0].id);' %>
+        <% end %>
+        <%
+         end
+
+        %>
+        selectize.setValue(selected_items);
+    });
+
+</script>

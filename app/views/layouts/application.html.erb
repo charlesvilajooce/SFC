@@ -79,6 +79,9 @@ $( document ).ready(function() {
           <li class="nav-item">
             <%= link_to 'Liste des évènements', events_path, :class => 'nav-link' %>
           </li>
+              <li class="nav-item">
+                <%= link_to 'Match', matches_path, :class => 'nav-link' %>
+              </li>
           <% end %>
       <% else %>
           <li class="nav-item" style="display: none;">

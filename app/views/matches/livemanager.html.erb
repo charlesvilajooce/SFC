@@ -1,0 +1,311 @@
+<div style="text-align: center">
+  <h1>
+    <img src="https://www.servette.biz/assets/logo-497bea835c6902038ce77c4bbd66d5f65eb99a0808091ac6cad2276d1e52d5bc.png" style="max-height:40px;"> <%= @match.équipe %>
+    vs. <%= Team.find(@match.adversaire).name %>
+    <img src="<%= Team.find(@match.adversaire).avatar %>" style="max-height:40px;"></h1>
+  <h2><%= Time.at(@match.when).strftime '%d/%m/%Y à %H:%M' %></h2>
+  <p>
+    <img src="https://www.servette.biz/assets/logo-497bea835c6902038ce77c4bbd66d5f65eb99a0808091ac6cad2276d1e52d5bc.png" style="max-height:40px;">
+    <%= @match.getteamscore() %> - <%= @match.getenemyscore() %>
+    <img src="<%= Team.find(@match.adversaire).avatar %>" style="max-height:40px;"></p>
+  <%= link_to 'Retour aux matchs', matches_path, class: 'btn btn-primary' %>
+  <br><br>
+
+  <button id="showsimple" class="btn btn-success">Evenement simple</button>
+  <button id="showone" class="btn btn-success">Evenement 1 joueur</button>
+  <button id="showtwo" class="btn btn-success">Evenement 2 joueurs</button>
+
+  <div style="display: none;" id="simple">
+    <%= form_for(@simple) do |f| %>
+
+        <% if @simple.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@simple.errors.count, "error") %> prohibited this match from being saved:</h2>
+              <ul>
+                <% @simple.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="row livescore">
+          <!--<div class="col-4"></div>-->
+          <div class="col-12">
+            <div class="form-group">
+              <%= f.label :temps, "Temps (min)" %>
+              <%= f.text_field :temps, class: 'form-control', style: 'width: 100px;' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :commentaire, "Commentaire" %>
+              <%= f.text_field :commentaire, class: 'form-control', style: 'width: 280px;' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :thetype, "Type" %>
+              <%= f.select :thetype, options_for_select(["Aucun", "Corner", "Coup franc", "But Adversaire", "Carton Jaunne Adversaire", "Carton Rouge Adversaire", "Remplacement Adversaire"], @simple.thetype) %>
+            </div>
+
+            <div class="form-group">
+              <%= f.hidden_field :match_id, :value => @match.id %>
+            </div>
+            <div class="actions">
+              <%= f.submit 'Ajouter', :class => 'btn btn-primary' %>
+            </div>
+          </div>
+          <!--<div class="col-4"></div>-->
+        </div>
+
+    <% end %>
+
+  </div>
+  <div style="display: none;" id="one">
+    <%= form_for(@one) do |f| %>
+
+        <% if @one.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@one.errors.count, "error") %> prohibited this match from being saved:</h2>
+              <ul>
+                <% @one.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="row livescore">
+          <!--<div class="col-4"></div>-->
+          <div class="col-12">
+            <div class="form-group">
+              <%= f.label :temps, "Temps (min)" %>
+              <%= f.text_field :temps, class: 'form-control', style: 'width: 100px;' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :user_id, "Joueur" %>
+              <%
+                @users = User.order(:name)
+                premiers = @users.select { |u| u.canrole == 'premiere' }
+                mains = []
+                premiers.each do |p|
+                  mains.push([p.getname(), p.id])
+                end
+
+              %>
+              <%= f.select :user_id, options_for_select(mains, @one.user_id) %>
+            </div>
+            <div class="form-group">
+              <%= f.label :commentaire, "Commentaire" %>
+              <%= f.text_field :commentaire, class: 'form-control', style: 'width: 280px;' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :thetype, "Type" %>
+              <%= f.select :thetype, options_for_select(["But", "Carton Jaune", "Carton Rouge", "Passe", "Sortie"], @one.thetype) %>
+            </div>
+
+            <div class="form-group">
+              <%= f.hidden_field :match_id, :value => @match.id %>
+            </div>
+            <div class="actions">
+              <%= f.submit 'Ajouter', :class => 'btn btn-primary' %>
+            </div>
+          </div>
+          <!--<div class="col-4"></div>-->
+        </div>
+
+    <% end %>
+  </div>
+  <div style="display: none;" id="two">
+    <%= form_for(@two) do |f| %>
+
+        <% if @two.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@two.errors.count, "error") %> prohibited this match from being saved:</h2>
+              <ul>
+                <% @two.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="row livescore">
+          <!--<div class="col-4"></div>-->
+          <div class="col-12">
+            <div class="form-group">
+              <%= f.label :temps, "Temps (min)" %>
+              <%= f.text_field :temps, class: 'form-control', style: 'width: 100px;' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :user_one_id, "Sortant" %>
+              <%
+                @users = User.order(:name)
+                premiers = @users.select { |u| u.canrole == 'premiere' }
+                mains = []
+                premiers.each do |p|
+                  mains.push([p.getname(), p.id])
+                end
+
+              %>
+              <%= f.select :user_one_id, options_for_select(mains, @two.user_one_id) %>
+            </div>
+            <div class="form-group">
+              <%= f.label :user_two_id, "Entrant" %>
+              <%
+                @users = User.order(:name)
+                premiers = @users.select { |u| u.canrole == 'premiere' }
+                mains = []
+                premiers.each do |p|
+                  mains.push([p.getname(), p.id])
+                end
+
+              %>
+              <%= f.select :user_two_id, options_for_select(mains, @two.user_two_id) %>
+            </div>
+            <div class="form-group">
+              <%= f.label :commentaire, "Commentaire" %>
+              <%= f.text_field :commentaire, class: 'form-control', style: 'width: 280px;' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :thetype, "Type" %>
+              <%= f.select :thetype, options_for_select(["Echange"], @two.thetype) %>
+            </div>
+
+            <div class="form-group">
+              <%= f.hidden_field :match_id, :value => @match.id %>
+            </div>
+            <div class="actions">
+              <%= f.submit 'Ajouter', :class => 'btn btn-primary' %>
+            </div>
+          </div>
+          <!--<div class="col-4"></div>-->
+        </div>
+
+    <% end %>
+  </div>
+
+  <table class="table table-striped	" style="text-align: left;">
+    <thead>
+    <th>
+      Temps (min)
+    </th>
+    <th>
+      Evenement
+    </th>
+    </thead>
+    <%
+      @matchevents = @match.matchevents
+      @matchevent1users = @match.matchevent1users
+      @matchevent2users = @match.matchevent2users
+
+      for i in 0..200 do
+    %>
+
+        <%
+          @matchevents.each do |me|
+            if me.temps == i
+        %>
+                <tr>
+                  <td>
+                    <%= i %>
+                  </td>
+                  <td>
+                    <%= raw me.commentaire %>
+                    <%= link_to 'Supprimer', delete_matchevents_path(id: me.id,matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary'%>
+                  </td>
+                </tr>
+            <% end end %>
+        <%
+          @matchevent1users.each do |me|
+            if me.temps == i
+        %>
+                <tr>
+                  <td>
+                    <%= i %>
+                    <% if !me.getimg().blank? %>
+                        <%= raw me.getimg() %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= raw me.gettext() %>
+                  </td>
+                </tr>
+            <% end end %>
+        <%
+          @matchevent2users.each do |me|
+            if me.temps == i
+        %>
+                <tr>
+                  <td>
+                    <%= i %>
+                  </td>
+                  <td>
+                    <%= raw me.gettext() %>
+                  </td>
+                </tr>
+            <% end end %>
+    <% end %>
+  </table>
+</div>
+
+
+
+<h2>Informations</h2>
+<%= link_to 'Editer', edit_match_path(@match), class: 'btn btn-primary' %>
+
+<p><b>Compétition :</b><%= @match.competition %></p>
+<p><b>Saison :</b><%= @match.saison %></p>
+<p><b>Terrain :</b><%= Terrain.find(@match.terrain).name %></p>
+<p><b>Spectateurs :</b><%= @match.spectateurs %></p>
+
+<div class="row">
+  <div class="col-md-6">
+    <h3>Home</h3>
+    <p><b>Home Entraineur : </b><%= @match.homeentrainer %></p>
+    <p><b>Home Titulaires : </b>
+      <% @match.matchlinks.each do |l|
+        if l.thetype == 'titulaires' %>
+              <br><%= l.user.getname() %>
+          <% end end %>
+    </p>
+    <p><b>Home Remplancants : </b>
+      <% @match.matchlinks.each do |l|
+        if l.thetype == 'remplacents' %>
+              <br><%= l.user.getname() %>
+          <% end end %></p>
+    <p><b>Home Absents : </b>
+      <% @match.matchlinks.each do |l|
+        if l.thetype == 'absents' %>
+              <br><%= l.user.getname() %>
+          <% end end %></p>
+  </div>
+  <div class="col-md-6">
+
+    <h3>Away</h3>
+    <p><b>Away Entraineur : </b><%= @match.awayentrainer %></p>
+    <p><b>Away Titulaires : </b><br><%= raw @match.getbrs(@match.awaytitulaires) %></p>
+    <p><b>Away Remplancants : </b><br><%= raw @match.getbrs(@match.awayremplacants) %></p>
+    <p><b>Away Absents : </b><br><%= raw @match.getbrs(@match.awayabsents) %></p>
+    <p id="notice"><%= notice %></p>
+  </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#showsimple").click(function () {
+            $("#simple").slideToggle();
+            $("#one").hide();
+            $("#two").hide();
+        });
+        $("#showone").click(function () {
+            $("#one").slideToggle();
+            $("#simple").hide();
+            $("#two").hide();
+        });
+        $("#showtwo").click(function () {
+            $("#two").slideToggle();
+            $("#one").hide();
+            $("#simple").hide();
+        });
+    });
+</script>

@@ -4,7 +4,7 @@ class CreateMatchevent1users < ActiveRecord::Migration[5.0]
       t.belongs_to :match, index: true
       t.belongs_to :user, index: true
       t.integer :temps
-      t.string :type
+      t.string :thetype
       t.string :commentaire
 
       t.timestamps

@@ -3,7 +3,7 @@ class CreateMatchlinks < ActiveRecord::Migration[5.0]
     create_table :matchlinks do |t|
       t.belongs_to :match, index: true
       t.belongs_to :user, index: true
-      t.string :type
+      t.string :thetype
 
       t.timestamps
     end

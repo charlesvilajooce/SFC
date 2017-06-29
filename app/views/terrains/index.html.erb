@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Terrains</h1>
+<%= link_to 'Retour aux matchs', matches_path , class: 'btn btn-primary'%> <%= link_to 'Nouveau Terrain', new_terrain_path , class: 'btn btn-primary'%>
+<table class="table table-striped	">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Categorie</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @terrains.each do |terrain| %>
+      <tr>
+        <td><%= terrain.name %></td>
+        <td>
+          <% if terrain.category == 0 %>
+              Brack.ch
+              <% elsif %>
+          Autres
+              <% end %>
+         </td>
+        <td><%= link_to 'Editer', edit_terrain_path(terrain) , class: 'btn btn-primary'%></td>
+        <td><%= link_to 'Supprimer', terrain, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-primary'%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
