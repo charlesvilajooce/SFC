@@ -191,6 +191,9 @@
     <th>
       Evenement
     </th>
+    <th>
+      Supprimer
+    </th>
     </thead>
     <%
       @matchevents = @match.matchevents
@@ -210,6 +213,8 @@
                   </td>
                   <td>
                     <%= raw me.commentaire %>
+                  </td>
+                  <td>
                     <%= link_to 'Supprimer', delete_matchevents_path(id: me.id,matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary'%>
                   </td>
                 </tr>
@@ -228,6 +233,7 @@
                   <td>
                     <%= raw me.gettext() %>
                   </td>
+                  <td></td>
                 </tr>
             <% end end %>
         <%
@@ -241,6 +247,7 @@
                   <td>
                     <%= raw me.gettext() %>
                   </td>
+                  <td></td>
                 </tr>
             <% end end %>
     <% end %>
