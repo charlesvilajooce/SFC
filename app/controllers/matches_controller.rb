@@ -184,6 +184,22 @@ class MatchesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def destroymatchevent1users
+    Matchevent1user.find(params[:id]).destroy
+    match = Match.find(params[:matchid])
+    respond_to do |format|
+      format.html { redirect_to livemanager_path(match.id), notice: 'Match was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+  def destroymatchevent2users
+    Matchevent2user.find(params[:id]).destroy
+    match = Match.find(params[:matchid])
+    respond_to do |format|
+      format.html { redirect_to livemanager_path(match.id), notice: 'Match was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 
   private
   # Use callbacks to share common setup or constraints between actions.

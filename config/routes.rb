@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'matches/livemanager/:id', to: 'matches#livemanager', as: 'livemanager'
   match 'matches/createevents', to: 'matches#createevents', as: 'matchevents', via: [:post]
   get 'matches/deleteevents/:id/:matchid', to: 'matches#destroymatchevents', as: 'delete_matchevents'
+  get 'matches/deleteevents1users/:id/:matchid', to: 'matches#destroymatchevent1users', as: 'delete_matchevent1users'
+  get 'matches/deleteevents2users/:id/:matchid', to: 'matches#destroymatchevent2users', as: 'delete_matchevent2users'
   match 'matches/createevent1users', to: 'matches#createevent1users', as: 'matchevent1users', via: [:post]
   match 'matches/createevent2users', to: 'matches#createevent2users', as: 'matchevent2users', via: [:post]
   get 'game_center/index'

@@ -233,7 +233,9 @@
                   <td>
                     <%= raw me.gettext() %>
                   </td>
-                  <td></td>
+                  <td>
+                    <%= link_to 'Supprimer', delete_matchevent1users_path(id: me.id,matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary'%>
+                  </td>
                 </tr>
             <% end end %>
         <%
@@ -247,7 +249,9 @@
                   <td>
                     <%= raw me.gettext() %>
                   </td>
-                  <td></td>
+                  <td>
+                    <%= link_to 'Supprimer', delete_matchevent2users_path(id: me.id,matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary'%>
+                  </td>
                 </tr>
             <% end end %>
     <% end %>
