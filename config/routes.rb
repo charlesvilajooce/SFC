@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'public/team'
   get 'public/currentmatch'
   get 'public/nextmatch'
+  get 'public/nextmatches'
 
   resources :archived_infos
   resources :injuries

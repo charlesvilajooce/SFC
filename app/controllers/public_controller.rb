@@ -14,4 +14,7 @@ class PublicController < ApplicationController
   def nextmatch
     render :partial => "public/nextmatch.html"
   end
+  def nextmatches
+    render :partial => "public/nextmatches.html"
+  end
 end

@@ -1,0 +1,62 @@
+<%
+
+  matches = Match.all.select { |u| u.when > Time.now.to_i }
+  matches = matches.sort_by &:when
+
+
+%>
+
+<a href="calendrier.html">
+  <h3 class="titre text-grenat">Prochains matchs</h3>
+</a>
+<div class="row">
+  <% if !matches[0].blank?
+  match = matches[0] %>
+      <div class="col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 row-prochains-matchs-1">
+        <div class="card text-center border-dark no-border-r text-gold grad">
+          <div class="card-block text-gold">
+            <p class="prochains-matchs-small"><strong><%= Time.at(match.when).strftime '%d/%m/%Y' %></strong><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
+            <h4 class="card-title">
+              <img class="img-team" src="<%= Team.find(match.adversaire).avatar %>">
+            </h4>
+            <p class="prochains-matchs-small fixed-h"><%= Team.find(match.adversaire).name %></p>
+            <a href="#" class="btn btn-primary bouton-billets">Billets</a>
+            <p class="stade prochains-matchs-small"><%= Terrain.find(match.terrain).name %></p>
+          </div>
+        </div>
+      </div>
+  <% end %>
+  <% if !matches[1].blank?
+       match = matches[1] %>
+      <div class="col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 row-prochains-matchs-2">
+        <div class="card text-center no-border-r text-gold grey">
+          <div class="card-block">
+            <p class="prochains-matchs-small"><strong><%= Time.at(match.when).strftime '%d/%m/%Y' %></strong><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
+            <h4 class="card-title">
+              <img class="img-team" src="<%= Team.find(match.adversaire).avatar %>">
+            </h4>
+            <p class="prochains-matchs-small fixed-h"><%= Team.find(match.adversaire).name %></p>
+            <a href="#" class="btn btn-primary bouton-billets">Billets</a>
+            <p class="stade prochains-matchs-small"><%= Terrain.find(match.terrain).name %></p>
+          </div>
+        </div>
+      </div>
+  <% end %>
+  <% if !matches[2].blank?
+       match = matches[2] %>
+      <div class="col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 row-prochains-matchs-2">
+        <div class="card text-center no-border-r text-gold grey">
+          <div class="card-block">
+            <p class="prochains-matchs-small"><strong><%= Time.at(match.when).strftime '%d/%m/%Y' %></strong><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
+            <h4 class="card-title">
+              <img class="img-team" src="<%= Team.find(match.adversaire).avatar %>">
+            </h4>
+            <p class="prochains-matchs-small fixed-h"><%= Team.find(match.adversaire).name %></p>
+            <a href="#" class="btn btn-primary bouton-billets">Billets</a>
+            <p class="stade prochains-matchs-small"><%= Terrain.find(match.terrain).name %></p>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>
+<a href="#" class="link">Plus de calendrier...</a>
