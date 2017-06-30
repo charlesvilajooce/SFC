@@ -1,0 +1,45 @@
+<%
+
+  matches = Match.all.select { |u| u.when > Time.now.to_i }
+  matches = matches.sort_by &:when
+
+  if !matches.empty?
+    match = matches[0]
+    if match.live
+      if !matches[1].blank?
+        match = matches[1]
+      else
+        match = ''
+      end
+    end
+  end
+
+%>
+
+<% if !match.blank?%>
+
+<div class="card card-ext">
+  <div class="card-header text-gold card-titre titre">
+    Prochain match
+  </div>
+  <div class="card text-center grad no-border-r border-dark card-match" style="width: 100%;">
+    <div class="row row-score">
+      <div class="col-6 img-domicile aligner servette">
+        <img class="img-score" src="https://www.servette.biz/assets/logo-497bea835c6902038ce77c4bbd66d5f65eb99a0808091ac6cad2276d1e52d5bc.png" alt="SFC">
+      </div>
+      <div class="col-6 img-visiteur aligner">
+        <img class="img-score logoadversaire-prochainmatch" src="<%= Team.find(match.adversaire).avatar %>" alt="Winterthour">
+      </div>
+    </div>
+    <div class="card-block no-pb">
+      <h4 class="card-title text-gold versus"><%= match.équipe %> - <%= Team.find(match.adversaire).name %></h4>
+      <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %></p>
+    </div>
+    <div class="card-footer card-match-footer no-border">
+      <a href="#" class="btn btn-primary bouton-billets">Acheter des Billets</a>
+    </div>
+  </div>
+</div>
+
+
+<% end %>

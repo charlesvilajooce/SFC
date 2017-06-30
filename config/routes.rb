@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get 'media/team'
 
   get 'public/team'
+  get 'public/currentmatch'
+  get 'public/nextmatch'
 
   resources :archived_infos
   resources :injuries
