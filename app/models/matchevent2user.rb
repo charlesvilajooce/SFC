@@ -3,7 +3,7 @@ class Matchevent2user < ApplicationRecord
   belongs_to :user_two, :class_name => 'User', :foreign_key => 'user_two_id'
 
   def gettext()
-    if(!self.commentaire.blank?)
+    if (!self.commentaire.blank?)
       return self.commentaire
     else
       case self.thetype
@@ -12,5 +12,16 @@ class Matchevent2user < ApplicationRecord
       end
     end
   end
+
+  def getimg()
+
+    case self.thetype
+      when "Echange"
+        return ("<img src='/images/livescore/substitution.png' style='' >")
+      else
+
+    end
+  end
+
 
 end
