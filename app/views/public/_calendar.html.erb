@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<
+
+<h1>Calendrier</h1>
+
+
+<table class="table table-striped	">
+  <thead>
+  <tr>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @matches.each do |match| %>
+      <tr>
+        <td><%= Time.at(match.when).strftime '%d/%m/%y' %></td>
+        <td><%= Time.at(match.when).strftime '%H:%M' %></td>
+        <td><img src="<%= match.getcoupe() %>" class="coupeimage"></td>
+        <td>
+          <% if match.home %>
+              <%= match.équipe %>
+          <% else %>
+              <%= match.adversaire.name %>
+          <% end %>
+        </td>
+        <td>
+          <% if !match.home %>
+              <%= match.équipe %>
+          <% else %>
+              <%= match.adversaire.name %>
+          <% end %>
+        </td>
+        <td>
+          <% if match.home %>
+              <%= match.getteamscore() %> - <%= match.getenemyscore() %>
+          <% else %>
+              <%= match.getenemyscore() %> - <%= match.getteamscore() %>
+          <% end %>
+
+        </td>
+        <td>
+          <a href="<%= match.photos %>"><i class="fa fa-camera" aria-hidden="true"></i></a>
+          <a href="<%= match.videos %>"><i class="fa fa-video-camera" aria-hidden="true"></i></a>
+          <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170703103722) do
+ActiveRecord::Schema.define(version: 20170703123829) do
 
   create_table "archived_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 20170703103722) do
     t.bigint   "when"
     t.boolean  "live"
     t.boolean  "home"
+    t.string   "photos"
+    t.string   "videos"
     t.index ["adversaire_id"], name: "index_matches_on_adversaire_id", using: :btree
     t.index ["terrain_id"], name: "index_matches_on_terrain_id", using: :btree
   end

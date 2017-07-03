@@ -68,7 +68,7 @@
         </div>
         <div class="form-group">
           <%= f.label :competition, "Compétition" %>
-          <%= f.select :competition, options_for_select([["Brack.ch Challenge League", "Brack.ch Challenge League"]], match.competition) %>
+          <%= f.select :competition, options_for_select([["Brack.ch Challenge League", "Brack.ch Challenge League"],["Amical", "Amical"],["Coupe Suisse", "Coupe Suisse"]], match.competition) %>
         </div>
 
         <div class="form-group">
@@ -92,6 +92,14 @@
         <div class="form-group">
           <%= f.label :home, "Domicile" %>
           <%= f.check_box :home, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :photos, "URL photos" %>
+          <%= f.text_field :photos, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :videos, "URL videos" %>
+          <%= f.text_field :videos, class: 'form-control' %>
         </div>
 
         <div class="form-group">

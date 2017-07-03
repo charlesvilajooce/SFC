@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-          <%= f.label :adversaire, "Adversaire" %>
+          <%= f.label :adversaire_id, "Adversaire" %>
           <%
             teams = Team.order('name').all
             mains = []
@@ -39,7 +39,7 @@
               end
             end
             %>
-            <%= f.select :adversaire, options_for_select(mains, match.adversaire) %>
+            <%= f.select :adversaire_id, options_for_select(mains, match.adversaire_id) %>
         </div>
 
         <div class="form-group">
@@ -54,15 +54,19 @@
             f.datetime_local_field :when, value: str, class: 'form-control'
           %>
         </div>
+        <div class="form-group">
+          <%= f.label :home, "Domicile" %>
+          <%= f.check_box :home, class: 'form-control' %>
+        </div>
 
 
         <div class="form-group">
           <%= f.label :competition, "Compétition" %>
-          <%= f.select :competition, options_for_select([["Brack.ch Challenge League", "Brack.ch Challenge League"]], match.competition) %>
+          <%= f.select :competition, options_for_select([["Brack.ch Challenge League", "Brack.ch Challenge League"],["Amical", "Amical"],["Coupe Suisse", "Coupe Suisse"]], match.competition) %>
         </div>
 
         <div class="form-group">
-          <%= f.label :terrain, "Terrain" %>
+          <%= f.label :terrain_id, "Terrain" %>
           <%
             teams = Terrain.order('name').all
             mains = []
@@ -77,7 +81,7 @@
               end
             end
           %>
-          <%= f.select :terrain, options_for_select(mains, match.terrain) %>
+          <%= f.select :terrain_id, options_for_select(mains, match.terrain_id) %>
         </div>
 
 

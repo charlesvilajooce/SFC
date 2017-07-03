@@ -11,6 +11,13 @@ class PublicController < ApplicationController
   def live
     render :partial => "public/live.html"
   end
+  def calendar
+    @matches = Match.all
+                   # .select { |u| u.when+90*60 > Time.now.to_i }
+    @matches = @matches.sort_by &:when
+
+    render :partial => "public/calendar.html"
+  end
   def currentmatch
     render :partial => "public/currentmatch.html"
   end

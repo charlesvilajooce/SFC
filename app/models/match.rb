@@ -42,6 +42,18 @@ class Match < ApplicationRecord
     end
   end
 
+  def getcoupe()
+
+    if self.competition == 'Brack.ch Challenge League'
+      return 'https://www.servette.biz/images/CatBrackChallengeLeague.png'
+    end
+    if self.competition == 'Amical'
+      return 'https://www.servette.biz/images/amical.png'
+    end
+    if self.competition == 'Coupe Suiss'
+      return 'https://www.servette.biz/images/catCoupeSuiss.png'
+    end
+  end
   def getlength()
 
     temps = 90

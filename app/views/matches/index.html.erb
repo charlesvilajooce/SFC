@@ -33,7 +33,7 @@
   <% @matches.each do |match| %>
       <tr>
         <td><%= Time.at(match.when).strftime '%d/%m/%Y à %H:%M' %></td>
-        <td><%= match.équipe %> vs. <%= Team.find(match.adversaire).name %></td>
+        <td><%= match.équipe %> vs. <%= match.adversaire.name %></td>
         <td><%= match.terrain.name %></td>
         <td><%= link_to 'Visualiser', match, class: 'btn btn-primary' %></td>
         <td><%= link_to 'Editer', edit_match_path(match), class: 'btn btn-primary' %></td>

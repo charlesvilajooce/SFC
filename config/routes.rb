@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get 'public/team'
   get 'public/live'
+  get 'public/calendar'
   get 'public/currentmatch'
   get 'public/nextmatch'
   get 'public/nextmatches'
