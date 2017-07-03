@@ -1,6 +1,6 @@
 <h3 class="titre text-grenat">Prochains matchs</h3>
 <div class="row justify-content-center">
-  <div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 mb">
+
 <%
 
   matches = Match.all.select { |u| u.when > Time.now.to_i }
@@ -11,7 +11,7 @@
 <% if ! matches[0].blank?
 match = matches[0]
 %>
-
+      <div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 mb">
     <div class="card card-ext">
       <div class="card text-center grad no-border-r border-dark card-match" style="width: 100%;">
         <div class="row row-score">
@@ -45,13 +45,14 @@ match = matches[0]
         </div>
       </div>
     </div>
+      </div>
 <% end %>
 
 
 <% if ! matches[1].blank?
      match = matches[1]
 %>
-
+      <div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 mb">
     <div class="card card-ext">
       <div class="card text-center grad no-border-r border-dark card-match" style="width: 100%;">
         <div class="row row-score">
@@ -85,13 +86,14 @@ match = matches[0]
         </div>
       </div>
     </div>
+      </div>
 <% end %>
 
 
 <% if ! matches[2].blank?
      match = matches[2]
 %>
-
+      <div class="col-4 col-xl-4 col-lg-4 nodisplaymobile mb">
     <div class="card card-ext">
       <div class="card text-center grad no-border-r border-dark card-match" style="width: 100%;">
         <div class="row row-score">
@@ -125,11 +127,12 @@ match = matches[0]
         </div>
       </div>
     </div>
+      </div>
 <% end %>
 
-  </div></div>
+</div>
 
-<h1>Calendrier</h1>
+<h1 class="titre text-grenat">Calendrier</h1>
 
 
 <table class="table table-striped	">
