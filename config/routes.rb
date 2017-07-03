@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'media/team'
 
   get 'public/team'
+  get 'public/live'
   get 'public/currentmatch'
   get 'public/nextmatch'
   get 'public/nextmatches'

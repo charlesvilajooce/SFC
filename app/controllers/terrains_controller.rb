@@ -69,6 +69,6 @@ class TerrainsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def terrain_params
-      params.require(:terrain).permit(:name, :category)
+      params.require(:terrain).permit(:name, :category,:street,:city,:zip)
     end
 end

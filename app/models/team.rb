@@ -1,4 +1,5 @@
 class Team < ApplicationRecord
+  has_many :matches
   mount_uploader :avatar, AvatarUploader
 
   validates_processing_of :avatar

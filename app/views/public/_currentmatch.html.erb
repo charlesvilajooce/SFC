@@ -1,56 +1,90 @@
 <%
   livegame = false
+  display = false
+  match = Match.new
+
   matches = Match.all
   matches.each do |m|
     if m.live
       livegame = true
       match = m
+      display = true
     end
   end
+
   if !livegame
     matches = Match.all.select { |u| u.when < Time.now.to_i }
     matches = matches.sort_by &:when
+
+    if !matches.empty?
+      match = matches[0]
+      display = true
+    end
+
   end
 
-  if !matches.empty?
-    match = matches[0]
-  end
 
 %>
 
-<% if !match.blank?%>
-<div class="card card-ext">
-  <div class="card-header text-white card-titre titre">
-    <% if livegame %>
-        Match Live
-    <% else %>
-        Dernier match
-    <% end %>
-  </div>
-  <div class="card text-center grad no-border-r border-dark card-match">
-    <div class="row row-score row-derniermatch">
+<% if display %>
+    <div class="card card-ext">
+      <div class="card-header text-white card-titre titre">
+        <% if livegame %>
+            Match Live
+        <% else %>
+            Dernier match
+        <% end %>
+      </div>
+      <div class="card text-center grad no-border-r border-dark card-match">
+        <div class="row row-score row-derniermatch">
 
-      <div class="col-3 img-domicile aligner no-border">
-        <img class="img-score" src="https://www.servette.biz/assets/logo-497bea835c6902038ce77c4bbd66d5f65eb99a0808091ac6cad2276d1e52d5bc.png" alt="FC WIL">
-      </div>
-      <div class="col-3 col-score">
-        <div class="score"><%= match.getteamscore() %></div>
-      </div>
-      <div class="col-3 col-score">
-        <div class="score"><%= match.getenemyscore() %></div>
-      </div>
-      <div class="col-3 img-visiteur aligner no-border">
-        <img class="img-score logosfc-derniermatch" src="<%= Team.find(match.adversaire).avatar %>" alt="SFC">
+          <div class="col-3 img-domicile aligner no-border">
+            <% if match.home %>
+                <img class="img-score" src="/images/logo_servettefc.png" alt="FC WIL">
+            <% else %>
+                <img class="img-score logosfc-derniermatch" src="<%= match.adversaire.avatar %>" alt="SFC">
+            <% end %>
+          </div>
+          <div class="col-3 col-score">
+            <div class="score">
+              <% if match.home %>
+                  <%= match.getteamscore() %>
+              <% else %>
+                  <%= match.getenemyscore() %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-3 col-score">
+            <div class="score">
+              <% if !match.home %>
+                  <%= match.getteamscore() %>
+              <% else %>
+                  <%= match.getenemyscore() %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-3 img-visiteur aligner no-border">
+            <% if !match.home %>
+                <img class="img-score" src="/images/logo_servettefc.png" alt="FC WIL">
+            <% else %>
+                <img class="img-score logosfc-derniermatch" src="<%= match.adversaire.avatar %>" alt="SFC">
+            <% end %>
+          </div>
+        </div>
+        <div class="card-block card-match-padding">
+          <h4 class="card-title text-gold versus">
+            <% if match.home %>
+                <%= match.équipe %> - <%= match.adversaire.name %>
+            <% else %>
+                <%= match.adversaire.name %> - <%= match.équipe %>
+            <% end %>
+          </h4>
+          <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %></p>
+        </div>
+        <div class="card-footer card-match-footer no-border">
+          <a href="#" class="btn btn-primary bouton-rapport">Rapport du match</a>
+        </div>
       </div>
     </div>
-    <div class="card-block card-match-padding">
-      <h4 class="card-title text-gold versus"><%= match.équipe %> - <%= Team.find(match.adversaire).name %></h4>
-      <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %></p>
-    </div>
-    <div class="card-footer card-match-footer no-border">
-      <a href="#" class="btn btn-primary bouton-rapport">Rapport du match</a>
-    </div>
-  </div>
-</div>
 
 <% end %>

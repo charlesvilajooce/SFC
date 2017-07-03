@@ -23,6 +23,21 @@
       <%= f.select :category, options_for_select([["Brack.ch", "0"], ["Autres", "1"]], terrain.category) %>
     </div>
 
+    <div class="field">
+      <%= f.label :street %>
+      <%= f.text_field :street %>
+    </div>
+
+    <div class="field">
+      <%= f.label :city %>
+      <%= f.text_field :city %>
+    </div>
+
+    <div class="field">
+      <%= f.label :zip %>
+      <%= f.text_field :zip %>
+    </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -34,13 +34,17 @@
       <tr>
         <td><%= Time.at(match.when).strftime '%d/%m/%Y à %H:%M' %></td>
         <td><%= match.équipe %> vs. <%= Team.find(match.adversaire).name %></td>
-        <td><%= Terrain.find(match.terrain).name %></td>
+        <td><%= match.terrain.name %></td>
         <td><%= link_to 'Visualiser', match, class: 'btn btn-primary' %></td>
         <td><%= link_to 'Editer', edit_match_path(match), class: 'btn btn-primary' %></td>
         <td><%= link_to 'Supprimer', match, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %></td>
         <td>
           <% if (!match.live) %>
-              <%= link_to 'Go live', live_path(match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+              <% if !(params[:format] == 'old') %>
+                  <%= link_to 'Go live', live_path(match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+              <% else %>
+                  <%= link_to 'Editer Evènements',  livemanager_path(match.id), class: 'btn btn-primary' %>
+              <% end %>
           <% else %>
               <%= link_to 'Fin du live', live_path(match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-success' %>
           <% end %>

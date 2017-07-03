@@ -1,0 +1,10 @@
+heroku run rake db:migrate:status --app sfctest
+
+heroku run rake db:migrate:down VERSION="20170629222505" --app sfctest
+heroku run rake db:migrate:down VERSION="20170630071618" --app sfctest
+heroku run rake db:migrate:down VERSION="20170630071225" --app sfctest
+heroku run rake db:migrate:down VERSION="20170628085930" --app sfctest
+heroku run rake db:migrate:down VERSION="20170628075246" --app sfctest
+
+20170628075246
+heroku run rake db:migrate:down VERSION"" --app sfctest

@@ -1,20 +1,39 @@
 <div style="text-align: center">
   <h1>
-    <img src="https://www.servette.biz/assets/logo-497bea835c6902038ce77c4bbd66d5f65eb99a0808091ac6cad2276d1e52d5bc.png" style="max-height:40px;"> <%= @match.équipe %>
-    vs. <%= Team.find(@match.adversaire).name %>
-    <img src="<%= Team.find(@match.adversaire).avatar %>" style="max-height:40px;"></h1>
+    <% if @match.home %>
+        <%= @match.équipe %> vs. <%= @match.adversaire.name %>
+    <% else %>
+        <%= @match.adversaire.name %> vs. <%= @match.équipe %>
+    <% end %>
+  </h1>
   <h2><%= Time.at(@match.when).strftime '%d/%m/%Y à %H:%M' %></h2>
   <p>
-    <img src="https://www.servette.biz/assets/logo-497bea835c6902038ce77c4bbd66d5f65eb99a0808091ac6cad2276d1e52d5bc.png" style="max-height:40px;">
-    <%= @match.getteamscore() %> - <%= @match.getenemyscore() %>
-    <img src="<%= Team.find(@match.adversaire).avatar %>" style="max-height:40px;"></p>
-  <%= link_to 'Retour aux matchs', matches_path, class: 'btn btn-primary' %>
-  <br><br>
+    <% if @match.home %>
+        <img class="img-score" style="max-height:40px;" src="/images/logo_servettefc.png" alt="FC WIL">
+    <% else %>
+        <img src="<%= @match.adversaire.avatar %>" style="max-height:40px;">
+    <% end %>
 
+    <% if @match.home %>
+        <%= @match.getteamscore() %> - <%= @match.getenemyscore() %>
+    <% else %>
+        <%= @match.getenemyscore() %> - <%= @match.getteamscore() %>
+    <% end %>
+
+    <% if !@match.home %>
+        <img class="img-score" style="max-height:40px;" src="/images/logo_servettefc.png" alt="FC WIL">
+    <% else %>
+        <img src="<%= @match.adversaire.avatar %>" style="max-height:40px;">
+    <% end %>
+  </p>
+
+    <%= link_to 'Retour aux matchs', matches_path, class: 'btn btn-primary' %>
+
+  <bR><bR>
   <button id="showsimple" class="btn btn-success">Evenement simple</button>
   <button id="showone" class="btn btn-success">Evenement 1 joueur</button>
   <button id="showtwo" class="btn btn-success">Evenement 2 joueurs</button>
-
+  <br><br>
   <div style="display: none;" id="simple">
     <%= form_for(@simple) do |f| %>
 
@@ -42,7 +61,7 @@
             </div>
             <div class="form-group">
               <%= f.label :thetype, "Type" %>
-              <%= f.select :thetype, options_for_select(["Aucun", "Corner", "Coup franc", "But Adversaire", "Carton Jaune Adversaire", "Carton Rouge Adversaire", "Remplacement Adversaire"], @simple.thetype) %>
+              <%= f.select :thetype, options_for_select(["Aucun", "Corner", "Coup franc", "But Adversaire", "Carton Jaune Adversaire", "Carton Rouge Adversaire", "Remplacement Adversaire","Sifflet","Fin de match"], @simple.thetype) %>
             </div>
 
             <div class="form-group">
@@ -136,7 +155,7 @@
             </div>
 
             <div class="form-group">
-              <%= f.label :user_one_id, "Sortant" %>
+              <%= f.label :user_one_id, "Sortant/Butteur" %>
               <%
                 @users = User.order(:name)
                 premiers = @users.select { |u| u.canrole == 'premiere' }
@@ -149,7 +168,7 @@
               <%= f.select :user_one_id, options_for_select(mains, @two.user_one_id) %>
             </div>
             <div class="form-group">
-              <%= f.label :user_two_id, "Entrant" %>
+              <%= f.label :user_two_id, "Entrant/Passeur" %>
               <%
                 @users = User.order(:name)
                 premiers = @users.select { |u| u.canrole == 'premiere' }
@@ -167,7 +186,7 @@
             </div>
             <div class="form-group">
               <%= f.label :thetype, "Type" %>
-              <%= f.select :thetype, options_for_select(["Echange"], @two.thetype) %>
+              <%= f.select :thetype, options_for_select(["Echange","But"], @two.thetype) %>
             </div>
 
             <div class="form-group">
@@ -271,7 +290,7 @@
 
 <p><b>Compétition :</b><%= @match.competition %></p>
 <p><b>Saison :</b><%= @match.saison %></p>
-<p><b>Terrain :</b><%= Terrain.find(@match.terrain).name %></p>
+<p><b>Terrain :</b><%= @match.terrain.name %></p>
 <p><b>Spectateurs :</b><%= @match.spectateurs %></p>
 
 <div class="row">

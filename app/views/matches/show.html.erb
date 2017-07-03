@@ -1,44 +1,69 @@
-<h1><img src="https://www.servette.biz/assets/logo-497bea835c6902038ce77c4bbd66d5f65eb99a0808091ac6cad2276d1e52d5bc.png" style="max-height:40px;"> <%= @match.équipe %> vs. <%= Team.find(@match.adversaire).name %> <img src="<%= Team.find(@match.adversaire).avatar %>" style="max-height:40px;"></h1>
-<h2><%= Time.at(@match.when).strftime '%d/%m/%Y à %H:%M' %></h2>
+<div style="text-align: center">
+  <h1>
+    <% if @match.home %>
+        <%= @match.équipe %> vs. <%= @match.adversaire.name %>
+    <% else %>
+        <%= @match.adversaire.name %> vs. <%= @match.équipe %>
+    <% end %>
+  </h1>
+  <h2><%= Time.at(@match.when).strftime '%d/%m/%Y à %H:%M' %></h2>
+  <p>
+    <% if @match.home %>
+        <img class="img-score" style="max-height:40px;" src="/images/logo_servettefc.png" alt="FC WIL">
+    <% else %>
+        <img src="<%= @match.adversaire.avatar %>" style="max-height:40px;">
+    <% end %>
+
+    <% if @match.home %>
+        <%= @match.getteamscore() %> - <%= @match.getenemyscore() %>
+    <% else %>
+        <%= @match.getenemyscore() %> - <%= @match.getteamscore() %>
+    <% end %>
+
+    <% if !@match.home %>
+        <img class="img-score" style="max-height:40px;" src="/images/logo_servettefc.png" alt="FC WIL">
+    <% else %>
+        <img src="<%= @match.adversaire.avatar %>" style="max-height:40px;">
+    <% end %>
+  </p>
 <%= link_to 'Retour aux matchs', matches_path, class: 'btn btn-primary' %>
 <%= link_to 'Editer', edit_match_path(@match), class: 'btn btn-primary' %>
 <br><br>
+  <p><b>Compétition :</b><%= @match.competition %></p>
+  <p><b>Saison :</b><%= @match.saison %></p>
+  <p><b>Terrain :</b><%= @match.terrain.name %></p>
+  <p><b>Spectateurs :</b><%= @match.spectateurs %></p>
 
-<p><b>Compétition :</b><%= @match.competition %></p>
-<p><b>Saison :</b><%= @match.saison %></p>
-<p><b>Terrain :</b><%= Terrain.find(@match.terrain).name %></p>
-<p><b>Spectateurs :</b><%= @match.spectateurs %></p>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Home</h3>
+      <p><b>Home Entraineur : </b><%= @match.homeentrainer %></p>
+      <p><b>Home Titulaires : </b>
+        <% @match.matchlinks.each do |l|
+          if l.thetype == 'titulaires' %>
+                <br><%= l.user.getname() %>
+            <% end end %>
+      </p>
+      <p><b>Home Remplancants : </b>
+        <% @match.matchlinks.each do |l|
+          if l.thetype == 'remplacents' %>
+                <br><%= l.user.getname() %>
+            <% end end %></p>
+      <p><b>Home Absents : </b>
+        <% @match.matchlinks.each do |l|
+          if l.thetype == 'absents' %>
+                <br><%= l.user.getname() %>
+            <% end end %></p>
+    </div>
+    <div class="col-md-6">
 
-<div class="row">
-  <div class="col-md-6">
-    <h3>Home</h3>
-    <p><b>Home Entraineur : </b><%= @match.homeentrainer %></p>
-    <p><b>Home Titulaires : </b>
-      <% @match.matchlinks.each do |l|
-        if l.thetype == 'titulaires' %>
-              <br><%= l.user.getname() %>
-          <% end end %>
-    </p>
-    <p><b>Home Remplancants : </b>
-      <% @match.matchlinks.each do |l|
-        if l.thetype == 'remplacents' %>
-              <br><%= l.user.getname() %>
-          <% end end %></p>
-    <p><b>Home Absents : </b>
-      <% @match.matchlinks.each do |l|
-        if l.thetype == 'absents' %>
-              <br><%= l.user.getname() %>
-          <% end end %></p>
+      <h3>Away</h3>
+      <p><b>Away Entraineur : </b><%= @match.awayentrainer %></p>
+      <p><b>Away Titulaires : </b><br><%= raw @match.getbrs(@match.awaytitulaires) %></p>
+      <p><b>Away Remplancants : </b><br><%= raw @match.getbrs(@match.awayremplacants) %></p>
+      <p><b>Away Absents : </b><br><%= raw @match.getbrs(@match.awayabsents) %></p>
+      <p id="notice"><%= notice %></p>
+    </div>
   </div>
-  <div class="col-md-6">
-
-    <h3>Away</h3>
-    <p><b>Away Entraineur : </b><%= @match.awayentrainer %></p>
-    <p><b>Away Titulaires : </b><br><%= raw @match.getbrs(@match.awaytitulaires) %></p>
-    <p><b>Away Remplancants : </b><br><%= raw @match.getbrs(@match.awayremplacants) %></p>
-    <p><b>Away Absents : </b><br><%= raw @match.getbrs(@match.awayabsents) %></p>
-    <p id="notice"><%= notice %></p>
-  </div>
-</div>
 
 

@@ -5,11 +5,11 @@ class MatchesController < ApplicationController
   # GET /matches.json
   def index
     if (params[:format] == 'old')
-      @matches = Match.all.select { |u| u.when < Time.now.to_i }
+      @matches = Match.all.select { |u| u.when+90*60 < Time.now.to_i }
       @matches = @matches.sort_by &:when
       @matches = @matches.reverse
     else
-      @matches = Match.all.select { |u| u.when > Time.now.to_i }
+      @matches = Match.all.select { |u| u.when+90*60 > Time.now.to_i }
       @matches = @matches.sort_by &:when
 
     end
@@ -209,7 +209,7 @@ class MatchesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def match_params
-    params.require(:match).permit(:when, :équipe, :adversaire, :saison, :scoreSfc, :scoreAdv, :spectateurs, :competition, :terrain, :hometitulaires, :homeremplacents, :homeabsents, :homeentrainer, :awaytitulaires, :awayremplacents, :awayabsents, :awayentrainer)
+    params.require(:match).permit(:home,:when, :équipe, :adversaire_id, :saison, :scoreSfc, :scoreAdv, :spectateurs, :competition, :terrain_id, :hometitulaires, :homeremplacents, :homeabsents, :homeentrainer, :awaytitulaires, :awayremplacents, :awayabsents, :awayentrainer)
   end
   def matchevent_params
     params.require(:matchevent).permit(:match_id, :commentaire, :temps, :thetype)

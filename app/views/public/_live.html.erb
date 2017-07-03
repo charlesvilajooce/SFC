@@ -1,0 +1,90 @@
+<%
+  livegame = false
+  display = false
+  match = Match.new
+
+  matches = Match.all
+  matches.each do |m|
+    if m.live
+      livegame = true
+      match = m
+      display = true
+    end
+  end
+
+  if !livegame
+    matches = Match.all.select { |u| u.when+180*60 > Time.now.to_i }
+    matches = matches.sort_by &:when
+
+    if !matches.empty?
+      match = matches[0]
+      display = true
+    end
+
+  end
+
+
+%>
+
+<% if display %>
+    <div class="row">
+      <div class="col-md-4">
+        <p>
+          Date: <%= Time.at(match.when).strftime '%d/%m/%Y' %>
+          <br/>
+          Heure: <%= Time.at(match.when).strftime '%H:%M' %>
+        </p>
+      </div>
+      <div class="col-md-4">
+
+      </div>
+      <div class="col-md-4">
+        <%=
+          match.terrain.name
+        %>
+        <br/>
+        <%= match.terrain.zip %>
+        <%= match.terrain.street %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <% if match.home %>
+            <%= match.équipe %><bR>
+            <img class="img-score" style="max-height:40px;" src="/images/logo_servettefc.png" alt="FC WIL">
+            <br>
+            <span class="scorebox"><%= match.teamscore() %></span>
+        <% else %>
+            <%= match.adversaire.name %><bR>
+            <img class="img-score" style="max-height:40px;" src="<%= match.adversaire.avatar %>" alt="FC WIL">
+            <br>
+            <span class="scorebox"><%= match.getenemyscore() %></span>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+
+      </div>
+      <div class="col-md-4">
+        <% if !match.home %>
+            <%= match.équipe %><bR>
+            <img class="img-score" style="max-height:40px;" src="/images/logo_servettefc.png" alt="FC WIL">
+            <br>
+            <span class="scorebox"><%= match.getteamscore() %></span>
+        <% else %>
+            <%= match.adversaire.name %><bR>
+            <img class="img-score" style="max-height:40px;" src="<%= match.adversaire.avatar %>" alt="FC WIL">
+            <br>
+            <span class="scorebox"><%= match.getenemyscore() %></span>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+
+      </div>
+      <div class="col-md-4">
+
+      </div>
+    </div>
+<% end %>

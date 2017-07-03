@@ -83,3 +83,5 @@ gem 'jquery-datatables-rails'
 gem "font-awesome-rails"
 
 gem "selectize-rails"
+
+gem "nokogiri"

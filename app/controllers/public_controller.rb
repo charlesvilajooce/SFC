@@ -8,6 +8,9 @@ class PublicController < ApplicationController
   def team
     render :partial => "public/team.html"
   end
+  def live
+    render :partial => "public/live.html"
+  end
   def currentmatch
     render :partial => "public/currentmatch.html"
   end

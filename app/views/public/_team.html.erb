@@ -21,7 +21,7 @@
           <p class="text-player"><%= user.getname() %></p>
           <% roles = ['Gardien','Défenseur','Milieu','Attaquant'] %>
           <% if ! user.role.blank? %>
-          <p class="text-player text-s"><%= roles[user.role] %></p>
+          <p class="text-player text-s"><%= roles[user.role-1] %></p>
           <% end %>
         </div>
 

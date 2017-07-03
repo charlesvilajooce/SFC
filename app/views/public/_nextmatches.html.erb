@@ -17,11 +17,11 @@
           <div class="card-block text-gold">
             <p class="prochains-matchs-small"><strong><%= Time.at(match.when).strftime '%d/%m/%Y' %></strong><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
             <h4 class="card-title">
-              <img class="img-team" src="<%= Team.find(match.adversaire).avatar %>">
+              <img class="img-team" src="<%= match.adversaire.avatar %>">
             </h4>
-            <p class="prochains-matchs-small fixed-h"><%= Team.find(match.adversaire).name %></p>
+            <p class="prochains-matchs-small fixed-h"><%= match.adversaire.name %></p>
             <a href="#" class="btn btn-primary bouton-billets">Billets</a>
-            <p class="stade prochains-matchs-small"><%= Terrain.find(match.terrain).name %></p>
+            <p class="stade prochains-matchs-small"><%= match.terrain.name %></p>
           </div>
         </div>
       </div>
@@ -33,11 +33,11 @@
           <div class="card-block">
             <p class="prochains-matchs-small"><strong><%= Time.at(match.when).strftime '%d/%m/%Y' %></strong><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
             <h4 class="card-title">
-              <img class="img-team" src="<%= Team.find(match.adversaire).avatar %>">
+              <img class="img-team" src="<%= match.adversaire.avatar %>">
             </h4>
-            <p class="prochains-matchs-small fixed-h"><%= Team.find(match.adversaire).name %></p>
+            <p class="prochains-matchs-small fixed-h"><%= match.adversaire.name %></p>
             <a href="#" class="btn btn-primary bouton-billets">Billets</a>
-            <p class="stade prochains-matchs-small"><%= Terrain.find(match.terrain).name %></p>
+            <p class="stade prochains-matchs-small"><%= match.terrain.name %></p>
           </div>
         </div>
       </div>
@@ -49,11 +49,11 @@
           <div class="card-block">
             <p class="prochains-matchs-small"><strong><%= Time.at(match.when).strftime '%d/%m/%Y' %></strong><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
             <h4 class="card-title">
-              <img class="img-team" src="<%= Team.find(match.adversaire).avatar %>">
+              <img class="img-team" src="<%= match.adversaire.avatar %>">
             </h4>
-            <p class="prochains-matchs-small fixed-h"><%= Team.find(match.adversaire).name %></p>
+            <p class="prochains-matchs-small fixed-h"><%= match.adversaire.name %></p>
             <a href="#" class="btn btn-primary bouton-billets">Billets</a>
-            <p class="stade prochains-matchs-small"><%= Terrain.find(match.terrain).name %></p>
+            <p class="stade prochains-matchs-small"><%= match.terrain.name %></p>
           </div>
         </div>
       </div>

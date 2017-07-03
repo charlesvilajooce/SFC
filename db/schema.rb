@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630071618) do
+ActiveRecord::Schema.define(version: 20170702213159) do
 
   create_table "archived_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -72,14 +72,14 @@ ActiveRecord::Schema.define(version: 20170630071618) do
   end
 
   create_table "matches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "équipe"
-    t.string   "adversaire"
     t.string   "saison"
     t.integer  "scoreSfc"
     t.integer  "scoreAdv"
     t.string   "spectateurs"
     t.string   "competition"
-    t.string   "terrain"
+    t.integer  "terrain_id"
+    t.string   "équipe"
+    t.integer  "adversaire_id"
     t.string   "hometitulaires"
     t.string   "homeremplacants"
     t.string   "homeentrainer"
@@ -92,6 +92,9 @@ ActiveRecord::Schema.define(version: 20170630071618) do
     t.datetime "updated_at",      null: false
     t.bigint   "when"
     t.boolean  "live"
+    t.boolean  "home"
+    t.index ["adversaire_id"], name: "index_matches_on_adversaire_id", using: :btree
+    t.index ["terrain_id"], name: "index_matches_on_terrain_id", using: :btree
   end
 
   create_table "matchevent1users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -183,6 +186,9 @@ ActiveRecord::Schema.define(version: 20170630071618) do
     t.integer  "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "street"
+    t.string   "city"
+    t.string   "zip"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

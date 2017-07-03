@@ -18,6 +18,8 @@ class Matchevent < ApplicationRecord
           return ("Coup franc")
         when "Corner"
           return ("Corner")
+        when "Fin de match"
+          return ("Fin de match")
         else
 
       end
@@ -36,6 +38,12 @@ class Matchevent < ApplicationRecord
         return ("<img src='/images/livescore/substitution.png' style='' >")
       when "Corner"
         return ("<img src='/images/livescore/corner.png' style='' >")
+      when "Coup franc"
+        return ("<img src='/images/livescore/freekick.png' style='' >")
+      when "Sifflet"
+        return ("<img src='/images/livescore/whistle.png' style='' >")
+      when "Fin de match"
+        return ("<img src='/images/livescore/whistle.png' style='' >")
       else
     end
 

@@ -9,6 +9,8 @@ class Matchevent2user < ApplicationRecord
       case self.thetype
         when "Echange"
           return ("Sortie de "+User.find(self.user_one_id).getname()+" pour "+User.find(self.user_two_id).getname())
+        when "But"
+          return ("But de "+User.find(self.user_one_id).getname()+" avec la passe de "+User.find(self.user_two_id).getname())
       end
     end
   end
@@ -18,6 +20,8 @@ class Matchevent2user < ApplicationRecord
     case self.thetype
       when "Echange"
         return ("<img src='/images/livescore/substitution.png' style='' >")
+      when "But"
+        return ("<img src='/images/livescore/goal.png' style='' >")
       else
 
     end
