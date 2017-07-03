@@ -1,6 +1,6 @@
 <%= params[:alias] %>
 
-<% player = User.where(:alias == params[:alias]).order("created_on DESC").find(1) %>
+<% player = User.where(:alias == params[:alias]).find(1) %>
 
 <% if !player.blank? %>
     <%= player.getname() %>
