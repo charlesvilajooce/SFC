@@ -1,48 +1,4 @@
 <div class="row">
-  <div class="col-12 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-left">
-    <div class="row justify-content-center">
-      <div class="col-12 col-xl-12 col-lg-12 col-md-7 col-sm-9">
-        <h3 class="titre-2 text-grenat">Meilleur buteur</h3>
-        <div class="grad stats">
-          <% temp = User.new
-             i = 0
-             temp.getbestgoalers().each do |player| %>
-              <% if i < 5 %>
-                  <p class="card-text"><b><%= User.find(player[0]).getname() %></b>  <%= player[1] %> buts</p>
-              <% end %>
-              <% i = i+1 %>
-          <% end %>
-        </div>
-      </div>
-      <div class="col-12 col-xl-12 col-lg-12 col-md-7 col-sm-9">
-        <h3 class="titre-2 text-grenat">Meilleur passeur</h3>
-        <div class="grad stats">
-          <% temp = User.new
-             i = 0
-             temp.getbestassists().each do |player| %>
-              <% if i < 5 %>
-                  <p class="card-text"><b><%= User.find(player[0]).getname() %></b>  <%= player[1] %> passes</p>
-              <% end %>
-              <% i = i+1 %>
-          <% end %>
-        </div>
-      </div>
-      <div class="col-12 col-xl-12 col-lg-12 col-md-7 col-sm-9">
-        <h3 class="titre-2 text-grenat">Temps de jeu</h3>
-        <div class="grad stats">
-          <% temp = User.new
-             i = 0
-             temp.getbesttimers().each do |player| %>
-              <% if i < 5 %>
-                  <p class="card-text"><b><%= User.find(player[0]).getname() %></b>  <%= player[1] %> minutes</p>
-              <% end %>
-              <% i = i+1 %>
-          <% end %>
-        </div>
-        <p class="link">Source : <a href="http://www.sfl.ch">sfl.ch</a></p>
-      </div>
-    </div>
-  </div>
   <div class="col-12 col-xl-8 col-lg-8 col-md-12 col-sm-12 mb">
     <h3 class="titre text-grenat">Effectif</h3>
     <table class="table table-striped table-hover">
