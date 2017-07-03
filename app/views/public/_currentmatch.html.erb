@@ -82,7 +82,7 @@
           <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
         </div>
         <div class="card-footer card-match-footer no-border">
-          <a href="<%= public_live_path(match.id) %>" class="btn btn-primary bouton-rapport">Rapport du match</a>
+          <a href="/demo/servette/index.php/match?gameid=<%= match.id %>" class="btn btn-primary bouton-rapport">Rapport du match</a>
         </div>
       </div>
     </div>

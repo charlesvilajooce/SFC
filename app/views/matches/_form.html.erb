@@ -19,7 +19,12 @@
 
         <div class="form-group">
           <%= f.label :équipe, "Equipe" %>
-          <%= f.select :équipe, options_for_select([["Premiere", "Premiere"], ["M21", "M21"], ["M18", "M18"], ["M16", "M16"], ["M15", "M15"], ["FE14", "FE14"], ["FE13", "FE13"], ["FE12", "FE12"], ["FE11", "FE11"], ["FC10", "FC10"], ["FC9", "FC9"], ["FC8", "FC8"], ["FC7", "FC7"]], match.équipe) %>
+          <%=
+            f.select :équipe, options_for_select([["Servette FC", "Servette FC"]], match.équipe)
+          %>
+          <%=
+            # f.select :équipe, options_for_select([["Premiere", "Premiere"], ["M21", "M21"], ["M18", "M18"], ["M16", "M16"], ["M15", "M15"], ["FE14", "FE14"], ["FE13", "FE13"], ["FE12", "FE12"], ["FE11", "FE11"], ["FC10", "FC10"], ["FC9", "FC9"], ["FC8", "FC8"], ["FC7", "FC7"]], match.équipe)
+          %>
         </div>
 
         <div class="form-group">
