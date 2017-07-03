@@ -36,7 +36,8 @@ class User < ApplicationRecord
 
 
   def getbestgoalers()
-    users = User.order(:name)
+
+    users = User.all.order(:name)
     users = users.select { |u| u.isplayer(u.id) == true }
     players = users.select { |u| u.canrole == 'premiere' }
     butteurs = []
@@ -52,7 +53,7 @@ class User < ApplicationRecord
   end
 
   def getbestassists()
-    users = User.order(:name)
+    users = User.all.order(:name)
     users = users.select { |u| u.isplayer(u.id) == true }
     players = users.select { |u| u.canrole == 'premiere' }
     butteurs = []
@@ -68,7 +69,7 @@ class User < ApplicationRecord
   end
 
   def getbesttimers()
-    users = User.order(:name)
+    users = User.all.order(:name)
     users = users.select { |u| u.isplayer(u.id) == true }
     players = users.select { |u| u.canrole == 'premiere' }
     butteurs = []
