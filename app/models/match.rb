@@ -22,7 +22,7 @@ class Match < ApplicationRecord
   end
 
   def getteamscore()
-    if (self.when < Time.now.to_i || self.matchevent1users.size+self.matchevent2users.size+self.matchevents.size > 0)
+    if (self.when < Time.now.to_i || self.live || self.matchevent1users.size+self.matchevent2users.size+self.matchevents.size > 0)
       potentials = self.matchevent1users.select { |u| u.thetype == "But" }
       potentials2 = self.matchevent2users.select { |u| u.thetype == "But" }
       return (potentials.size+potentials2.size)
@@ -34,7 +34,7 @@ class Match < ApplicationRecord
 
 
   def getenemyscore()
-    if (self.when < Time.now.to_i || self.matchevent1users.size+self.matchevent2users.size+self.matchevents.size > 0)
+    if (self.when < Time.now.to_i || self.live || self.matchevent1users.size+self.matchevent2users.size+self.matchevents.size > 0)
     potentials = self.matchevents.select { |u| u.thetype == "But Adversaire" }
     return potentials.size
     else

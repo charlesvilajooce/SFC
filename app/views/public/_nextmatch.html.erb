@@ -47,7 +47,7 @@
                 <%= match.adversaire.name %> - <%= match.équipe %>
             <% end %>
           </h4>
-          <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %></p>
+          <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
         </div>
         <div class="card-footer card-match-footer no-border">
           <a href="#" class="btn btn-primary bouton-billets">Acheter des Billets</a>
