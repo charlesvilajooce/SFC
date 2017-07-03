@@ -53,7 +53,7 @@
             <%= match.équipe %><bR>
             <img class="img-score" style="max-height:40px;" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
             <br>
-            <span class="scorebox"><%= match.teamscore() %></span>
+            <span class="scorebox"><%= match.getteamscore() %></span>
         <% else %>
             <%= match.adversaire.name %><bR>
             <img class="img-score" style="max-height:40px;" src="<%= match.adversaire.avatar %>" alt="FC WIL">
