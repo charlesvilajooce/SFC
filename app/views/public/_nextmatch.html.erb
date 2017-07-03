@@ -26,14 +26,14 @@
         <div class="row row-score">
           <div class="col-6 img-domicile aligner servette">
             <% if match.home %>
-                <img class="img-score" src="/images/logo_servettefc.png" alt="FC WIL">
+                <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
             <% else %>
                 <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
             <% end %>
           </div>
           <div class="col-6 img-visiteur aligner">
             <% if !match.home %>
-                <img class="img-score" src="/images/logo_servettefc.png" alt="FC WIL">
+                <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
             <% else %>
                 <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
             <% end %>
