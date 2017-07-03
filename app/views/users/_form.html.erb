@@ -49,6 +49,12 @@
         <% if (current_user.canrole == 'admin') %>
             <h3>Admin</h3>
             <div class="form-group">
+              <%= f.label :alias, "Alias URL" %>
+              <br>
+              <%= f.text_field :alias, class:'form-control'  %>
+            </div>
+
+            <div class="form-group">
               <%= f.label :canrole, "Groupe d'utilisateurs" %>
               <br>
               <%= f.select :canrole, options_for_select([["Admin", "admin"], ["Staff Première", "staffpremiere"], ["Staff", "staff"], ["Medical", "medical"], ["Première", "premiere"], ["M21", "m21"], ["M18", "m18"], ["M16", "m16"], ["M15", "m15"], ["FE14", "fe14"], ["FE13", "fe13"], ["FE12", "fe12"], ["FE11", "fe11"], ["FC10", "fc10"], ["FC9", "fc9"], ["FC8", "fc8"], ["FC7", "fc7"], ["Archivé", "archived"], ["Non défini", "undefined"]], user.canrole) %>
