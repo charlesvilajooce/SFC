@@ -23,6 +23,13 @@
 
   end
 
+
+
+
+  if !params[:id].blank?
+    match = Match.find(params[:id])
+  end
+
   @match = match
 %>
 
