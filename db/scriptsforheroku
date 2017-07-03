@@ -1,5 +1,6 @@
 heroku run rake db:migrate:status --app sfctest
 heroku logs --app sfctest
+ heroku run "bundle exec rake db:schema:dump && cat db/schema.rb" --app sfctest
 
 heroku run rake db:migrate:up VERSION="20170630071618" --app sfctest
 heroku run rake db:migrate:up VERSION="20170630071618" --app sfctest
@@ -11,4 +12,4 @@ heroku run rake db:migrate --app sfctest
 
 
 20170628075246
-heroku run rake db:migrate:down VERSION"" --app sfctest
+heroku run rake db:migrate:down VERSION""  --app sfctest
