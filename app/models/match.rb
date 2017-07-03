@@ -64,6 +64,9 @@ class Match < ApplicationRecord
         end
       end
     end
+    if self.when > Time.now.to_i
+      temps = 0
+    end
     return temps
   end
 

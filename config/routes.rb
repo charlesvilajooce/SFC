@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'public/team'
   get 'public/live/:id', to: 'public#live', as: 'public_live'
   get 'public/live'
+  get 'public/effectif'
 
   get 'public/calendar'
   get 'public/currentmatch'

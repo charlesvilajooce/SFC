@@ -1,134 +1,137 @@
 <h3 class="titre text-grenat">Prochains matchs</h3>
 <div class="row justify-content-center">
 
-<%
+  <%
 
-  matches = Match.all.select { |u| u.when > Time.now.to_i }
-  matches = matches.sort_by &:when
+    matches = Match.all.select { |u| u.when > Time.now.to_i }
+    matches = matches.sort_by &:when
 
-%>
+  %>
 
-<% if ! matches[0].blank?
-match = matches[0]
-%>
+  <% if !matches[0].blank?
+       match = matches[0]
+  %>
       <div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 mb">
-    <div class="card card-ext">
-      <div class="card text-center grad no-border-r border-dark card-match" style="width: 100%;">
-        <div class="row row-score">
-          <div class="col-6 img-domicile aligner servette">
-            <% if match.home %>
-                <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
-            <% else %>
-                <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
-            <% end %>
+        <div class="card card-ext">
+          <div class="card text-center grad no-border-r border-dark card-match" style="width: 100%;">
+            <div class="row row-score">
+              <div class="col-6 img-domicile aligner servette">
+                <% if match.home %>
+                    <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
+                <% else %>
+                    <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
+                <% end %>
+              </div>
+              <div class="col-6 img-visiteur aligner">
+                <% if !match.home %>
+                    <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
+                <% else %>
+                    <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
+                <% end %>
+              </div>
+            </div>
+            <div class="card-block no-pb">
+              <h4 class="card-title text-gold versus">
+                <% if match.home %>
+                    <%= match.équipe %> - <%= match.adversaire.name %>
+                <% else %>
+                    <%= match.adversaire.name %> - <%= match.équipe %>
+                <% end %>
+              </h4>
+              <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %>
+                <br/><%= Time.at(match.when).strftime '%H:%M' %></p>
+            </div>
+            <div class="card-footer card-match-footer no-border">
+              <a href="https://www.eventimsports.de/ols/SFC/fr/championnat/channel/shop/index" class="btn btn-primary bouton-billets">Acheter des Billets</a>
+            </div>
           </div>
-          <div class="col-6 img-visiteur aligner">
-            <% if !match.home %>
-                <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
-            <% else %>
-                <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
-            <% end %>
-          </div>
-        </div>
-        <div class="card-block no-pb">
-          <h4 class="card-title text-gold versus">
-            <% if match.home %>
-                <%= match.équipe %> - <%= match.adversaire.name %>
-            <% else %>
-                <%= match.adversaire.name %> - <%= match.équipe %>
-            <% end %>
-          </h4>
-          <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
-        </div>
-        <div class="card-footer card-match-footer no-border">
-          <a href="#" class="btn btn-primary bouton-billets">Acheter des Billets</a>
         </div>
       </div>
-    </div>
-      </div>
-<% end %>
+  <% end %>
 
 
-<% if ! matches[1].blank?
-     match = matches[1]
-%>
+  <% if !matches[1].blank?
+       match = matches[1]
+  %>
       <div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 mb">
-    <div class="card card-ext">
-      <div class="card text-center grad no-border-r border-dark card-match" style="width: 100%;">
-        <div class="row row-score">
-          <div class="col-6 img-domicile aligner servette">
-            <% if match.home %>
-                <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
-            <% else %>
-                <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
-            <% end %>
+        <div class="card card-ext">
+          <div class="card text-center grad no-border-r border-dark card-match" style="width: 100%;">
+            <div class="row row-score">
+              <div class="col-6 img-domicile aligner servette">
+                <% if match.home %>
+                    <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
+                <% else %>
+                    <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
+                <% end %>
+              </div>
+              <div class="col-6 img-visiteur aligner">
+                <% if !match.home %>
+                    <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
+                <% else %>
+                    <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
+                <% end %>
+              </div>
+            </div>
+            <div class="card-block no-pb">
+              <h4 class="card-title text-gold versus">
+                <% if match.home %>
+                    <%= match.équipe %> - <%= match.adversaire.name %>
+                <% else %>
+                    <%= match.adversaire.name %> - <%= match.équipe %>
+                <% end %>
+              </h4>
+              <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %>
+                <br/><%= Time.at(match.when).strftime '%H:%M' %></p>
+            </div>
+            <div class="card-footer card-match-footer no-border">
+              <a href="https://www.eventimsports.de/ols/SFC/fr/championnat/channel/shop/index" class="btn btn-primary bouton-billets">Acheter des Billets</a>
+            </div>
           </div>
-          <div class="col-6 img-visiteur aligner">
-            <% if !match.home %>
-                <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
-            <% else %>
-                <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
-            <% end %>
-          </div>
-        </div>
-        <div class="card-block no-pb">
-          <h4 class="card-title text-gold versus">
-            <% if match.home %>
-                <%= match.équipe %> - <%= match.adversaire.name %>
-            <% else %>
-                <%= match.adversaire.name %> - <%= match.équipe %>
-            <% end %>
-          </h4>
-          <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
-        </div>
-        <div class="card-footer card-match-footer no-border">
-          <a href="#" class="btn btn-primary bouton-billets">Acheter des Billets</a>
         </div>
       </div>
-    </div>
-      </div>
-<% end %>
+  <% end %>
 
 
-<% if ! matches[2].blank?
-     match = matches[2]
-%>
+  <% if !matches[2].blank?
+       match = matches[2]
+  %>
       <div class="col-4 col-xl-4 col-lg-4 nodisplaymobile mb">
-    <div class="card card-ext">
-      <div class="card text-center grad no-border-r border-dark card-match" style="width: 100%;">
-        <div class="row row-score">
-          <div class="col-6 img-domicile aligner servette">
-            <% if match.home %>
-                <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
-            <% else %>
-                <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
-            <% end %>
+        <div class="card card-ext">
+          <div class="card text-center grad no-border-r border-dark card-match" style="width: 100%;">
+            <div class="row row-score">
+              <div class="col-6 img-domicile aligner servette">
+                <% if match.home %>
+                    <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
+                <% else %>
+                    <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
+                <% end %>
+              </div>
+              <div class="col-6 img-visiteur aligner">
+                <% if !match.home %>
+                    <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
+                <% else %>
+                    <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
+                <% end %>
+              </div>
+            </div>
+            <div class="card-block no-pb">
+              <h4 class="card-title text-gold versus">
+                <% if match.home %>
+                    <%= match.équipe %> - <%= match.adversaire.name %>
+                <% else %>
+                    <%= match.adversaire.name %> - <%= match.équipe %>
+                <% end %>
+              </h4>
+              <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %>
+                <br/><%= Time.at(match.when).strftime '%H:%M' %></p>
+            </div>
+            <div class="card-footer card-match-footer no-border">
+              <a href="https://www.eventimsports.de/ols/SFC/fr/championnat/channel/shop/index" class="btn btn-primary bouton-billets">Acheter des Billets</a>
+            </div>
           </div>
-          <div class="col-6 img-visiteur aligner">
-            <% if !match.home %>
-                <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
-            <% else %>
-                <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
-            <% end %>
-          </div>
-        </div>
-        <div class="card-block no-pb">
-          <h4 class="card-title text-gold versus">
-            <% if match.home %>
-                <%= match.équipe %> - <%= match.adversaire.name %>
-            <% else %>
-                <%= match.adversaire.name %> - <%= match.équipe %>
-            <% end %>
-          </h4>
-          <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
-        </div>
-        <div class="card-footer card-match-footer no-border">
-          <a href="#" class="btn btn-primary bouton-billets">Acheter des Billets</a>
         </div>
       </div>
-    </div>
-      </div>
-<% end %>
+  <% end %>
 
 </div>
 
@@ -167,8 +170,12 @@ match = matches[0]
 
         </td>
         <td>
-          <a href="<%= match.photos %>"><i class="fa fa-camera" aria-hidden="true"></i></a>
-          <a href="<%= match.videos %>"><i class="fa fa-video-camera" aria-hidden="true"></i></a>
+          <% if !match.photos.blank? %>
+              <a href="<%= match.photos %>"><i class="fa fa-camera" aria-hidden="true"></i></a>
+          <% end %>
+          <% if !match.video.blank? %>
+              <a href="<%= match.videos %>"><i class="fa fa-video-camera" aria-hidden="true"></i></a>
+          <% end %>
           <a href="/demo/servette/index.php/match?gameid=<%= match.id %>"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
         </td>
       </tr>

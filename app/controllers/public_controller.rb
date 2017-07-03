@@ -21,6 +21,9 @@ class PublicController < ApplicationController
   def currentmatch
     render :partial => "public/currentmatch.html"
   end
+  def effectif
+    render :partial => "public/effectif.html"
+  end
   def nextmatch
     render :partial => "public/nextmatch.html"
   end

@@ -34,6 +34,60 @@ class User < ApplicationRecord
     return string.gsub(/\n/, '<br>')
   end
 
+
+  def getbestgoalers()
+    users = User.order(:name)
+    users = users.select { |u| u.isplayer(u.id) == true }
+    players = users.select { |u| u.canrole == 'premiere' }
+    butteurs = []
+    players.each do |player|
+      buts = 0
+      player.matchlinks.each do |m|
+        match = m.match
+        buts = buts+match.getbuts(player.id)
+      end
+      butteurs.push([player.id, buts.to_s])
+    end
+    return butteurs.sort_by{|k|k[1]}.reverse
+  end
+
+  def getbestassists()
+    users = User.order(:name)
+    users = users.select { |u| u.isplayer(u.id) == true }
+    players = users.select { |u| u.canrole == 'premiere' }
+    butteurs = []
+    players.each do |player|
+      buts = 0
+      player.matchlinks.each do |m|
+        match = m.match
+        buts = buts+match.getassists(player.id)
+      end
+      butteurs.push([player.id, buts.to_s])
+    end
+    return butteurs.sort_by{|k|k[1]}.reverse
+  end
+
+  def getbesttimers()
+    users = User.order(:name)
+    users = users.select { |u| u.isplayer(u.id) == true }
+    players = users.select { |u| u.canrole == 'premiere' }
+    butteurs = []
+    players.each do |player|
+      buts = 0
+      player.matchlinks.each do |m|
+        match = m.match
+        if(m.thetype == 'titulaires')
+          buts = buts+match.gettimetitulaireplayer(player.id)
+        end
+        if(m.thetype == 'remplacents')
+          buts = buts+match.gettimeremplacentplayer(player.id)
+        end
+      end
+      butteurs.push([player.id, buts.to_s])
+    end
+    return butteurs.sort_by{|k|k[1]}.reverse
+  end
+
   def getinjuries()
     return self.injuries.order(when: :desc)
   end
@@ -42,7 +96,7 @@ class User < ApplicationRecord
     players = []
     users = User.all
     users.each do |user|
-      if(user.isplayer(0))
+      if (user.isplayer(0))
         players.push(user)
       end
     end
@@ -50,15 +104,15 @@ class User < ApplicationRecord
   end
 
   def isplayer(id)
-    if(id == 0)
-      if(self.canrole == 'archived' || self.canrole == 'premiere' || self.canrole == 'academy' || self.canrole == 'm21' || self.canrole == 'm18' || self.canrole == 'm16' || self.canrole == 'm15' || self.canrole == 'fe14' || self.canrole == 'fe13'  || self.canrole == 'fe12'  || self.canrole == 'fe11'  || self.canrole == 'fc10' || self.canrole == 'fc9' || self.canrole == 'fc8'  || self.canrole == 'fc7')
+    if (id == 0)
+      if (self.canrole == 'archived' || self.canrole == 'premiere' || self.canrole == 'academy' || self.canrole == 'm21' || self.canrole == 'm18' || self.canrole == 'm16' || self.canrole == 'm15' || self.canrole == 'fe14' || self.canrole == 'fe13' || self.canrole == 'fe12' || self.canrole == 'fe11' || self.canrole == 'fc10' || self.canrole == 'fc9' || self.canrole == 'fc8' || self.canrole == 'fc7')
         return true
       else
         return false
       end
     else
       user = User.find(id)
-      if(user.canrole == 'archived' ||  user.canrole == 'premiere' || user.canrole == 'academy' || user.canrole == 'm21' || user.canrole == 'm18' || user.canrole == 'm16' || user.canrole == 'm15' || user.canrole == 'fe14' || user.canrole == 'fe13'  || user.canrole == 'fe12'  || user.canrole == 'fe11'  || user.canrole == 'fc10' || user.canrole == 'fc9' || user.canrole == 'fc8'  || user.canrole == 'fc7')
+      if (user.canrole == 'archived' || user.canrole == 'premiere' || user.canrole == 'academy' || user.canrole == 'm21' || user.canrole == 'm18' || user.canrole == 'm16' || user.canrole == 'm15' || user.canrole == 'fe14' || user.canrole == 'fe13' || user.canrole == 'fe12' || user.canrole == 'fe11' || user.canrole == 'fc10' || user.canrole == 'fc9' || user.canrole == 'fc8' || user.canrole == 'fc7')
 
         return true
       else
@@ -69,16 +123,16 @@ class User < ApplicationRecord
   end
 
   def isadmin()
-  if(self.canrole == 'admin' || self.canrole == 'staff' || self.canrole == 'medical' || self.canrole == 'staffpremiere')
-    return true
-  else
-    return false
-  end
+    if (self.canrole == 'admin' || self.canrole == 'staff' || self.canrole == 'medical' || self.canrole == 'staffpremiere')
+      return true
+    else
+      return false
+    end
   end
 
   def canviewmedical(playertobeviewedid)
 
-    if( playertobeviewedid == self.id || self.canrole == 'medical' || self.canrole == 'admin' || self.canrole == 'staffpremiere' )
+    if (playertobeviewedid == self.id || self.canrole == 'medical' || self.canrole == 'admin' || self.canrole == 'staffpremiere')
       return true
     else
       return false
@@ -89,53 +143,53 @@ class User < ApplicationRecord
 
   def getaddress()
     string = "";
-    if(self.address1 != nil)
+    if (self.address1 != nil)
       string = string + self.address1
     end
-    if(self.address2 != nil)
+    if (self.address2 != nil)
       string = string + "<br> " +self.address2
     end
-    if(self.zip != nil)
+    if (self.zip != nil)
       string = string + '<br>' +self.zip
     end
-    if(self.city != nil)
+    if (self.city != nil)
       string = string + ' ' + self.city
     end
     return string
   end
 
   def canviewplayer(playertobeviewedid)
-    if(  ( (self.canrole == 'admin' || self.canrole == 'staff' || self.canrole == 'medical' || self.canrole == 'staffpremiere') && isplayer(playertobeviewedid) )  || (self.isplayer(0) && playertobeviewedid == self.id) )
+    if (((self.canrole == 'admin' || self.canrole == 'staff' || self.canrole == 'medical' || self.canrole == 'staffpremiere') && isplayer(playertobeviewedid)) || (self.isplayer(0) && playertobeviewedid == self.id))
       return true
     else
       return false
     end
   end
 
-  # private
+# private
   def avatar_size_validation
     errors[:avatar] << "should be less than 5000KB" if avatar.size > 5.megabytes
   end
 
   ROLES = %i[admin premiere academy staff]
 
-  # def roles=(roles)
-  #   roles = [*roles].map { |r| r.to_sym }
-  #   self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
-  # end
-  #
-  # def roles
-  #   ROLES.reject do |r|
-  #     ((roles_mask.to_i || 0) & 2**ROLES.index(r)).zero?
-  #   end
-  # end
+# def roles=(roles)
+#   roles = [*roles].map { |r| r.to_sym }
+#   self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+# end
+#
+# def roles
+#   ROLES.reject do |r|
+#     ((roles_mask.to_i || 0) & 2**ROLES.index(r)).zero?
+#   end
+# end
 
   def has_role?(role)
     roles.include?(role)
   end
 
   def getnicedate(value)
-    if(value != nil)
+    if (value != nil)
       tmp = value.to_time.to_i
       tmp2 = Time.at(tmp).strftime '%d.%m.%Y'
       return tmp2
@@ -156,14 +210,14 @@ class User < ApplicationRecord
     return archived_infos
   end
 
-  #numero
+#numero
   def archivedlevels()
     archived_infos = self.archived_infos
     archived_infos = archived_infos.select { |archive| archive.fieldtype == 'level' }
     return archived_infos
   end
 
-  #poste
+#poste
   def archivedroles()
     archived_infos = self.archived_infos
     archived_infos = archived_infos.select { |archive| archive.fieldtype == 'role' }
@@ -175,4 +229,5 @@ class User < ApplicationRecord
     archived_infos = archived_infos.select { |archive| archive.fieldtype == 'canrole' }
     return archived_infos
   end
+
 end
