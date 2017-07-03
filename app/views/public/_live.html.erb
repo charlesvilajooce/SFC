@@ -78,6 +78,8 @@
         <% end %>
       </div>
     </div>
+
+    <% if match.when < Time.now.to_i %>
     <h1>Le direct</h1>
     <%
       @matchevents = match.matchevents
@@ -454,4 +456,5 @@
           </tr>
       <% end %>
     </table>
+<% end %>
 <% end %>
