@@ -19,9 +19,9 @@ class Matchevent2user < ApplicationRecord
 
     case self.thetype
       when "Echange"
-        return ("<img src='/images/livescore/substitution.png' style='' >")
+        return ("<img src='https://www.servette.biz/images/livescore/substitution.png' style='' >")
       when "But"
-        return ("<img src='/images/livescore/goal.png' style='' >")
+        return ("<img src='https://www.servette.biz/images/livescore/goal.png' style='' >")
       else
 
     end

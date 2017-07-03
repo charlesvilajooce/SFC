@@ -23,14 +23,14 @@
 
   end
 
-
+  @match = match
 %>
 
 <% if display %>
     <div class="row">
       <div class="col-md-4">
         <p>
-          Date: <%= Time.at(match.when).strftime '%d/%m/%Y' %>
+          Date: <%= Time.at(match.when).strftime '%d.%m.%y' %>
           <br/>
           Heure: <%= Time.at(match.when).strftime '%H:%M' %>
         </p>
@@ -78,13 +78,380 @@
         <% end %>
       </div>
     </div>
+    <h1>Le direct</h1>
+    <%
+      @matchevents = match.matchevents
+      @matchevent1users = match.matchevent1users
+      @matchevent2users = match.matchevent2users
+    %>
     <div class="row">
-      <div class="col-md-4"></div>
       <div class="col-md-4">
+        <table>
+          <tr>
 
+            <strong>Buts
+              <img src="https://www.servette.biz/images/livescore/goal.png" style="max-height: 15px;"></strong><br/>
+            <%
+              for i in 0..200 do
+            %>
+                <% if match.home %>
+                    <%
+                      @matchevent1users.each do |me|
+                        if me.temps == i && me.thetype == "But"
+                    %>
+                            <%= i %> <%= raw me.user.getname() %><br/>
+                        <% end end %>
+                    <%
+                      @matchevent2users.each do |me|
+                        if me.temps == i && me.thetype == "But"
+                    %>
+                            <%= i %> <%= raw me.user_one.getname() %><br/>
+                        <% end end %>
+                <% else %>
+                    <%
+                      @matchevents.each do |me|
+                        if me.temps == i && me.thetype == "But Adversaire"
+                    %>
+                            <%= i %> <%= raw me.player %><br/>
+                        <% end end %>
+                <% end %>
+
+
+            <% end %>
+          </tr>
+          <tr>
+
+            <strong>Avertissements
+              <img src="https://www.servette.biz/images/livescore/yellow-card.png" style="max-height: 15px;"></strong><br/>
+            <%
+              for i in 0..200 do
+            %>
+                <% if match.home %>
+                    <%
+                      @matchevent1users.each do |me|
+                        if me.temps == i && me.thetype == "Carton Jaune"
+                    %>
+                            <%= i %> <%= raw me.user.getname() %><br/>
+                        <% end end %>
+                <% else %>
+                    <%
+                      @matchevents.each do |me|
+                        if me.temps == i && me.thetype == "Carton Jaune Adversaire"
+                    %>
+                            <%= i %> <%= raw me.player %><br/>
+                        <% end end %>
+                <% end %>
+
+            <% end %>
+          </tr>
+          <tr>
+
+            <strong>Expulsions
+              <img src="https://www.servette.biz/images/livescore/red-card.png" style="max-height: 15px;"></strong><br/>
+            <%
+              for i in 0..200 do
+            %>
+                <% if match.home %>
+                    <%
+                      @matchevent1users.each do |me|
+                        if me.temps == i && me.thetype == "Carton Rouge"
+                    %>
+                            <%= i %> <%= raw me.user.getname() %><br/>
+                        <% end end %>
+                <% else %>
+                    <%
+                      @matchevents.each do |me|
+                        if me.temps == i && me.thetype == "Carton Rouge Adversaire"
+                    %>
+                            <%= i %> <%= raw me.player %><br/>
+                        <% end end %>
+                <% end %>
+
+            <% end %>
+          </tr>
+          <tr>
+
+            <strong>Changements
+              <img src="https://www.servette.biz/images/livescore/substitution.png" style="max-height: 15px;"></strong><br/>
+            <%
+              for i in 0..200 do
+            %>
+                <% if match.home %>
+                    <%
+                      @matchevent2users.each do |me|
+                        if me.temps == i && me.thetype == "Echange"
+                    %>
+                            <%= i %> <%= raw me.user_one.getname() %> pour <%= raw me.user_two.getname() %><br/>
+                        <% end end %>
+                <% else %>
+                    <%
+                      @matchevents.each do |me|
+                        if me.temps == i && me.thetype == "Echange Adversaire"
+                    %>
+                            <%= i %> <%= raw me.player %><br/>
+                        <% end end %>
+                <% end %>
+
+            <% end %>
+          </tr>
+        </table>
       </div>
       <div class="col-md-4">
+        <table class="table table-striped	" style="text-align: left;">
+
+          <%
+
+            for i in 0..200 do
+          %>
+
+              <%
+                @matchevents.each do |me|
+                  if me.temps == i
+              %>
+                      <tr>
+                        <td>
+                          <%= i %>
+                          <% if !me.getimg().blank? %>
+                              <%= raw me.getimg() %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <%= raw me.gettext() %>
+                        </td>
+                      </tr>
+                  <% end end %>
+              <%
+                @matchevent1users.each do |me|
+                  if me.temps == i
+              %>
+                      <tr>
+                        <td>
+                          <%= i %>
+                          <% if !me.getimg().blank? %>
+                              <%= raw me.getimg() %>
+                          <% end %>
+
+                        </td>
+                        <td>
+                          <%= raw me.gettext() %>
+                        </td>
+                      </tr>
+                  <% end end %>
+              <%
+                @matchevent2users.each do |me|
+                  if me.temps == i
+              %>
+                      <tr>
+                        <td>
+                          <%= i %>
+                          <% if !me.getimg().blank? %>
+                              <%= raw me.getimg() %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <%= raw me.gettext() %>
+                        </td>
+                      </tr>
+                  <% end end %>
+          <% end %>
+        </table>
+      </div>
+      <div class="col-md-4">
+        <table class="table table-striped	" style="text-align: left;">
+          <tr>
+
+            <strong>Buts
+              <img src="https://www.servette.biz/images/livescore/goal.png" style="max-height: 15px;"></strong><br/>
+            <%
+              for i in 0..200 do
+            %>
+                <% if !match.home %>
+                    <%
+                      @matchevent1users.each do |me|
+                        if me.temps == i && me.thetype == "But"
+                    %>
+                            <%= i %> <%= raw me.user.getname() %><br/>
+                        <% end end %>
+                    <%
+                      @matchevent2users.each do |me|
+                        if me.temps == i && me.thetype == "But"
+                    %>
+                            <%= i %> <%= raw me.user_one.getname() %><br/>
+                        <% end end %>
+                <% else %>
+                    <%
+                      @matchevents.each do |me|
+                        if me.temps == i && me.thetype == "But Adversaire"
+                    %>
+                            <%= i %> <%= raw me.player %><br/>
+                        <% end end %>
+                <% end %>
+
+
+            <% end %>
+          </tr>
+          <tr>
+
+            <strong>Avertissements
+              <img src="https://www.servette.biz/images/livescore/yellow-card.png" style="max-height: 15px;"></strong><br/>
+            <%
+              for i in 0..200 do
+            %>
+                <% if !match.home %>
+                    <%
+                      @matchevent1users.each do |me|
+                        if me.temps == i && me.thetype == "Carton Jaune"
+                    %>
+                            <%= i %> <%= raw me.user.getname() %><br/>
+                        <% end end %>
+                <% else %>
+                    <%
+                      @matchevents.each do |me|
+                        if me.temps == i && me.thetype == "Carton Jaune Adversaire"
+                    %>
+                            <%= i %> <%= raw me.player %><br/>
+                        <% end end %>
+                <% end %>
+
+            <% end %>
+          </tr>
+          <tr>
+
+            <strong>Expulsions
+              <img src="https://www.servette.biz/images/livescore/red-card.png" style="max-height: 15px;"></strong><br/>
+            <%
+              for i in 0..200 do
+            %>
+                <% if !match.home %>
+                    <%
+                      @matchevent1users.each do |me|
+                        if me.temps == i && me.thetype == "Carton Rouge"
+                    %>
+                            <%= i %> <%= raw me.user.getname() %><br/>
+                        <% end end %>
+                <% else %>
+                    <%
+                      @matchevents.each do |me|
+                        if me.temps == i && me.thetype == "Carton Rouge Adversaire"
+                    %>
+                            <%= i %> <%= raw me.player %><br/>
+                        <% end end %>
+                <% end %>
+
+            <% end %>
+          </tr>
+          <tr>
+
+            <strong>Changements
+              <img src="https://www.servette.biz/images/livescore/substitution.png" style="max-height: 15px;"></strong><br/>
+            <%
+              for i in 0..200 do
+            %>
+                <% if !match.home %>
+                    <%
+                      @matchevent2users.each do |me|
+                        if me.temps == i && me.thetype == "Echange"
+                    %>
+                            <%= i %> <%= raw me.user_one.getname() %> pour <%= raw me.user_two.getname() %><br/>
+                        <% end end %>
+                <% else %>
+                    <%
+                      @matchevents.each do |me|
+                        if me.temps == i && me.thetype == "Echange Adversaire"
+                    %>
+                            <%= i %> <%= raw me.player %><br/>
+                        <% end end %>
+                <% end %>
+
+            <% end %>
+          </tr>
+        </table>
 
       </div>
     </div>
+
+
+    <h1>Statistique du match</h1>
+    <table>
+      <%
+        titulaires = []
+        @match.matchlinks.each do |l|
+          if l.thetype == 'titulaires'
+            titulaires.push(l.user)
+          end
+        end
+
+        titulaires.each do |player|
+      %>
+          <tr>
+            <td>
+              <%= player.level %> <%= raw match.getchange(player.id) %>
+            </td>
+            <td>
+              <% roles = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'] %>
+              <% if !player.role.blank? %>
+                  <%= roles[player.role-1] %>
+              <% end %>
+            </td>
+            <td>
+              <%= player.getname() %>
+            </td>
+            <td>
+              1
+            </td>
+            <td>
+              1
+            </td>
+            <td>
+              <%= match.gettimetitulaireplayer(player.id) %>
+            </td>
+            <td>
+              <%= match.getbuts(player.id) %>
+            </td>
+            <td>
+              <%= match.getassists(player.id) %>
+            </td>
+          </tr>
+      <% end %>
+      <%
+        remplacents = []
+        @match.matchlinks.each do |l|
+          if l.thetype == 'remplacents'
+            remplacents.push(l.user)
+          end
+        end
+
+        remplacents.each do |player|
+      %>
+          <tr>
+            <td>
+              <%= player.level %> <%= raw match.getchange(player.id) %>
+            </td>
+            <td>
+              <% roles = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'] %>
+              <% if !player.role.blank? %>
+                  <%= roles[player.role-1] %>
+              <% end %>
+            </td>
+            <td>
+              <%= player.getname() %>
+            </td>
+            <td>
+              1
+            </td>
+            <td>
+              0
+            </td>
+            <td>
+              <%= match.gettimeremplacentplayer(player.id) %>
+            </td>
+            <td>
+              <%= match.getbuts(player.id) %>
+            </td>
+            <td>
+              <%= match.getassists(player.id) %>
+            </td>
+          </tr>
+      <% end %>
+    </table>
 <% end %>

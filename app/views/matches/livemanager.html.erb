@@ -60,8 +60,12 @@
               <%= f.text_field :commentaire, class: 'form-control', style: 'width: 280px;' %>
             </div>
             <div class="form-group">
+              <%= f.label :player, "Joueur" %>
+              <%= f.text_field :player, class: 'form-control', style: 'width: 100px;' %>
+            </div>
+            <div class="form-group">
               <%= f.label :thetype, "Type" %>
-              <%= f.select :thetype, options_for_select(["Aucun", "Corner", "Coup franc", "But Adversaire", "Carton Jaune Adversaire", "Carton Rouge Adversaire", "Remplacement Adversaire","Sifflet","Fin de match"], @simple.thetype) %>
+              <%= f.select :thetype, options_for_select(["Aucun", "Corner", "Coup franc", "But Adversaire", "Carton Jaune Adversaire", "Carton Rouge Adversaire", "Echange Adversaire","Sifflet","Fin de match"], @simple.thetype) %>
             </div>
 
             <div class="form-group">

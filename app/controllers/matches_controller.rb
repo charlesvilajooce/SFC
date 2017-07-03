@@ -212,7 +212,7 @@ class MatchesController < ApplicationController
     params.require(:match).permit(:home,:when, :équipe, :adversaire_id, :saison, :scoreSfc, :scoreAdv, :spectateurs, :competition, :terrain_id, :hometitulaires, :homeremplacents, :homeabsents, :homeentrainer, :awaytitulaires, :awayremplacents, :awayabsents, :awayentrainer)
   end
   def matchevent_params
-    params.require(:matchevent).permit(:match_id, :commentaire, :temps, :thetype)
+    params.require(:matchevent).permit(:match_id, :commentaire,:player, :temps, :thetype)
   end
 
   def matchevent1user_params

@@ -12,7 +12,7 @@ class Matchevent < ApplicationRecord
           return (Team.find(self.match.adversaire).name+" a recu un carton jaune.")
         when "Carton Rouge Adversaire"
           return (Team.find(self.match.adversaire).name+" a recu un carton rouge.")
-        when "Remplacement Adversaire"
+        when "Echange Adversaire"
           return (Team.find(self.match.adversaire).name+" a effectué un remplacement.")
         when "Coup franc"
           return ("Coup franc")
@@ -29,21 +29,21 @@ class Matchevent < ApplicationRecord
   def getimg()
     case self.thetype
       when "But Adversaire"
-        return ("<img src='/images/livescore/goal.png' style='' >")
+        return ("<img src='https://www.servette.biz/images/livescore/goal.png' style='' >")
       when "Carton Jaune Adversaire"
-        return ("<img src='/images/livescore/yellow-card.png' style='' >")
+        return ("<img src='https://www.servette.biz/images/livescore/yellow-card.png' style='' >")
       when "Carton Rouge Adversaire"
-        return ("<img src='/images/livescore/red-card.png' style='' >")
-      when "Remplacement Adversaire"
-        return ("<img src='/images/livescore/substitution.png' style='' >")
+        return ("<img src='https://www.servette.biz/images/livescore/red-card.png' style='' >")
+      when "Echange Adversaire"
+        return ("<img src='https://www.servette.biz/images/livescore/substitution.png' style='' >")
       when "Corner"
-        return ("<img src='/images/livescore/corner.png' style='' >")
+        return ("<img src='https://www.servette.biz/images/livescore/corner.png' style='' >")
       when "Coup franc"
-        return ("<img src='/images/livescore/freekick.png' style='' >")
+        return ("<img src='https://www.servette.biz/images/livescore/freekick.png' style='' >")
       when "Sifflet"
-        return ("<img src='/images/livescore/whistle.png' style='' >")
+        return ("<img src='https://www.servette.biz/images/livescore/whistle.png' style='' >")
       when "Fin de match"
-        return ("<img src='/images/livescore/whistle.png' style='' >")
+        return ("<img src='https://www.servette.biz/images/livescore/whistle.png' style='' >")
       else
     end
 

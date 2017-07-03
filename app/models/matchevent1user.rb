@@ -25,11 +25,11 @@ class Matchevent1user < ApplicationRecord
 
     case self.thetype
       when "But"
-        return ("<img src='/images/livescore/goal.png' style='' >")
+        return ("<img src='https://www.servette.biz/images/livescore/goal.png' style='' >")
       when "Carton Jaune"
-        return ("<img src='/images/livescore/yellow-card.png' style='' >")
+        return ("<img src='https://www.servette.biz/images/livescore/yellow-card.png' style='' >")
       when "Carton Rouge"
-        return ("<img src='/images/livescore/red-card.png' style='' >")
+        return ("<img src='https://www.servette.biz/images/livescore/red-card.png' style='' >")
       when "Passe"
         return ""
       else
