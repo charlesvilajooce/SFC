@@ -24,6 +24,9 @@ class PublicController < ApplicationController
   def effectif
     render :partial => "public/effectif.html"
   end
+  def player
+    render :partial => "public/player.html"
+  end
   def nextmatch
     render :partial => "public/nextmatch.html"
   end
