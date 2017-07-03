@@ -1,5 +1,6 @@
-<p id="notice"><%= notice %></p>
-
+<h3 class="titre text-grenat">Prochains matchs</h3>
+<div class="row justify-content-center">
+  <div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 mb">
 <%
 
   matches = Match.all.select { |u| u.when > Time.now.to_i }
@@ -126,15 +127,13 @@ match = matches[0]
     </div>
 <% end %>
 
+  </div></div>
+
 <h1>Calendrier</h1>
 
 
 <table class="table table-striped	">
-  <thead>
-  <tr>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
+
 
   <tbody>
   <% @matches.each do |match| %>
