@@ -1,6 +1,6 @@
 <%= params[:alias] %>
 
-<% player = User.where(:alias == params[:alias]).find(1) %>
+<% player = User.find_by(alias: params[:alias]) %>
 
 <% if !player.blank? %>
     <%= player.getname() %>
