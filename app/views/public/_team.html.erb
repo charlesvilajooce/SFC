@@ -18,7 +18,7 @@
 
         <div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">
           <img src="<%= user.avatar %>" alt="<%= user.getname() %>" class="player">
-          <p class="text-player"><%= user.getname() %></p>
+          <p class="text-player">#<%= user.level %> <%= user.getname() %></p>
           <% roles = ['Gardien','Défenseur','Milieu','Attaquant'] %>
           <% if ! user.role.blank? %>
           <p class="text-player text-s"><%= roles[user.role-1] %></p>
