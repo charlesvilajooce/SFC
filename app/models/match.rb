@@ -85,6 +85,25 @@ class Match < ApplicationRecord
     return buts
   end
 
+  def getcj(playerid)
+    buts = 0
+    self.matchevent1users.each do |me|
+      if me.thetype == "Carton Jaune" && me.user_id == playerid
+        buts = buts+1
+      end
+    end
+    return buts
+  end
+  def getcr(playerid)
+    buts = 0
+    self.matchevent1users.each do |me|
+      if me.thetype == "Carton Rouge" && me.user_id == playerid
+        buts = buts+1
+      end
+    end
+    return buts
+  end
+
   def getchange(playerid)
     change = ''
     self.matchevent2users.each do |me|

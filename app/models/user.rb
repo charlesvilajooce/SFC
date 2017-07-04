@@ -49,7 +49,7 @@ class User < ApplicationRecord
       end
       butteurs.push([player.id, buts.to_s])
     end
-    return butteurs.sort_by{|k|k[1]}.reverse
+    return butteurs.sort_by { |k| k[1] }.reverse
   end
 
   def getbestassists()
@@ -65,8 +65,83 @@ class User < ApplicationRecord
       end
       butteurs.push([player.id, buts.to_s])
     end
-    return butteurs.sort_by{|k|k[1]}.reverse
+    return butteurs.sort_by { |k| k[1] }.reverse
   end
+
+  def gettotaltime()
+    buts = 0
+    player.matchlinks.each do |m|
+      match = m.match
+      if (m.thetype == 'titulaires')
+        buts = buts+match.gettimetitulaireplayer(player.id)
+      end
+      if (m.thetype == 'remplacents')
+        buts = buts+match.gettimeremplacentplayer(player.id)
+      end
+    end
+    return buts
+  end
+  def gettotalmatches()
+    buts = 0
+    player.matchlinks.each do |m|
+      match = m.match
+      if (m.thetype == 'titulaires')
+        buts = buts+1
+      end
+      if (m.thetype == 'remplacents')
+        buts = buts+1
+      end
+    end
+    return buts
+  end
+
+  def gettotaltits()
+    buts = 0
+    player.matchlinks.each do |m|
+      match = m.match
+      if (m.thetype == 'titulaires')
+        buts = buts+1
+      end
+    end
+    return buts
+  end
+
+  def gettotalbuts()
+    buts = 0
+    player.matchlinks.each do |m|
+      match = m.match
+      buts = buts+match.getbuts(player.id)
+    end
+    return buts
+  end
+
+  def gettotalassists()
+    buts = 0
+    player.matchlinks.each do |m|
+      match = m.match
+      buts = buts+match.getassists(player.id)
+    end
+    return buts
+  end
+
+  def gettotalcj()
+    buts = 0
+    player.matchlinks.each do |m|
+      match = m.match
+      buts = buts+match.getcj(player.id)
+    end
+    return buts
+  end
+  def gettotalcr()
+    buts = 0
+    player.matchlinks.each do |m|
+      match = m.match
+      buts = buts+match.getcr(player.id)
+    end
+    return buts
+  end
+
+
 
   def getbesttimers()
     users = User.all.order(:name)
@@ -77,16 +152,16 @@ class User < ApplicationRecord
       buts = 0
       player.matchlinks.each do |m|
         match = m.match
-        if(m.thetype == 'titulaires')
+        if (m.thetype == 'titulaires')
           buts = buts+match.gettimetitulaireplayer(player.id)
         end
-        if(m.thetype == 'remplacents')
+        if (m.thetype == 'remplacents')
           buts = buts+match.gettimeremplacentplayer(player.id)
         end
       end
       butteurs.push([player.id, buts.to_s])
     end
-    return butteurs.sort_by{|k|k[1]}.reverse
+    return butteurs.sort_by { |k| k[1] }.reverse
   end
 
   def getinjuries()
