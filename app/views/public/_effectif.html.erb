@@ -68,7 +68,11 @@
               <% if !player.role.blank? %>
                   <%= roles[player.role-1] %>
               <% end %></td>
-            <td><%= Time.at(player.birthday.to_time.to_i).strftime '%d.%m.%Y' %></td>
+            <td>
+              <% if !player.birthday.blank? %>
+                  <%= Time.at(player.birthday.to_time.to_i).strftime '%d.%m.%Y' %>
+              <% end %>
+            </td>
             <td><%= player.nationality %></td>
           </tr>
       <% end %>

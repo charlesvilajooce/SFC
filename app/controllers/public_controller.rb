@@ -24,6 +24,9 @@ class PublicController < ApplicationController
   def effectif
     render :partial => "public/effectif.html"
   end
+  def effectif2
+    render :partial => "public/effectif2.html"
+  end
   def player
     render :partial => "public/player.html"
   end
