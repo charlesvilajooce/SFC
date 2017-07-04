@@ -1,76 +1,83 @@
-<div class="custom py-5"  >
-<div class="container">
-  <a href="effectif.html">
-    <h3 class="titre text-gold bold">Équipe</h3>
-  </a>
-  <div class="row carousel-team">
+<div class="custom py-5">
+  <div class="container">
+    <a href="effectif.html">
+      <h3 class="titre text-gold bold">Équipe</h3>
+    </a>
+    <div class="row carousel-team">
 
-<%
-@users = User.order(:name)
-
-
-@users = @users.select { |u| u.canrole == 'premiere' }
+      <%
+        @users = User.order(:name)
 
 
-  %>
-<% @users.each do |user| %>
+        @users = @users.select { |u| u.canrole == 'premiere' }
 
 
-        <div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">
-          <img src="<%= user.avatar %>" alt="<%= user.getname() %>" class="player">
-          <p class="text-player">#<%= user.level %> <%= user.getname() %></p>
-          <% roles = ['Gardien','Défenseur','Milieu','Attaquant'] %>
-          <% if ! user.role.blank? %>
-          <p class="text-player text-s"><%= roles[user.role-1] %></p>
-          <% end %>
-        </div>
+      %>
+      <% @users.each do |user| %>
 
-<% end %>
+          <%
+            if !user.alias.blank?
+              @tempalias = user.alias
+            else
+              @tempalias = user.surname+'-'+user.name
+            end
+          %>
+
+          <div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">
+            <img src="<%= user.avatar %>" alt="<%= user.getname() %>" class="player">
+           <a href="index.php/<%= @tempalias %>"><p class="text-player">#<%= user.level %> <%= user.getname() %></p></a>
+            <% roles = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'] %>
+            <% if !user.role.blank? %>
+                <p class="text-player text-s"><%= roles[user.role-1] %></p>
+            <% end %>
+          </div>
+
+      <% end %>
 
 
 
-    <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
+      <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
       <!--<img src="images/players/player-1.png" alt="GUEDES" class="player">-->
       <!--<p class="text-player">Christophe GUEDES</p>-->
       <!--<p class="text-player text-s">Gardien</p>-->
-    <!--</div>-->
-    <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
+      <!--</div>-->
+      <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
       <!--<img src="images/players/player-2.png" alt="LAFMOREIRAMARINHO" class="player">-->
       <!--<p class="text-player">Luis LAFMOREIRAMARINHO</p>-->
       <!--<p class="text-player text-s">Gardien</p>-->
-    <!--</div>-->
-    <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
+      <!--</div>-->
+      <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
       <!--<img src="images/players/player-3.png" alt="SAUTHIER" class="player">-->
       <!--<p class="text-player">Anthony SAUTHIER</p>-->
       <!--<p class="text-player text-s">Défenseur</p>-->
-    <!--</div>-->
-    <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
+      <!--</div>-->
+      <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
       <!--<img src="images/players/player-4.png" alt="VITKIEVIEZ" class="player">-->
       <!--<p class="text-player">Matias VITKIEVIEZ</p>-->
       <!--<p class="text-player text-s">Attaquant</p>-->
-    <!--</div>-->
-    <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
+      <!--</div>-->
+      <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
       <!--<img src="images/players/player-1.png" alt="GUEDES" class="player">-->
       <!--<p class="text-player">Christophe GUEDES</p>-->
       <!--<p class="text-player text-s">Gardien</p>-->
-    <!--</div>-->
-    <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
+      <!--</div>-->
+      <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
       <!--<img src="images/players/player-2.png" alt="LAFMOREIRAMARINHO" class="player">-->
       <!--<p class="text-player">Luis LAFMOREIRAMARINHO</p>-->
       <!--<p class="text-player text-s">Gardien</p>-->
-    <!--</div>-->
-    <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
+      <!--</div>-->
+      <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
       <!--<img src="images/players/player-3.png" alt="SAUTHIER" class="player">-->
       <!--<p class="text-player">Anthony SAUTHIER</p>-->
       <!--<p class="text-player text-s">Défenseur</p>-->
-    <!--</div>-->
-    <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
+      <!--</div>-->
+      <!--<div class="col-12 col-xl-3 col-lg-3 col-md-12 col-sm-12" align="center">-->
       <!--<img src="images/players/player-4.png" alt="VITKIEVIEZ" class="player">-->
       <!--<p class="text-player">Matias VITKIEVIEZ</p>-->
       <!--<p class="text-player text-s">Attaquant</p>-->
-    <!--</div>-->
+      <!--</div>-->
 
+    </div>
+    <div class="dots-container"></div>
   </div>
-  <div class="dots-container"></div>
-</div>
 </div>
