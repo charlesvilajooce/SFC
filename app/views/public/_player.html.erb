@@ -1,9 +1,9 @@
 <% params[:alias] %>
 
-<% player = User.find_by(alias: params[:alias]) %>
+<% @player = User.find_by(alias: params[:alias]) %>
 
-<% if !player.blank? %>
-    <% player.getname() %>
+<% if !@player.blank? %>
+    <% @player.getname() %>
 <% end %>
 
 
@@ -16,12 +16,12 @@
   <div class="header-caption d-none d-md-block text-left">
     <em>
       <h1 class="title-header">
-        <span style="font-size: 80px;"><%= player.getname() %></span><br><span style="font-size:80px;">Baumann</span>
+        <span style="font-size: 80px;"><%= @player.getname() %></span><br><span style="font-size:80px;">Baumann</span>
       </h1>
       <h2 class="subtitle-header">
         <% roles = ['gardien', 'défenseur', 'milieu', 'attaquant'] %>
-        <% if !player.role.blank? %>
-            <%= roles[player.role-1] %>
+        <% if !@player.role.blank? %>
+            <%= roles[@player.role-1] %>
         <% end %>
       </h2>
     </em>
@@ -35,14 +35,14 @@
           <div class="row row-infos-joueur">
             <div class="col-12 " align="center">
               <div class="joueur grad">
-                <img src="<%= player.avatar %>" alt="<%= player.surname %>" class="img-player">
-                <p class="text-player">
-                  <%= player.getname() %>
+                <img src="<%= @player.avatar %>" alt="<%= @player.surname %>" class="img-@player">
+                <p class="text-@player">
+                  <%= @player.getname() %>
                 </p>
-                <p class="text-player text-s">
+                <p class="text-@player text-s">
                   <% roles = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'] %>
-                  <% if !player.role.blank? %>
-                      <%= roles[player.role-1] %>
+                  <% if !@player.role.blank? %>
+                      <%= roles[@player.role-1] %>
                   <% end %>
                 </p>
               </div>
@@ -50,9 +50,9 @@
             <div class="col-12">
               <div class="infos">
                 <h3 class="titre sous-titre text-grenat">date de naissance</h3>
-                <p class="info"><%= Time.at(player.birthday.to_time.to_i).strftime '%d.%m.%y' %></p>
+                <p class="info"><%= Time.at(@player.birthday.to_time.to_i).strftime '%d.%m.%y' %></p>
                 <h3 class="titre sous-titre text-grenat">nationalité</h3>
-                <p class="info"><%= player.nationality %>></p>
+                <p class="info"><%= @player.nationality %>></p>
                 <h3 class="titre sous-titre text-grenat">Équipe</h3>
                 <p class="info">1ère équipe</p>
                 <h3 class="titre sous-titre text-grenat">Lorem Ipsum</h3>
@@ -82,14 +82,14 @@
                 <tr>
                   <td>2017-2019</td>
                   <td>
-                    <%= player.gettotalmatches() %>
+                    <%= @player.gettotalmatches() %>
                   </td>
-                  <td><%= player.gettotaltits() %></td>
-                  <td><%= player.gettotaltime() %></td>
-                  <td><%= player.gettotalcj() %></td>
-                  <td><%= player.gettotalcr() %></td>
-                  <td><%= player.gettotalbuts() %></td>
-                  <td><%= player.gettotalassists() %></td>
+                  <td><%= @player.gettotaltits() %></td>
+                  <td><%= @player.gettotaltime() %></td>
+                  <td><%= @player.gettotalcj() %></td>
+                  <td><%= @player.gettotalcr() %></td>
+                  <td><%= @player.gettotalbuts() %></td>
+                  <td><%= @player.gettotalassists() %></td>
                 </tr>
 
                 <tfoot>
@@ -97,7 +97,7 @@
             </div>
             <div class="col-12 col-sm-6">
               <h3 class="titre text-grenat text-l">Parcours professionel</h3>
-              <p class="parcours"><%= player.getbrs(player.sportactivity_archive) %>
+              <p class="parcours"><%= @player.getbrs(@player.sportactivity_archive) %>
               </p>
             </div>
           </div>
