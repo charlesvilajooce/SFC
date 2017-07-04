@@ -45,7 +45,9 @@ class User < ApplicationRecord
       buts = 0
       player.matchlinks.each do |m|
         match = m.match
-        buts = buts+match.getbuts(player.id)
+        if m.competition == 'Brack.ch Challenge League'
+          buts = buts+match.getbuts(player.id)
+        end
       end
       butteurs.push([player.id, buts.to_s])
     end
@@ -61,7 +63,9 @@ class User < ApplicationRecord
       buts = 0
       player.matchlinks.each do |m|
         match = m.match
-        buts = buts+match.getassists(player.id)
+        if m.competition == 'Brack.ch Challenge League'
+          buts = buts+match.getassists(player.id)
+        end
       end
       butteurs.push([player.id, buts.to_s])
     end
@@ -72,24 +76,29 @@ class User < ApplicationRecord
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      if (m.thetype == 'titulaires')
-        buts = buts+match.gettimetitulaireplayer(self.id)
-      end
-      if (m.thetype == 'remplacents')
-        buts = buts+match.gettimeremplacentplayer(self.id)
+      if m.competition == 'Brack.ch Challenge League'
+        if (m.thetype == 'titulaires')
+          buts = buts+match.gettimetitulaireplayer(self.id)
+        end
+        if (m.thetype == 'remplacents')
+          buts = buts+match.gettimeremplacentplayer(self.id)
+        end
       end
     end
     return buts
   end
+
   def gettotalmatches()
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      if (m.thetype == 'titulaires')
-        buts = buts+1
-      end
-      if (m.thetype == 'remplacents')
-        buts = buts+1
+      if m.competition == 'Brack.ch Challenge League'
+        if (m.thetype == 'titulaires')
+          buts = buts+1
+        end
+        if (m.thetype == 'remplacents')
+          buts = buts+1
+        end
       end
     end
     return buts
@@ -99,8 +108,10 @@ class User < ApplicationRecord
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      if (m.thetype == 'titulaires')
-        buts = buts+1
+      if m.competition == 'Brack.ch Challenge League'
+        if (m.thetype == 'titulaires')
+          buts = buts+1
+        end
       end
     end
     return buts
@@ -110,7 +121,9 @@ class User < ApplicationRecord
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      buts = buts+match.getbuts(self.id)
+      if m.competition == 'Brack.ch Challenge League'
+        buts = buts+match.getbuts(self.id)
+      end
     end
     return buts
   end
@@ -119,7 +132,9 @@ class User < ApplicationRecord
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      buts = buts+match.getassists(self.id)
+      if m.competition == 'Brack.ch Challenge League'
+        buts = buts+match.getassists(self.id)
+      end
     end
     return buts
   end
@@ -128,19 +143,23 @@ class User < ApplicationRecord
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      buts = buts+match.getcj(self.id)
-    end
-    return buts
-  end
-  def gettotalcr()
-    buts = 0
-    self.matchlinks.each do |m|
-      match = m.match
-      buts = buts+match.getcr(self.id)
+      if m.competition == 'Brack.ch Challenge League'
+        buts = buts+match.getcj(self.id)
+      end
     end
     return buts
   end
 
+  def gettotalcr()
+    buts = 0
+    self.matchlinks.each do |m|
+      match = m.match
+      if m.competition == 'Brack.ch Challenge League'
+        buts = buts+match.getcr(self.id)
+      end
+    end
+    return buts
+  end
 
 
   def getbesttimers()
@@ -152,11 +171,13 @@ class User < ApplicationRecord
       buts = 0
       player.matchlinks.each do |m|
         match = m.match
-        if (m.thetype == 'titulaires')
-          buts = buts+match.gettimetitulaireplayer(player.id)
-        end
-        if (m.thetype == 'remplacents')
-          buts = buts+match.gettimeremplacentplayer(player.id)
+        if m.competition == 'Brack.ch Challenge League'
+          if (m.thetype == 'titulaires')
+            buts = buts+match.gettimetitulaireplayer(player.id)
+          end
+          if (m.thetype == 'remplacents')
+            buts = buts+match.gettimeremplacentplayer(player.id)
+          end
         end
       end
       butteurs.push([player.id, buts.to_s])

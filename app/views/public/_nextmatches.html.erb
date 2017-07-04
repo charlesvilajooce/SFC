@@ -12,7 +12,7 @@
 <div class="row">
   <% if !matches[0].blank?
   match = matches[0] %>
-      <div class="col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 row-prochains-matchs-1">
+      <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-6 row-prochains-matchs-1">
         <div class="card text-center border-dark no-border-r text-gold grad">
           <div class="card-block text-gold">
             <p class="prochains-matchs-small"><strong><%= Time.at(match.when).strftime '%d/%m/%Y' %></strong><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
@@ -28,7 +28,7 @@
   <% end %>
   <% if !matches[1].blank?
        match = matches[1] %>
-      <div class="col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 row-prochains-matchs-2">
+      <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-6 row-prochains-matchs-2">
         <div class="card text-center no-border-r text-gold grey">
           <div class="card-block">
             <p class="prochains-matchs-small"><strong><%= Time.at(match.when).strftime '%d/%m/%Y' %></strong><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
@@ -44,7 +44,7 @@
   <% end %>
   <% if !matches[2].blank?
        match = matches[2] %>
-      <div class="col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 row-prochains-matchs-2">
+      <div class="col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 row-prochains-matchs-3">
         <div class="card text-center no-border-r text-gold grey">
           <div class="card-block">
             <p class="prochains-matchs-small"><strong><%= Time.at(match.when).strftime '%d/%m/%Y' %></strong><br/><%= Time.at(match.when).strftime '%H:%M' %></p>

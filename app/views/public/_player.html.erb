@@ -35,11 +35,11 @@
           <div class="row row-infos-joueur">
             <div class="col-12 " align="center">
               <div class="joueur grad">
-                <img src="<%= @player.avatar %>" alt="<%= @player.surname %>" class="img-@player">
-                <p class="text-@player">
+                <img src="<%= @player.avatar %>" alt="<%= @player.surname %>" class="img-player">
+                <p class="text-player">
                   <%= @player.getname() %>
                 </p>
-                <p class="text-@player text-s">
+                <p class="text-player text-s">
                   <% roles = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'] %>
                   <% if !@player.role.blank? %>
                       <%= roles[@player.role-1] %>
