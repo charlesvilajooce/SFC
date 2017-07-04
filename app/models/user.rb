@@ -70,20 +70,20 @@ class User < ApplicationRecord
 
   def gettotaltime()
     buts = 0
-    player.matchlinks.each do |m|
+    self.matchlinks.each do |m|
       match = m.match
       if (m.thetype == 'titulaires')
-        buts = buts+match.gettimetitulaireplayer(player.id)
+        buts = buts+match.gettimetitulaireplayer(self.id)
       end
       if (m.thetype == 'remplacents')
-        buts = buts+match.gettimeremplacentplayer(player.id)
+        buts = buts+match.gettimeremplacentplayer(self.id)
       end
     end
     return buts
   end
   def gettotalmatches()
     buts = 0
-    player.matchlinks.each do |m|
+    self.matchlinks.each do |m|
       match = m.match
       if (m.thetype == 'titulaires')
         buts = buts+1
@@ -97,7 +97,7 @@ class User < ApplicationRecord
 
   def gettotaltits()
     buts = 0
-    player.matchlinks.each do |m|
+    self.matchlinks.each do |m|
       match = m.match
       if (m.thetype == 'titulaires')
         buts = buts+1
@@ -108,35 +108,35 @@ class User < ApplicationRecord
 
   def gettotalbuts()
     buts = 0
-    player.matchlinks.each do |m|
+    self.matchlinks.each do |m|
       match = m.match
-      buts = buts+match.getbuts(player.id)
+      buts = buts+match.getbuts(self.id)
     end
     return buts
   end
 
   def gettotalassists()
     buts = 0
-    player.matchlinks.each do |m|
+    self.matchlinks.each do |m|
       match = m.match
-      buts = buts+match.getassists(player.id)
+      buts = buts+match.getassists(self.id)
     end
     return buts
   end
 
   def gettotalcj()
     buts = 0
-    player.matchlinks.each do |m|
+    self.matchlinks.each do |m|
       match = m.match
-      buts = buts+match.getcj(player.id)
+      buts = buts+match.getcj(self.id)
     end
     return buts
   end
   def gettotalcr()
     buts = 0
-    player.matchlinks.each do |m|
+    self.matchlinks.each do |m|
       match = m.match
-      buts = buts+match.getcr(player.id)
+      buts = buts+match.getcr(self.id)
     end
     return buts
   end
