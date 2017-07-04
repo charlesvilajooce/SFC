@@ -55,7 +55,14 @@
       %>
           <tr>
             <td>#<%= player.level %></td>
-            <td><a href="index.php/<%= player.alias %>" class="link_grenat"><%= player.getname() %></a></td>
+            <%
+              if !player.alias.blank?
+                @tempalias = player.alias
+              else
+                @tempalias = player.surname+'-'+player.name
+              end
+            %>
+            <td><a href="index.php/<%= @tempalias %>" class="link_grenat"><%= player.getname() %></a></td>
             <td>
               <% roles = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'] %>
               <% if !player.role.blank? %>
