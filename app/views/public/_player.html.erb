@@ -80,7 +80,7 @@
                 <thead>
                 <tbody>
                 <tr>
-                  <td>2017-2019</td>
+                  <td>2017-2018</td>
                   <td>
                     <%= @player.gettotalmatches() %>
                   </td>
@@ -97,7 +97,7 @@
             </div>
             <div class="col-12 col-sm-6">
               <h3 class="titre text-grenat text-l">Parcours professionel</h3>
-              <p class="parcours"><%= @player.getbrs(@player.sportactivity_archive) %>
+              <p class="parcours"><%= raw @player.getbrs(@player.sportactivity_archive) %>
               </p>
             </div>
           </div>
