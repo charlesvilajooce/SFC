@@ -50,8 +50,14 @@
           match.terrain.name
         %>
         <br/>
-        <%= match.terrain.zip %>
+
         <%= match.terrain.street %>
+        <br/>
+        <%= match.terrain.zip %> <%= match.terrain.city %>
+        <% if !match.spectateurs.blank? %>
+            <br/>
+            Affluences : <%= match.spectateurs %>
+        <% end %>
       </div>
     </div>
     <div class="row">
@@ -491,9 +497,9 @@
         </table>
         <p><b>Légende:</b></p>
         <p>MJ : Nombre de matches joués</br>
-        TIT : Nombre de matches en tant que titulaires</br>
-        MIN : Nombre de minutes jouées</br>
-        BUTS : Nombre de buts marqués</br>
+          TIT : Nombre de matches en tant que titulaires</br>
+          MIN : Nombre de minutes jouées</br>
+          BUTS : Nombre de buts marqués</br>
           ASS. : Nombre de passes décisives</p>
     <% end %>
 <% end %>
