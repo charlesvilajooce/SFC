@@ -63,7 +63,8 @@
               @tempalias = player.surname+'-'+player.name
             end
           %>
-          <a href="index.php/<%= @tempalias.downcase %>" class="link_grenat"><tr>
+         <tr>
+           <a href="index.php/<%= @tempalias.downcase %>" class="link_grenat">
             <td>#<%= player.level %></td>
 
             <td><%= player.getname() %></td>
@@ -78,8 +79,9 @@
               <% end %>
             </td>
             <td><%= player.nationality %></td>
-          </tr>
           </a>
+          </tr>
+
       <% end %>
       </tbody>
     </table>
