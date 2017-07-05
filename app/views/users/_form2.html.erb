@@ -31,6 +31,10 @@
     <%= f.text_field :name, class:'form-control'  %>
   </div>
 
+    <div class="form-group">
+      <%= f.label :birthday, "Date de naissance" %><br>
+      <%= f.date_field :birthday, :start_year => 1970, class: 'form-control' %>
+    </div>
 
 
   <div class="form-group">
