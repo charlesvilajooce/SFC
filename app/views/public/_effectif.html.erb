@@ -56,18 +56,16 @@
         players = @users1 +@users2 + @users3 + @users4
         players.each do |player|
       %>
-          <%
-            if !player.alias.blank?
-              @tempalias = player.alias
-            else
-              @tempalias = player.surname+'-'+player.name
-            end
-          %>
-         <tr>
-           <a href="index.php/<%= @tempalias.downcase %>" class="link_grenat">
+          <tr>
             <td>#<%= player.level %></td>
-
-            <td><%= player.getname() %></td>
+            <%
+              if !player.alias.blank?
+                @tempalias = player.alias
+              else
+                @tempalias = player.surname+'-'+player.name
+              end
+            %>
+            <td><a href="index.php/<%= @tempalias.downcase %>" class="link_grenat"><%= player.getname() %></a></td>
             <td>
               <% roles = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'] %>
               <% if !player.role.blank? %>
@@ -79,9 +77,7 @@
               <% end %>
             </td>
             <td><%= player.nationality %></td>
-          </a>
           </tr>
-
       <% end %>
       </tbody>
     </table>
