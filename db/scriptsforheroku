@@ -1,15 +1,17 @@
-heroku run rake db:migrate:status --app sfctest
-heroku logs --app sfctest
- heroku run "bundle exec rake db:schema:dump && cat db/schema.rb" --app sfctest
 
-heroku run rake db:migrate:up VERSION="20170630071618" --app sfctest
-heroku run rake db:migrate:up VERSION="20170630071618" --app sfctest
-heroku run rake db:migrate:up VERSION="20170630071225" --app sfctest
-heroku run rake db:migrate:down VERSION="20170628085930" --app sfctest
-heroku run rake db:migrate:up VERSION="20170628075246" --app sfctest
+heroku login
+charles.vila@jooce.ch
 
 heroku run rake db:migrate --app sfctest
+heroku logs --app sfctest
+
+heroku run rake db:migrate:status --app sfctest
+
+heroku run "bundle exec rake db:schema:dump && cat db/schema.rb" --app sfctest
+
+heroku run rake db:migrate:up VERSION="XXXXXX" --app sfctest
+heroku run rake db:migrate:down VERSION="XXXXXX" --app sfctest
 
 
-20170628075246
-heroku run rake db:migrate:down VERSION""  --app sfctest
+calendrier des matchs bouton plus
+et aussi le live
