@@ -62,7 +62,7 @@
                 @tempalias = player.surname+'-'+player.name
               end
             %>
-            <td><a href="index.php/<%= @tempalias %>" class="link_grenat"><%= player.getname() %></a></td>
+            <td><a href="index.php/<%= @tempalias.downcase %>" class="link_grenat"><%= player.getname() %></a></td>
             <td>
               <% roles = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'] %>
               <% if !player.role.blank? %>
