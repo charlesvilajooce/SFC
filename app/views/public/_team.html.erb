@@ -7,9 +7,11 @@
 
       <%
         @users = User.order(:name)
-
-
-        @users = @users.select { |u| u.canrole == 'premiere' }
+        @users1 = @users.select { |u| u.canrole == 'premiere'  && u.role == 1}
+        @users2 = @users.select { |u| u.canrole == 'premiere'  && u.role == 2}
+        @users3 = @users.select { |u| u.canrole == 'premiere'  && u.role == 3}
+        @users4 = @users.select { |u| u.canrole == 'premiere'  && u.role == 4}
+        @users = @users1 +@users2 + @users3 + @users4
 
 
       %>

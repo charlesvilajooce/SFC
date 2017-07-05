@@ -5,9 +5,12 @@
     <table class="table table-striped table-hover">
       <tbody class="effectif">
       <%
-        users = User.order(:name)
-        users = users.select { |u| u.isplayer(u.id) == true }
-        players = users.select { |u| u.canrole == params[:whom] }
+        @users = User.order(:name)
+        @users1 = @users.select { |u| u.canrole == 'premiere'  && u.role == 1}
+        @users2 = @users.select { |u| u.canrole == 'premiere'  && u.role == 2}
+        @users3 = @users.select { |u| u.canrole == 'premiere'  && u.role == 3}
+        @users4 = @users.select { |u| u.canrole == 'premiere'  && u.role == 4}
+        players = @users1 +@users2 + @users3 + @users4
         players.each do |player|
       %>
           <tr>
