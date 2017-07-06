@@ -79,7 +79,7 @@
                 </tr>
                 <thead>
                 <tbody>
-                <% if params[:alias] == 'sauthier-anthony' %>
+                <% if params[:alias] == 'anthony-sauthier' %>
                     <tr>
                       <td>2017-2018</td>
                       <td>2</td>
@@ -91,8 +91,6 @@
                       <td>2</td>
                     </tr>
                 <% end %>
-
-
                 <tr>
                   <td>2017-2018</td>
                   <td>
@@ -119,15 +117,14 @@
       </div>
     </div>
     <div class="col-xl-3 col-lg-3 nodisplaymobile">
-      {module Widget: Abonnements}
-<!--
-      {module Widget: Abonnements galerry-<%= params[:alias]%>}
--->
-      <div class="widgets">
-        <a class="twitter-timeline" data-width="100%" data-height="500" data-theme="light" href="https://twitter.com/ServetteFC">Tweets
-          by ServetteFC</a>
-        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </div>
+      <h3 class="titre text-grenat text-l">News</h3>
+      {module tags_<%= params[:alias] %>}
+    </div>
+  </div>
+  <div class="row" style="margin-top: 75px;">
+    <div class="col-xl-12 col-lg-12 ">
+      <h3 class="titre text-grenat text-l">Galerie</h3>
+      {module galerie_<%= params[:alias] %>}
     </div>
   </div>
 </div>
