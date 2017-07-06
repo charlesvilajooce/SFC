@@ -105,12 +105,21 @@
             <div class="form-group">
               <%= f.label :user_id, "Joueur" %>
               <%
-                @users = User.order(:name)
-                premiers = @users.select { |u| u.canrole == 'premiere' }
+                titulaires = []
                 mains = []
-                premiers.each do |p|
-                  mains.push([p.getname(), p.id])
+                @match.matchlinks.each do |l|
+                  if l.thetype == 'titulaires' || l.thetype == 'remplacents'
+                    mains.push([l.user.getname(), l.user.id])
+                  end
                 end
+              %>
+              <%
+                # @users = User.order(:name)
+                # premiers = @users.select { |u| u.canrole == 'premiere' }
+                # mains = []
+                # premiers.each do |p|
+                #   mains.push([p.getname(), p.id])
+                # end
 
               %>
               <%= f.select :user_id, options_for_select(mains, @one.user_id) %>
@@ -161,12 +170,21 @@
             <div class="form-group">
               <%= f.label :user_one_id, "Sortant/Butteur" %>
               <%
-                @users = User.order(:name)
-                premiers = @users.select { |u| u.canrole == 'premiere' }
+                titulaires = []
                 mains = []
-                premiers.each do |p|
-                  mains.push([p.getname(), p.id])
+                @match.matchlinks.each do |l|
+                  if l.thetype == 'titulaires' || l.thetype == 'remplacents'
+                    mains.push([l.user.getname(), l.user.id])
+                  end
                 end
+              %>
+              <%
+                # @users = User.order(:name)
+                # premiers = @users.select { |u| u.canrole == 'premiere' }
+                # mains = []
+                # premiers.each do |p|
+                #   mains.push([p.getname(), p.id])
+                # end
 
               %>
               <%= f.select :user_one_id, options_for_select(mains, @two.user_one_id) %>
@@ -174,12 +192,21 @@
             <div class="form-group">
               <%= f.label :user_two_id, "Entrant/Passeur" %>
               <%
-                @users = User.order(:name)
-                premiers = @users.select { |u| u.canrole == 'premiere' }
+                titulaires = []
                 mains = []
-                premiers.each do |p|
-                  mains.push([p.getname(), p.id])
+                @match.matchlinks.each do |l|
+                  if l.thetype == 'titulaires' || l.thetype == 'remplacents'
+                    mains.push([l.user.getname(), l.user.id])
+                  end
                 end
+              %>
+              <%
+                # @users = User.order(:name)
+                # premiers = @users.select { |u| u.canrole == 'premiere' }
+                # mains = []
+                # premiers.each do |p|
+                #   mains.push([p.getname(), p.id])
+                # end
 
               %>
               <%= f.select :user_two_id, options_for_select(mains, @two.user_two_id) %>

@@ -7,6 +7,7 @@
     <table class="table table-striped table-hover">
       <tbody class="effectif">
       <%
+        print(params[:whom])
         @users = User.order(:name)
         @users1 = @users.select { |u| u.canrole == params[:whom]  && u.role == 1}
         @users2 = @users.select { |u| u.canrole ==  params[:whom]  && u.role == 2}
