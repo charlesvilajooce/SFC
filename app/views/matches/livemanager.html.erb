@@ -27,12 +27,23 @@
     <% end %>
   </p>
 
-    <%= link_to 'Retour aux matchs', matches_path, class: 'btn btn-primary' %>
+  <%= link_to 'Retour aux matchs', matches_path, class: 'btn btn-primary' %>
 
   <bR><bR>
   <button id="showsimple" class="btn btn-success">Evenement simple</button>
-  <button id="showone" class="btn btn-success">Evenement 1 joueur</button>
-  <button id="showtwo" class="btn btn-success">Evenement 2 joueurs</button>
+  <%
+    titulaires = []
+    mains = []
+    @match.matchlinks.each do |l|
+      if l.thetype == 'titulaires' || l.thetype == 'remplacents'
+        mains.push([l.user.getname(), l.user.id])
+      end
+    end
+    if (!titulaires.blank?)
+  %>
+      <button id="showone" class="btn btn-success">Evenement 1 joueur</button>
+      <button id="showtwo" class="btn btn-success">Evenement 2 joueurs</button>
+  <% end %>
   <br><br>
   <div style="display: none;" id="simple">
     <%= form_for(@simple) do |f| %>
@@ -65,7 +76,7 @@
             </div>
             <div class="form-group">
               <%= f.label :thetype, "Type" %>
-              <%= f.select :thetype, options_for_select(["Aucun", "Corner", "Coup franc", "But Adversaire", "Carton Jaune Adversaire", "Carton Rouge Adversaire", "Echange Adversaire","Sifflet","Fin de match"], @simple.thetype) %>
+              <%= f.select :thetype, options_for_select(["Aucun", "Corner", "Coup franc", "But Adversaire", "Carton Jaune Adversaire", "Carton Rouge Adversaire", "Echange Adversaire", "Sifflet", "Fin de match"], @simple.thetype) %>
             </div>
 
             <div class="form-group">
@@ -217,7 +228,7 @@
             </div>
             <div class="form-group">
               <%= f.label :thetype, "Type" %>
-              <%= f.select :thetype, options_for_select(["Echange","But"], @two.thetype) %>
+              <%= f.select :thetype, options_for_select(["Echange", "But"], @two.thetype) %>
             </div>
 
             <div class="form-group">
@@ -283,33 +294,33 @@
                         <%= raw me.getimg() %>
                     <% end %>
 
-            </td>
-            <td>
-              <%= raw me.gettext() %>
-            </td>
-            <td>
-              <%= link_to 'Supprimer', delete_matchevent1users_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
-            </td>
-            </tr>
-        <% end end %>
-    <%
-      @matchevent2users.each do |me|
-        if me.temps == i
-    %>
-            <tr>
-              <td>
-                <%= i %>
-                <% if !me.getimg().blank? %>
-                    <%= raw me.getimg() %>
+                  </td>
+                  <td>
+                    <%= raw me.gettext() %>
+                  </td>
+                  <td>
+                    <%= link_to 'Supprimer', delete_matchevent1users_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+                  </td>
+                </tr>
+            <% end end %>
+        <%
+          @matchevent2users.each do |me|
+            if me.temps == i
+        %>
+                <tr>
+                  <td>
+                    <%= i %>
+                    <% if !me.getimg().blank? %>
+                        <%= raw me.getimg() %>
                     <% end %>
-                    </td>
-                    <td>
-                      <%= raw me.gettext() %>
-                    </td>
-                    <td>
-                      <%= link_to 'Supprimer', delete_matchevent2users_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
-                    </td>
-                    </tr>
+                  </td>
+                  <td>
+                    <%= raw me.gettext() %>
+                  </td>
+                  <td>
+                    <%= link_to 'Supprimer', delete_matchevent2users_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+                  </td>
+                </tr>
             <% end end %>
     <% end %>
   </table>
