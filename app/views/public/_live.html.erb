@@ -42,12 +42,7 @@
           Rapport du match
         </div>
       </div>
-      <% if match.when < Time.now.to_i  || match.live %>
-          <%
-            @matchevents = match.matchevents
-            @matchevent1users = match.matchevent1users
-            @matchevent2users = match.matchevent2users
-          %>
+
       <div class="row grad mb row-rapport">
         <div class="col">
           <div class="row text-s">
@@ -125,6 +120,12 @@
           <img src="images/mycujoo.jpg" alt="Cujoo" class="cujoo">
         </a>
       </div>
+      <% if match.when < Time.now.to_i  || match.live %>
+          <%
+            @matchevents = match.matchevents
+            @matchevent1users = match.matchevent1users
+            @matchevent2users = match.matchevent2users
+          %>
       <div class="row">
         <div class="col-12 col-xl-9 col-lg-9 col-md-12 col-sm-12">
 
