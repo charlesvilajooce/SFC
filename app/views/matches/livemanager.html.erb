@@ -323,6 +323,64 @@
                 </tr>
             <% end end %>
     <% end %>
+    <%
+      @matchevents.each do |me|
+        if me.temps.blank?
+    %>
+            <tr>
+              <td>
+
+                <% if !me.getimg().blank? %>
+                    <%= raw me.getimg() %>
+                <% end %>
+              </td>
+              <td>
+                <%= raw me.gettext() %>
+              </td>
+              <td>
+                <%= link_to 'Supprimer', delete_matchevents_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+              </td>
+            </tr>
+        <% end end %>
+    <%
+      @matchevent1users.each do |me|
+        if me.temps.blank?
+    %>
+            <tr>
+              <td>
+
+                <% if !me.getimg().blank? %>
+                    <%= raw me.getimg() %>
+                <% end %>
+
+              </td>
+              <td>
+                <%= raw me.gettext() %>
+              </td>
+              <td>
+                <%= link_to 'Supprimer', delete_matchevent1users_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+              </td>
+            </tr>
+        <% end end %>
+    <%
+      @matchevent2users.each do |me|
+        if me.temps.blank?
+    %>
+            <tr>
+              <td>
+
+                <% if !me.getimg().blank? %>
+                    <%= raw me.getimg() %>
+                <% end %>
+              </td>
+              <td>
+                <%= raw me.gettext() %>
+              </td>
+              <td>
+                <%= link_to 'Supprimer', delete_matchevent2users_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+              </td>
+            </tr>
+        <% end end %>
   </table>
 </div>
 
