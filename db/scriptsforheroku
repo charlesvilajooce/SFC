@@ -13,5 +13,12 @@ heroku run rake db:migrate:up VERSION="XXXXXX" --app sfctest
 heroku run rake db:migrate:down VERSION="XXXXXX" --app sfctest
 
 
+EST EN DEMO:
 calendrier des matchs bouton plus
 et aussi le live
+
+A FAIRE:
+Classement
+EFFECTIF academie
+Rapport de match
+Minutes sur rapport de match
