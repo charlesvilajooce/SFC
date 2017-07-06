@@ -121,6 +121,13 @@
       </div>
       <div class="row">
         <div class="col-12 col-xl-9 col-lg-9 col-md-12 col-sm-12">
+          <% if match.when < Time.now.to_i %>
+              <%
+                @matchevents = match.matchevents
+                @matchevent1users = match.matchevent1users
+                @matchevent2users = match.matchevent2users
+              %>
+
           <h3 class="titre text-grenat">Le direct</h3>
           <div class="row mb">
             <div class="col-3">
@@ -532,4 +539,5 @@
       </div>
     </div>
 
+<% end %>
 <% end %>
