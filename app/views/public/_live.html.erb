@@ -143,20 +143,20 @@
                         @matchevent1users.each do |me|
                           if me.temps == i && me.thetype == "But"
                       %>
-                              <%= i+"'" %> <%= raw me.user.getname() %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.user.getname() %><br/>
                           <% end end %>
                       <%
                         @matchevent2users.each do |me|
                           if me.temps == i && me.thetype == "But"
                       %>
-                              <%= i+"'" %> <%= raw me.user_one.getname() %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.user_one.getname() %><br/>
                           <% end end %>
                   <% else %>
                       <%
                         @matchevents.each do |me|
                           if me.temps == i && me.thetype == "But Adversaire"
                       %>
-                              <%= i+"'" %> <%= raw me.player %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.player %><br/>
                           <% end end %>
                   <% end %>
 
@@ -175,14 +175,14 @@
                         @matchevent1users.each do |me|
                           if me.temps == i && me.thetype == "Carton Jaune"
                       %>
-                              <%= i+"'" %> <%= raw me.user.getname() %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.user.getname() %><br/>
                           <% end end %>
                   <% else %>
                       <%
                         @matchevents.each do |me|
                           if me.temps == i && me.thetype == "Carton Jaune Adversaire"
                       %>
-                              <%= i+"'" %> <%= raw me.player %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.player %><br/>
                           <% end end %>
                   <% end %>
 
@@ -200,14 +200,14 @@
                         @matchevent1users.each do |me|
                           if me.temps == i && me.thetype == "Carton Rouge"
                       %>
-                              <%= i+"'" %> <%= raw me.user.getname() %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.user.getname() %><br/>
                           <% end end %>
                   <% else %>
                       <%
                         @matchevents.each do |me|
                           if me.temps == i && me.thetype == "Carton Rouge Adversaire"
                       %>
-                              <%= i+"'" %> <%= raw me.player %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.player %><br/>
                           <% end end %>
                   <% end %>
 
@@ -225,14 +225,14 @@
                         @matchevent2users.each do |me|
                           if me.temps == i && me.thetype == "Echange"
                       %>
-                              <%= i+"'" %> <%= raw me.user_one.getname() %> pour <%= raw me.user_two.getname() %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.user_one.getname() %> pour <%= raw me.user_two.getname() %><br/>
                           <% end end %>
                   <% else %>
                       <%
                         @matchevents.each do |me|
                           if me.temps == i && me.thetype == "Echange Adversaire"
                       %>
-                              <%= i+"'" %> <%= raw me.player %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.player %><br/>
                           <% end end %>
                   <% end %>
 
@@ -262,7 +262,7 @@
                     %>
                             <tr>
                               <td>
-                                <%= i+"'" %>
+                                <%= i.to_s+"'" %>
                                 <% if !me.getimg().blank? %>
                                     <%= raw me.getimg() %>
                                 <% end %>
@@ -278,7 +278,7 @@
                     %>
                             <tr>
                               <td>
-                                <%= i+"'" %>
+                                <%= i.to_s+"'" %>
                                 <% if !me.getimg().blank? %>
                                     <%= raw me.getimg() %>
                                 <% end %>
@@ -295,7 +295,7 @@
                     %>
                             <tr>
                               <td>
-                                <%= i+"'" %>
+                                <%= i.to_s+"'" %>
                                 <% if !me.getimg().blank? %>
                                     <%= raw me.getimg() %>
                                 <% end %>
@@ -320,20 +320,20 @@
                         @matchevent1users.each do |me|
                           if me.temps == i && me.thetype == "But"
                       %>
-                              <%= i+"'" %> <%= raw me.user.getname() %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.user.getname() %><br/>
                           <% end end %>
                       <%
                         @matchevent2users.each do |me|
                           if me.temps == i && me.thetype == "But"
                       %>
-                              <%= i+"'" %> <%= raw me.user_one.getname() %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.user_one.getname() %><br/>
                           <% end end %>
                   <% else %>
                       <%
                         @matchevents.each do |me|
                           if me.temps == i && me.thetype == "But Adversaire"
                       %>
-                              <%= i+"'" %> <%= raw me.player %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.player %><br/>
                           <% end end %>
                   <% end %>
 
@@ -352,14 +352,14 @@
                         @matchevent1users.each do |me|
                           if me.temps == i && me.thetype == "Carton Jaune"
                       %>
-                              <%= i+"'" %> <%= raw me.user.getname() %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.user.getname() %><br/>
                           <% end end %>
                   <% else %>
                       <%
                         @matchevents.each do |me|
                           if me.temps == i && me.thetype == "Carton Jaune Adversaire"
                       %>
-                              <%= i+"'" %> <%= raw me.player %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.player %><br/>
                           <% end end %>
                   <% end %>
 
@@ -377,14 +377,14 @@
                         @matchevent1users.each do |me|
                           if me.temps == i && me.thetype == "Carton Rouge"
                       %>
-                              <%= i+"'" %> <%= raw me.user.getname() %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.user.getname() %><br/>
                           <% end end %>
                   <% else %>
                       <%
                         @matchevents.each do |me|
                           if me.temps == i && me.thetype == "Carton Rouge Adversaire"
                       %>
-                              <%= i+"'" %> <%= raw me.player %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.player %><br/>
                           <% end end %>
                   <% end %>
 
@@ -402,14 +402,14 @@
                         @matchevent2users.each do |me|
                           if me.temps == i && me.thetype == "Echange"
                       %>
-                              <%= i+"'" %> <%= raw me.user_one.getname() %> pour <%= raw me.user_two.getname() %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.user_one.getname() %> pour <%= raw me.user_two.getname() %><br/>
                           <% end end %>
                   <% else %>
                       <%
                         @matchevents.each do |me|
                           if me.temps == i && me.thetype == "Echange Adversaire"
                       %>
-                              <%= i+"'" %> <%= raw me.player %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.player %><br/>
                           <% end end %>
                   <% end %>
 
