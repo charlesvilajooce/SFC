@@ -53,7 +53,8 @@
         @users2 = @users.select { |u| u.canrole == 'premiere'  && u.role == 2}
         @users3 = @users.select { |u| u.canrole == 'premiere'  && u.role == 3}
         @users4 = @users.select { |u| u.canrole == 'premiere'  && u.role == 4}
-        players = @users1 +@users2 + @users3 + @users4
+        @users5 = @users.select { |u| u.canrole ==  'premiere'  && u.role.blank?}
+        players = @users1 +@users2 + @users3 + @users4+ @users5
         players.each do |player|
       %>
           <tr>
