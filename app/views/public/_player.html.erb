@@ -1,6 +1,15 @@
 <% params[:alias] %>
 
-<% @player = User.find_by(alias: params[:alias]) %>
+<% @player = User.find_by(alias: params[:alias])
+
+  if @player.blank?
+    User.all.each do |u|
+      if u.surname+'-'+u.name == params[:alias]
+        @player = u
+      end
+
+  end
+%>
 
 <% if !@player.blank? %>
     <% @player.getname() %>
@@ -55,8 +64,8 @@
                 <p class="info"><%= @player.nationality %></p>
                 <h3 class="titre sous-titre text-grenat">Équipe</h3>
                 <p class="info">1ère équipe</p>
-                <h3 class="titre sous-titre text-grenat">Lorem Ipsum</h3>
-                <p class="info">Lorem Ipsum</p>
+<!--                <h3 class="titre sous-titre text-grenat">Lorem Ipsum</h3>
+                <p class="info">Lorem Ipsum</p>-->
               </div>
             </div>
           </div>
