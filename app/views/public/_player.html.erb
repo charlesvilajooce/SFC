@@ -4,7 +4,8 @@
 
    if @player.blank?
      User.all.each do |u|
-       if u.surname+'-'+u.name == params[:alias]
+       print (u.surname+'-'+u.name).downcase
+       if (u.surname+'-'+u.name).downcase == params[:alias]
          @player = u
        end
      end
