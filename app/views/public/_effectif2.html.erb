@@ -25,7 +25,7 @@
                 @tempalias = player.surname+'-'+player.name
               end
             %>
-            <td><a href="index.php/<%= @tempalias %>" class="link_grenat"><%= player.getname() %></a></td>
+            <td><%= player.getname() %></td>
             <td>
               <% roles = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'] %>
               <% if !player.role.blank? %>
@@ -36,7 +36,7 @@
                   <%= Time.at(player.birthday.to_time.to_i).strftime '%d.%m.%Y' %>
               <% end %>
             </td>
-            <td><%= player.nationality %></td>
+
           </tr>
       <% end %>
       </tbody>
