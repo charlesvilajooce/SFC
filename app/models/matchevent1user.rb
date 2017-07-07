@@ -7,7 +7,7 @@ class Matchevent1user < ApplicationRecord
     else
       case self.thetype
         when "But"
-          return (self.user.getname()+" a marqué un but.")
+          return ("But de "+self.user.getname()+".")
         when "Carton Jaune"
           return (self.user.getname()+" a recu un carton jaune.")
         when "Carton Rouge"
@@ -15,7 +15,7 @@ class Matchevent1user < ApplicationRecord
         when "Passe"
           return (self.user.getname()+" a fait une passe.")
         else
-
+          return ""
       end
     end
   end
