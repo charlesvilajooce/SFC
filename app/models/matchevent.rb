@@ -7,7 +7,7 @@ class Matchevent < ApplicationRecord
     else
       case self.thetype
         when "But Adversaire"
-          return ("But pour "Team.find(self.match.adversaire).name+".")
+          return (Team.find(self.match.adversaire).name+" a marqué un but.")
         when "Carton Jaune Adversaire"
           return (Team.find(self.match.adversaire).name+" a recu un carton jaune.")
         when "Carton Rouge Adversaire"
