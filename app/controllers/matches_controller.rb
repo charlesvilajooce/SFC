@@ -209,7 +209,7 @@ class MatchesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def match_params
-    params.require(:match).permit(:photos,:videos,:home,:when, :équipe, :adversaire_id, :saison, :scoreSfc, :scoreAdv, :spectateurs, :competition, :terrain_id, :hometitulaires, :homeremplacents, :homeabsents, :homeentrainer, :awaytitulaires, :awayremplacents, :awayabsents, :awayentrainer)
+    params.require(:match).permit(:photos,:videos,:home,:when, :équipe, :adversaire_id, :saison, :scoreSfc, :scoreAdv, :spectateurs, :competition, :terrain_id, :hometitulaires, :homeremplacents, :homeabsents, :homeentrainer, :awaytitulaires, :awayremplacants, :awayabsents, :awayentrainer)
   end
   def matchevent_params
     params.require(:matchevent).permit(:match_id, :commentaire,:player, :temps, :thetype)
