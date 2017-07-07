@@ -227,7 +227,7 @@
                         @matchevent2users.each do |me|
                           if me.temps == i && me.thetype == "Echange"
                       %>
-                              <%= i.to_s+"'" %> <%= raw me.user_one.getname() %><br> pour <%= raw me.user_two.getname() %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.user_one.getname() %> sort<br> pour <%= raw me.user_two.getname() %><br/>
                           <% end end %>
                   <% else %>
                       <%
@@ -452,7 +452,7 @@
                         @matchevent2users.each do |me|
                           if me.temps == i && me.thetype == "Echange"
                       %>
-                              <%= i.to_s+"'" %> <%= raw me.user_one.getname() %><br> pour <%= raw me.user_two.getname() %><br/>
+                              <%= i.to_s+"'" %> <%= raw me.user_one.getname() %> sort<br> pour <%= raw me.user_two.getname() %><br/>
                           <% end end %>
                   <% else %>
                       <%
@@ -479,7 +479,7 @@
           <h3 class="titre text-grenat">Statistiques du match</h3>
           <div class="row mb">
             <div class="col-12">
-              <table class="table table-striped table-rapport">
+              <table class="table table-striped table-rapport table-sm">
                 <thead>
                 <tr>
                   <th>#</th>
