@@ -10,7 +10,7 @@ class Matchevent2user < ApplicationRecord
         when "Echange"
           return ("Sortie de "+User.find(self.user_one_id).getname()+" pour "+User.find(self.user_two_id).getname())
         when "But"
-          return ("But de "+User.find(self.user_one_id).getname()+" assisté de "+User.find(self.user_two_id).getname())
+          return ("But de "+User.find(self.user_one_id).getname()+" avec la passe de "+User.find(self.user_two_id).getname())
       end
     end
   end
