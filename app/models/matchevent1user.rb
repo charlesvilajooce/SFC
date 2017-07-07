@@ -13,7 +13,7 @@ class Matchevent1user < ApplicationRecord
         when "Carton Rouge"
           return (self.user.getname()+" a recu un carton rouge.")
         when "Passe"
-          return (self.user.getname()+" a fait une passe.")
+          return ("Passe de "+self.user.getname()+".")
         else
           return ""
       end

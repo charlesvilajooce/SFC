@@ -10,7 +10,9 @@ class Matchevent2user < ApplicationRecord
         when "Echange"
           return ("Sortie de "+User.find(self.user_one_id).getname()+" pour "+User.find(self.user_two_id).getname())
         when "But"
-          return ("But de "+User.find(self.user_one_id).getname()+" avec la passe de "+User.find(self.user_two_id).getname())
+          return ("But de "+User.find(self.user_one_id).getname()+" assisté par "+User.find(self.user_two_id).getname())
+        else
+          return ""
       end
     end
   end
@@ -23,7 +25,7 @@ class Matchevent2user < ApplicationRecord
       when "But"
         return ("<img src='https://www.servette.biz/images/livescore/goal.png' style='' >")
       else
-
+        return ""
     end
   end
 
