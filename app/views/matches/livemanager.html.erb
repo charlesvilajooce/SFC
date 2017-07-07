@@ -325,7 +325,7 @@
     <% end %>
     <%
       @matchevents.each do |me|
-        if me.temps.blank?
+        if me.temps.blank? || me.temps > 200
     %>
             <tr>
               <td>
@@ -344,7 +344,7 @@
         <% end end %>
     <%
       @matchevent1users.each do |me|
-        if me.temps.blank?
+        if me.temps.blank? || me.temps > 200
     %>
             <tr>
               <td>
@@ -364,7 +364,7 @@
         <% end end %>
     <%
       @matchevent2users.each do |me|
-        if me.temps.blank?
+        if me.temps.blank? || me.temps > 200
     %>
             <tr>
               <td>
