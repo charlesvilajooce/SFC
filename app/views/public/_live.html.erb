@@ -245,32 +245,34 @@
                   <hr>
 
                   <% if match.home %>
+                      <strong>Entraîneur</strong><br>
+                      <%= match.homeentrainer %>
+                      <br><br>
                       <strong>Titulaires</strong><br>
                       <% match.gettitulaires().each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
-                          <br>
+                          <br><br>
                       <% end %>
                       <strong>Remplaçants</strong><br>
                       <% match.getremplacents().each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
-                          <br>
+                          <br><br>
                       <% end %>
-                      <strong>Entraîneur</strong><br>
-                      <%= match.homeentrainer %>
-                      <br>
+
                       <strong>Absents</strong><br>
                       <% match.getabsents().each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
-                          <br>
+                          <br><br>
                       <% end %>
                   <% else %>
-                      <strong>Titulaires</strong><br>
-                      <%= raw match.getbrs(match.awaytitulaires) %><br>
-                      <strong>Remplaçants</strong><br>
-                      <%= raw match.getbrs(match.awayremplacants) %><br>
                       <strong>Entraîneur</strong><br>
                       <%= match.awayentrainer %>
-                      <br>
+                      <br><br>
+                      <strong>Titulaires</strong><br>
+                      <%= raw match.getbrs(match.awaytitulaires) %><br><br>
+                      <strong>Remplaçants</strong><br>
+                      <%= raw match.getbrs(match.awayremplacants) %><br><br>
+
                       <strong>Absents</strong><br>
                       <%= raw match.getbrs(match.awayabsents) %><br>
                   <% end %>
@@ -494,34 +496,36 @@
                   </div>
                   <hr>
                   <% if !match.home %>
+                      <strong>Entraîneur</strong><br>
+                      <%= match.homeentrainer %>
+                      <br><br>
                       <strong>Titulaires</strong><br>
                       <% match.gettitulaires().each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
-                          <br>
+                          <br><br>
                       <% end %>
                       <strong>Remplaçants</strong><br>
                       <% match.getremplacents().each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
-                          <br>
+                          <br><br>
                       <% end %>
-                      <strong>Entraîneur</strong><br>
-                      <%= match.homeentrainer %>
-                      <br>
+
                       <strong>Absents</strong><br>
                       <% match.getabsents().each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
-                          <br>
+                          <br><br>
                       <% end %>
                   <% else %>
-                      <strong>Titulaires</strong><br>
-                      <%= raw match.getbrs(match.awaytitulaires) %><br>
-                      <strong>Remplaçants</strong><br>
-                      <%= raw match.getbrs(match.awayremplacants) %><br>
                       <strong>Entraîneur</strong><br>
                       <%= match.awayentrainer %>
-                      <br>
+                      <br><br>
+                      <strong>Titulaires</strong><br><br>
+                      <%= raw match.getbrs(match.awaytitulaires) %><br><br>
+                      <strong>Remplaçants</strong><br>
+                      <%= raw match.getbrs(match.awayremplacants) %><br><br>
+
                       <strong>Absents</strong><br>
-                      <%= raw match.getbrs(match.awayabsents) %><br>
+                      <%= raw match.getbrs(match.awayabsents) %><br><br>
                   <% end %>
                 </div>
               </div>
