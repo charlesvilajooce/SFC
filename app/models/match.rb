@@ -104,6 +104,37 @@ class Match < ApplicationRecord
     return buts
   end
 
+
+  def gettitulaires()
+    mains = []
+    self.matchlinks.each do |l|
+      if l.thetype == 'titulaires'
+        mains.push(l.user)
+      end
+    end
+    return mains
+  end
+
+  def getremplacents()
+    mains = []
+    self.matchlinks.each do |l|
+      if l.thetype == 'remplacents'
+        mains.push(l.user)
+      end
+    end
+    return mains
+  end
+
+  def getabsents()
+    mains = []
+    self.matchlinks.each do |l|
+      if l.thetype == 'absents'
+        mains.push(l.user)
+      end
+    end
+    return mains
+  end
+
   def getchange(playerid)
     change = ''
     self.matchevent2users.each do |me|
