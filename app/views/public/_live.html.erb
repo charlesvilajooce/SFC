@@ -251,19 +251,22 @@
                       <strong>Titulaires</strong><br>
                       <% match.gettitulaires().each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
-                          <br><br>
+                          <br>
                       <% end %>
+                      <br>
                       <strong>Remplaçants</strong><br>
                       <% match.getremplacents().each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
-                          <br><br>
+                          <br>
                       <% end %>
+                      <br>
 
                       <strong>Absents</strong><br>
                       <% match.getabsents().each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
-                          <br><br>
+                          <br>
                       <% end %>
+                      <br>
                   <% else %>
                       <strong>Entraîneur</strong><br>
                       <%= match.awayentrainer %>
@@ -502,19 +505,22 @@
                       <strong>Titulaires</strong><br>
                       <% match.gettitulaires().each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
-                          <br><br>
+                          <br>
                       <% end %>
+                      <br>
                       <strong>Remplaçants</strong><br>
                       <% match.getremplacents().each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
-                          <br><br>
+                          <br>
                       <% end %>
+                      <br>
 
                       <strong>Absents</strong><br>
                       <% match.getabsents().each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
-                          <br><br>
+                          <br>
                       <% end %>
+                      <br>
                   <% else %>
                       <strong>Entraîneur</strong><br>
                       <%= match.awayentrainer %>
