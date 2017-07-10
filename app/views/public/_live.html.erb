@@ -44,7 +44,7 @@
       </div>
       <div class="row">
         <div class="rafraichir">
-          <a href="index.php/match?gameid=<%= match.id%>"><img src="https://www.servette.biz/images/refresh.gif">
+          <a href="index.php/match?gameid=<%= match.id %>"><img src="https://www.servette.biz/images/refresh.gif">
             Raffraichir</a>
         </div>
       </div>
@@ -557,6 +557,25 @@
                       <th>ASS.</th>
                     </tr>
                     </thead>
+                    <tr>
+                      <td>
+                      </td>
+                      <td>
+                        TITULAIRES
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
                     <%
                       titulaires = []
                       @match.matchlinks.each do |l|
@@ -564,7 +583,7 @@
                           titulaires.push(l.user)
                         end
                       end
-
+                      titulaires = @match.orderplayers(titulaires)
                       titulaires.each do |player|
                     %>
                         <tr>
@@ -597,6 +616,25 @@
                           </td>
                         </tr>
                     <% end %>
+                    <tr>
+                      <td>
+                      </td>
+                      <td>
+                        REMPLACENTS
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
                     <%
                       remplacents = []
                       @match.matchlinks.each do |l|
@@ -604,7 +642,7 @@
                           remplacents.push(l.user)
                         end
                       end
-
+                      remplacents = @match.orderplayers(remplacents)
                       remplacents.each do |player|
                     %>
                         <tr>
