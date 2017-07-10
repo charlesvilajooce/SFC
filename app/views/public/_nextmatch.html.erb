@@ -41,11 +41,13 @@
         </div>
         <div class="card-block no-pb">
           <h4 class="card-title text-gold versus">
+            <a href="index.php/match?gameid=<%= match.id %>">
             <% if match.home %>
                 <%= match.équipe %> - <%= match.adversaire.name %>
             <% else %>
                 <%= match.adversaire.name %> - <%= match.équipe %>
             <% end %>
+            </a>
           </h4>
           <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
         </div>
