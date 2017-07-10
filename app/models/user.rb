@@ -327,4 +327,15 @@ class User < ApplicationRecord
     return archived_infos
   end
 
+  def orderplayers(players)
+    users = players.order(:name)
+    users1 = users.select { |u|  u.role == 1}
+    users2 = users.select { |u| u.role == 2}
+    users3 = users.select { |u| u.role == 3}
+    users4 = users.select { |u| u.role == 4}
+    users5 = users.select { |u| u.role.blank?}
+    orderedplayers = users1 +users2 + users3 + users4+ users5
+    return orderedplayers
+  end
+
 end

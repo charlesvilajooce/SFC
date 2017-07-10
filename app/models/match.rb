@@ -6,6 +6,21 @@ class Match < ApplicationRecord
   belongs_to :terrain
   belongs_to :adversaire, :class_name => 'Team', :foreign_key => 'adversaire_id'
 
+  def orderplayers(players)
+    users = players.sort_by { |e| e.name }
+    # users = players
+    users1 = users.select { |u|  u.role == 1}
+    users2 = users.select { |u| u.role == 2}
+    users3 = users.select { |u| u.role == 3}
+    users4 = users.select { |u| u.role == 4}
+    users5 = users.select { |u| u.role.blank?}
+    orderedplayers = users1 + users2 + users3 + users4 + users5
+    # print (orderedplayers)
+    return orderedplayers
+
+  end
+
+
   def getdate(value)
     if (value != nil)
       tmp = Time.at(value).strftime '%Y-%m-%dT%H:%M:%S'

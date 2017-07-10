@@ -398,21 +398,43 @@
     <h3>Home</h3>
     <p><b>Home Entraineur : </b><%= @match.homeentrainer %></p>
     <p><b>Home Titulaires : </b>
-      <% @match.matchlinks.each do |l|
-        if l.thetype == 'titulaires' %>
-              <br><%= l.user.getname() %>
-          <% end end %>
+
+
+      <%
+        all = []
+        @match.matchlinks.each do |l|
+          if l.thetype == 'titulaires' %>
+              <% all.push(l.user) %>
+          <% end %>
+      <% end %>
+      <% @match.orderplayers(all).each do |l| %>
+          <br><%= l.getname() %>
+      <% end %>
     </p>
     <p><b>Home Remplancants : </b>
-      <% @match.matchlinks.each do |l|
-        if l.thetype == 'remplacents' %>
-              <br><%= l.user.getname() %>
-          <% end end %></p>
+      <%
+        all = []
+        @match.matchlinks.each do |l|
+          if l.thetype == 'remplacents' %>
+              <% all.push(l.user) %>
+          <% end %>
+      <% end %>
+      <% @match.orderplayers(all).each do |l| %>
+          <br><%= l.getname() %>
+      <% end %>
+    </p>
     <p><b>Home Absents : </b>
-      <% @match.matchlinks.each do |l|
-        if l.thetype == 'absents' %>
-              <br><%= l.user.getname() %>
-          <% end end %></p>
+      <%
+        all = []
+        @match.matchlinks.each do |l|
+          if l.thetype == 'absents' %>
+              <% all.push(l.user) %>
+          <% end %>
+      <% end %>
+      <% @match.orderplayers(all).each do |l| %>
+          <br><%= l.getname() %>
+      <% end %>
+    </p>
   </div>
   <div class="col-md-6">
 
