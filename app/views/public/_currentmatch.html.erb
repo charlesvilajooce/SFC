@@ -39,7 +39,7 @@
         <div class="row row-score row-derniermatch">
 
           <div class="col-3 img-domicile aligner no-border">
-            <a href="index.php/match?gameid=<%= match.id %>">
+            <a href="index.php/match?gameid=<%= match.id %>" class="teamlink">
             <% if match.home %>
                 <img class="img-score logosfc-derniermatch" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
             <% else %>
@@ -75,7 +75,7 @@
         </div>
         <div class="card-block card-match-padding">
           <h4 class="card-title text-gold versus">
-            <a href="index.php/match?gameid=<%= match.id %>">
+            <a href="index.php/match?gameid=<%= match.id %>"  class="teamlink">
             <% if match.home %>
                 <%= match.équipe %> - <%= match.adversaire.name %>
             <% else %>
