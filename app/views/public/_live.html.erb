@@ -255,20 +255,23 @@
                       <%= match.homeentrainer %>
                       <br><br>
                       <strong>Titulaires</strong><br>
-                      <% match.gettitulaires().each do |t| %>
+                      <% orderedplayer = match.orderplayers(match.gettitulaires())
+                         orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
                       <% end %>
                       <br>
                       <strong>Remplaçants</strong><br>
-                      <% match.getremplacents().each do |t| %>
+                      <% orderedplayer = match.orderplayers(match.getremplacents())
+                         orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
                       <% end %>
                       <br>
 
                       <strong>Absents</strong><br>
-                      <% match.getabsents().each do |t| %>
+                      <% orderedplayer = match.orderplayers(match.getasbents())
+                         orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
                       <% end %>
@@ -509,20 +512,23 @@
                       <%= match.homeentrainer %>
                       <br><br>
                       <strong>Titulaires</strong><br>
-                      <% match.gettitulaires().each do |t| %>
+                      <% orderedplayer = match.orderplayers(match.gettitulaires())
+                         orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
                       <% end %>
                       <br>
                       <strong>Remplaçants</strong><br>
-                      <% match.getremplacents().each do |t| %>
+                      <% orderedplayer = match.orderplayers(match.getremplacents())
+                         orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
                       <% end %>
                       <br>
 
                       <strong>Absents</strong><br>
-                      <% match.getabsents().each do |t| %>
+                      <% orderedplayer = match.orderplayers(match.getasbents())
+                         orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
                       <% end %>
