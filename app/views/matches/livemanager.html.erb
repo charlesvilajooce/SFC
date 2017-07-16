@@ -61,27 +61,27 @@
 
         <div class="row livescore">
           <!--<div class="col-4"></div>-->
-            <div class="col-2">
+            <div class="col-2 .col-md-6 .col-sm-6">
               <div class="form-group">
-                <%= f.label :temps, "Temps (min)" %>
+                <%= f.label :temps, "Temps (min)" %><br>
                 <%= f.text_field :temps, class: 'form-control', style: 'width: 100px;' %>
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-4 .col-md-6 .col-sm-6">
               <div class="form-group">
-                <%= f.label :commentaire, "Commentaire" %>
+                <%= f.label :commentaire, "Commentaire" %><br>
                 <%= f.text_area :commentaire, class: 'form-control', style: 'width: 280px;' %>
               </div>
             </div>
-            <div class="col-3">
+            <div class="col-3 .col-md-6 .col-sm-6">
               <div class="form-group">
-                <%= f.label :player, "Joueur" %>
+                <%= f.label :player, "Joueur" %><br>
                 <%= f.text_field :player, class: 'form-control', style: 'width: 100px;' %>
               </div>
             </div>
-            <div class="col-3">
+            <div class="col-3 .col-md-6 .col-sm-6">
               <div class="form-group">
-                <%= f.label :thetype, "Type" %>
+                <%= f.label :thetype, "Type" %><br>
                 <%= f.select :thetype, options_for_select(["Aucun", "Corner", "Coup franc", "But Adversaire", "Carton Jaune Adversaire", "Carton Rouge Adversaire", "Echange Adversaire", "Sifflet", "Fin de match"], @simple.thetype) %>
               </div>
             </div>
