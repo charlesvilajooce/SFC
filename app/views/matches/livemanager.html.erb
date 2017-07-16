@@ -113,14 +113,21 @@
         <% end %>
 
         <div class="row livescore">
-          <!--<div class="col-4"></div>-->
-          <div class="col-12">
+          <div class="col .col-sm-6 .col-md-6 .col-lg-2 .col-xl-2">
             <div class="form-group">
-              <%= f.label :temps, "Temps (min)" %>
+              <%= f.label :temps, "Temps (min)" %><br>
               <%= f.text_field :temps, class: 'form-control', style: 'width: 100px;' %>
             </div>
+          </div>
+          <div class="col .col-sm-6 .col-md-6 .col-lg-4 .col-xl-4">
             <div class="form-group">
-              <%= f.label :user_id, "Joueur" %>
+              <%= f.label :commentaire, "Commentaire" %><br>
+              <%= f.text_area :commentaire, class: 'form-control', style: 'width: 280px;' %>
+            </div>
+          </div>
+          <div class="col .col-sm-6 .col-md-6 .col-lg-3 .col-xl-3">
+            <div class="form-group">
+              <%= f.label :user_id, "Joueur" %><br>
               <%
                 titulaires = []
                 mains = []
@@ -141,23 +148,22 @@
               %>
               <%= f.select :user_id, options_for_select(mains, @one.user_id) %>
             </div>
+          </div>
+
+          <div class="col .col-sm-6 .col-md-6 .col-lg-3 .col-xl-3">
             <div class="form-group">
-              <%= f.label :commentaire, "Commentaire" %>
-              <%= f.text_area :commentaire, class: 'form-control', style: 'width: 280px;' %>
-            </div>
-            <div class="form-group">
-              <%= f.label :thetype, "Type" %>
+              <%= f.label :thetype, "Type" %><br>
               <%= f.select :thetype, options_for_select(["But", "Carton Jaune", "Carton Rouge", "Passe", "Sortie"], @one.thetype) %>
             </div>
-
+          </div>
             <div class="form-group">
               <%= f.hidden_field :match_id, :value => @match.id %>
             </div>
-            <div class="actions">
-              <%= f.submit 'Ajouter', :class => 'btn btn-primary' %>
-            </div>
-          </div>
-          <!--<div class="col-4"></div>-->
+
+        </div>
+
+        <div class="actions">
+          <%= f.submit 'Ajouter', :class => 'btn btn-primary' %>
         </div>
 
     <% end %>
@@ -178,14 +184,15 @@
 
         <div class="row livescore">
           <!--<div class="col-4"></div>-->
-          <div class="col-12">
+          <div class="col .col-sm-12 .col-md-12 .col-lg-2 .col-xl-2">
             <div class="form-group">
-              <%= f.label :temps, "Temps (min)" %>
+              <%= f.label :temps, "Temps (min)" %><br>
               <%= f.text_field :temps, class: 'form-control', style: 'width: 100px;' %>
             </div>
-
+          </div>
+          <div class="col .col-sm-6 .col-md-6 .col-lg-3 .col-xl-3">
             <div class="form-group">
-              <%= f.label :user_one_id, "Sortant/Butteur" %>
+              <%= f.label :user_one_id, "Sortant/Butteur" %><br>
               <%
                 titulaires = []
                 mains = []
@@ -206,8 +213,10 @@
               %>
               <%= f.select :user_one_id, options_for_select(mains, @two.user_one_id) %>
             </div>
+          </div>
+          <div class="col .col-sm-6 .col-md-6 .col-lg-3 .col-xl-3">
             <div class="form-group">
-              <%= f.label :user_two_id, "Entrant/Passeur" %>
+              <%= f.label :user_two_id, "Entrant/Passeur" %><br>
               <%
                 titulaires = []
                 mains = []
@@ -228,18 +237,24 @@
               %>
               <%= f.select :user_two_id, options_for_select(mains, @two.user_two_id) %>
             </div>
+          </div>
+          <div class="col .col-sm-6 .col-md-6 .col-lg-4 .col-xl-4">
             <div class="form-group">
-              <%= f.label :commentaire, "Commentaire" %>
+              <%= f.label :commentaire, "Commentaire" %><br>
               <%= f.text_area :commentaire, class: 'form-control', style: 'width: 280px;' %>
             </div>
+          </div>
+          <div class="col .col-sm-6 .col-md-6 .col-lg-6 .col-xl-6">
             <div class="form-group">
-              <%= f.label :thetype, "Type" %>
+              <%= f.label :thetype, "Type" %><br>
               <%= f.select :thetype, options_for_select(["Echange", "But"], @two.thetype) %>
             </div>
+          </div>
 
             <div class="form-group">
               <%= f.hidden_field :match_id, :value => @match.id %>
             </div>
+          <div class="col .col-sm-6 .col-md-6 .col-lg-6 .col-xl-6">
             <div class="actions">
               <%= f.submit 'Ajouter', :class => 'btn btn-primary' %>
             </div>
