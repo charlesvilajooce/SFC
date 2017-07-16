@@ -444,18 +444,6 @@
           <br><%= l.getname() %>
       <% end %>
     </p>
-    <p><b>Home Absents : </b>
-      <%
-        all = []
-        @match.matchlinks.each do |l|
-          if l.thetype == 'absents' %>
-              <% all.push(l.user) %>
-          <% end %>
-      <% end %>
-      <% @match.orderplayers(all).each do |l| %>
-          <br><%= l.getname() %>
-      <% end %>
-    </p>
   </div>
   <div class="col-md-6">
 
@@ -463,7 +451,6 @@
     <p><b>Away Entraineur : </b><%= @match.awayentrainer %></p>
     <p><b>Away Titulaires : </b><br><%= raw @match.getbrs(@match.awaytitulaires) %></p>
     <p><b>Away Remplancants : </b><br><%= raw @match.getbrs(@match.awayremplacants) %></p>
-    <p><b>Away Absents : </b><br><%= raw @match.getbrs(@match.awayabsents) %></p>
     <p id="notice"><%= notice %></p>
   </div>
 </div>
