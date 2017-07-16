@@ -62,29 +62,38 @@
         <div class="row livescore">
           <!--<div class="col-4"></div>-->
           <div class="col-12">
-            <div class="form-group">
-              <%= f.label :temps, "Temps (min)" %>
-              <%= f.text_field :temps, class: 'form-control', style: 'width: 100px;' %>
+            <div class="col-2">
+              <div class="form-group">
+                <%= f.label :temps, "Temps (min)" %>
+                <%= f.text_field :temps, class: 'form-control', style: 'width: 100px;' %>
+              </div>
             </div>
-            <div class="form-group">
-              <%= f.label :commentaire, "Commentaire" %>
-              <%= f.text_area :commentaire, class: 'form-control', style: 'width: 280px;' %>
+            <div class="col-4">
+              <div class="form-group">
+                <%= f.label :commentaire, "Commentaire" %>
+                <%= f.text_area :commentaire, class: 'form-control', style: 'width: 280px;' %>
+              </div>
             </div>
-            <div class="form-group">
-              <%= f.label :player, "Joueur" %>
-              <%= f.text_field :player, class: 'form-control', style: 'width: 100px;' %>
+            <div class="col-3">
+              <div class="form-group">
+                <%= f.label :player, "Joueur" %>
+                <%= f.text_field :player, class: 'form-control', style: 'width: 100px;' %>
+              </div>
             </div>
-            <div class="form-group">
-              <%= f.label :thetype, "Type" %>
-              <%= f.select :thetype, options_for_select(["Aucun", "Corner", "Coup franc", "But Adversaire", "Carton Jaune Adversaire", "Carton Rouge Adversaire", "Echange Adversaire", "Sifflet", "Fin de match"], @simple.thetype) %>
+            <div class="col-3">
+              <div class="form-group">
+                <%= f.label :thetype, "Type" %>
+                <%= f.select :thetype, options_for_select(["Aucun", "Corner", "Coup franc", "But Adversaire", "Carton Jaune Adversaire", "Carton Rouge Adversaire", "Echange Adversaire", "Sifflet", "Fin de match"], @simple.thetype) %>
+              </div>
             </div>
 
-            <div class="form-group">
-              <%= f.hidden_field :match_id, :value => @match.id %>
-            </div>
-            <div class="actions">
-              <%= f.submit 'Ajouter', :class => 'btn btn-primary' %>
-            </div>
+              <div class="form-group">
+                <%= f.hidden_field :match_id, :value => @match.id %>
+              </div>
+              <div class="actions">
+                <%= f.submit 'Ajouter', :class => 'btn btn-primary' %>
+              </div>
+
           </div>
           <!--<div class="col-4"></div>-->
         </div>
