@@ -195,6 +195,10 @@ class MatchesController < ApplicationController
 
   def destroymatchevents
     Matchevent.find(params[:id]).destroy
+
+    require 'open-uri'
+    open("http://jooce.ch/demo/servette/cron2.php")
+
     match = Match.find(params[:matchid])
     respond_to do |format|
       format.html { redirect_to livemanager_path(match.id), notice: 'Match was successfully destroyed.' }
@@ -203,6 +207,10 @@ class MatchesController < ApplicationController
   end
   def destroymatchevent1users
     Matchevent1user.find(params[:id]).destroy
+
+    require 'open-uri'
+    open("http://jooce.ch/demo/servette/cron2.php")
+
     match = Match.find(params[:matchid])
     respond_to do |format|
       format.html { redirect_to livemanager_path(match.id), notice: 'Match was successfully destroyed.' }
@@ -211,6 +219,10 @@ class MatchesController < ApplicationController
   end
   def destroymatchevent2users
     Matchevent2user.find(params[:id]).destroy
+
+    require 'open-uri'
+    open("http://jooce.ch/demo/servette/cron2.php")
+
     match = Match.find(params[:matchid])
     respond_to do |format|
       format.html { redirect_to livemanager_path(match.id), notice: 'Match was successfully destroyed.' }
