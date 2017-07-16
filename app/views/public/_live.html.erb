@@ -269,7 +269,7 @@
                       <% end %>
                       <br>
 
-                      <strong>Absents</strong><br>
+                      <!--<strong>Absents</strong><br>-->
                       <% orderedplayer = match.orderplayers(match.getabsents())
                          orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
@@ -285,7 +285,7 @@
                       <strong>Remplaçants</strong><br>
                       <%= raw match.getbrs(match.awayremplacants) %><br><br>
 
-                      <strong>Absents</strong><br>
+                      <!--<strong>Absents</strong><br>-->
                       <%= raw match.getbrs(match.awayabsents) %><br>
                   <% end %>
 
@@ -526,7 +526,7 @@
                       <% end %>
                       <br>
 
-                      <strong>Absents</strong><br>
+                      <!--<strong>Absents</strong><br>-->
                       <% orderedplayer = match.orderplayers(match.getabsents())
                          orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
@@ -542,7 +542,7 @@
                       <strong>Remplaçants</strong><br>
                       <%= raw match.getbrs(match.awayremplacants) %><br><br>
 
-                      <strong>Absents</strong><br>
+                      <!--<strong>Absents</strong><br>-->
                       <%= raw match.getbrs(match.awayabsents) %><br><br>
                   <% end %>
                 </div>
