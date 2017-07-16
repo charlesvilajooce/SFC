@@ -33,6 +33,10 @@ class MatchesController < ApplicationController
 
     respond_to do |format|
       if @simple.save
+
+        require 'open-uri'
+        open("http://jooce.ch/demo/servette/cron2.php")
+
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
       else
@@ -47,6 +51,10 @@ class MatchesController < ApplicationController
 
     respond_to do |format|
       if @simple.save
+
+        require 'open-uri'
+        open("http://jooce.ch/demo/servette/cron2.php")
+
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
       else
@@ -61,6 +69,10 @@ class MatchesController < ApplicationController
 
     respond_to do |format|
       if @simple.save
+
+        require 'open-uri'
+        open("http://jooce.ch/demo/servette/cron2.php")
+
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
       else
@@ -72,6 +84,7 @@ class MatchesController < ApplicationController
 
 
   def live
+
     set_match
     @matches = Match.all
     @matches.each do |m|
@@ -84,6 +97,10 @@ class MatchesController < ApplicationController
       @match.live = true
     end
     @match.save
+
+    require 'open-uri'
+    open("http://jooce.ch/demo/servette/cron2.php")
+
     redirect_to matches_path
 
   end
@@ -178,6 +195,10 @@ class MatchesController < ApplicationController
 
   def destroymatchevents
     Matchevent.find(params[:id]).destroy
+
+    require 'open-uri'
+    open("http://jooce.ch/demo/servette/cron2.php")
+
     match = Match.find(params[:matchid])
     respond_to do |format|
       format.html { redirect_to livemanager_path(match.id), notice: 'Match was successfully destroyed.' }
@@ -186,6 +207,10 @@ class MatchesController < ApplicationController
   end
   def destroymatchevent1users
     Matchevent1user.find(params[:id]).destroy
+
+    require 'open-uri'
+    open("http://jooce.ch/demo/servette/cron2.php")
+
     match = Match.find(params[:matchid])
     respond_to do |format|
       format.html { redirect_to livemanager_path(match.id), notice: 'Match was successfully destroyed.' }
@@ -194,6 +219,10 @@ class MatchesController < ApplicationController
   end
   def destroymatchevent2users
     Matchevent2user.find(params[:id]).destroy
+
+    require 'open-uri'
+    open("http://jooce.ch/demo/servette/cron2.php")
+
     match = Match.find(params[:matchid])
     respond_to do |format|
       format.html { redirect_to livemanager_path(match.id), notice: 'Match was successfully destroyed.' }
