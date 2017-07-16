@@ -15,7 +15,7 @@ class Match < ApplicationRecord
     users4 = users.select { |u| u.role == 4}
     users5 = users.select { |u| u.role.blank?}
     orderedplayers = users1 + users2 + users3 + users4 + users5
-    # print (orderedplayers)
+    # print (o  rderedplayers)
     return orderedplayers
 
   end
