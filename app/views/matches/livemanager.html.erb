@@ -123,6 +123,7 @@
                     mains.push([l.user.getname(), l.user.id])
                   end
                 end
+                mains = mains.sort_by { |e| e[0] }
               %>
               <%
                 # @users = User.order(:name)
@@ -188,6 +189,7 @@
                     mains.push([l.user.getname(), l.user.id])
                   end
                 end
+                mains = mains.sort_by { |e| e[0] }
               %>
               <%
                 # @users = User.order(:name)
@@ -210,6 +212,7 @@
                     mains.push([l.user.getname(), l.user.id])
                   end
                 end
+                mains = mains.sort_by { |e| e[0] }
               %>
               <%
                 # @users = User.order(:name)

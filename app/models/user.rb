@@ -45,7 +45,7 @@ class User < ApplicationRecord
       buts = 0
       player.matchlinks.each do |m|
         match = m.match
-        if match.competition == 'Brack.ch Challenge League'
+        if match.competition == 'Brack.ch Challenge League'  || match.competition == 'Coupe Suisse'
           buts = buts+match.getbuts(player.id)
         end
       end
@@ -63,7 +63,7 @@ class User < ApplicationRecord
       buts = 0
       player.matchlinks.each do |m|
         match = m.match
-        if match.competition == 'Brack.ch Challenge League'
+        if match.competition == 'Brack.ch Challenge League'  || match.competition == 'Coupe Suisse'
           buts = buts+match.getassists(player.id)
         end
       end
@@ -76,7 +76,7 @@ class User < ApplicationRecord
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      if match.competition == 'Brack.ch Challenge League'
+      if match.competition == 'Brack.ch Challenge League'  || match.competition == 'Coupe Suisse'
         if (m.thetype == 'titulaires')
           buts = buts+match.gettimetitulaireplayer(self.id)
         end
@@ -92,7 +92,7 @@ class User < ApplicationRecord
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      if match.competition == 'Brack.ch Challenge League'
+      if match.competition == 'Brack.ch Challenge League'  || match.competition == 'Coupe Suisse'
         if (m.thetype == 'titulaires')
           buts = buts+1
         end
@@ -108,7 +108,7 @@ class User < ApplicationRecord
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      if match.competition == 'Brack.ch Challenge League'
+      if match.competition == 'Brack.ch Challenge League' || match.competition == 'Coupe Suisse'
         if (m.thetype == 'titulaires')
           buts = buts+1
         end
@@ -121,7 +121,7 @@ class User < ApplicationRecord
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      if match.competition == 'Brack.ch Challenge League'
+      if match.competition == 'Brack.ch Challenge League' || match.competition == 'Coupe Suisse'
         buts = buts+match.getbuts(self.id)
       end
     end
@@ -132,7 +132,7 @@ class User < ApplicationRecord
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      if match.competition == 'Brack.ch Challenge League'
+      if match.competition == 'Brack.ch Challenge League' || match.competition == 'Coupe Suisse'
         buts = buts+match.getassists(self.id)
       end
     end
@@ -143,7 +143,7 @@ class User < ApplicationRecord
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      if match.competition == 'Brack.ch Challenge League'
+      if match.competition == 'Brack.ch Challenge League' || match.competition == 'Coupe Suisse'
         buts = buts+match.getcj(self.id)
       end
     end
@@ -154,7 +154,7 @@ class User < ApplicationRecord
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      if match.competition == 'Brack.ch Challenge League'
+      if match.competition == 'Brack.ch Challenge League' || match.competition == 'Coupe Suisse'
         buts = buts+match.getcr(self.id)
       end
     end
@@ -171,7 +171,7 @@ class User < ApplicationRecord
       buts = 0
       player.matchlinks.each do |m|
         match = m.match
-        if match.competition == 'Brack.ch Challenge League'
+        if match.competition == 'Brack.ch Challenge League' || match.competition == 'Coupe Suisse'
           if (m.thetype == 'titulaires')
             buts = buts+match.gettimetitulaireplayer(player.id)
           end

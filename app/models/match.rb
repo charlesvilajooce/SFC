@@ -66,7 +66,7 @@ class Match < ApplicationRecord
       return 'https://www.servette.biz/images/amical.png'
     end
     if self.competition == 'Coupe Suiss'
-      return 'https://www.servette.biz/images/catCoupeSuiss.png'
+      return 'https://www.servette.biz/images/catCoupeSuisse.png'
     end
   end
   def getlength()

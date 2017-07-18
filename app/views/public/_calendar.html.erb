@@ -176,6 +176,9 @@
           <% if !match.videos.blank? %>
               <a href="<%= match.videos %>"><i class="fa fa-video-camera" aria-hidden="true"></i></a>
           <% end %>
+          <% if !match.compterendu.blank? %>
+              <a href="<%= match.compterendu %>"><i class="fa fa-file-text" aria-hidden="true"></i></a>
+          <% end %>
           <a href="index.php/match?gameid=<%= match.id %>"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
         </td>
       </tr>
