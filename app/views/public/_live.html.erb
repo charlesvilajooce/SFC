@@ -139,7 +139,7 @@
 
 
               <div class="row">
-                <div class="col-6 col-xl-3 col-lg-3 col-md-3 col-sm-6 mb grey-bg rapport-domicile">
+                <div class="col-6 col-xl-3 col-lg-3 col-md-3 col-sm-6 mb grey-bg rapport-domicile flex-xs-unordered flex-sm-unordered flex-md-first flex-lg-first flex-xl-first">
                   <div class="preinfo">
                     <strong>Buts
                       <img src="https://www.servette.biz/images/livescore/goal.png" style="max-height: 15px;"></strong><br/>
@@ -269,7 +269,7 @@
                       <% end %>
                       <br>
 
-                      <strong>Absents</strong><br>
+                      <!--<strong>Absents</strong><br>-->
                       <% orderedplayer = match.orderplayers(match.getabsents())
                          orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
@@ -283,15 +283,15 @@
                       <strong>Titulaires</strong><br>
                       <%= raw match.getbrs(match.awaytitulaires) %><br><br>
                       <strong>Remplaçants</strong><br>
-                      <%= raw match.getbrs(match.awayremplacants) %><br><br>
+                      <%= raw match.getbrs(match.awayremplacants) %><br>
 
-                      <strong>Absents</strong><br>
-                      <%= raw match.getbrs(match.awayabsents) %><br>
+                      <!--<strong>Absents</strong><br>-->
+                      <%= raw match.getbrs(match.awayabsents) %>
                   <% end %>
 
                 </div>
 
-                <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12 mb rapport-last">
+                <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12 mb rapport-last flex-xs-first flex-sm-first flex-md-unordered flex-lg-unordered flex-xl-unordered">
                   <h3 class="titre text-grenat">Le direct</h3>
                   <table class="table table-striped table-sm" style="text-align: left;">
 
@@ -398,7 +398,7 @@
                         <% end end %>
                   </table>
                 </div>
-                <div class="col-6 col-xl-3 col-lg-3 col-md-3 col-sm-6 mb grey-bg rapport-visiteur">
+                <div class="col-6 col-xl-3 col-lg-3 col-md-3 col-sm-6 mb grey-bg rapport-visiteur flex-xs-last flex-sm-last flex-md-last flex-lg-last flex-xl-last">
                   <div class="preinfo">
                     <strong>Buts
                       <img src="https://www.servette.biz/images/livescore/goal.png" style="max-height: 15px;"></strong><br/>
@@ -526,7 +526,7 @@
                       <% end %>
                       <br>
 
-                      <strong>Absents</strong><br>
+                      <!--<strong>Absents</strong><br>-->
                       <% orderedplayer = match.orderplayers(match.getabsents())
                          orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
@@ -542,7 +542,7 @@
                       <strong>Remplaçants</strong><br>
                       <%= raw match.getbrs(match.awayremplacants) %><br><br>
 
-                      <strong>Absents</strong><br>
+                      <!--<strong>Absents</strong><br>-->
                       <%= raw match.getbrs(match.awayabsents) %><br><br>
                   <% end %>
                 </div>
