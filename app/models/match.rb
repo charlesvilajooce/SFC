@@ -65,7 +65,7 @@ class Match < ApplicationRecord
     if self.competition == 'Amical'
       return 'https://www.servette.biz/images/amical.png'
     end
-    if self.competition == 'Coupe Suiss'
+    if self.competition == 'Coupe Suisse'
       return 'https://www.servette.biz/images/catCoupeSuisse.png'
     end
   end
