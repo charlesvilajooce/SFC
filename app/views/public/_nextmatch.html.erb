@@ -51,9 +51,11 @@
           </h4>
           <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
         </div>
+        <% if match.home %>
         <div class="card-footer card-match-footer no-border">
           <a href="https://www.eventimsports.de/ols/SFC/fr/championnat/channel/shop/index" class="btn btn-primary bouton-billets">Acheter des Billets</a>
         </div>
+        <% end %>
       </div>
     </div>
 
