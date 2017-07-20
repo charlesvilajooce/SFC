@@ -172,7 +172,7 @@
             persist: false,
             options: [
                 <%
-                  players = User.where(canrole: 'premiere')
+                  players = User.getplayers()
                   players.each do |player|
                 %>
                 {id: ' <%= player.id %>', name: '<%= player.getname() %>'},
@@ -219,7 +219,7 @@
             persist: false,
             options: [
                 <%
-                  players = User.where(canrole: 'premiere')
+                  players =  User.getplayers()
                   players.each do |player|
                 %>
                 {id: ' <%= player.id %>', name: '<%= player.getname() %>'},
@@ -267,7 +267,7 @@
             persist: false,
             options: [
                 <%
-                  players = User.where(canrole: 'premiere')
+                  players =  User.getplayers()
                   players.each do |player|
                 %>
                 {id: ' <%= player.id %>', name: '<%= player.getname() %>'},

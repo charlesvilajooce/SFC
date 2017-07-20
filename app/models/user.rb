@@ -189,6 +189,17 @@ class User < ApplicationRecord
     return self.injuries.order(when: :desc)
   end
 
+  def self.getplayers()
+    players = []
+    users = User.all
+    users.each do |user|
+      if (user.isplayer(0))
+        players.push(user)
+      end
+    end
+    return players
+  end
+
   def getplayers()
     players = []
     users = User.all
