@@ -21,7 +21,7 @@ class User < ApplicationRecord
   has_many :matchevent1users
   has_many :matchevent2users1, :class_name => 'Matchevent2user', :foreign_key => 'user_one_id'
   has_many :matchevent2users2, :class_name => 'Matchevent2user', :foreign_key => 'user_two_id'
-  has_many :matchlinks
+  has_many :matchlinks, :dependent => :delete_all
 
   has_many :documents
   has_many :events, through: :subscriptions
