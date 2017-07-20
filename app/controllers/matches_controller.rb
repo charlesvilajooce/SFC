@@ -35,7 +35,7 @@ class MatchesController < ApplicationController
       if @simple.save
 
         require 'open-uri'
-        open("http://jooce.ch/demo/servette/cron2.php")
+        open("http://www.servettefc.ch/cron2.php")
 
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
@@ -53,7 +53,7 @@ class MatchesController < ApplicationController
       if @simple.save
 
         require 'open-uri'
-        open("http://jooce.ch/demo/servette/cron2.php")
+        open("http://www.servettefc.ch/cron2.php")
 
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
@@ -71,7 +71,7 @@ class MatchesController < ApplicationController
       if @simple.save
 
         require 'open-uri'
-        open("http://jooce.ch/demo/servette/cron2.php")
+        open("http://www.servettefc.ch/cron2.php")
 
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
@@ -99,7 +99,7 @@ class MatchesController < ApplicationController
     @match.save
 
     require 'open-uri'
-    open("http://jooce.ch/demo/servette/cron2.php")
+    open("http://www.servettefc.ch/cron2.php")
 
     redirect_to matches_path
 
@@ -197,7 +197,7 @@ class MatchesController < ApplicationController
     Matchevent.find(params[:id]).destroy
 
     require 'open-uri'
-    open("http://jooce.ch/demo/servette/cron2.php")
+    open("http://www.servettefc.ch/cron2.php")
 
     match = Match.find(params[:matchid])
     respond_to do |format|
@@ -209,7 +209,7 @@ class MatchesController < ApplicationController
     Matchevent1user.find(params[:id]).destroy
 
     require 'open-uri'
-    open("http://jooce.ch/demo/servette/cron2.php")
+    open("http://www.servettefc.ch/cron2.php")
 
     match = Match.find(params[:matchid])
     respond_to do |format|
@@ -221,7 +221,7 @@ class MatchesController < ApplicationController
     Matchevent2user.find(params[:id]).destroy
 
     require 'open-uri'
-    open("http://jooce.ch/demo/servette/cron2.php")
+    open("http://www.servettefc.ch/cron2.php")
 
     match = Match.find(params[:matchid])
     respond_to do |format|
