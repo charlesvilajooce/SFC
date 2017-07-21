@@ -5,11 +5,11 @@ class MatchesController < ApplicationController
   # GET /matches.json
   def index
     if (params[:format] == 'old')
-      @matches = Match.all.select { |u| u.when+90*60 < Time.now.to_i }
+      @matches = Match.all.select { |u| u.when+240*60 < Time.now.to_i }
       @matches = @matches.sort_by &:when
       @matches = @matches.reverse
     else
-      @matches = Match.all.select { |u| u.when+90*60 > Time.now.to_i }
+      @matches = Match.all.select { |u| u.when+240*60 > Time.now.to_i }
       @matches = @matches.sort_by &:when
 
     end
