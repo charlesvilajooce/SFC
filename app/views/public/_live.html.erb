@@ -554,7 +554,6 @@
                     <thead>
                     <tr>
                       <th>#</th>
-                      <th>Position</th>
                       <th>Nom</th>
                       <th>MJ</th>
                       <th>TIT</th>
@@ -568,8 +567,6 @@
                       </td>
                       <td>
                         <strong>TITULAIRES</strong>
-                      </td>
-                      <td>
                       </td>
                       <td>
                       </td>
@@ -595,12 +592,6 @@
                         <tr>
                           <td>
                             <%= player.level %> <%= raw match.getchange(player.id) %>
-                          </td>
-                          <td>
-                            <% roles = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'] %>
-                            <% if !player.role.blank? %>
-                                <%= roles[player.role-1] %>
-                            <% end %>
                           </td>
                           <td>
                             <%= player.getname() %>
@@ -654,12 +645,6 @@
                         <tr>
                           <td>
                             <%= player.level %> <%= raw match.getchange(player.id) %>
-                          </td>
-                          <td>
-                            <% roles = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'] %>
-                            <% if !player.role.blank? %>
-                                <%= roles[player.role-1] %>
-                            <% end %>
                           </td>
                           <td>
                             <%= player.getname() %>
