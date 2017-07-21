@@ -193,12 +193,12 @@ class User < ApplicationRecord
     players = []
     users = User.all
     users.each do |user|
-      # if (user.isplayer(0))
-      #   players.push(user)
-      # end
-      if (user.canrole == 'archived' || user.canrole == 'premiere')
+      if (user.isplayer(0))
         players.push(user)
       end
+      # if (user.canrole == 'archived' || user.canrole == 'premiere')
+      #   players.push(user)
+      # end
     end
     return players
   end
