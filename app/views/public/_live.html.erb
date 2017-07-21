@@ -255,14 +255,18 @@
                       <%= match.homeentrainer %>
                       <br><br>
                       <strong>Titulaires</strong><br>
-                      <% orderedplayer = match.orderplayers(match.gettitulaires())
+                      <%
+                        orderedplayer = match.gettitulaires()
+                        # orderedplayer = match.orderplayers(match.gettitulaires())
                          orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
                       <% end %>
                       <br>
                       <strong>Remplaçants</strong><br>
-                      <% orderedplayer = match.orderplayers(match.getremplacents())
+                      <%
+                        # orderedplayer = match.orderplayers(match.getremplacents())
+                        orderedplayer = match.getremplacents()
                          orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
@@ -270,7 +274,9 @@
                       <br>
 
                       <!--<strong>Absents</strong><br>-->
-                      <% orderedplayer = match.orderplayers(match.getabsents())
+                      <%
+                        orderedplayer = match.getabsents()
+                        # orderedplayer = match.orderplayers(match.getabsents())
                          orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
@@ -512,14 +518,18 @@
                       <%= match.homeentrainer %>
                       <br><br>
                       <strong>Titulaires</strong><br>
-                      <% orderedplayer = match.orderplayers(match.gettitulaires())
-                         orderedplayer.each do |t| %>
+                      <%
+                        orderedplayer = match.gettitulaires()
+                        # orderedplayer = match.orderplayers(match.gettitulaires())
+                        orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
                       <% end %>
                       <br>
                       <strong>Remplaçants</strong><br>
-                      <% orderedplayer = match.orderplayers(match.getremplacents())
+                      <%
+                        orderedplayer = match.getremplacents()
+                        # orderedplayer = match.orderplayers(match.getremplacents())
                          orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
@@ -527,7 +537,9 @@
                       <br>
 
                       <!--<strong>Absents</strong><br>-->
-                      <% orderedplayer = match.orderplayers(match.getabsents())
+                      <%
+                        orderedplayer = match.getabsents()
+                        # orderedplayer = match.orderplayers(match.getabsents())
                          orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
