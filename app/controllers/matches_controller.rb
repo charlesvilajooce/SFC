@@ -36,6 +36,7 @@ class MatchesController < ApplicationController
 
         require 'open-uri'
         open("http://www.servettefc.ch/cron2.php")
+        open("http://www.servettefc.ch/cron3.php?id="+@simple.match_id.to_str)
 
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
@@ -54,6 +55,7 @@ class MatchesController < ApplicationController
 
         require 'open-uri'
         open("http://www.servettefc.ch/cron2.php")
+        open("http://www.servettefc.ch/cron3.php?id="+@simple.match_id.to_str)
 
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
@@ -72,6 +74,7 @@ class MatchesController < ApplicationController
 
         require 'open-uri'
         open("http://www.servettefc.ch/cron2.php")
+        open("http://www.servettefc.ch/cron3.php?id="+@simple.match_id.to_str)
 
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
@@ -100,6 +103,7 @@ class MatchesController < ApplicationController
 
     require 'open-uri'
     open("http://www.servettefc.ch/cron2.php")
+    open("http://www.servettefc.ch/cron3.php?id="+@match.id.to_str)
 
     redirect_to matches_path
 
@@ -198,6 +202,7 @@ class MatchesController < ApplicationController
 
     require 'open-uri'
     open("http://www.servettefc.ch/cron2.php")
+    open("http://www.servettefc.ch/cron3.php?id="+params[:matchid].to_str)
 
     match = Match.find(params[:matchid])
     respond_to do |format|
@@ -210,6 +215,7 @@ class MatchesController < ApplicationController
 
     require 'open-uri'
     open("http://www.servettefc.ch/cron2.php")
+    open("http://www.servettefc.ch/cron3.php?id="+params[:matchid].to_str)
 
     match = Match.find(params[:matchid])
     respond_to do |format|
@@ -222,6 +228,7 @@ class MatchesController < ApplicationController
 
     require 'open-uri'
     open("http://www.servettefc.ch/cron2.php")
+    open("http://www.servettefc.ch/cron3.php?id="+params[:matchid].to_str)
 
     match = Match.find(params[:matchid])
     respond_to do |format|
