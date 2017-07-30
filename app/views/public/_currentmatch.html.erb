@@ -40,11 +40,11 @@
 
           <div class="col-3 img-domicile aligner no-border">
             <a href="index.php/match?gameid=<%= match.id %>" class="teamlink">
-            <% if match.home %>
-                <img class="img-score logosfc-derniermatch" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
-            <% else %>
-                <img class="img-score" src="<%= match.adversaire.avatar %>" alt="SFC">
-            <% end %>
+              <% if match.home %>
+                  <img class="img-score logosfc-derniermatch" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
+              <% else %>
+                  <img class="img-score" src="<%= match.adversaire.avatar %>" alt="SFC">
+              <% end %>
             </a>
           </div>
           <div class="col-3 col-score">
@@ -75,22 +75,27 @@
         </div>
         <div class="card-block card-match-padding">
           <h4 class="card-title text-gold versus">
-            <a href="index.php/match?gameid=<%= match.id %>"  class="teamlink">
-            <% if match.home %>
-                <%= match.équipe %> - <%= match.adversaire.name %>
-            <% else %>
-                <%= match.adversaire.name %> - <%= match.équipe %>
-            <% end %>
+            <a href="index.php/match?gameid=<%= match.id %>" class="teamlink">
+              <% if match.home %>
+                  <%= match.équipe %> - <%= match.adversaire.name %>
+              <% else %>
+                  <%= match.adversaire.name %> - <%= match.équipe %>
+              <% end %>
             </a>
           </h4>
-          <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
+          <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %>
+            <br/><%= Time.at(match.when).strftime '%H:%M' %></p>
         </div>
         <div class="card-footer card-match-footer no-border">
-          <a href="index.php/match?gameid=<%= match.id %>" class="btn btn-primary bouton-rapport"><% if livegame %>
+          <% if livegame %>
+              <a href="index.php/match?gameid=<%= match.id %>" class="btn btn-primary bouton-rapport">
                 Live
-            <% else %>
+              </a>
+          <% else %>
+              <a href="<%= match.compterendu %>" class="btn btn-primary bouton-rapport">
                 Rapport du match
-            <% end %></a>
+              </a>
+          <% end %>
         </div>
       </div>
     </div>

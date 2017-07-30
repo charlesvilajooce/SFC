@@ -130,9 +130,9 @@
       </div>
       <% if match.when < Time.now.to_i || match.live %>
           <%
-            @matchevents = match.matchevents
-            @matchevent1users = match.matchevent1users
-            @matchevent2users = match.matchevent2users
+            @matchevents = match.matchevents.reverse
+            @matchevent1users = match.matchevent1users.reverse
+            @matchevent2users = match.matchevent2users.reverse
           %>
           <div class="row">
             <div class="col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -144,7 +144,7 @@
                     <strong>Buts
                       <img src="https://www.servette.biz/images/livescore/goal.png" style="max-height: 15px;"></strong><br/>
                     <%
-                      for i in (200).downto(-200) do
+                      for i in -200..200 do
                     %>
                         <% if match.home %>
                             <%
@@ -409,7 +409,7 @@
                     <strong>Buts
                       <img src="https://www.servette.biz/images/livescore/goal.png" style="max-height: 15px;"></strong><br/>
                     <%
-                      for i in (200).downto(-200) do
+                      for i in -200..200 do
                     %>
                         <% if !match.home %>
                             <%
@@ -598,7 +598,7 @@
                           titulaires.push(l.user)
                         end
                       end
-                      titulaires = @match.orderplayers(titulaires)
+                      # titulaires = @match.orderplayers(titulaires)
                       titulaires.each do |player|
                     %>
                         <tr>
@@ -651,7 +651,7 @@
                           remplacents.push(l.user)
                         end
                       end
-                      remplacents = @match.orderplayers(remplacents)
+                      # remplacents = @match.orderplayers(remplacents)
                       remplacents.each do |player|
                     %>
                         <tr>

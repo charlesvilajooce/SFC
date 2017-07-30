@@ -185,6 +185,15 @@
 
         </td>
         <td>
+          <% if match.home %>
+              <div class="card-footer card-match-footer no-border">
+                <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets">Billets</a>
+              </div>
+          <% else %>
+              <span class="nothomespace"></span>
+          <% end %>
+        </td>
+        <td>
           <% if !match.photos.blank? %>
               <a href="<%= match.photos %>"><i class="fa fa-camera" aria-hidden="true"></i></a>
           <% end %>
