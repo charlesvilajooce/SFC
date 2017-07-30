@@ -90,7 +90,7 @@
             </div>
             <% if match.home %>
                 <div class="card-footer card-match-footer no-border">
-                  <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets">Acheter
+                  <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets" target="_blank">Acheter
                     des Billets</a>
                 </div>
             <% else %>
@@ -111,7 +111,7 @@
             <div class="row row-score">
               <div class="col-6 img-domicile aligner servette">
                 <% if match.home %>
-                    <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL">
+                    <img class="img-score" src="https://www.servette.biz/images/logo_servettefc.png" alt="FC WIL" target="_blank">
                 <% else %>
                     <img class="img-score logoadversaire-prochainmatch" src="<%= match.adversaire.avatar %>" alt="SFC">
                 <% end %>
@@ -137,7 +137,7 @@
             </div>
             <% if match.home %>
                 <div class="card-footer card-match-footer no-border">
-                  <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets">Acheter
+                  <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets" target="_blank">Acheter
                     des Billets</a>
                 </div>
             <% else %>
@@ -184,10 +184,10 @@
           <% end %>
 
         </td>
-        <td>
+        <td class="colbillets">
           <% if match.home %>
               <div class="card-footer card-match-footer no-border">
-                <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets">Billets</a>
+                <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets" target="_blank">Billets</a>
               </div>
           <% else %>
               <span class="nothomespace"></span>
