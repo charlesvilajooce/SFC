@@ -49,7 +49,7 @@ class User < ApplicationRecord
           buts = buts+match.getbuts(player.id)
         end
       end
-      butteurs.push([player.id, buts.to_s])
+      butteurs.push([player.id, buts])
     end
     return butteurs.sort_by { |k| k[1] }.reverse
   end
@@ -67,7 +67,7 @@ class User < ApplicationRecord
           buts = buts+match.getassists(player.id)
         end
       end
-      butteurs.push([player.id, buts.to_s])
+      butteurs.push([player.id, buts])
     end
     return butteurs.sort_by { |k| k[1] }.reverse
   end
