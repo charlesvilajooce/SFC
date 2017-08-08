@@ -87,9 +87,13 @@
             <br/><%= Time.at(match.when).strftime '%H:%M' %></p>
         </div>
         <div class="card-footer card-match-footer no-border">
-          <% if livegame || !match.compterendu.blank? %>
+          <% if livegame  %>
               <a href="index.php/match?gameid=<%= match.id %>" class="btn btn-primary bouton-rapport">
                 Live
+              </a>
+          <% elsif  match.compterendu.blank? %>
+              <a href="index.php/match?gameid=<%= match.id %>" class="btn btn-primary bouton-rapport">
+                Rapport du match
               </a>
           <% else %>
               <a href="<%= match.compterendu %>" class="btn btn-primary bouton-rapport">
