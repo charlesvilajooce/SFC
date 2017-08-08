@@ -180,7 +180,7 @@ class User < ApplicationRecord
           end
         end
       end
-      butteurs.push([player.id, buts.to_s])
+      butteurs.push([player.id, buts])
     end
     return butteurs.sort_by { |k| k[1] }.reverse
   end
