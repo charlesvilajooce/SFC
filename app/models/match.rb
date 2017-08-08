@@ -9,11 +9,11 @@ class Match < ApplicationRecord
   def orderplayers(players)
     users = players.sort_by { |e| e.name }
     # users = players
-    users1 = users.select { |u|  u.role == 1}
-    users2 = users.select { |u| u.role == 2}
-    users3 = users.select { |u| u.role == 3}
-    users4 = users.select { |u| u.role == 4}
-    users5 = users.select { |u| u.role.blank?}
+    users1 = users.select { |u| u.role == 1 }
+    users2 = users.select { |u| u.role == 2 }
+    users3 = users.select { |u| u.role == 3 }
+    users4 = users.select { |u| u.role == 4 }
+    users5 = users.select { |u| u.role.blank? }
     orderedplayers = users1 + users2 + users3 + users4 + users5
     # print (o  rderedplayers)
     return orderedplayers
@@ -33,6 +33,26 @@ class Match < ApplicationRecord
   def getbrs(string)
     if (!string.blank?)
       return string.gsub(/\n/, '<br>')
+    end
+  end
+
+  def gethomewin()
+    if (self.when < Time.now.to_i-240*60)
+      if (self.getteamscore()-self.getenemyscore() < 0)
+        return 'looser'
+      else
+        return 'winner'
+      end
+    end
+  end
+
+  def getenemywin()
+    if (self.when < Time.now.to_i-240*60)
+      if (self.getteamscore()-self.getenemyscore() > 0)
+        return 'looser'
+      else
+        return 'winner'
+      end
     end
   end
 
@@ -69,6 +89,7 @@ class Match < ApplicationRecord
       return 'https://www.servette.biz/images/catCoupeSuisse.png'
     end
   end
+
   def getlength()
 
     temps = 90
@@ -109,6 +130,7 @@ class Match < ApplicationRecord
     end
     return buts
   end
+
   def getcr(playerid)
     buts = 0
     self.matchevent1users.each do |me|

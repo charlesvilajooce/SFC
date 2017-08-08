@@ -178,9 +178,9 @@
         </td>
         <td>
           <% if match.home %>
-              <%= match.getteamscore() %> - <%= match.getenemyscore() %>
+              <span class="<%= match.gethomewin() %>"><%= match.getteamscore() %></span> - <span class="<%= match.getenemywin() %>"><%= match.getenemyscore() %></span>
           <% else %>
-              <%= match.getenemyscore() %> - <%= match.getteamscore() %>
+              <span class="<%= match.getenemywin() %>"><%= match.getenemyscore() %></span> - <span class="<%= match.gethomewin() %>"><%= match.getteamscore() %></span>
           <% end %>
 
         </td>
