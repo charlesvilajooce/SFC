@@ -40,8 +40,10 @@ class Match < ApplicationRecord
     if (self.when < Time.now.to_i-240*60)
       if (self.getteamscore()-self.getenemyscore() < 0)
         return 'looser'
-      else
+      elsif (self.getteamscore()-self.getenemyscore() > 0)
         return 'winner'
+      else
+        return ''
       end
     end
   end
@@ -50,8 +52,10 @@ class Match < ApplicationRecord
     if (self.when < Time.now.to_i-240*60)
       if (self.getteamscore()-self.getenemyscore() > 0)
         return 'looser'
-      else
+      elsif (self.getteamscore()-self.getenemyscore() < 0)
         return 'winner'
+      else
+        return ''
       end
     end
   end
