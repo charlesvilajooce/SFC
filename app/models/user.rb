@@ -97,7 +97,7 @@ class User < ApplicationRecord
           buts = buts+1
         end
         if (m.thetype == 'remplacents')
-          if m.getifremplacentplayed(self.id)
+          if m.getifremplacentplayed(m.user.id)
             buts = buts+1
           end
         end
