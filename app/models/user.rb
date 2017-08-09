@@ -45,7 +45,7 @@ class User < ApplicationRecord
       buts = 0
       player.matchlinks.each do |m|
         match = m.match
-        if match.competition == 'Brack.ch Challenge League'  || match.competition == 'Coupe Suisse'
+        if match.competition == 'Brack.ch Challenge League' || match.competition == 'Coupe Suisse'
           buts = buts+match.getbuts(player.id)
         end
       end
@@ -63,7 +63,7 @@ class User < ApplicationRecord
       buts = 0
       player.matchlinks.each do |m|
         match = m.match
-        if match.competition == 'Brack.ch Challenge League'  || match.competition == 'Coupe Suisse'
+        if match.competition == 'Brack.ch Challenge League' || match.competition == 'Coupe Suisse'
           buts = buts+match.getassists(player.id)
         end
       end
@@ -76,7 +76,7 @@ class User < ApplicationRecord
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      if match.competition == 'Brack.ch Challenge League'  || match.competition == 'Coupe Suisse'
+      if match.competition == 'Brack.ch Challenge League' || match.competition == 'Coupe Suisse'
         if (m.thetype == 'titulaires')
           buts = buts+match.gettimetitulaireplayer(self.id)
         end
@@ -92,12 +92,14 @@ class User < ApplicationRecord
     buts = 0
     self.matchlinks.each do |m|
       match = m.match
-      if match.competition == 'Brack.ch Challenge League'  || match.competition == 'Coupe Suisse'
+      if match.competition == 'Brack.ch Challenge League' || match.competition == 'Coupe Suisse'
         if (m.thetype == 'titulaires')
           buts = buts+1
         end
         if (m.thetype == 'remplacents')
-          buts = buts+1
+          if m.getifremplacentplayed(self.id)
+            buts = buts+1
+          end
         end
       end
     end
@@ -343,11 +345,11 @@ class User < ApplicationRecord
 
   def orderplayers(players)
     users = players.order(:name)
-    users1 = users.select { |u|  u.role == 1}
-    users2 = users.select { |u| u.role == 2}
-    users3 = users.select { |u| u.role == 3}
-    users4 = users.select { |u| u.role == 4}
-    users5 = users.select { |u| u.role.blank?}
+    users1 = users.select { |u| u.role == 1 }
+    users2 = users.select { |u| u.role == 2 }
+    users3 = users.select { |u| u.role == 3 }
+    users4 = users.select { |u| u.role == 4 }
+    users5 = users.select { |u| u.role.blank? }
     orderedplayers = users1 +users2 + users3 + users4+ users5
     return orderedplayers
   end

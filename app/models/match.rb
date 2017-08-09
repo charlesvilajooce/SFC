@@ -214,6 +214,17 @@ class Match < ApplicationRecord
     return temps
   end
 
+  def getifremplacentplayed(playerid)
+    entre = false
+
+    self.matchevent2users.each do |me|
+      if me.thetype == "Echange" && me.user_two_id == playerid
+        entre = true
+      end
+    end
+    return entre
+  end
+
   def gettimeremplacentplayer(playerid)
     entre = 0
     sort = 0

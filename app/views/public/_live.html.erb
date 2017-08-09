@@ -258,7 +258,7 @@
                       <%
                         orderedplayer = match.gettitulaires()
                         # orderedplayer = match.orderplayers(match.gettitulaires())
-                         orderedplayer.each do |t| %>
+                        orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
                       <% end %>
@@ -267,7 +267,7 @@
                       <%
                         # orderedplayer = match.orderplayers(match.getremplacents())
                         orderedplayer = match.getremplacents()
-                         orderedplayer.each do |t| %>
+                        orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
                       <% end %>
@@ -277,7 +277,7 @@
                       <%
                         orderedplayer = match.getabsents()
                         # orderedplayer = match.orderplayers(match.getabsents())
-                         orderedplayer.each do |t| %>
+                        orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
                       <% end %>
@@ -530,7 +530,7 @@
                       <%
                         orderedplayer = match.getremplacents()
                         # orderedplayer = match.orderplayers(match.getremplacents())
-                         orderedplayer.each do |t| %>
+                        orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
                       <% end %>
@@ -540,7 +540,7 @@
                       <%
                         orderedplayer = match.getabsents()
                         # orderedplayer = match.orderplayers(match.getabsents())
-                         orderedplayer.each do |t| %>
+                        orderedplayer.each do |t| %>
                           <%= t.level.to_s+" "+t.getname() %>
                           <br>
                       <% end %>
@@ -662,7 +662,11 @@
                             <%= player.getname() %>
                           </td>
                           <td>
-                            1
+                            <% if match.getifremplacentplayed(player.id) %>
+                                1
+                            <% else %>
+                                0
+                            <% end %>
                           </td>
                           <td>
                             0

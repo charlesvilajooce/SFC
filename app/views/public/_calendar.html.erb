@@ -177,11 +177,13 @@
           <% end %>
         </td>
         <td>
+          <span class="<%= match.gethomewin() %>">
           <% if match.home %>
-              <span class="<%= match.gethomewin() %>"><%= match.getteamscore() %></span> - <span class="<%= match.getenemywin() %>"><%= match.getenemyscore() %></span>
+              <%= match.getteamscore() %> - <%= match.getenemyscore() %>
           <% else %>
-              <span class="<%= match.getenemywin() %>"><%= match.getenemyscore() %></span> - <span class="<%= match.gethomewin() %>"><%= match.getteamscore() %></span>
+              <%= match.getenemyscore() %> - <%= match.getteamscore() %>
           <% end %>
+          </span>
 
         </td>
         <td class="colbillets">
