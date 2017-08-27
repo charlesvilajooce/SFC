@@ -90,6 +90,7 @@
                 <tbody>
 
                 <tr>
+                  <a data-toggle="modal" data-target="#myModal">
                   <td>2017-2018</td>
                   <td>
                     <%= @player.gettotalmatches() %>
@@ -100,6 +101,7 @@
                   <td><%= @player.gettotalcr() %></td>
                   <td><%= @player.gettotalbuts() %></td>
                   <td><%= @player.gettotalassists() %></td>
+                  </a>
                 </tr>
 
                 <% if params[:alias] == 'jeremy-frick' %>
@@ -670,3 +672,29 @@
 </div>
 
 <% end %>
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">2017-2018</h4>
+      </div>
+      <div class="modal-body">
+        <!--here-->
+        <h2>Championat</h2>
+
+        <h2>Coupe</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+
+  </div>
+</div>
