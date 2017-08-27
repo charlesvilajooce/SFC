@@ -91,7 +91,7 @@
 
                     <tr>
 
-                      <td><a data-toggle="modal" data-target="#myModal">2017-2018</a></td>
+                      <td><a href="" data-toggle="modal" data-target="#myModal">2017-2018</a></td>
                       <td>
                         <%= @player.gettotalmatches() %>
                       </td>
@@ -703,29 +703,72 @@
                 # championnat = users.select { |u| u.role == 1 }
                 @player.matchlinks.each do |m|
                   match = m.match
+                  if match.competition == "Brack.ch Challenge League"
               %>
 
-                  <tr>
-                    <td><%= Time.at(match.when).strftime '%d/%m/%Y' %></td>
-                    <td><%= match.adversaire.name %></td>
-                    <td>
-                      <% if m.thetype == "titulaires" %>
-                          <%= match.gettimetitulaireplayer(@player.id) %>
-                      <% else %>
-                          <%= match.gettimeremplacentplayer(@player.id) %>
-                      <% end %>
-                    </td>
-                    <td><%= match.getcj(@player.id) %></td>
-                    <td><%= match.getcr(@player.id) %></td>
-                    <td><%= match.getbuts(@player.id) %></td>
-                    <td><%= match.getassists(@player.id) %></td>
+                      <tr>
+                        <td><%= Time.at(match.when).strftime '%d/%m/%Y' %></td>
+                        <td><%= match.adversaire.name %></td>
+                        <td>
+                          <% if m.thetype == "titulaires" %>
+                              <%= match.gettimetitulaireplayer(@player.id) %>
+                          <% else %>
+                              <%= match.gettimeremplacentplayer(@player.id) %>
+                          <% end %>
+                        </td>
+                        <td><%= match.getcj(@player.id) %></td>
+                        <td><%= match.getcr(@player.id) %></td>
+                        <td><%= match.getbuts(@player.id) %></td>
+                        <td><%= match.getassists(@player.id) %></td>
 
-                  </tr>
-              <%
-                end
-              %>
+                      </tr>
+                  <%
+                    end
+                    end
+                  %>
             </table>
             <h2>Coupe</h2>
+            <table>
+              <thead>
+              <th>Date</th>
+              <th>Adversaire</th>
+              <th>Min. Jouées</th>
+              <th>CJ</th>
+              <th>CR</th>
+              <th>Buts</th>
+              <th>Ass.</th>
+              </thead>
+
+
+              <%
+                # matches = Match.all.sort_by { |e| e.when }
+                # championnat = users.select { |u| u.role == 1 }
+                @player.matchlinks.each do |m|
+                  match = m.match
+                  if match.competition == "Coupe Suisse"
+              %>
+
+                      <tr>
+                        <td><%= Time.at(match.when).strftime '%d/%m/%Y' %></td>
+                        <td><%= match.adversaire.name %></td>
+                        <td>
+                          <% if m.thetype == "titulaires" %>
+                              <%= match.gettimetitulaireplayer(@player.id) %>
+                          <% else %>
+                              <%= match.gettimeremplacentplayer(@player.id) %>
+                          <% end %>
+                        </td>
+                        <td><%= match.getcj(@player.id) %></td>
+                        <td><%= match.getcr(@player.id) %></td>
+                        <td><%= match.getbuts(@player.id) %></td>
+                        <td><%= match.getassists(@player.id) %></td>
+
+                      </tr>
+                  <%
+                    end
+                    end
+                  %>
+            </table>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
