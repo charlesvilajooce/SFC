@@ -259,15 +259,15 @@ class Match < ApplicationRecord
           temps = cr.temps-temps1
         end
       end
+
+
     end
 
-  end
+    if entre == 1 && sort == 1
+      temps = temps2-temps1
+    end
 
-  if entre == 1 && sort == 1
-    temps = temps2-temps1
+    return temps
   end
-
-  return temps
-end
 end
 
