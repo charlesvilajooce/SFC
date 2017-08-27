@@ -707,8 +707,8 @@
               %>
 
                       <tr>
-                        <td><%= Time.at(match.when).strftime '%d/%m/%Y' %></td>
-                        <td><%= match.adversaire.name %></td>
+                        <td><%= Time.at(match.when).strftime '%d.%m.%Y' %></td>
+                        <td><a href="index.php/match?gameid=<%= match.id %>"><%= match.adversaire.name %></a></td>
                         <td>
                           <% if m.thetype == "titulaires" %>
                               <%= match.gettimetitulaireplayer(@player.id) %>
@@ -749,7 +749,7 @@
               %>
 
                       <tr>
-                        <td><%= Time.at(match.when).strftime '%d/%m/%Y' %></td>
+                        <td><%= Time.at(match.when).strftime '%d.%m.%Y' %></td>
                         <td><%= match.adversaire.name %></td>
                         <td>
                           <% if m.thetype == "titulaires" %>
