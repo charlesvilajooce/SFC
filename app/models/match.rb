@@ -211,6 +211,14 @@ class Match < ApplicationRecord
         temps = self.getlength()
       end
     end
+
+    # now chekcing for carton rouges....
+    self.matchevent1users.each do |cr|
+      if cr.thetype == "Carton Rouge"
+        temps = cr.temps
+      end
+    end
+
     return temps
   end
 
@@ -242,14 +250,24 @@ class Match < ApplicationRecord
         temps2 = me.temps
       end
     end
+
     if entre == 1 && sort == 0
       temps = self.getlength()-temps1
-    end
-    if entre == 1 && sort == 1
-      temps = temps2-temps1
+      # now chekcing for carton rouges....
+      self.matchevent1users.each do |cr|
+        if cr.thetype == "Carton Rouge"
+          temps = cr.temps-temps1
+        end
+      end
     end
 
-    return temps
   end
+
+  if entre == 1 && sort == 1
+    temps = temps2-temps1
+  end
+
+  return temps
+end
 end
 
