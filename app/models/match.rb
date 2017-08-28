@@ -214,7 +214,7 @@ class Match < ApplicationRecord
 
     # now chekcing for carton rouges....
     self.matchevent1users.each do |cr|
-      if cr.thetype == "Carton Rouge" && cr.user_id == playerid
+      if cr.thetype == "Carton Rouge" &&  cr.user_id == playerid
         temps = cr.temps
       end
     end
@@ -255,7 +255,7 @@ class Match < ApplicationRecord
       temps = self.getlength()-temps1
       # now chekcing for carton rouges....
       self.matchevent1users.each do |cr|
-        if cr.thetype == "Carton Rouge" && cr.user_id == playerid
+        if cr.thetype == "Carton Rouge" &&  cr.user_id == playerid
           temps = cr.temps-temps1
         end
       end
