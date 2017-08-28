@@ -685,12 +685,12 @@
           </div>
           <div class="modal-body">
             <!--here-->
-            <h2>Championat</h2>
-            <table>
-              <thead>
+            <h3 class="titre text-grenat text-l">Championat</h3>
+            <table class="table table-striped table-joueur-modal">
+              <thead class="head-modal">
               <th>Date</th>
               <th>Adversaire</th>
-              <th>Min. Jouées</th>
+              <th>Min.</th>
               <th>CJ</th>
               <th>CR</th>
               <th>Buts</th>
@@ -707,8 +707,8 @@
               %>
 
                       <tr>
-                        <td><%= Time.at(match.when).strftime '%d/%m/%Y' %></td>
-                        <td><%= match.adversaire.name %></td>
+                        <td><%= Time.at(match.when).strftime '%d.%m.%Y' %></td>
+                        <td><a href="index.php/match?gameid=<%= match.id %>"><%= match.adversaire.name %></a></td>
                         <td>
                           <% if m.thetype == "titulaires" %>
                               <%= match.gettimetitulaireplayer(@player.id) %>
@@ -727,12 +727,12 @@
                     end
                   %>
             </table>
-            <h2>Coupe</h2>
-            <table>
-              <thead>
+            <h3 class="titre text-grenat text-l">Coupe</h3>
+            <table class="table table-striped table-joueur-modal">
+              <thead class="head-modal">
               <th>Date</th>
               <th>Adversaire</th>
-              <th>Min. Jouées</th>
+              <th>Min.</th>
               <th>CJ</th>
               <th>CR</th>
               <th>Buts</th>
@@ -749,8 +749,8 @@
               %>
 
                       <tr>
-                        <td><%= Time.at(match.when).strftime '%d/%m/%Y' %></td>
-                        <td><%= match.adversaire.name %></td>
+                        <td><%= Time.at(match.when).strftime '%d.%m.%Y' %></td>
+                        <td><a href="index.php/match?gameid=<%= match.id %>"><%= match.adversaire.name %></a></td>
                         <td>
                           <% if m.thetype == "titulaires" %>
                               <%= match.gettimetitulaireplayer(@player.id) %>
