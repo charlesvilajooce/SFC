@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  get 'export_csv/index,'
+  get 'export_csv/index', to: 'export_csv#index', as: 'export_path'
 
   get 'export_csv/export'
 
