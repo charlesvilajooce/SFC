@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  get 'export_csv/index,'
+
+  get 'export_csv/export'
+
   resources :terrains
   resources :teams
   resources :matches

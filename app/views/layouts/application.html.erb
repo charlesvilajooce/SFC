@@ -52,6 +52,7 @@ $( document ).ready(function() {
               <% if( !current_user.isplayer(0) )  %>
 
               <a class="dropdown-item" href="<%= users_path('staff') %>">Staff</a>
+              <a class="dropdown-item" href="<%= export_path %>">Exporter</a>
               <%    end %>
               <div class="dropdown-divider"></div>
               <h6 class="dropdown-header">Académie</h6>
