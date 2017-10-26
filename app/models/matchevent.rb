@@ -9,9 +9,9 @@ class Matchevent < ApplicationRecord
         when "But Adversaire"
           return (Team.find(self.match.adversaire).name+" a marqué un but.")
         when "Carton Jaune Adversaire"
-          return (Team.find(self.match.adversaire).name+" a recu un carton jaune.")
+          return (Team.find(self.match.adversaire).name+" a reçu un carton jaune.")
         when "Carton Rouge Adversaire"
-          return (Team.find(self.match.adversaire).name+" a recu un carton rouge.")
+          return (Team.find(self.match.adversaire).name+" a reçu un carton rouge.")
         when "Echange Adversaire"
           return (Team.find(self.match.adversaire).name+" a effectué un remplacement.")
         when "Coup franc"
