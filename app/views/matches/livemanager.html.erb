@@ -61,36 +61,36 @@
 
         <div class="row livescore">
           <!--<div class="col-4"></div>-->
-            <div class="col .col-sm-6 .col-md-6 .col-lg-2 .col-xl-2">
-              <div class="form-group">
-                <%= f.label :temps, "Temps (min)" %><br>
-                <%= f.text_field :temps, class: 'form-control', style: 'width: 100px;' %>
-              </div>
+          <div class="col .col-sm-6 .col-md-6 .col-lg-2 .col-xl-2">
+            <div class="form-group">
+              <%= f.label :temps, "Temps (min)" %><br>
+              <%= f.text_field :temps, class: 'form-control', style: 'width: 100px;' %>
             </div>
-            <div class="col .col-sm-6 .col-md-6 .col-lg-4 .col-xl-4">
-              <div class="form-group">
-                <%= f.label :commentaire, "Commentaire" %><br>
-                <%= f.text_area :commentaire, class: 'form-control', style: 'width: 280px;' %>
-              </div>
-            </div>
-            <div class="col .col-sm-6 .col-md-6 .col-lg-3 .col-xl-3">
-              <div class="form-group">
-                <%= f.label :player, "Joueur" %><br>
-                <%= f.text_field :player, class: 'form-control', style: 'width: 100px;' %>
-              </div>
-            </div>
-            <div class="col .col-sm-6 .col-md-6 .col-lg-3 .col-xl-3">
-              <div class="form-group">
-                <%= f.label :thetype, "Type" %><br>
-                <%= f.select :thetype, options_for_select(["Aucun", "Corner", "Coup franc", "But Adversaire", "Carton Jaune Adversaire", "Carton Rouge Adversaire", "Echange Adversaire", "Sifflet", "Fin de match"], @simple.thetype) %>
-              </div>
-            </div>
-
-              <div class="form-group">
-                <%= f.hidden_field :match_id, :value => @match.id %>
-              </div>
-
           </div>
+          <div class="col .col-sm-6 .col-md-6 .col-lg-4 .col-xl-4">
+            <div class="form-group">
+              <%= f.label :commentaire, "Commentaire" %><br>
+              <%= f.text_area :commentaire, class: 'form-control', style: 'width: 280px;' %>
+            </div>
+          </div>
+          <div class="col .col-sm-6 .col-md-6 .col-lg-3 .col-xl-3">
+            <div class="form-group">
+              <%= f.label :player, "Joueur" %><br>
+              <%= f.text_field :player, class: 'form-control', style: 'width: 100px;' %>
+            </div>
+          </div>
+          <div class="col .col-sm-6 .col-md-6 .col-lg-3 .col-xl-3">
+            <div class="form-group">
+              <%= f.label :thetype, "Type" %><br>
+              <%= f.select :thetype, options_for_select(["Aucun", "Corner", "Coup franc", "But Adversaire", "Carton Jaune Adversaire", "Carton Rouge Adversaire", "Echange Adversaire", "Sifflet", "Fin de match"], @simple.thetype) %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.hidden_field :match_id, :value => @match.id %>
+          </div>
+
+        </div>
         <div class="actions">
           <%= f.submit 'Ajouter', :class => 'btn btn-primary' %>
         </div>
@@ -157,9 +157,9 @@
               <%= f.select :thetype, options_for_select(["But", "Carton Jaune", "Carton Rouge", "Passe", "Sortie"], @one.thetype) %>
             </div>
           </div>
-            <div class="form-group">
-              <%= f.hidden_field :match_id, :value => @match.id %>
-            </div>
+          <div class="form-group">
+            <%= f.hidden_field :match_id, :value => @match.id %>
+          </div>
 
         </div>
 
@@ -254,9 +254,9 @@
             </div>
           </div>
 
-            <div class="form-group">
-              <%= f.hidden_field :match_id, :value => @match.id %>
-            </div>
+          <div class="form-group">
+            <%= f.hidden_field :match_id, :value => @match.id %>
+          </div>
 
           <!--<div class="col-4"></div>-->
         </div>
@@ -281,25 +281,251 @@
     </th>
     </thead>
     <%
-      @matchevents = @match.matchevents
-      @matchevent1users = @match.matchevent1users
-      @matchevent2users = @match.matchevent2users
+      matches = Match.all
+      matches.each do |match|
 
-      for i in (200).downto(-200) do
+        @matchevents = match.matchevents
+        @matchevent1users = match.matchevent1users
+        @matchevent2users = match.matchevent2users
+
+        puts( @matchevents.count)
+        if @matchevents.count > 0
+=begin
+          @matchevents = @matchevents.where.not(temps: '')
+=end
+          puts( 'a')
+          puts( @matchevents.count)
+          puts( 'b')
+          @matchevents = @matchevents.sort_by { |e| -e.temps }
+          @matchevents.each do |me|
+            puts('YES')
+            @link = Matcheventlink.new
+            @link.imageable_type = me.class.name
+            @link.imageable_id = me.id
+            @link.match_id = me.match_id
+            @link.temps = me.temps
+            @link.theorder = -1
+            @link.save
+            @link.theorder = @link.getorder()
+
+          end
+        end
+
+        if @matchevent1users.count > 0
+=begin
+          @matchevent1users = @matchevent1users.where.not(temps: '')
+=end
+          @matchevent1users = @matchevent1users.sort_by { |e| -e.temps }
+          @matchevent1users.each do |me|
+            @link = Matcheventlink.new
+            @link.imageable_type = me.class.name
+            @link.imageable_id = me.id
+            @link.match_id = me.match_id
+            @link.temps = me.temps
+            @link.theorder = -1
+            @link.save
+            @link.theorder = @link.getorder()
+          end
+        end
+
+        if @matchevent2users.count > 0
+=begin
+          @matchevent2users = @matchevent2users.where.not(temps: '')
+=end
+          @matchevent2users = @matchevent2users.sort_by { |e| -e.temps }
+          @matchevent2users.each do |me|
+            @link = Matcheventlink.new
+            @link.imageable_type = me.class.name
+            @link.imageable_id = me.id
+            @link.match_id = me.match_id
+            @link.temps = me.temps
+            @link.theorder = -1
+            @link.save
+            @link.theorder = @link.getorder()
+          end
+        end
+      end
+
+
+
+
+
+      @matcheventlinks = @match.matcheventlinks
+      @matcheventlinks = @matcheventlinks.sort_by { |e| e.theorder }
+      @matcheventlinks.each do |l|
+        if (l.imageable_type == "Matchevent")
     %>
+            <!-- <%= l.imageable.thetype %>-->
+            <% me = l.imageable %>
+            <tr>
+              <td>
+                <%= me.temps %>
+                <% if !me.getimg().blank? %>
+                    <%= raw me.getimg() %>
+                <% end %>
+
+                <%= link_to raw('<i style="color:black;" class="fa fa-arrow-up" aria-hidden="true"></i>'), movedown_match_path(id: me.matcheventlink.id) %>
+                <%= link_to raw('<i style="color:black;" class="fa fa-arrow-down" aria-hidden="true"></i>'), moveup_match_path(id: me.matcheventlink.id) %>
+
+
+              </td>
+              <td>
+                <!--  <%= raw me.matcheventlink.theorder %>-->
+                <%= raw me.gettext() %>
+              </td>
+              <td>
+                <%= link_to 'Supprimer', delete_matchevents_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+              </td>
+            </tr>
 
         <%
+          end
+          if (l.imageable_type == "Matchevent1user")
+        %>
+            <%= l.imageable.thetype %>
+            <% me = l.imageable %>
+            <tr>
+              <td>
+                <%= me.temps %>
+                <% if !me.getimg().blank? %>
+                    <%= raw me.getimg() %>
+                <% end %>
+
+                <%= link_to raw('<i style="color:black;" class="fa fa-arrow-up" aria-hidden="true"></i>'), movedown_match_path(id: me.matcheventlink.id) %>
+                <%= link_to raw('<i style="color:black;" class="fa fa-arrow-down" aria-hidden="true"></i>'), moveup_match_path(id: me.matcheventlink.id) %>
+
+
+              </td>
+              <td>
+                <!--
+                <%= raw me.matcheventlink.theorder %>
+-->
+                <%= raw me.gettext() %>
+              </td>
+              <td>
+                <%= link_to 'Supprimer', delete_matchevent1users_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+              </td>
+            </tr>
+
+        <%
+          end
+          if (l.imageable_type == "Matchevent2user")
+        %>
+            <%= l.imageable.thetype %>
+            <% me = l.imageable %>
+            <tr>
+              <td>
+                <%= me.temps %>
+                <% if !me.getimg().blank? %>
+                    <%= raw me.getimg() %>
+                <% end %>
+
+                <%= link_to raw('<i style="color:black;" class="fa fa-arrow-up" aria-hidden="true"></i>'), movedown_match_path(id: me.matcheventlink.id) %>
+                <%= link_to raw('<i style="color:black;" class="fa fa-arrow-down" aria-hidden="true"></i>'), moveup_match_path(id: me.matcheventlink.id) %>
+
+              </td>
+              <td>
+                <!-- <%= raw me.matcheventlink.theorder %>-->
+                <%= raw me.gettext() %>
+              </td>
+              <td>
+                <%= link_to 'Supprimer', delete_matchevent2users_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+              </td>
+            </tr>
+        <%
+          end
+          end
+
+
+=begin
+          oldversion
+=end
+          if (false)
+
+            @matchevents = @match.matchevents
+            @matchevent1users = @match.matchevent1users
+            @matchevent2users = @match.matchevent2users
+
+            for i in (200).downto(-200) do
+        %>
+
+            <%
+              @matchevents.each do |me|
+                if me.temps == i
+            %>
+                    <tr>
+                      <td>
+                        <%= i %>
+                        <% if !me.getimg().blank? %>
+                            <%= raw me.getimg() %>
+                        <% end %>
+
+
+
+                      </td>
+                      <td>
+
+                        <%= raw me.gettext() %>
+                      </td>
+                      <td>
+                        <%= link_to 'Supprimer', delete_matchevents_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+                      </td>
+                    </tr>
+                <% end end %>
+            <%
+              @matchevent1users.each do |me|
+                if me.temps == i
+            %>
+                    <tr>
+                      <td>
+                        <%= i %>
+                        <% if !me.getimg().blank? %>
+                            <%= raw me.getimg() %>
+                        <% end %>
+
+                      </td>
+                      <td>
+                        <%= raw me.gettext() %>
+                      </td>
+                      <td>
+                        <%= link_to 'Supprimer', delete_matchevent1users_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+                      </td>
+                    </tr>
+                <% end end %>
+            <%
+              @matchevent2users.each do |me|
+                if me.temps == i
+            %>
+                    <tr>
+                      <td>
+                        <%= i %>
+                        <% if !me.getimg().blank? %>
+                            <%= raw me.getimg() %>
+                        <% end %>
+                      </td>
+                      <td>
+
+                        <%= raw me.gettext() %>
+                      </td>
+                      <td>
+                        <%= link_to 'Supprimer', delete_matchevent2users_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+                      </td>
+                    </tr>
+                <% end end %>
+        <% end %>
+        <%
           @matchevents.each do |me|
-            if me.temps == i
+            if me.temps.blank? || me.temps > 200
         %>
                 <tr>
                   <td>
-                    <%= i %>
+
                     <% if !me.getimg().blank? %>
                         <%= raw me.getimg() %>
                     <% end %>
                   </td>
                   <td>
+
                     <%= raw me.gettext() %>
                   </td>
                   <td>
@@ -309,17 +535,18 @@
             <% end end %>
         <%
           @matchevent1users.each do |me|
-            if me.temps == i
+            if me.temps.blank? || me.temps > 200
         %>
                 <tr>
                   <td>
-                    <%= i %>
+
                     <% if !me.getimg().blank? %>
                         <%= raw me.getimg() %>
                     <% end %>
 
                   </td>
                   <td>
+
                     <%= raw me.gettext() %>
                   </td>
                   <td>
@@ -329,82 +556,30 @@
             <% end end %>
         <%
           @matchevent2users.each do |me|
-            if me.temps == i
+            if me.temps.blank? || me.temps > 200
         %>
                 <tr>
                   <td>
-                    <%= i %>
+
                     <% if !me.getimg().blank? %>
                         <%= raw me.getimg() %>
                     <% end %>
                   </td>
                   <td>
+
                     <%= raw me.gettext() %>
                   </td>
                   <td>
                     <%= link_to 'Supprimer', delete_matchevent2users_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
                   </td>
                 </tr>
-            <% end end %>
-    <% end %>
-    <%
-      @matchevents.each do |me|
-        if me.temps.blank? || me.temps > 200
-    %>
-            <tr>
-              <td>
+            <% end end
 
-                <% if !me.getimg().blank? %>
-                    <%= raw me.getimg() %>
-                <% end %>
-              </td>
-              <td>
-                <%= raw me.gettext() %>
-              </td>
-              <td>
-                <%= link_to 'Supprimer', delete_matchevents_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
-              </td>
-            </tr>
-        <% end end %>
-    <%
-      @matchevent1users.each do |me|
-        if me.temps.blank? || me.temps > 200
-    %>
-            <tr>
-              <td>
 
-                <% if !me.getimg().blank? %>
-                    <%= raw me.getimg() %>
-                <% end %>
-
-              </td>
-              <td>
-                <%= raw me.gettext() %>
-              </td>
-              <td>
-                <%= link_to 'Supprimer', delete_matchevent1users_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
-              </td>
-            </tr>
-        <% end end %>
-    <%
-      @matchevent2users.each do |me|
-        if me.temps.blank? || me.temps > 200
-    %>
-            <tr>
-              <td>
-
-                <% if !me.getimg().blank? %>
-                    <%= raw me.getimg() %>
-                <% end %>
-              </td>
-              <td>
-                <%= raw me.gettext() %>
-              </td>
-              <td>
-                <%= link_to 'Supprimer', delete_matchevent2users_path(id: me.id, matchid: @match.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
-              </td>
-            </tr>
-        <% end end %>
+=begin
+          oldversion
+=end
+               end %>
   </table>
 </div>
 

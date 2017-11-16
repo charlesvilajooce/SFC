@@ -1,6 +1,6 @@
 class Matchevent1user < ApplicationRecord
   belongs_to :user
-
+  has_one :matcheventlink, as: :imageable, dependent: :destroy
   def gettext()
     if (!self.commentaire.blank?)
       return self.commentaire

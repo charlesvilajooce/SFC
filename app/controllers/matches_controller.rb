@@ -34,9 +34,20 @@ class MatchesController < ApplicationController
     respond_to do |format|
       if @simple.save
 
+        @link = Matcheventlink.new
+        @link.imageable_type = @simple.class.name
+        @link.imageable_id = @simple.id
+        @link.match_id = @simple.match_id
+        @link.temps = @simple.temps
+        @link.theorder = -1
+        @link.save
+        @link.theorder = @link.getorder()
+
         require 'open-uri'
+=begin
         open("http://www.servettefc.ch/cron2.php")
         open("http://www.servettefc.ch/cron3.php?id="+@simple.match_id.to_s)
+=end
 
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
@@ -53,9 +64,20 @@ class MatchesController < ApplicationController
     respond_to do |format|
       if @simple.save
 
+        @link = Matcheventlink.new
+        @link.imageable_type = @simple.class.name
+        @link.imageable_id = @simple.id
+        @link.match_id = @simple.match_id
+        @link.temps = @simple.temps
+        @link.theorder = -1
+        @link.save
+        @link.theorder = @link.getorder()
+
         require 'open-uri'
+=begin
         open("http://www.servettefc.ch/cron2.php")
         open("http://www.servettefc.ch/cron3.php?id="+@simple.match_id.to_s)
+=end
 
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
@@ -72,9 +94,20 @@ class MatchesController < ApplicationController
     respond_to do |format|
       if @simple.save
 
+        @link = Matcheventlink.new
+        @link.imageable_type = @simple.class.name
+        @link.imageable_id = @simple.id
+        @link.match_id = @simple.match_id
+        @link.temps = @simple.temps
+        @link.theorder = -1
+        @link.save
+        @link.theorder = @link.getorder()
+
         require 'open-uri'
+=begin
         open("http://www.servettefc.ch/cron2.php")
         open("http://www.servettefc.ch/cron3.php?id="+@simple.match_id.to_s)
+=end
 
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
@@ -102,8 +135,10 @@ class MatchesController < ApplicationController
     @match.save
 
     require 'open-uri'
+=begin
     open("http://www.servettefc.ch/cron2.php")
     open("http://www.servettefc.ch/cron3.php?id="+@match.id.to_s)
+=end
 
     redirect_to matches_path
 
@@ -198,11 +233,14 @@ class MatchesController < ApplicationController
   end
 
   def destroymatchevents
+    Matchevent.find(params[:id]).matcheventlink.removefromorder()
     Matchevent.find(params[:id]).destroy
 
     require 'open-uri'
+=begin
     open("http://www.servettefc.ch/cron2.php")
     open("http://www.servettefc.ch/cron3.php?id="+params[:matchid].to_s)
+=end
 
     match = Match.find(params[:matchid])
     respond_to do |format|
@@ -210,12 +248,16 @@ class MatchesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   def destroymatchevent1users
+    Matchevent1user.find(params[:id]).matcheventlink.removefromorder()
     Matchevent1user.find(params[:id]).destroy
 
     require 'open-uri'
+=begin
     open("http://www.servettefc.ch/cron2.php")
     open("http://www.servettefc.ch/cron3.php?id="+params[:matchid].to_s)
+=end
 
     match = Match.find(params[:matchid])
     respond_to do |format|
@@ -224,11 +266,14 @@ class MatchesController < ApplicationController
     end
   end
   def destroymatchevent2users
+    Matchevent2user.find(params[:id]).matcheventlink.removefromorder()
     Matchevent2user.find(params[:id]).destroy
 
     require 'open-uri'
+=begin
     open("http://www.servettefc.ch/cron2.php")
     open("http://www.servettefc.ch/cron3.php?id="+params[:matchid].to_s)
+=end
 
     match = Match.find(params[:matchid])
     respond_to do |format|
@@ -236,6 +281,37 @@ class MatchesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def moveup
+    Matcheventlink.find(params[:id]).moveup()
+    require 'open-uri'
+=begin
+    open("http://www.servettefc.ch/cron2.php")
+    open("http://www.servettefc.ch/cron3.php?id="+params[:matchid].to_s)
+=end
+
+    match = Matcheventlink.find(params[:id]).match
+    respond_to do |format|
+      format.html { redirect_to livemanager_path(match.id), notice: 'Event was successfully changed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def movedown
+    Matcheventlink.find(params[:id]).movedown()
+    require 'open-uri'
+=begin
+    open("http://www.servettefc.ch/cron2.php")
+    open("http://www.servettefc.ch/cron3.php?id="+params[:matchid].to_s)
+=end
+
+    match = Matcheventlink.find(params[:id]).match
+    respond_to do |format|
+      format.html { redirect_to livemanager_path(match.id), notice: 'Event was successfully changed.' }
+      format.json { head :no_content }
+    end
+  end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.

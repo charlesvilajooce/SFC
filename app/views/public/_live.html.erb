@@ -303,6 +303,68 @@
 
                     <%
 
+                      @matcheventlinks = @match.matcheventlinks
+                      @matcheventlinks = @matcheventlinks.sort_by { |e| e.theorder }
+                      @matcheventlinks.each do |l|
+
+                        if (l.imageable_type == "Matchevent")
+                    %>
+                            <tr>
+                              <td>
+                                <%= me.temps.to_s+"'" %>
+                                <% if !me.getimg().blank? %>
+                                    <%= raw me.getimg() %>
+                                <% end %>
+                              </td>
+                              <td>
+                                <%= raw me.gettext() %>
+                              </td>
+                            </tr>
+                        <%
+                        end
+
+                        if (l.imageable_type == "Matchevent1user")
+                        %>
+                            <tr>
+                              <td>
+                                <%= me.temps.to_s+"'" %>
+                                <% if !me.getimg().blank? %>
+                                    <%= raw me.getimg() %>
+                                <% end %>
+
+                              </td>
+                              <td>
+                                <%= raw me.gettext() %>
+                              </td>
+                            </tr>
+                        <%
+                        end
+
+                        if (l.imageable_type == "Matchevent2user")
+                        %>
+                            <tr>
+                              <td>
+                                <%= me.temps.to_s+"'" %>
+                                <% if !me.getimg().blank? %>
+                                    <%= raw me.getimg() %>
+                                <% end %>
+                              </td>
+                              <td>
+                                <%= raw me.gettext() %>
+                              </td>
+                            </tr>
+                        <%
+                        end
+
+                      end
+
+                    %>
+
+                    <%
+=begin
+                      BEGIN OLD
+=end
+if(false)
                       for i in (200).downto(-200) do
                     %>
 
@@ -402,6 +464,12 @@
                               </td>
                             </tr>
                         <% end end %>
+                            <%
+=begin
+                              END OLD
+=end
+                            end
+                            %>
                   </table>
                 </div>
                 <div class="col-6 col-xl-3 col-lg-3 col-md-3 col-sm-6 mb grey-bg rapport-visiteur flex-xs-last flex-sm-last flex-md-last flex-lg-last flex-xl-last">

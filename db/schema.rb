@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718093303) do
+ActiveRecord::Schema.define(version: 20171114163513) do
 
   create_table "archived_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -124,6 +124,18 @@ ActiveRecord::Schema.define(version: 20170718093303) do
     t.index ["match_id"], name: "index_matchevent2users_on_match_id", using: :btree
     t.index ["user_one_id"], name: "index_matchevent2users_on_user_one_id", using: :btree
     t.index ["user_two_id"], name: "index_matchevent2users_on_user_two_id", using: :btree
+  end
+
+  create_table "matcheventlinks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "match_id"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.integer  "theorder"
+    t.integer  "temps"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_matcheventlinks_on_imageable_type_and_imageable_id", using: :btree
+    t.index ["match_id"], name: "index_matcheventlinks_on_match_id", using: :btree
   end
 
   create_table "matchevents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

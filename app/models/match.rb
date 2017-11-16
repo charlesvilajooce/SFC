@@ -3,6 +3,7 @@ class Match < ApplicationRecord
   has_many :matchevent1users
   has_many :matchevent2users
   has_many :matchlinks
+  has_many :matcheventlinks
   belongs_to :terrain
   belongs_to :adversaire, :class_name => 'Team', :foreign_key => 'adversaire_id'
 

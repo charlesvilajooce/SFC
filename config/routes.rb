@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   get 'matches/livemanager/:id', to: 'matches#livemanager', as: 'livemanager'
   match 'matches/createevents', to: 'matches#createevents', as: 'matchevents', via: [:post]
   get 'matches/deleteevents/:id/:matchid', to: 'matches#destroymatchevents', as: 'delete_matchevents'
+
+  get 'matches/moveup/:id', to: 'matches#moveup', as: 'moveup_match'
+  get 'matches/movedown/:id', to: 'matches#movedown', as: 'movedown_match'
+
   get 'matches/deleteevents1users/:id/:matchid', to: 'matches#destroymatchevent1users', as: 'delete_matchevent1users'
   get 'matches/deleteevents2users/:id/:matchid', to: 'matches#destroymatchevent2users', as: 'delete_matchevent2users'
   match 'matches/createevent1users', to: 'matches#createevent1users', as: 'matchevent1users', via: [:post]
