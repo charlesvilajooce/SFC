@@ -48,7 +48,7 @@ class Matcheventlink < ApplicationRecord
         end
       end
       if biggest == 1
-        orderRankToTake = events.count+1
+        orderRankToTake = 1
       end
 
 
