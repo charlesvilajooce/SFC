@@ -33,10 +33,16 @@ class Matcheventlink < ApplicationRecord
 =end
 
 
+=begin
+      check
+=end
+      currentorder = 99999
       if orderRankToTake == -1
         events.each_with_index do |e, i|
           if e.temps == self.temps || e.temps < self.temps
+            if(currentorder > e.theorder)
             orderRankToTake = e.theorder
+            currentorder = e.theorder
             break
           end
 
