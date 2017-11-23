@@ -34,8 +34,23 @@ class Matcheventlink < ApplicationRecord
 
 
 =begin
-      check
+      so no event has same time, lets check where it fits
 =end
+biggest = 1
+      if orderRankToTake == -1
+        events.each_with_index do |e, i|
+          if e.temps > self.temps
+            if biggest == 1
+              biggest = 0
+              break
+            end
+          end
+        end
+        if biggest == 1
+          orderRankToTake = events.count+1
+        end
+
+
       currentorder = 99999
       if orderRankToTake == -1
         events.each_with_index do |e, i|
