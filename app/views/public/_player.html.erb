@@ -705,7 +705,8 @@
               <%
                 # matches = Match.all.sort_by { |e| e.when }
                 # championnat = users.select { |u| u.role == 1 }
-                @player.matchlinks.each do |m|
+                matchlinks = @player.matchlinks.sort_by { |e| e.match.when }
+                matchlinks.each do |m|
                   match = m.match
                   if match.competition == "Brack.ch Challenge League"
               %>
