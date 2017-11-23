@@ -46,6 +46,7 @@ biggest = 1
             end
           end
         end
+        end
         if biggest == 1
           orderRankToTake = events.count+1
         end
