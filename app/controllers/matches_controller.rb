@@ -44,10 +44,8 @@ class MatchesController < ApplicationController
         @link.theorder = @link.getorder()
 
         require 'open-uri'
-=begin
         open("http://www.servettefc.ch/cron2.php")
         open("http://www.servettefc.ch/cron3.php?id="+@simple.match_id.to_s)
-=end
 
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
@@ -74,10 +72,8 @@ class MatchesController < ApplicationController
         @link.theorder = @link.getorder()
 
         require 'open-uri'
-=begin
         open("http://www.servettefc.ch/cron2.php")
         open("http://www.servettefc.ch/cron3.php?id="+@simple.match_id.to_s)
-=end
 
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
@@ -104,10 +100,8 @@ class MatchesController < ApplicationController
         @link.theorder = @link.getorder()
 
         require 'open-uri'
-=begin
         open("http://www.servettefc.ch/cron2.php")
         open("http://www.servettefc.ch/cron3.php?id="+@simple.match_id.to_s)
-=end
 
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
@@ -135,10 +129,8 @@ class MatchesController < ApplicationController
     @match.save
 
     require 'open-uri'
-=begin
     open("http://www.servettefc.ch/cron2.php")
     open("http://www.servettefc.ch/cron3.php?id="+@match.id.to_s)
-=end
 
     redirect_to matches_path
 
@@ -237,10 +229,8 @@ class MatchesController < ApplicationController
     Matchevent.find(params[:id]).destroy
 
     require 'open-uri'
-=begin
     open("http://www.servettefc.ch/cron2.php")
     open("http://www.servettefc.ch/cron3.php?id="+params[:matchid].to_s)
-=end
 
     match = Match.find(params[:matchid])
     respond_to do |format|
@@ -254,10 +244,8 @@ class MatchesController < ApplicationController
     Matchevent1user.find(params[:id]).destroy
 
     require 'open-uri'
-=begin
     open("http://www.servettefc.ch/cron2.php")
     open("http://www.servettefc.ch/cron3.php?id="+params[:matchid].to_s)
-=end
 
     match = Match.find(params[:matchid])
     respond_to do |format|
@@ -270,10 +258,8 @@ class MatchesController < ApplicationController
     Matchevent2user.find(params[:id]).destroy
 
     require 'open-uri'
-=begin
     open("http://www.servettefc.ch/cron2.php")
     open("http://www.servettefc.ch/cron3.php?id="+params[:matchid].to_s)
-=end
 
     match = Match.find(params[:matchid])
     respond_to do |format|
@@ -285,10 +271,8 @@ class MatchesController < ApplicationController
   def moveup
     Matcheventlink.find(params[:id]).moveup()
     require 'open-uri'
-=begin
     open("http://www.servettefc.ch/cron2.php")
     open("http://www.servettefc.ch/cron3.php?id="+params[:matchid].to_s)
-=end
 
     match = Matcheventlink.find(params[:id]).match
     respond_to do |format|
@@ -300,10 +284,8 @@ class MatchesController < ApplicationController
   def movedown
     Matcheventlink.find(params[:id]).movedown()
     require 'open-uri'
-=begin
     open("http://www.servettefc.ch/cron2.php")
     open("http://www.servettefc.ch/cron3.php?id="+params[:matchid].to_s)
-=end
 
     match = Matcheventlink.find(params[:id]).match
     respond_to do |format|
