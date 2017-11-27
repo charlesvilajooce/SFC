@@ -46,10 +46,14 @@ class Matcheventlink < ApplicationRecord
             end
           end
         end
+=begin
+        was moved from below
+=end
+        if biggest == 1
+          orderRankToTake = 1
+        end
       end
-      if biggest == 1
-        orderRankToTake = 1
-      end
+
 
 
       if orderRankToTake == -1
