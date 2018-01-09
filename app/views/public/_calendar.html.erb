@@ -41,7 +41,7 @@
               <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %>
                 <br/><%= Time.at(match.when).strftime '%H:%M' %></p>
             </div>
-            <% if match.home %>
+            <% if match.home  && match.competition != "Amical" %>
                 <div class="card-footer card-match-footer no-border">
                   <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets">Acheter
                     des Billets</a>
@@ -88,7 +88,7 @@
               <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %>
                 <br/><%= Time.at(match.when).strftime '%H:%M' %></p>
             </div>
-            <% if match.home %>
+            <% if match.home && match.competition != "Amical" %>
                 <div class="card-footer card-match-footer no-border">
                   <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets" target="_blank">Acheter
                     des Billets</a>
@@ -135,7 +135,7 @@
               <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %>
                 <br/><%= Time.at(match.when).strftime '%H:%M' %></p>
             </div>
-            <% if match.home %>
+            <% if match.home  && match.competition != "Amical" %>
                 <div class="card-footer card-match-footer no-border">
                   <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets" target="_blank">Acheter
                     des Billets</a>
@@ -187,7 +187,7 @@
 
         </td>
         <td class="colbillets">
-          <% if match.home %>
+          <% if match.home && match.competition != "Amical" %>
               <div class="card-footer card-match-footer no-border">
                 <% if match.when >  Time.now.to_i %>
                     <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets" target="_blank">Billets</a>

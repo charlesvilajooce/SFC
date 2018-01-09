@@ -24,7 +24,7 @@
             <a href="index.php/match?gameid=<%= match.id %>" class="teamlink">
               <p class="prochains-matchs-small fixed-h"><%= match.adversaire.name %></p>
             </a>
-            <% if match.home %>
+            <% if match.home && match.competition != "Amical" %>
                 <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets" target="_blank">Billets</a>
             <% else %>
                 <span class="nothomespace"></span>
@@ -48,7 +48,7 @@
             <a href="index.php/match?gameid=<%= match.id %>" class="teamlink">
               <p class="prochains-matchs-small fixed-h"><%= match.adversaire.name %></p>
             </a>
-            <% if match.home %>
+            <% if match.home && match.competition != "Amical" %>
                 <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets" target="_blank">Billets</a>
             <% else %>
                 <span class="nothomespace"></span>
@@ -72,7 +72,7 @@
             <a href="index.php/match?gameid=<%= match.id %>" class="teamlink">
               <p class="prochains-matchs-small fixed-h"><%= match.adversaire.name %></p>
             </a>
-            <% if match.home %>
+            <% if match.home && match.competition != "Amical" %>
                 <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets" target="_blank">Billets</a>
             <% else %>
                 <span class="nothomespace"></span>

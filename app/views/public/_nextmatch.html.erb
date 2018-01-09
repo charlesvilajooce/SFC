@@ -51,7 +51,7 @@
           </h4>
           <p class="card-text text-white text-s"><%= Time.at(match.when).strftime '%d/%m/%Y' %><br/><%= Time.at(match.when).strftime '%H:%M' %></p>
         </div>
-        <% if match.home %>
+        <% if match.home  && match.competition != "Amical" %>
         <div class="card-footer card-match-footer no-border">
           <a href="https://www.eventimsports.de/ols/sfc/fr" class="btn btn-primary bouton-billets" target="_blank">Acheter des Billets</a>
         </div>
