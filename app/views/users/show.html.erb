@@ -84,8 +84,10 @@
                         le <%= @user.getnicedate(@user.nationality3from) %></p>
                   <% end %>
                   <% if !@user.naturalisationinprocess.blank? %>
-                      <p>En cours de naturalisation depuis
-                        le <%= @user.getnicedate(@user.nationalisationinprocessfrom) %></p>
+                      <p>En cours de naturalisation</p>
+                      <% if !@user.nationalisationinprocessfrom.blank? %>
+                      <p>depuis le <%= @user.getnicedate(@user.nationalisationinprocessfrom) %></p>
+                      <% end %>
                   <% end %>
                 </li>
             <% end %>
