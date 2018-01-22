@@ -76,12 +76,18 @@
                       le <%= @user.getnicedate(@user.nationalityfrom) %></p>
                   <% end %>
                   <% if !@user.nationality2.blank? %>
-                      <p><strong><%= @user.nationality2 %></strong>&nbsp;depuis
-                        le <%= @user.getnicedate(@user.nationality2from) %></p>
+                      <p><strong><%= @user.nationality2 %></strong>
+                        <% if !@user.nationality2from.blank? %>
+                            &nbsp;depuis le <%= @user.getnicedate(@user.nationality2from) %>
+                        <% end %>
+                      </p>
                   <% end %>
                   <% if !@user.nationality3.blank? %>
-                      <p><strong><%= @user.nationality3 %></strong>&nbsp;depuis
-                        le <%= @user.getnicedate(@user.nationality3from) %></p>
+                      <p><strong><%= @user.nationality3 %></strong>
+                        <% if !@user.nationality3from.blank? %>
+                            &nbsp;depuis le <%= @user.getnicedate(@user.nationality3from) %>
+                        <% end %>
+                      </p>
                   <% end %>
                   <% if !@user.naturalisationinprocess.blank? %>
                       <p>En cours de naturalisation
