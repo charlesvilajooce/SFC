@@ -86,7 +86,7 @@
                   <% if !@user.naturalisationinprocess.blank? %>
                       <p>En cours de naturalisation
                       <% if !@user.nationalisationinprocessfrom.blank? %>
-                      &nbsp;depuis le <%= @user.getnicedate(@user.nationalisationinprocessfrom) %>
+                      depuis le <%= @user.getnicedate(@user.nationalisationinprocessfrom) %>
                       <% end %>
                       </p>
                   <% end %>
