@@ -71,27 +71,27 @@
 
             <% if !@user.nationality.blank? %>
                 <li class="list-group-item">
-                  <strong><%= @user.nationality %></strong>
-                    <% if !@user.nationalityfrom.blank? %> depuis le <%= @user.getnicedate(@user.nationalityfrom) %>
+                  <strong><%= @user.nationality %>&nbsp;</strong>
+                    <% if !@user.nationalityfrom.blank? %>depuis le <%= @user.getnicedate(@user.nationalityfrom) %>
                     <% end %>
                   <% if !@user.nationality2.blank? %>
                     <li class="list-group-item">
-                      <strong><%= @user.nationality2 %></strong>
-                        <% if !@user.nationality2from.blank? %> depuis le <%= @user.getnicedate(@user.nationality2from) %>
+                      <strong><%= @user.nationality2 %>&nbsp;</strong>
+                        <% if !@user.nationality2from.blank? %>depuis le <%= @user.getnicedate(@user.nationality2from) %>
                         <% end %>
                     </li>
                   <% end %>
                   <% if !@user.nationality3.blank? %>
                     <li class="list-group-item">
-                      <strong><%= @user.nationality3 %></strong>
-                        <% if !@user.nationality3from.blank? %> depuis le <%= @user.getnicedate(@user.nationality3from) %>
+                      <strong><%= @user.nationality3 %>&nbsp;</strong>
+                        <% if !@user.nationality3from.blank? %>depuis le <%= @user.getnicedate(@user.nationality3from) %>
                         <% end %>
                     </li>
                   <% end %>
                   <% if !@user.naturalisationinprocess.blank? %>
                     <li class="list-group-item">
                       En cours de naturalisation
-                      <% if !@user.nationalisationinprocessfrom.blank? %> depuis le <%= @user.getnicedate(@user.nationalisationinprocessfrom) %>
+                      <% if !@user.nationalisationinprocessfrom.blank? %>depuis le <%= @user.getnicedate(@user.nationalisationinprocessfrom) %>
                       <% end %>
                     </li>
                   <% end %>
