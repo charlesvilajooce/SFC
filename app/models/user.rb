@@ -278,7 +278,7 @@ class User < ApplicationRecord
     if (self.address1 != nil)
       string = string + self.address1
     end
-    if (self.address2 != nil)
+    if (!self.address2.blank?)
       string = string + "<br> " +self.address2
     end
     if (self.zip != nil)
