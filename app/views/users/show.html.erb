@@ -72,9 +72,10 @@
             <% if !@user.nationality.blank? %>
                 <li class="list-group-item">
                   <p><strong><%= @user.nationality %></strong>
-                  <% if !@user.nationalityfrom.blank? %>&nbsp;depuis
-                      le <%= @user.getnicedate(@user.nationalityfrom) %></p>
-                  <% end %>
+                    <% if !@user.nationalityfrom.blank? %>&nbsp;depuis
+                        le <%= @user.getnicedate(@user.nationalityfrom) %>
+                    <% end %>
+                  </p>
                   <% if !@user.nationality2.blank? %>
                       <p><strong><%= @user.nationality2 %></strong>
                         <% if !@user.nationality2from.blank? %>
