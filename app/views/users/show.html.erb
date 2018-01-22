@@ -77,14 +77,14 @@
                     <% end %>
                   </p>
                   <% if !@user.nationality2.blank? %>
-                      <p><strong><%= @user.nationality2 %></strong>
+                      <p> / <strong><%= @user.nationality2 %></strong>
                         <% if !@user.nationality2from.blank? %>
                             &nbsp;depuis le <%= @user.getnicedate(@user.nationality2from) %>
                         <% end %>
                       </p>
                   <% end %>
                   <% if !@user.nationality3.blank? %>
-                      <p><strong><%= @user.nationality3 %></strong>
+                      <p> / <strong><%= @user.nationality3 %></strong>
                         <% if !@user.nationality3from.blank? %>
                             &nbsp;depuis le <%= @user.getnicedate(@user.nationality3from) %>
                         <% end %>
