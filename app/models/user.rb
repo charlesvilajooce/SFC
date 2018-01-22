@@ -275,16 +275,16 @@ class User < ApplicationRecord
 
   def getaddress()
     string = "";
-    if (self.address1 != nil)
+    if (!self.address1.blank?)
       string = string + self.address1
     end
     if (!self.address2.blank?)
       string = string + "<br> " +self.address2
     end
-    if (self.zip != nil)
+    if (!self.zip.blank?)
       string = string + '<br>' +self.zip
     end
-    if (self.city != nil)
+    if (!self.city.blank?)
       string = string + ' ' + self.city
     end
     return string
