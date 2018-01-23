@@ -107,9 +107,15 @@
               <% end %>
             </li>
             <a href="mailto:'<%= @user.email %>'" class="list-group-item list-group-item-action" style="color: blue !important;"><%= @user.email %></a>
-            <li class="list-group-item"><%= @user.getnicedate(@user.birthday) %></li>
-            <li class="list-group-item"><%= @user.tel %></li>
-            <li class="list-group-item"><%= raw(@user.getaddress()) %></li>
+            <% if !@user.birthday.blank? %>
+                <li class="list-group-item"><%= @user.getnicedate(@user.birthday) %></li>
+            <% end %>
+            <% if !@user.tel.blank? %>
+                <li class="list-group-item"><%= @user.tel %></li>
+            <% end %>
+            <% if !@user.address1.blank? %>
+                <li class="list-group-item"><%= raw(@user.getaddress()) %></li>
+            <% end %>
           </ul>
           <br>
           <%= link_to 'Edit', users_edit_path(@user), class: 'btn btn-primary' %> |
