@@ -45,7 +45,7 @@ $( document ).ready(function() {
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Base de données</a>
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <%= link_to 'Tous', users_path, :class => "dropdown-item" %>
               <a class="dropdown-item" href="<%= users_path('premiere') %>">Première</a>
