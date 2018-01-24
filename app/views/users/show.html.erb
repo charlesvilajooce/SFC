@@ -127,24 +127,24 @@
   <% if (current_user.canviewplayer(@user.id)) %>
 
       <div class="col-7">
-        <% if !@user.parents.blank? && !@user.parents.blank? && !@user.fathercontact.blank? && !@user.mothercontact.blank? && !@user.numberofsiblings.blank? %>
-            <h3>Parents</h3>
+        <% if !@user.parents.blank? && !@user.fathercontact.blank? && !@user.mothercontact.blank? && !@user.numberofsiblings.blank? %>
+            <h3>Entourage social</h3>
             <div class="col-12 thumbnail">
               <% if !@user.parents.blank? %>
                   <p>
-                    <strong>Remarques parents:</strong><br/>
+                    <strong>Remarques:</strong><br/>
                     <%= raw @user.getbrs(@user.parents) %>
                   </p>
               <% end %>
               <% if !@user.fathercontact.blank? %>
                   <p>
-                    <strong>Contact père:</strong><br/>
+                    <strong>Père:</strong><br/>
                     <%= raw @user.getbrs(@user.fathercontact) %>
                   </p>
               <% end %>
               <% if !@user.mothercontact.blank? %>
                   <p>
-                    <strong>Contact mère:</strong><br/>
+                    <strong>Mère:</strong><br/>
                     <%= raw @user.getbrs(@user.mothercontact) %>
                   </p>
               <% end %>
