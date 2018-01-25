@@ -45,14 +45,12 @@
   <Worksheet ss:Name="<%= groupusers.first.canrole %>">
     <Table>
       <Row>
-        <Cell><Data ss:Type="String">Email</Data></Cell>
         <Cell><Data ss:Type="String">Nom</Data></Cell>
         <Cell><Data ss:Type="String">Prénom</Data></Cell>
+        <Cell><Data ss:Type="String">Email</Data></Cell>
         <Cell><Data ss:Type="String">Anniversaire</Data></Cell>
-        <Cell><Data ss:Type="String">Rôle</Data></Cell>
-        <Cell><Data ss:Type="String">Niveau</Data></Cell>
-        <Cell><Data ss:Type="String">Blessé</Data></Cell>
-        <Cell><Data ss:Type="String">Suspendu</Data></Cell>
+        <Cell><Data ss:Type="String">Equipe</Data></Cell>
+        <Cell><Data ss:Type="String">Numéro</Data></Cell>
         <Cell><Data ss:Type="String">Cotisation</Data></Cell>
         <Cell><Data ss:Type="String">Ecole</Data></Cell>
         <Cell><Data ss:Type="String">Date d'arrivée</Data></Cell>
@@ -64,6 +62,7 @@
         <Cell><Data ss:Type="String">Mail père</Data></Cell>
         <Cell><Data ss:Type="String">Mère</Data></Cell>
         <Cell><Data ss:Type="String">Mail mère</Data></Cell>
+        <Cell><Data ss:Type="String">#de frères/soeurs</Data></Cell>
         <Cell><Data ss:Type="String">Adresse 1</Data></Cell>
         <Cell><Data ss:Type="String">Adresse 2</Data></Cell>
         <Cell><Data ss:Type="String">Code postal</Data></Cell>
@@ -72,24 +71,19 @@
         <Cell><Data ss:Type="String">Taille</Data></Cell>
         <Cell><Data ss:Type="String">Poids</Data></Cell>
         <Cell><Data ss:Type="String">Assurance</Data></Cell>
-        <Cell><Data ss:Type="String">Status</Data></Cell>
         <Cell><Data ss:Type="String">Allergies</Data></Cell>
         <Cell><Data ss:Type="String">Medication</Data></Cell>
-        <Cell><Data ss:Type="String">Contact mère</Data></Cell>
-        <Cell><Data ss:Type="String">Contact père</Data></Cell>
-        <Cell><Data ss:Type="String">#de frères/soeurs</Data></Cell>
+
 
       </Row>
       <% groupusers.each do |user| %>
           <Row>
-            <Cell><Data ss:Type="String"><%= user.email %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.name %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.surname %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= user.email %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.birthday %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.canrole %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.level %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= user.injured %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= user.suspended %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.prixcotisations %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.school %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.arriving_date %></Data></Cell>
@@ -101,6 +95,7 @@
             <Cell><Data ss:Type="String"><%= user.mailpere %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.nomprenommere %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.mailmere %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= user.numberofsiblings %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.address1 %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.address2 %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.zip %></Data></Cell>
@@ -109,12 +104,8 @@
             <Cell><Data ss:Type="String"><%= user.height %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.weight %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.insurance %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= user.status %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.allergies %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.medication %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= user.mothercontact %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= user.fathercontact %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= user.numberofsiblings %></Data></Cell>
 
           </Row>
       <% end %>
