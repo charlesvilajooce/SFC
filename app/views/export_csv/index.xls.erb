@@ -51,16 +51,21 @@
         <Cell><Data ss:Type="String">Anniversaire</Data></Cell>
         <Cell><Data ss:Type="String">Rôle</Data></Cell>
         <Cell><Data ss:Type="String">Niveau</Data></Cell>
-        <Cell><Data ss:Type="String">Parents</Data></Cell>
         <Cell><Data ss:Type="String">Blessé</Data></Cell>
         <Cell><Data ss:Type="String">Suspendu</Data></Cell>
+        <Cell><Data ss:Type="String">Cotisation</Data></Cell>
         <Cell><Data ss:Type="String">Ecole</Data></Cell>
         <Cell><Data ss:Type="String">Date d'arrivée</Data></Cell>
         <Cell><Data ss:Type="String">Date de fin de contrat</Data></Cell>
         <Cell><Data ss:Type="String">Nationalité</Data></Cell>
-        <Cell><Data ss:Type="String">Téléphone</Data></Cell>
+        <Cell><Data ss:Type="String">Téléphone privé</Data></Cell>
+        <Cell><Data ss:Type="String">Téléphone portable</Data></Cell>
+        <Cell><Data ss:Type="String">Père</Data></Cell>
+        <Cell><Data ss:Type="String">Mail père</Data></Cell>
+        <Cell><Data ss:Type="String">Mère</Data></Cell>
+        <Cell><Data ss:Type="String">Mail mère</Data></Cell>
         <Cell><Data ss:Type="String">Adresse 1</Data></Cell>
-        <Cell><Data ss:Type="String">Addresse 2</Data></Cell>
+        <Cell><Data ss:Type="String">Adresse 2</Data></Cell>
         <Cell><Data ss:Type="String">Code postal</Data></Cell>
         <Cell><Data ss:Type="String">Ville</Data></Cell>
         <Cell><Data ss:Type="String">Pays</Data></Cell>
@@ -83,14 +88,19 @@
             <Cell><Data ss:Type="String"><%= user.birthday %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.canrole %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.level %></Data></Cell>
-            <Cell><Data ss:Type="String"><%= user.parents %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.injured %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.suspended %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= user.prixcotisations %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.school %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.arriving_date %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.endcontrat_date %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.nationality %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.tel %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= user.telportablejoueur %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= user.nomprenompere %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= user.mailpere %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= user.nomprenommere %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= user.mailmere %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.address1 %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.address2 %></Data></Cell>
             <Cell><Data ss:Type="String"><%= user.zip %></Data></Cell>
