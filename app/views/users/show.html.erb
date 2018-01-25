@@ -139,14 +139,16 @@
               <% if !@user.fathercontact.blank? %>
                   <p>
                     <strong>Père:</strong><br/>
-                    <%= @user.nomprenompere %>
-                    <%= @user.mailpere %>
+                    <%= @user.nomprenompere %><br/>
+                    <%= @user.mailpere %><br/>
                     <%= raw @user.getbrs(@user.fathercontact) %>
                   </p>
               <% end %>
               <% if !@user.mothercontact.blank? %>
                   <p>
                     <strong>Mère:</strong><br/>
+                    <%= @user.nomprenommere %><br/>
+                    <%= @user.mailmere %><br/>
                     <%= raw @user.getbrs(@user.mothercontact) %>
                   </p>
               <% end %>

@@ -236,20 +236,28 @@
       <div class="col-3">
         <div class="form-group">
           <%= f.label :nomprenompere, "Prénom et Nom du père" %>
-          <%= f.text_area :nomprenompere, class: 'form-control' %>
+          <%= f.text_field :nomprenompere, class: 'form-control' %>
         </div>
         <div class="form-group">
           <%= f.label :mailpere, "Adresse email du père" %>
-          <%= f.text_area :mailpere, class: 'form-control' %>
+          <%= f.text_field :mailpere, class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :fathercontact, "Remarques" %>
+          <%= f.label :fathercontact, "Adresse du père" %>
           <%= f.text_area :fathercontact, class: 'form-control' %>
         </div>
       </div>
       <div class="col-3">
         <div class="form-group">
-          <%= f.label :mothercontact, "Mère" %>
+          <%= f.label :nomprenommere, "Prénom et Nom de la mère" %>
+          <%= f.text_field :nomprenommere, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :mailpere, "Adresse email de la mère" %>
+          <%= f.text_field :mailpere, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :mothercontact, "Adresse de la mère" %>
           <%= f.text_area :mothercontact, class: 'form-control' %>
         </div>
       </div>
