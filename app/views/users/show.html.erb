@@ -142,7 +142,7 @@
   <% if (current_user.canviewplayer(@user.id)) %>
 
       <div class="col-7">
-        <% if !@user.nomprenompere.blank? || !@user.nomprenommere.blank? || !@user.numberofsiblings.blank? %>
+        <% if !@user.nomprenompere.blank? || !@user.nomprenommere.blank?%>
             <h3>Entourage social</h3>
             <div class="col-12 thumbnail">
               <% if !@user.parents.blank? %>
@@ -187,9 +187,8 @@
             </div>
         <% end %>
 
+        <% if !@user.arriving_date.blank? || !@user.endcontrat_date.blank? || !@user.sportactivity_archive.blank?%>
         <h3>Admin-sportif</h3>
-        <div class="col-12 thumbnail">
-
           <ul class="list-group">
             <li class="list-group-item">
               <strong>Date d'arrivée:&nbsp;</strong> <%= @user.getnicedate(@user.arriving_date) %>
@@ -223,7 +222,7 @@
               <% end %>
             </div>
           </div>
-        </div>
+        <% end %>
 
 
         <% if !@user.school.blank? %>
