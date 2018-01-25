@@ -142,7 +142,7 @@
   <% if (current_user.canviewplayer(@user.id)) %>
 
       <div class="col-7">
-        <% if !@user.nomprenompere.blank? && !@user.nomprenommere.blank? && !@user.numberofsiblings.blank? %>
+        <% if !@user.nomprenompere.blank? || !@user.nomprenommere.blank? || !@user.numberofsiblings.blank? %>
             <h3>Entourage social</h3>
             <div class="col-12 thumbnail">
               <% if !@user.parents.blank? %>
