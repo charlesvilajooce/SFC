@@ -110,11 +110,20 @@
             <% if !@user.birthday.blank? %>
                 <li class="list-group-item"><%= @user.getnicedate(@user.birthday) %></li>
             <% end %>
+            <% if !@user.lieunaissance.blank? %>
+                <li class="list-group-item">Né à <%= @user.lieunaissance %></li>
+            <% end %>
             <% if !@user.tel.blank? %>
                 <li class="list-group-item"><%= @user.tel %></li>
             <% end %>
+            <% if !@user.telportablejoueur.blank? %>
+                <li class="list-group-item"><%= @user.telportablejoueur %></li>
+            <% end %>
             <% if !@user.address1.blank? %>
                 <li class="list-group-item"><%= raw(@user.getaddress()) %></li>
+            <% end %>
+            <% if !@user.prixcotisations.blank? %>
+                <li class="list-group-item"><%= @user.prixcotisations %></li>
             <% end %>
           </ul>
           <br>
@@ -122,6 +131,12 @@
           <%= link_to 'Back', users_path, class: 'btn btn-primary' %>
         </div>
       </div>
+
+      <% if !@user.remarquesgenerales.blank? %>
+          <div class="thumbnail">
+            <%= @user.remarquesgenerales %>
+          </div>
+      <% end %>
     </div>
   </div>
   <% if (current_user.canviewplayer(@user.id)) %>
@@ -140,16 +155,24 @@
                   <p>
                     <strong>Père:</strong><br/>
                     <%= @user.nomprenompere %><br/>
-                    <%= @user.mailpere %><br/>
-                    <%= raw @user.getbrs(@user.fathercontact) %>
+                    <% if !@user.mailpere.blank? %>
+                      <%= @user.mailpere %><br/>
+                    <% end %>
+                    <% if !@user.fathercontact.blank? %>
+                      <%= raw @user.getbrs(@user.fathercontact) %>
+                    <% end %>
                   </p>
               <% end %>
               <% if !@user.mothercontact.blank? %>
                   <p>
                     <strong>Mère:</strong><br/>
                     <%= @user.nomprenommere %><br/>
-                    <%= @user.mailmere %><br/>
-                    <%= raw @user.getbrs(@user.mothercontact) %>
+                    <% if !@user.mailmere.blank? %>
+                      <%= @user.mailmere %><br/>
+                    <% end %>
+                    <% if !@user.mothercontact.blank? %>
+                      <%= raw @user.getbrs(@user.mothercontact) %>
+                    <% end %>
                   </p>
               <% end %>
               <% if !@user.numberofsiblings.blank? %>

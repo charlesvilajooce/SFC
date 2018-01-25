@@ -33,6 +33,11 @@
           <%= f.label :suspended, "Suspendu" %>
           <%= f.check_box :suspended, class: 'form-control' %>
         </div>
+
+        <div class="form-group">
+          <%= f.label :prixcotisations, "Prix de la cotisation" %>
+          <%= f.text_field :prixcotisations, class: 'form-control' %>
+        </div>
       </div>
       <div class="col-6">
         <div class="form-group">
@@ -43,6 +48,10 @@
               <%= f.label :remove_avatar, "Supprimer la photo" %>
               <%= f.check_box :remove_avatar %>
           <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.label :remarquesgenerales, "Remarques Générales" %>
+          <%= f.text_field :remarquesgenerales, class: 'form-control' %>
         </div>
       </div>
       <div class="col-3">
@@ -93,6 +102,10 @@
         <div class="form-group">
           <%= f.label :birthday, "Date de naissance" %><br>
           <%= f.date_field :birthday, :start_year => 1970, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :lieunaissance, "Lieu de naissance" %><br>
+          <%= f.text_field :lieunaissance, class: 'form-control' %>
         </div>
       </div>
       <div class="col-3">
@@ -147,6 +160,16 @@
         <div class="form-group">
           <%= f.label :email, "Adresse e-mail" %>
           <%= f.text_field :email, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :tel, "Tél. privé" %>
+          <%= f.text_field :tel, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :telportablejoueur, "Tél. portable" %>
+          <%= f.text_field :telportablejoueur, class: 'form-control' %>
         </div>
 
         <div class="form-group">
@@ -243,7 +266,7 @@
           <%= f.text_field :mailpere, class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :fathercontact, "Adresse du père" %>
+          <%= f.label :fathercontact, "Infos générales sur le père" %>
           <%= f.text_area :fathercontact, class: 'form-control' %>
         </div>
       </div>
@@ -257,7 +280,7 @@
           <%= f.text_field :mailpere, class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :mothercontact, "Adresse de la mère" %>
+          <%= f.label :mothercontact, "Infos générales sur le père" %>
           <%= f.text_area :mothercontact, class: 'form-control' %>
         </div>
       </div>
