@@ -187,7 +187,7 @@
             </div>
         <% end %>
 
-        <% if !@user.arriving_date.blank? && !@user.endcontrat_date.blank? && !@user.sportactivity_archive.blank? && !@user.playtime.blank? && !@user.cards_archive.blank? %>
+        <% if !@user.arriving_date.blank? || !@user.endcontrat_date.blank? || !@user.sportactivity_archive.blank? || !@user.playtime.blank? || !@user.cards_archive.blank? %>
         <h3>Admin-sportif</h3>
         <div class="col-12 thumbnail">
 
