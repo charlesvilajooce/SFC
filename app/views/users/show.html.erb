@@ -257,7 +257,6 @@
 
         <h3>Admin-medical</h3>
         <div class="col-12 thumbnail">
-
           <div class="row">
             <div class="col-4">
 
@@ -279,8 +278,8 @@
 
                 </tbody>
               </table>
-
               </p>
+
               <p>
                 <strong>Taille:</strong>
                 <%= @user.height %>
@@ -307,9 +306,10 @@
                     <strong>Assurances:</strong><br/>
                     <%= raw @user.getbrs(@user.physic_char) %>
                   </p>
+                </div>
             <% end %>
 
-            </div>
+
             <div class="col-4">
               <% if !@user.allergies.blank? %>
                   <p>
@@ -334,7 +334,6 @@
 
 
           <% if (current_user.canviewmedical(@user.id)) %>
-              <hr>
               <% if !@user.injury_archive.blank? %>
                   <p>
                     <strong>Remarques médicales:</strong><br/>
