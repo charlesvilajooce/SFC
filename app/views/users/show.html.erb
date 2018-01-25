@@ -6,434 +6,441 @@
 
 <div class="container">
 
-<div class="row">
+  <div class="row">
 
-  <div class="col-5">
-    <div class="col-12">
-      <div class="thumbnail">
-        <% if @user.avatar.thumb.url!=nil %>
-            <%= image_tag @user.avatar.url, class: 'img-fluid rounded mx-auto d-block img-thumbnail' %>
-            <%=
-              # link_to 'All', users_oldpics_path(@user.id), class: 'btn btn-primary'
-            %>
-        <% end %>
-        <div class="caption">
-          <center>
-            <h3><%= @user.surname %> <%= @user.name %>
-              <% if !@user.level.blank? %>
-                  <small>(#<%= @user.level %>)</small>
+    <div class="col-5">
+      <div class="col-12">
+        <div class="thumbnail">
+          <% if @user.avatar.thumb.url!=nil %>
+              <%= image_tag @user.avatar.url, class: 'img-fluid rounded mx-auto d-block img-thumbnail' %>
+              <%=
+                # link_to 'All', users_oldpics_path(@user.id), class: 'btn btn-primary'
+              %>
+          <% end %>
+          <div class="caption">
+            <center>
+              <h3><%= @user.surname %> <%= @user.name %>
+                <% if !@user.level.blank? %>
+                    <small>(#<%= @user.level %>)</small>
+                <% end %>
+              </h3>
+            </center>
+            <center><p><em>
+              <% if @user.role == 1 %>
+                  Gardien
               <% end %>
-            </h3>
-          </center>
-          <center><p><em>
-            <% if @user.role == 1 %>
-                Gardien
-            <% end %>
-            <% if @user.role == 2 %>
-                Défenseur
-            <% end %>
-            <% if @user.role == 3 %>
-                Milieu
-            <% end %>
-            <% if @user.role == 4 %>
-                Attaquant
-            <% end %>
-          </p></em>
-            <% allroles = @user.archivedroles().reverse %>
-            <table class="table table-striped	table-sm">
-              <tbody>
-              <% allroles.each do |w| %>
-                  <tr>
-                    <td>
-                      <% if w.content.to_i == 1 %>
-                          Gardien
-                      <% end %>
-                      <% if w.content.to_i == 2 %>
-                          Défenseur
-                      <% end %>
-                      <% if w.content.to_i == 3 %>
-                          Milieu
-                      <% end %>
-                      <% if w.content.to_i == 4 %>
-                          Attaquant
-                      <% end %>
-                    </td>
-                    <td><span style="color: grey;"><%= DateTime.parse(w.created_at.to_s).strftime('%d.%m.%Y')%></span></td>
-                    <td><%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, archived_info_path(w), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-user' %></td>
-                  </tr>
+              <% if @user.role == 2 %>
+                  Défenseur
               <% end %>
-              </tbody>
-            </table>
-            <% @wheretoredirect = 'show' %>
-            <%= render :partial => "users/statustool.html" %>
-          </center>
-          <ul class="list-group">
+              <% if @user.role == 3 %>
+                  Milieu
+              <% end %>
+              <% if @user.role == 4 %>
+                  Attaquant
+              <% end %>
+            </p></em>
+              <% allroles = @user.archivedroles().reverse %>
+              <table class="table table-striped	table-sm">
+                <tbody>
+                <% allroles.each do |w| %>
+                    <tr>
+                      <td>
+                        <% if w.content.to_i == 1 %>
+                            Gardien
+                        <% end %>
+                        <% if w.content.to_i == 2 %>
+                            Défenseur
+                        <% end %>
+                        <% if w.content.to_i == 3 %>
+                            Milieu
+                        <% end %>
+                        <% if w.content.to_i == 4 %>
+                            Attaquant
+                        <% end %>
+                      </td>
+                      <td>
+                        <span style="color: grey;"><%= DateTime.parse(w.created_at.to_s).strftime('%d.%m.%Y') %></span>
+                      </td>
+                      <td><%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, archived_info_path(w), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger btn-user' %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+              <% @wheretoredirect = 'show' %>
+              <%= render :partial => "users/statustool.html" %>
+            </center>
+            <ul class="list-group">
 
-            <% if !@user.nationality.blank? %>
-                <li class="list-group-item">
-                  <strong><%= @user.nationality %>&nbsp;</strong>
+              <% if !@user.nationality.blank? %>
+                  <li class="list-group-item">
+                    <strong><%= @user.nationality %>&nbsp;</strong>
                     <% if !@user.nationalityfrom.blank? %>depuis le <%= @user.getnicedate(@user.nationalityfrom) %>
                     <% end %>
-                  <% if !@user.nationality2.blank? %>
-                    <li class="list-group-item">
-                      <strong><%= @user.nationality2 %>&nbsp;</strong>
-                        <% if !@user.nationality2from.blank? %>depuis le <%= @user.getnicedate(@user.nationality2from) %>
+                    <% if !@user.nationality2.blank? %>
+                      <li class="list-group-item">
+                        <strong><%= @user.nationality2 %>&nbsp;</strong>
+                        <% if !@user.nationality2from.blank? %>depuis
+                            le <%= @user.getnicedate(@user.nationality2from) %>
                         <% end %>
-                    </li>
+                      </li>
                   <% end %>
                   <% if !@user.nationality3.blank? %>
-                    <li class="list-group-item">
-                      <strong><%= @user.nationality3 %>&nbsp;</strong>
-                        <% if !@user.nationality3from.blank? %>depuis le <%= @user.getnicedate(@user.nationality3from) %>
+                      <li class="list-group-item">
+                        <strong><%= @user.nationality3 %>&nbsp;</strong>
+                        <% if !@user.nationality3from.blank? %>depuis
+                            le <%= @user.getnicedate(@user.nationality3from) %>
                         <% end %>
-                    </li>
+                      </li>
                   <% end %>
                   <% if !@user.naturalisationinprocess.blank? %>
-                    <li class="list-group-item">
-                      En cours de naturalisation
-                      <% if !@user.nationalisationinprocessfrom.blank? %>depuis le <%= @user.getnicedate(@user.nationalisationinprocessfrom) %>
-                      <% end %>
-                    </li>
+                      <li class="list-group-item">
+                        En cours de naturalisation
+                        <% if !@user.nationalisationinprocessfrom.blank? %>depuis
+                            le <%= @user.getnicedate(@user.nationalisationinprocessfrom) %>
+                        <% end %>
+                      </li>
                   <% end %>
-                </li>
-            <% end %>
-            <li class="list-group-item">
-              <% if @user.injured==true %>
-                  <i class="fa fa-user" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true" style="color: red;"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true"></i>
-              <% elsif @user.suspended==true %>
-                  <i class="fa fa-user" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
-              <% else %>
-                  <i class="fa fa-user" aria-hidden="true" style="color: green;"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true"></i>
+                  </li>
               <% end %>
-            </li>
-            <a href="mailto:'<%= @user.email %>'" class="list-group-item list-group-item-action" style="color: blue !important;"><%= @user.email %></a>
-            <% if !@user.birthday.blank? %>
-                <li class="list-group-item"><%= @user.getnicedate(@user.birthday) %></li>
-            <% end %>
-            <% if !@user.lieunaissance.blank? %>
-                <li class="list-group-item">Né à <%= @user.lieunaissance %></li>
-            <% end %>
-            <% if !@user.tel.blank? %>
-                <li class="list-group-item"><%= @user.tel %></li>
-            <% end %>
-            <% if !@user.telportablejoueur.blank? %>
-                <li class="list-group-item"><%= @user.telportablejoueur %></li>
-            <% end %>
-            <% if !@user.address1.blank? %>
-                <li class="list-group-item"><%= raw(@user.getaddress()) %></li>
-            <% end %>
-            <% if !@user.prixcotisations.blank? %>
-                <li class="list-group-item">Cotisation: <%= @user.prixcotisations %></li>
-            <% end %>
-          </ul>
-          <br>
-          <%= link_to 'Edit', users_edit_path(@user), class: 'btn btn-primary' %> |
-          <%= link_to 'Back', users_path, class: 'btn btn-primary' %>
+              <li class="list-group-item">
+                <% if @user.injured==true %>
+                    <i class="fa fa-user" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true" style="color: red;"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true"></i>
+                <% elsif @user.suspended==true %>
+                    <i class="fa fa-user" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+                <% else %>
+                    <i class="fa fa-user" aria-hidden="true" style="color: green;"></i>&nbsp/&nbsp<i class="fa fa-medkit" aria-hidden="true"></i>&nbsp/&nbsp<i class="fa fa-times" aria-hidden="true"></i>
+                <% end %>
+              </li>
+              <a href="mailto:'<%= @user.email %>'" class="list-group-item list-group-item-action" style="color: blue !important;"><%= @user.email %></a>
+              <% if !@user.birthday.blank? %>
+                  <li class="list-group-item"><%= @user.getnicedate(@user.birthday) %></li>
+              <% end %>
+              <% if !@user.lieunaissance.blank? %>
+                  <li class="list-group-item">Né à <%= @user.lieunaissance %></li>
+              <% end %>
+              <% if !@user.tel.blank? %>
+                  <li class="list-group-item"><%= @user.tel %></li>
+              <% end %>
+              <% if !@user.telportablejoueur.blank? %>
+                  <li class="list-group-item"><%= @user.telportablejoueur %></li>
+              <% end %>
+              <% if !@user.address1.blank? %>
+                  <li class="list-group-item"><%= raw(@user.getaddress()) %></li>
+              <% end %>
+              <% if !@user.prixcotisations.blank? %>
+                  <li class="list-group-item">Cotisation: <%= @user.prixcotisations %></li>
+              <% end %>
+            </ul>
+            <br>
+            <%= link_to 'Edit', users_edit_path(@user), class: 'btn btn-primary' %> |
+            <%= link_to 'Back', users_path, class: 'btn btn-primary' %>
+          </div>
         </div>
-      </div>
 
-      <% if !@user.remarquesgenerales.blank? %>
-          <div class="thumbnail">
-            <%= @user.remarquesgenerales %>
-          </div>
-      <% end %>
+        <% if !@user.remarquesgenerales.blank? %>
+            <div class="thumbnail">
+              <%= @user.remarquesgenerales %>
+            </div>
+        <% end %>
+      </div>
     </div>
-  </div>
-  <% if (current_user.canviewplayer(@user.id)) %>
+    <% if (current_user.canviewplayer(@user.id)) %>
 
-      <div class="col-7">
-        <% if !@user.nomprenompere.blank? || !@user.nomprenommere.blank?%>
-            <h3>Entourage social</h3>
-            <div class="col-12 thumbnail">
-              <% if !@user.parents.blank? %>
-                  <p>
-                    <strong>Remarques:</strong><br/>
-                    <%= raw @user.getbrs(@user.parents) %>
-                  </p>
-              <% end %>
-              <% if !@user.fathercontact.blank? %>
-                  <p>
-                    <strong>Père:</strong><br/>
-                    <%= @user.nomprenompere %><br/>
-                    <% if !@user.mailpere.blank? %>
-                      <%= @user.mailpere %><br/>
-                    <% end %>
-                    <% if !@user.fathercontact.blank? %>
-                      <%= raw @user.getbrs(@user.fathercontact) %>
-                    <% end %>
-                  </p>
-              <% end %>
-              <% if !@user.mothercontact.blank? %>
-                  <p>
-                    <strong>Mère:</strong><br/>
-                    <%= @user.nomprenommere %><br/>
-                    <% if !@user.mailmere.blank? %>
-                      <%= @user.mailmere %><br/>
-                    <% end %>
-                    <% if !@user.mothercontact.blank? %>
-                      <%= raw @user.getbrs(@user.mothercontact) %>
-                    <% end %>
-                  </p>
-              <% end %>
-              <% if !@user.numberofsiblings.blank? %>
-                  <p>
-                    <strong>Nombre de frères et soeurs:</strong><br/>
-                    <%= @user.numberofsiblings %>
-                  </p>
-                  <!--<p>
-                    <strong>Frères ou soeurs au SFC:</strong><br/>
-                  </p>-->
-              <% end %>
-            </div>
-        <% end %>
-
-        <% if !@user.arriving_date.blank? || !@user.endcontrat_date.blank? || !@user.sportactivity_archive.blank?%>
-        <h3>Admin-sportif</h3>
-          <ul class="list-group">
-            <li class="list-group-item">
-              <strong>Date d'arrivée:&nbsp;</strong> <%= @user.getnicedate(@user.arriving_date) %>
-            </li>
-            <% if !@user.endcontrat_date.blank? %>
-                <li class="list-group-item">
-                  <% if @user.endcontrat_date < Time.current.to_date+180 %>
-                      <span style="color: red;"><strong>Date de fin de contrat:&nbsp;</strong><%= @user.getnicedate(@user.endcontrat_date) %></i></span>
-                  <% else %>
-                      <strong>Date de fin de contrat:&nbsp;</strong><%= @user.getnicedate(@user.endcontrat_date) %>
-                  <% end %>
-            <% end %>
-            </li>
-          </ul>
-          <br>
-          <div class="row">
-            <div class="col-6">
-              <% if !@user.sportactivity_archive.blank? %>
-                  <p>
-                    <strong>Clubs précédents:</strong><br/>
-                    <%= raw @user.getbrs(@user.sportactivity_archive) %>
-                  </p>
-              <% end %>
-            </div>
-            <div class="col-6">
-              <% if !@user.playtime.blank? %>
-                  <p><strong>Temps de jeu:&nbsp;</strong> <%= @user.playtime %>'</p>
-              <% end %>
-              <% if !@user.cards_archive.blank? %>
-                  <p><strong>Archive des cartons:</strong> <br> <%= raw @user.getbrs(@user.cards_archive) %></p>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-
-
-        <% if !@user.school.blank? %>
-            <h3>Admin-scolaire</h3>
-            <div class="col-12 thumbnail">
-              <p>
-
-                <strong>Dossier scolaire:</strong><br/>
-                <%= raw @user.getbrs(@user.school) %>
-              </p>
-
-              <%
-
-                @docs = @user.documents
-                @docs = @docs.select {|u| u.documenttype == 2}
-                @docs.each do |doc|
-                  string = ((doc.url.to_s).rpartition('/').last)
-              %>
-                  <a href="<%= doc.url %>" target="_blank"><%= string %></a><br>
-
-              <% end %>
-            </div>
-
-        <% end %>
-      </div>
-
-
-      <h3>Admin-medical</h3>
-      <div class="col-12 thumbnail">
-
-        <div class="row">
-          <div class="col-4">
-
-            <p>
-              <strong>Poids:</strong>
-              <%= @user.weight %>
-              <br>
-              <% allweights = @user.archivedweights().reverse %>
-            <table class="table table-striped	table-sm">
-              <tbody>
-              <% allweights.each do |w| %>
-                  <tr>
-                    <td><%= w.content %></td>
-                    <td><span style="color: grey;"><%= DateTime.parse(w.created_at.to_s).strftime('%d.%m.%Y') %></span>
-                    </td>
-                  </tr>
-              <% end %>
-
-              </tbody>
-            </table>
-
-            </p>
-            <p>
-              <strong>Taille:</strong>
-              <%= @user.height %>
-              <br>
-              <% allheights = @user.archivedheights().reverse %>
-            <table class="table table-striped	table-sm">
-              <tbody>
-              <% allheights.each do |h| %>
-                  <tr>
-                    <td><%= h.content %></td>
-                    <td><span style="color: grey;"><%= DateTime.parse(h.created_at.to_s).strftime('%d.%m.%Y') %></span>
-                    </td>
-                  </tr>
-              <% end %>
-              </tbody>
-            </table>
-            </p>
-
-          </div>
-          <% if !@user.physic_char.blank? %>
-              <div class="col-4">
-                <p>
-                  <strong>Assurances:</strong><br/>
-                  <%= raw @user.getbrs(@user.physic_char) %>
-                </p>
+        <div class="col-7">
+          <% if !@user.nomprenompere.blank? || !@user.nomprenommere.blank? %>
+              <h3>Entourage social</h3>
+              <div class="col-12 thumbnail">
+                <% if !@user.parents.blank? %>
+                    <p>
+                      <strong>Remarques:</strong><br/>
+                      <%= raw @user.getbrs(@user.parents) %>
+                    </p>
+                <% end %>
+                <% if !@user.fathercontact.blank? %>
+                    <p>
+                      <strong>Père:</strong><br/>
+                      <%= @user.nomprenompere %><br/>
+                      <% if !@user.mailpere.blank? %>
+                          <%= @user.mailpere %><br/>
+                      <% end %>
+                      <% if !@user.fathercontact.blank? %>
+                          <%= raw @user.getbrs(@user.fathercontact) %>
+                      <% end %>
+                    </p>
+                <% end %>
+                <% if !@user.mothercontact.blank? %>
+                    <p>
+                      <strong>Mère:</strong><br/>
+                      <%= @user.nomprenommere %><br/>
+                      <% if !@user.mailmere.blank? %>
+                          <%= @user.mailmere %><br/>
+                      <% end %>
+                      <% if !@user.mothercontact.blank? %>
+                          <%= raw @user.getbrs(@user.mothercontact) %>
+                      <% end %>
+                    </p>
+                <% end %>
+                <% if !@user.numberofsiblings.blank? %>
+                    <p>
+                      <strong>Nombre de frères et soeurs:</strong><br/>
+                      <%= @user.numberofsiblings %>
+                    </p>
+                    <!--<p>
+                      <strong>Frères ou soeurs au SFC:</strong><br/>
+                    </p>-->
+                <% end %>
+              </div>
           <% end %>
 
-          </div>
-          <div class="col-4">
-            <% if !@user.allergies.blank? %>
+          <% if !@user.arriving_date.blank? || !@user.endcontrat_date.blank? || !@user.sportactivity_archive.blank? %>
+              <h3>Admin-sportif</h3>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>Date d'arrivée:&nbsp;</strong> <%= @user.getnicedate(@user.arriving_date) %>
+                </li>
+                <% if !@user.endcontrat_date.blank? %>
+                    <li class="list-group-item">
+                      <% if @user.endcontrat_date < Time.current.to_date+180 %>
+                          <span style="color: red;"><strong>Date de fin de contrat:&nbsp;</strong><%= @user.getnicedate(@user.endcontrat_date) %></i></span>
+                      <% else %>
+                          <strong>Date de fin de contrat:&nbsp;</strong><%= @user.getnicedate(@user.endcontrat_date) %>
+                      <% end %>
+                <% end %>
+                </li>
+              </ul>
+              <br>
+              <div class="row">
+                <div class="col-6">
+                  <% if !@user.sportactivity_archive.blank? %>
+                      <p>
+                        <strong>Clubs précédents:</strong><br/>
+                        <%= raw @user.getbrs(@user.sportactivity_archive) %>
+                      </p>
+                  <% end %>
+                </div>
+                <div class="col-6">
+                  <% if !@user.playtime.blank? %>
+                      <p><strong>Temps de jeu:&nbsp;</strong> <%= @user.playtime %>'</p>
+                  <% end %>
+                  <% if !@user.cards_archive.blank? %>
+                      <p><strong>Archive des cartons:</strong> <br> <%= raw @user.getbrs(@user.cards_archive) %></p>
+                  <% end %>
+                </div>
+              </div>
+          <% end %>
+
+
+          <% if !@user.school.blank? %>
+              <h3>Admin-scolaire</h3>
+              <div class="col-12 thumbnail">
                 <p>
-                  <strong>Allergies:</strong>
-                  <%= @user.allergies %>
+
+                  <strong>Dossier scolaire:</strong><br/>
+                  <%= raw @user.getbrs(@user.school) %>
                 </p>
-            <% end %>
-            <% if !@user.medication.blank? %>
-                <p>
-                  <strong>Médication:</strong>
-                  <%= @user.medication %>
-                </p>
-            <% end %>
-            <% if !@user.statictrouble.blank? %>
-                <p>
-                  <strong>Troubles statiques:</strong>
-                  <%= @user.statictrouble %>
-                </p>
-            <% end %>
-          </div>
+
+                <%
+
+                  @docs = @user.documents
+                  @docs = @docs.select {|u| u.documenttype == 2}
+                  @docs.each do |doc|
+                    string = ((doc.url.to_s).rpartition('/').last)
+                %>
+                    <a href="<%= doc.url %>" target="_blank"><%= string %></a><br>
+
+                <% end %>
+              </div>
+
+          <% end %>
         </div>
 
 
-        <% if (current_user.canviewmedical(@user.id)) %>
-            <hr>
-            <% if !@user.injury_archive.blank? %>
-                <p>
-                  <strong>Remarques médicales:</strong><br/>
-                  <%= raw @user.getbrs(@user.injury_archive) %>
-                </p>
-            <% end %>
-            <%
+        <h3>Admin-medical</h3>
+        <div class="col-12 thumbnail">
 
-              @docs = @user.documents
-              @docs = @docs.select {|u| u.documenttype == 1}
-              @docs.each do |doc|
-                string = ((doc.url.to_s).rpartition('/').last)
-            %>
-                <a href="<%= doc.url %>" target="_blank" style="color: black !important;"><%= string %></a><br>
-                <a style="color:black !important;" href="<%= doc.url %>" target="_blank"><%= string %></a><br>
+          <div class="row">
+            <div class="col-4">
 
-            <% end %>
-            </div>
-
-            <h4>Blessures</h4>
-            <div class="col-12 thumbnail">
-              <%= form_for(@injury) do |fi| %>
-                  <% if @injury.errors.any? %>
-                      <div id="error_explanation">
-                        <h2><%= pluralize(@injury.errors.count, "error") %> prohibited this injury from being
-                          saved:</h2>
-
-                        <ul>
-                          <% @injury.errors.full_messages.each do |message| %>
-                              <li><%= message %></li>
-                          <% end %>
-                        </ul>
-                      </div>
-                  <% end %>
-
-                  <div class="form-group">
-                    <table class="table table-striped	table-sm">
-                      <thead>
-                      <th><%= fi.label :when, "Date" %></th>
-                      <th><%= fi.label :location, "Zone" %></th>
-                      <th><%= fi.label :structure, "Structure" %></th>
-                      <th> <%= fi.label :datetrain, "Date Entrainement" %></th>
-                      <th><%= fi.label :datematch, "Date Match" %></th>
-                      <th><%= fi.label :dateperf, "Date Performance" %></th>
-                      </thead>
-                      <tbody>
-                      <tr>
-                        <td><%= fi.date_field :when, class: 'form-control' %></td>
-                        <td><%= fi.select :location, options_for_select([['', ''], ["Tronc", "Tronc"], ["Abdomen", "Abdomen"], ["Membre supp. G", "Membre supp. G"], ["Membre supp. D", "Membre supp. D"], ["Cou", "Cou"], ["Tête", "Tête"], ["Bassin", "Bassin"], ["Bassin", "Bassin"], ["Membre inf. G", "Membre inf. G"], ["Membre inf. D", "Membre inf. D"], ["Pied G", "Pied G"], ["Pied D", "Pied D"]]) %></td>
-                        <td><%= fi.select :structure, options_for_select([['', ''], ["Os", "Os"], ["Muscle", "Muscle"], ["Nerf", "Nerf"], ["Tissus", "Tissus"], ["Tendon", "Tendon"], ["Ligament", "Ligament"], ["Cartillage", "Cartillage"]]) %></td>
-                        <td><%= fi.date_field :datetrain, class: 'form-control' %></td>
-                        <td><%= fi.date_field :datematch, class: 'form-control' %></td>
-                        <td><%= fi.date_field :dateperf, class: 'form-control' %></td>
-                      </tr>
-                      </tbody>
-                    </table>
-
-                    <div class="row">
-                      <div class="col-6">
-                        <%= fi.label :therapeute, "Thérapeute" %>
-                        <%= fi.text_field :therapeute, class: 'form-control' %>
-                        <%= fi.hidden_field :user_id, value: @user.id, class: 'form-control' %>
-                      </div>
-
-                      <div class="col-6">
-                        <%= fi.label :comment, "Description" %>
-                        <%= fi.text_area :comment, class: 'form-control' %>
-                      </div>
-                    </div>
-
-                    <div class="actions">
-                      <%= fi.submit 'Ajouter une blessure', :class => 'btn btn-primary' %>
-                    </div>
-              <% end %>
+              <p>
+                <strong>Poids:</strong>
+                <%= @user.weight %>
+                <br>
+                <% allweights = @user.archivedweights().reverse %>
               <table class="table table-striped	table-sm">
-                <thead>
-                <th>Date</th>
-                <th>Zone</th>
-                <th>Structure</th>
-                <th>Thérapeute</th>
-                <th>Description</th>
-                <th>Dates</th>
-                <th></th>
-                </thead>
-
-
-
-                <% @user.getinjuries().each do |inj| %>
+                <tbody>
+                <% allweights.each do |w| %>
                     <tr>
-                      <td><%= inj.nicedate(inj.when) %></td>
-                      <td><%= inj.location %></td>
-                      <td><%= inj.structure %></td>
-                      <td><%= inj.therapeute %></td>
-                      <td><%= inj.comment %></td>
-                      <td>E: <%= inj.nicedate(inj.datetrain) %><br>M: <%= inj.nicedate(inj.datematch) %>
-                        <br>P: <%= inj.nicedate(inj.dateperf) %></td>
-                      <td><%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, injury_path(inj), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger btn-user' %>
+                      <td><%= w.content %></td>
+                      <td>
+                        <span style="color: grey;"><%= DateTime.parse(w.created_at.to_s).strftime('%d.%m.%Y') %></span>
                       </td>
                     </tr>
                 <% end %>
 
-
+                </tbody>
               </table>
-              </div>
-        <% end %>
-  <% end %>
-  </div> <!-- /.row -->
+
+              </p>
+              <p>
+                <strong>Taille:</strong>
+                <%= @user.height %>
+                <br>
+                <% allheights = @user.archivedheights().reverse %>
+              <table class="table table-striped	table-sm">
+                <tbody>
+                <% allheights.each do |h| %>
+                    <tr>
+                      <td><%= h.content %></td>
+                      <td>
+                        <span style="color: grey;"><%= DateTime.parse(h.created_at.to_s).strftime('%d.%m.%Y') %></span>
+                      </td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+              </p>
+
+            </div>
+            <% if !@user.physic_char.blank? %>
+                <div class="col-4">
+                  <p>
+                    <strong>Assurances:</strong><br/>
+                    <%= raw @user.getbrs(@user.physic_char) %>
+                  </p>
+            <% end %>
+
+            </div>
+            <div class="col-4">
+              <% if !@user.allergies.blank? %>
+                  <p>
+                    <strong>Allergies:</strong>
+                    <%= @user.allergies %>
+                  </p>
+              <% end %>
+              <% if !@user.medication.blank? %>
+                  <p>
+                    <strong>Médication:</strong>
+                    <%= @user.medication %>
+                  </p>
+              <% end %>
+              <% if !@user.statictrouble.blank? %>
+                  <p>
+                    <strong>Troubles statiques:</strong>
+                    <%= @user.statictrouble %>
+                  </p>
+              <% end %>
+            </div>
+          </div>
+
+
+          <% if (current_user.canviewmedical(@user.id)) %>
+              <hr>
+              <% if !@user.injury_archive.blank? %>
+                  <p>
+                    <strong>Remarques médicales:</strong><br/>
+                    <%= raw @user.getbrs(@user.injury_archive) %>
+                  </p>
+              <% end %>
+              <%
+
+                @docs = @user.documents
+                @docs = @docs.select {|u| u.documenttype == 1}
+                @docs.each do |doc|
+                  string = ((doc.url.to_s).rpartition('/').last)
+              %>
+                  <a href="<%= doc.url %>" target="_blank" style="color: black !important;"><%= string %></a><br>
+                  <a style="color:black !important;" href="<%= doc.url %>" target="_blank"><%= string %></a><br>
+
+              <% end %>
+
+              <h4>Blessures</h4>
+              <div class="col-12 thumbnail">
+                <%= form_for(@injury) do |fi| %>
+                    <% if @injury.errors.any? %>
+                        <div id="error_explanation">
+                          <h2><%= pluralize(@injury.errors.count, "error") %> prohibited this injury from being
+                            saved:</h2>
+
+                          <ul>
+                            <% @injury.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                            <% end %>
+                          </ul>
+                        </div>
+                    <% end %>
+
+                    <div class="form-group">
+                      <table class="table table-striped	table-sm">
+                        <thead>
+                        <th><%= fi.label :when, "Date" %></th>
+                        <th><%= fi.label :location, "Zone" %></th>
+                        <th><%= fi.label :structure, "Structure" %></th>
+                        <th> <%= fi.label :datetrain, "Date Entrainement" %></th>
+                        <th><%= fi.label :datematch, "Date Match" %></th>
+                        <th><%= fi.label :dateperf, "Date Performance" %></th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td><%= fi.date_field :when, class: 'form-control' %></td>
+                          <td><%= fi.select :location, options_for_select([['', ''], ["Tronc", "Tronc"], ["Abdomen", "Abdomen"], ["Membre supp. G", "Membre supp. G"], ["Membre supp. D", "Membre supp. D"], ["Cou", "Cou"], ["Tête", "Tête"], ["Bassin", "Bassin"], ["Bassin", "Bassin"], ["Membre inf. G", "Membre inf. G"], ["Membre inf. D", "Membre inf. D"], ["Pied G", "Pied G"], ["Pied D", "Pied D"]]) %></td>
+                          <td><%= fi.select :structure, options_for_select([['', ''], ["Os", "Os"], ["Muscle", "Muscle"], ["Nerf", "Nerf"], ["Tissus", "Tissus"], ["Tendon", "Tendon"], ["Ligament", "Ligament"], ["Cartillage", "Cartillage"]]) %></td>
+                          <td><%= fi.date_field :datetrain, class: 'form-control' %></td>
+                          <td><%= fi.date_field :datematch, class: 'form-control' %></td>
+                          <td><%= fi.date_field :dateperf, class: 'form-control' %></td>
+                        </tr>
+                        </tbody>
+                      </table>
+
+                      <div class="row">
+                        <div class="col-6">
+                          <%= fi.label :therapeute, "Thérapeute" %>
+                          <%= fi.text_field :therapeute, class: 'form-control' %>
+                          <%= fi.hidden_field :user_id, value: @user.id, class: 'form-control' %>
+                        </div>
+
+                        <div class="col-6">
+                          <%= fi.label :comment, "Description" %>
+                          <%= fi.text_area :comment, class: 'form-control' %>
+                        </div>
+                      </div>
+
+                      <div class="actions">
+                        <%= fi.submit 'Ajouter une blessure', :class => 'btn btn-primary' %>
+                      </div>
+                <% end %>
+                <table class="table table-striped	table-sm">
+                  <thead>
+                  <th>Date</th>
+                  <th>Zone</th>
+                  <th>Structure</th>
+                  <th>Thérapeute</th>
+                  <th>Description</th>
+                  <th>Dates</th>
+                  <th></th>
+                  </thead>
+
+
+
+                  <% @user.getinjuries().each do |inj| %>
+                      <tr>
+                        <td><%= inj.nicedate(inj.when) %></td>
+                        <td><%= inj.location %></td>
+                        <td><%= inj.structure %></td>
+                        <td><%= inj.therapeute %></td>
+                        <td><%= inj.comment %></td>
+                        <td>E: <%= inj.nicedate(inj.datetrain) %><br>M: <%= inj.nicedate(inj.datematch) %>
+                          <br>P: <%= inj.nicedate(inj.dateperf) %></td>
+                        <td><%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, injury_path(inj), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger btn-user' %>
+                        </td>
+                      </tr>
+                  <% end %>
+
+
+                </table>
+                </div>
+          <% end %>
+    <% end %>
+    </div> <!-- /.row -->
+  </div>
 </div>
 </div>
