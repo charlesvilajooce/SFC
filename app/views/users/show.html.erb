@@ -139,6 +139,8 @@
               <% if !@user.fathercontact.blank? %>
                   <p>
                     <strong>Père:</strong><br/>
+                    <%= @user.nomprenompere %>
+                    <%= @user.mailpere %>
                     <%= raw @user.getbrs(@user.fathercontact) %>
                   </p>
               <% end %>

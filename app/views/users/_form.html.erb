@@ -235,7 +235,15 @@
       </div>
       <div class="col-3">
         <div class="form-group">
-          <%= f.label :fathercontact, "Père" %>
+          <%= f.label :nomprenompere, "Prénom et Nom du père" %>
+          <%= f.text_area :nomprenompere, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :mailpere, "Adresse email du père" %>
+          <%= f.text_area :mailpere, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :fathercontact, "Remarques" %>
           <%= f.text_area :fathercontact, class: 'form-control' %>
         </div>
       </div>
