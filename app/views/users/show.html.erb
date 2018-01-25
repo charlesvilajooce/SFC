@@ -142,7 +142,7 @@
   <% if (current_user.canviewplayer(@user.id)) %>
 
       <div class="col-7">
-        <% if !@user.nomprenompere.blank? && !@user.nomprenommere.blank? && !@user.numberofsiblings.blank? %>
+        <% if !@user.nomprenompere.blank? || !@user.nomprenommere.blank? || !@user.numberofsiblings.blank? %>
             <h3>Entourage social</h3>
             <div class="col-12 thumbnail">
               <% if !@user.parents.blank? %>
@@ -252,7 +252,7 @@
         <% end %>
       </div>
 
-
+      <% if !@user.school.blank? %>
       <h3>Admin-medical</h3>
       <div class="col-12 thumbnail">
 
@@ -303,9 +303,9 @@
                   <strong>Assurances:</strong><br/>
                   <%= raw @user.getbrs(@user.physic_char) %>
                 </p>
+              </div>
           <% end %>
 
-          </div>
           <div class="col-4">
             <% if !@user.allergies.blank? %>
                 <p>
@@ -330,7 +330,6 @@
 
 
         <% if (current_user.canviewmedical(@user.id)) %>
-            <hr>
             <% if !@user.injury_archive.blank? %>
                 <p>
                   <strong>Remarques médicales:</strong><br/>
@@ -348,7 +347,7 @@
                 <a style="color:black !important;" href="<%= doc.url %>" target="_blank"><%= string %></a><br>
 
             <% end %>
-            </div>
+
 
             <h4>Blessures</h4>
             <div class="col-12 thumbnail">
@@ -437,6 +436,7 @@
               </div>
         <% end %>
   <% end %>
+      </div>
   </div> <!-- /.row -->
 </div>
 </div>
