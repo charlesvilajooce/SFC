@@ -1,4 +1,4 @@
-class AddingParentsinfosToUsers < ActiveRecord::Migration[5.0]
+class AddParentsinfosToUsers < ActiveRecord::Migration[5.0]
   def change
     add_column :users, :nomprenompere, :string
     add_column :users, :nomprenommere, :string
