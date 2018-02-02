@@ -185,9 +185,15 @@
                       <strong>Nombre de frères et soeurs:</strong><br/>
                       <%= @user.numberofsiblings %>
                     </p>
-                    <!--<p>
+                    <p>
                       <strong>Frères ou soeurs au SFC:</strong><br/>
-                    </p>-->
+                      <% user.relationship1.each do |rel| %>
+                          <%= raw ‘selected_items.push(selectize.search(“‘+rel.user_two.getname().to_s+‘“).items[0].id);’ %>
+                      <% end %>
+                      <% user.relationship2.each do |rel| %>
+                          <%= raw ‘selected_items.push(selectize.search(“‘+rel.user_one.getname().to_s+‘“).items[0].id);’ %>
+                      <% end %>
+                    </p>
                 <% end %>
               </div>
           <% end %>
