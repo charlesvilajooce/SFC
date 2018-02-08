@@ -71,11 +71,9 @@ class MatchesController < ApplicationController
         @link.save
         @link.theorder = @link.getorder()
 
-=begin
         require 'open-uri'
         open("http://www.servettefc.ch/cron2.php")
         open("http://www.servettefc.ch/cron3.php?id="+@simple.match_id.to_s)
-=end
 
         format.html { redirect_to livemanager_path(@simple.match_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @match }
