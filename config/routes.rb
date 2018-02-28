@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-=begin
   get 'export_csv/index', to: 'export_csv#index', as: 'export_path'
 
   get 'export_csv/export'
@@ -28,7 +27,6 @@ Rails.application.routes.draw do
   get 'game_center/liveedit'
 
   get 'media/team'
-=end
 
   get 'public/team'
   get 'public/live/:id', to: 'public#live', as: 'public_live'
@@ -42,7 +40,6 @@ Rails.application.routes.draw do
   get 'public/nextmatch'
   get 'public/nextmatches'
 
-=begin
   resources :archived_infos
   resources :injuries
   resources :documents
@@ -52,33 +49,18 @@ Rails.application.routes.draw do
   get 'users/setcalendartype'
   get 'users/changestatus/:id/:status/:wheretoredirect', to: 'users#changestatus', as: 'users_change_status'
   get 'users/oldpics/:id', to: 'users#oldpics', as: 'users_oldpics'
-=end
-#PUTBACK
-=begin
+
   get 'events/eventsource'
   get 'events/click'
   get 'events/newpartial', to: 'events#newpartial', as: 'new_events_partial'
   get 'events/showpartial/:id', to: 'events#showpartial', as: 'event_partial'
   get '/events/:id/editpartial', to: 'events#editpartial', as: 'edit_event_partial'
-=end
-  #PUTBACK
-=begin
   resources :events
-=end
-  #PUTBACK
-=begin
   get 'calendar/index'
-=end
 
-  #PUTBACK
-=begin
   devise_for :users
-=end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  #PUTBACK
-=begin
   authenticated :user do
-=end
     root to: 'users#index'
 
     # , as: :authenticated_root
@@ -108,22 +90,10 @@ Rails.application.routes.draw do
   # devise_for :users
 
   # resources :users, only: [:index, :show]
-  #PUTBACK
-=begin
   get 'users/index', to: 'users#index', as: 'users'
-=end
-  #PUTBACK
-=begin
   get 'users/:id/edit', to: 'users#edit', as: 'users_edit'
-=end
-  #PUTBACK
-=begin
   match 'users/index', to: 'users#create', as: 'createuser', via: [:post]
-=end
-  #PUTBACK
-=begin
   resources :users, only: [:show, :update, :destroy, :new]
-=end
 
   get 'documents/new/:id/:doctype', to: 'documents#new', as: 'new_document_params'
 
